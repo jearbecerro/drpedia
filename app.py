@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
-bot = Bot (ACCESS_TOKEN)
+bot = Bot(ACCESS_TOKEN)
 
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
@@ -28,7 +28,7 @@ def receive_message():
                 recipient_id = message['sender']['id']
                 if message['message'].get('text'):
                     response_sent_text = get_message()
-                    send_message(recipient_id, 'Ang Matcho mo papa Ken Razo <3')
+                    send_message(recipient_id, response_sent_nontext)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
