@@ -57,9 +57,9 @@ def get_message():
     return random.choice(sample_responses)
 
         
-uses PyMessenger to send response to user
+#uses PyMessenger to send response to user
 def send_message(recipient_id, response):
-    sends user the text message provided via input response parameter
+    #sends user the text message provided via input response parameter
     bot.send_text_message(recipient_id, response)
     return "success"
 
