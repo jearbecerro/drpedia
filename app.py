@@ -50,11 +50,32 @@ def get_message():
     # return selected item to the user
     return random.choice(sample_responses)
 
+def send_message(recipient_id, message_text):
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+    params = {
+        "access_token": ACCESS_TOKEN
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "text": message_text
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+        
 #uses PyMessenger to send response to user
-def send_message(recipient_id, response):
+#def send_message(recipient_id, response):
     #sends user the text message provided via input response parameter
-    bot.send_text_message(recipient_id, response)
-    return "success"
+   # bot.send_text_message(recipient_id, response)
+  #  return "success"
 
 if __name__ == "__main__":
     app.run()
