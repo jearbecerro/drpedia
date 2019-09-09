@@ -2,7 +2,7 @@
 import random
 from flask import Flask, request
 #from pymessager.message import Messager
-from pymessenger.bot import Bot
+from messnger_syntax.bot import Bot
 import os
 
 app = Flask(__name__)
