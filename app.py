@@ -10,7 +10,7 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 
 #bot = Bot (ACCESS_TOKEN)
-client = Messager(config.ACCESS_TOKEN)
+client = Messager(ACCESS_TOKEN)
 app = Flask(__name__)
 
 #We will receive messages that Facebook sends our bot at this endpoint 
