@@ -60,4 +60,4 @@ def send_message(recipient_id, response):
     return "success"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5002, debug=True)
