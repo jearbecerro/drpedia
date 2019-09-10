@@ -41,29 +41,7 @@ class Bot:
                 auth['appsecret_proof'] = appsecret_proof
             self._auth_args = auth
         return self._auth_args
-    
-    curl -X POST -H "Content-Type: application/json" -d '{
-      "recipient":{
-        "id":"<PSID>"
-      },
-      "messaging_type": "RESPONSE",
-      "message":{
-        "text": "Pick a color:",
-        "quick_replies":[
-          {
-            "content_type":"text",
-            "title":"Red",
-            "payload":"<POSTBACK_PAYLOAD>",
-            "image_url":"http://example.com/img/red.png"
-          },{
-            "content_type":"text",
-            "title":"Green",
-            "payload":"<POSTBACK_PAYLOAD>",
-            "image_url":"http://example.com/img/green.png"
-          }
-        ]
-      }
-    }' "https://graph.facebook.com/v4.0/me/messages?access_token=<PAGE_ACCESS_TOKEN>"   
+
     
     def send_quick_replies_message(self, recipient_id, text, quick_replies, notification_type=NotificationType.regular):
         """Send text messages to the specified recipient.
