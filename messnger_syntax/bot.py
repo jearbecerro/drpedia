@@ -65,7 +65,7 @@ class Bot:
                 "image_url":"http://example.com/img/green.png"
               }
         """
-        return self.send_message(recipient_id, "messaging_type": "RESPONSE",
+        return self.send_message(recipient_id,
           "message":{
             "text": text,
             "quick_replies":[
