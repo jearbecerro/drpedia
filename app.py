@@ -46,7 +46,7 @@ def receive_message():
                         "payload":"behavioral",
                         "image_url":image_url+"behavioral.png"
                       }
-                    bot.send_quick_replies_message(self, recipient_id, 'Choose Pediatric Concern', quick_replies)
+                    bot.send_quick_replies_message(recipient_id, 'Choose Pediatric Concern', quick_replies)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
