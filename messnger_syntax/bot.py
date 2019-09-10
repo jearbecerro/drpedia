@@ -41,7 +41,6 @@ class Bot:
                 auth['appsecret_proof'] = appsecret_proof
             self._auth_args = auth
         return self._auth_args
-
     
     def send_quick_replies_message(self, recipient_id, text, quick_replies, notification_type=NotificationType.regular):
         """Send text messages to the specified recipient.
@@ -52,8 +51,7 @@ class Bot:
             quick_replies: quick_replies to send
         Output:
             Response from API as <dict>
-            
-             {
+            {
                 "content_type":"text",
                 "title":"Red",
                 "payload":"<POSTBACK_PAYLOAD>",
@@ -65,15 +63,12 @@ class Bot:
                 "image_url":"http://example.com/img/green.png"
               }
         """
-        return self.send_message(recipient_id,
-          "message":{
+        return self.send_message(recipient_id, {
             "text": text,
-            "quick_replies":[
-             quick_replies
-            ]
-          }
+            "quick_replies": quick_replies
         }, notification_type)
     
+
     def send_recipient(self, recipient_id, payload, notification_type=NotificationType.regular):
         payload['recipient'] = {
             'id': recipient_id
