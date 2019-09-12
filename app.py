@@ -26,7 +26,7 @@ def receive_message():
         # get whatever message a user sent the bot
        output = request.get_json()
        for event in output['entry']:
-          pm= "{
+          pm= {
             "persistent_menu": [
                 {
                     "locale": "default",
@@ -34,24 +34,23 @@ def receive_message():
                     "call_to_actions": [
                         {
                             "type": "postback",
-                            "title": "Talk to an agent",
-                            "payload": "CARE_HELP"
+                            "title": "Physical Health",
+                            "payload": "pm_physical"
                         },
                         {
                             "type": "postback",
-                            "title": "Outfit suggestions",
-                            "payload": "CURATION"
+                            "title": "Behaviroal Coaching",
+                            "payload": "pm_behavioral"
                         },
                         {
-                            "type": "web_url",
-                            "title": "Shop now",
-                            "url": "https://www.originalcoastclothing.com/",
-                            "webview_height_ratio": "full"
+                            "type": "postback",
+                            "title": "Dengue Prevention",
+                            "payload": "pm_dengue"
                         }
                     ]
                 }
             ]
-            }"
+            }
           bot.set_persistent_menu(pm)
           messaging = event['messaging']
           for message in messaging:
@@ -64,12 +63,12 @@ def receive_message():
                     image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
                     quick_replies = {
                         "content_type":"text",
-                        "title":"Physical Infections",
+                        "title":"Physical Health",
                         "payload":"physical",
                         "image_url":image_url+"physical.png"
                       },{
                         "content_type":"text",
-                        "title":"Behavioral Disorder",
+                        "title":"Behavioral Coaching",
                         "payload":"behavioral",
                         "image_url":image_url+"behavioral.png"
                       }
