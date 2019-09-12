@@ -26,6 +26,33 @@ def receive_message():
         # get whatever message a user sent the bot
        output = request.get_json()
        for event in output['entry']:
+          pm= "{
+            "persistent_menu": [
+                {
+                    "locale": "default",
+                    "composer_input_disabled": false,
+                    "call_to_actions": [
+                        {
+                            "type": "postback",
+                            "title": "Talk to an agent",
+                            "payload": "CARE_HELP"
+                        },
+                        {
+                            "type": "postback",
+                            "title": "Outfit suggestions",
+                            "payload": "CURATION"
+                        },
+                        {
+                            "type": "web_url",
+                            "title": "Shop now",
+                            "url": "https://www.originalcoastclothing.com/",
+                            "webview_height_ratio": "full"
+                        }
+                    ]
+                }
+            ]
+            }"
+          bot.set_persistent_menu(pm)
           messaging = event['messaging']
           for message in messaging:
             if message.get('message'):
