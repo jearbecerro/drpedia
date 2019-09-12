@@ -72,7 +72,7 @@ def receive_message():
                         }
                     ]
                     }
-                  bot.set_persistent_menu(pm)
+                    bot.set_persistent_menu(pm)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
