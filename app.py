@@ -30,7 +30,7 @@ def receive_message():
             "persistent_menu": [
                 {
                     "locale": "default",
-                    "composer_input_disabled": false,
+                    "composer_input_disabled": "false",
                     "call_to_actions": [
                         {
                             "type": "postback",
