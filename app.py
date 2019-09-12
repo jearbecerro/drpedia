@@ -26,32 +26,6 @@ def receive_message():
         # get whatever message a user sent the bot
        output = request.get_json()
        for event in output['entry']:
-          pm= {
-            "persistent_menu": [
-                {
-                    "locale": "default",
-                    "composer_input_disabled": "false",
-                    "call_to_actions": [
-                        {
-                            "type": "postback",
-                            "title": "Physical Health",
-                            "payload": "pm_physical"
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Behaviroal Coaching",
-                            "payload": "pm_behavioral"
-                        },
-                        {
-                            "type": "postback",
-                            "title": "Dengue Prevention",
-                            "payload": "pm_dengue"
-                        }
-                    ]
-                }
-            ]
-            }
-          bot.set_persistent_menu(pm)
           messaging = event['messaging']
           for message in messaging:
             if message.get('message'):
@@ -73,6 +47,32 @@ def receive_message():
                         "image_url":image_url+"behavioral.png"
                       }
                     bot.send_quick_replies_message(recipient_id, 'Choose Pediatric Concern', quick_replies)
+                    pm= {
+                    "persistent_menu": [
+                        {
+                            "locale": "default",
+                            "composer_input_disabled": "false",
+                            "call_to_actions": [
+                                {
+                                    "type": "postback",
+                                    "title": "Physical Health",
+                                    "payload": "pm_physical"
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "Behaviroal Coaching",
+                                    "payload": "pm_behavioral"
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "Dengue Prevention",
+                                    "payload": "pm_dengue"
+                                }
+                            ]
+                        }
+                    ]
+                    }
+                  bot.set_persistent_menu(pm)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
