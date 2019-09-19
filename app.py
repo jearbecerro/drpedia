@@ -52,6 +52,9 @@ def receive_message():
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
                     send_message(recipient_id, response_sent_nontext)
+                    
+                if message.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                received_postback(message)
     return "Message Processed"
 
 
@@ -62,6 +65,42 @@ def verify_fb_token(token_sent):
         return request.args.get("hub.challenge")
     return 'Invalid verification token'
 
+def received_postback(event):
+    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
+    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+    payload = event["postback"]["payload"]
+    
+    if payload == 'physical':
+        buttons = [
+                        {
+                        "type": "postback",
+                        "title": "Diagnose",
+                        "payload": "diagnose"
+                        }
+        
+                        ]
+
+        bot.send_button(sender_id,'Diagnose',buttons)
+    if payload == 'physical':
+        buttons = [
+                        {
+                        "type": "postback",
+                        "title": "ADHD",
+                        "payload": "adhd"
+                        },
+                        {
+                        "type": "postback",
+                        "title": "Autism",
+                        "payload": "autism"
+                        },
+                        {
+                        "type": "postback",
+                        "title": "Writing Disorder",
+                        "payload": "writing_disorder"
+                        }
+                  ]
+        bot.send_button(sender_id,'Choose Behavioral Disorder',buttons)
+    
 #chooses a random message to send to the user
 def get_message():
     sample_responses = ["You are stunning!", "We're proud of you.", "Keep on being you!", "We're greatful to know you :)"]
