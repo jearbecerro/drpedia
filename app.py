@@ -54,7 +54,7 @@ def receive_message():
                     send_message(recipient_id, response_sent_nontext)
                     
                 if message.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                received_postback(message)
+                    received_postback(message)
     return "Message Processed"
 
 
