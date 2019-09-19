@@ -48,8 +48,8 @@ def receive_message():
                         send_message(sender_id,'I will help you diagnose your childs health.')
                         send_diagnose(sender_id,'I will ask some questions for diagnostic. Just Tap Diagnose.')
                
-            elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                received_postback(message)
+                if message.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                    received_postback(message)
                     
     return "Message Processed"
 
