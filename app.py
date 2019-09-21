@@ -58,7 +58,7 @@ def receive_message():
 
                                     ]
 
-                    bot.send_button(sender_id,'Diagnose',buttons)   
+                    bot.send_button_message(sender_id,'Diagnose',buttons)   
                 if message['message'].get('text')=='behavioral':
                     buttons = [
                             {
@@ -77,7 +77,7 @@ def receive_message():
                             "payload": "writing_disorder"
                             }
                       ]
-                    bot.send_button(sender_id,'Choose Behavioral Disorder',buttons)
+                    bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)
                     
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
@@ -111,7 +111,7 @@ def received_postback(event):
         
                         ]
 
-        bot.send_button(sender_id,'Diagnose',buttons)
+        bot.send_button_message(sender_id,'Diagnose',buttons)
     if payload == 'physical':
         buttons = [
                         {
@@ -130,7 +130,7 @@ def received_postback(event):
                         "payload": "writing_disorder"
                         }
                   ]
-        bot.send_button(sender_id,'Choose Behavioral Disorder',buttons)
+        bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)
     
 #chooses a random message to send to the user
 def get_message():
