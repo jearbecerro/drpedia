@@ -49,11 +49,11 @@ def receive_message():
                     bot.send_quick_replies_message(recipient_id, 'Choose Pediatric Concern', quick_replies)
                     
                 #if user sends us a GIF, photo,video, or any other non-text item
-                if message['message'].get('attachments'):
+                elif message['message'].get('attachments'):
                     response_sent_nontext = get_message()
                     send_message(recipient_id, response_sent_nontext)
                     
-                if message.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
                     received_postback(message)
     return "Message Processed"
 
