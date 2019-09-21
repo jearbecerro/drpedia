@@ -32,12 +32,13 @@ def receive_message():
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
+                    
                     if message['message'].get('text')=='start':
                         #response_sent_text = get_message()
                         #send_message(recipient_id, response_sent_text)
                         image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
                         quick_replies = {
-                            "content_type":"payload",
+                            "content_type":"text",
                             "title":"Physical Health",
                             "payload":"physical",
                             "image_url":image_url+"physical.png"
@@ -60,6 +61,7 @@ def receive_message():
                                         ]
 
                         bot.send_button_message(sender_id,'Diagnose',buttons)   
+                        
                     if message['message'].get('text')=='behavioral':
                         buttons = [
                                 {
