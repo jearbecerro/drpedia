@@ -36,12 +36,12 @@ def receive_message():
                     #send_message(recipient_id, response_sent_text)
                     image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
                     quick_replies = {
-                        "content_type":"text",
+                        "content_type":"payload",
                         "title":"Physical Health",
                         "payload":"physical",
                         "image_url":image_url+"physical.png"
                       },{
-                        "content_type":"text",
+                        "content_type":"payload",
                         "title":"Behavioral Coaching",
                         "payload":"behavioral",
                         "image_url":image_url+"behavioral.png"
