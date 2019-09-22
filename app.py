@@ -32,7 +32,6 @@ def receive_message():
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
-                    
                     if message['message'].get('text')=='start':
                         #response_sent_text = get_message()
                         #send_message(recipient_id, response_sent_text)
@@ -49,7 +48,37 @@ def receive_message():
                             "image_url":image_url+"behavioral.png"
                           }
                         bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
+                    if message['message'].get('text')=='physical': 
+                        buttons = [
+                                        {
+                                        "type": "postback",
+                                        "title": "Diagnose",
+                                        "payload": "diagnose"
+                                        }
+
+                                        ]
+
+                        bot.send_button_message(sender_id,'Diagnose',buttons)   
                         
+                    if message['message'].get('text')=='behavioral':
+                        buttons = [
+                                {
+                                "type": "postback",
+                                "title": "ADHD",
+                                "payload": "adhd"
+                                },
+                                {
+                                "type": "postback",
+                                "title": "Autism",
+                                "payload": "autism"
+                                },
+                                {
+                                "type": "postback",
+                                "title": "Writing Disorder",
+                                "payload": "writing_disorder"
+                                }
+                          ]
+                        bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)    
                    
                     
                     
