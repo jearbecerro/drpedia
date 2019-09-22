@@ -40,8 +40,7 @@ def receive_message():
                             "title":"Physical Health",
                             "payload":"physical",
                             "image_url":image_url+"physical.png"
-                          },
-                        {
+                          },{
                             "content_type":"text",
                             "title":"Behavioral Coaching",
                             "payload":"behavioral",
