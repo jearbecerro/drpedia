@@ -34,52 +34,21 @@ def receive_message():
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
+                    
                     if message['message'].get('text')=='start':
                         quick_replies = {
-                            "content_type":"text",
+                            "type":"postback",
                             "title":"Physical Health",
                             "payload":"physical",
                             "image_url":image_url+"physical.png"
                           },{
-                            "content_type":"text",
+                            "type":"postback",
                             "title":"Behavioral Coaching",
                             "payload":"behavioral",
                             "image_url":image_url+"behavioral.png"
                           }
                         bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
-                        
-                    if message['message'].get('text')=='physical':
-                        buttons = [
-                                        {
-                                        "type": "postback",
-                                        "title": "Diagnose",
-                                        "payload": "diagnose"
-                                        }
-
-                                        ]
-
-                        bot.send_button_message(sender_id,'Diagnose',buttons)
-
-                    if message['message'].get('text')=='behavioral':
-                        buttons = [
-                                        {
-                                        "type": "postback",
-                                        "title": "ADHD",
-                                        "payload": "adhd"
-                                        },
-                                        {
-                                        "type": "postback",
-                                        "title": "Autism",
-                                        "payload": "autism"
-                                        },
-                                        {
-                                        "type": "postback",
-                                        "title": "Writing Disorder",
-                                        "payload": "writing_disorder"
-                                        }
-                                  ]
-                        bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)  
-                        
+                  
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
@@ -103,7 +72,7 @@ def received_postback(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
     
-    if payload == 'physical':
+    if payload=='physical':
         buttons = [
                         {
                         "type": "postback",
@@ -115,7 +84,7 @@ def received_postback(event):
 
         bot.send_button_message(sender_id,'Diagnose',buttons)
         
-    if payload == 'behavioral':
+    if payload=='behavioral':
         buttons = [
                         {
                         "type": "postback",
