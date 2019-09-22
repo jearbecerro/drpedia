@@ -37,18 +37,19 @@ def receive_message():
                     
                     if message['message'].get('text')=='start':
                         quick_replies = {
-                            "type":"postback",
+                            "type":"text",
                             "title":"Physical Health",
                             "payload":"physical",
                             "image_url":image_url+"physical.png"
                           },{
-                            "type":"postback",
+                            "type":"text",
                             "title":"Behavioral Coaching",
                             "payload":"behavioral",
                             "image_url":image_url+"behavioral.png"
                           }
                         bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
-                  
+                    if message['message'].get('text')=='behavioral':
+                        send_message(sender_id, response_sent_nontext)    
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
