@@ -13,6 +13,8 @@ bot = Bot (ACCESS_TOKEN)
 #client = Messager(ACCESS_TOKEN)
 app = Flask(__name__)
 
+image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
+
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -33,9 +35,6 @@ def receive_message():
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
                     if message['message'].get('text')=='start':
-                        #response_sent_text = get_message()
-                        #send_message(recipient_id, response_sent_text)
-                        image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
                         quick_replies = {
                             "content_type":"text",
                             "title":"Physical Health",
@@ -48,7 +47,37 @@ def receive_message():
                             "image_url":image_url+"behavioral.png"
                           }
                         bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
-                      
+                     if message['message'].get('text')=='physical':
+                        buttons = [
+                                        {
+                                        "type": "postback",
+                                        "title": "Diagnose",
+                                        "payload": "diagnose"
+                                        }
+
+                                        ]
+
+                        bot.send_button_message(sender_id,'Diagnose',buttons)
+
+                    if message['message'].get('text')=='behavioral':
+                        buttons = [
+                                        {
+                                        "type": "postback",
+                                        "title": "ADHD",
+                                        "payload": "adhd"
+                                        },
+                                        {
+                                        "type": "postback",
+                                        "title": "Autism",
+                                        "payload": "autism"
+                                        },
+                                        {
+                                        "type": "postback",
+                                        "title": "Writing Disorder",
+                                        "payload": "writing_disorder"
+                                        }
+                                  ]
+                        bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)  
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
@@ -56,6 +85,7 @@ def receive_message():
                     
                 if message.get("postback"):  # user clicked/tapped "postback" button in earlier message
                     received_postback(message)
+                    
     return "Message Processed"
 
 
@@ -82,6 +112,7 @@ def received_postback(event):
                         ]
 
         bot.send_button_message(sender_id,'Diagnose',buttons)
+        
     if payload == 'behavioral':
         buttons = [
                         {
