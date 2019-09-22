@@ -50,45 +50,15 @@ def receive_message():
                           }
                         bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
                     
-                    if message['message'].get('text')=='physical': 
-                        buttons = [
-                                        {
-                                        "type": "postback",
-                                        "title": "Diagnose",
-                                        "payload": "diagnose"
-                                        }
-
-                                        ]
-
-                        bot.send_button_message(sender_id,'Diagnose',buttons)   
-                        
-                    if message['message'].get('text')=='behavioral':
-                        buttons = [
-                                {
-                                "type": "postback",
-                                "title": "ADHD",
-                                "payload": "adhd"
-                                },
-                                {
-                                "type": "postback",
-                                "title": "Autism",
-                                "payload": "autism"
-                                },
-                                {
-                                "type": "postback",
-                                "title": "Writing Disorder",
-                                "payload": "writing_disorder"
-                                }
-                          ]
-                        bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)
+                    
                     
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
                     send_message(sender_id, response_sent_nontext)
                     
-            #if message.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                #received_postback(message)
+            if message.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                received_postback(message)
     return "Message Processed"
 
 
