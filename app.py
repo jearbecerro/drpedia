@@ -33,14 +33,16 @@ def receive_message():
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
                     image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
+                    
                     if message['message'].get('text')=='start':
                         quick_replies = {
-                            "type":"text",
+                            "content_type":"text",
                             "title":"Physical Health",
                             "payload":"physical",
                             "image_url":image_url+"physical.png"
-                          },{
-                            "type":"text",
+                          },
+                        {
+                            "content_type":"text",
                             "title":"Behavioral Coaching",
                             "payload":"behavioral",
                             "image_url":image_url+"behavioral.png"
