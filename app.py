@@ -47,7 +47,8 @@ def receive_message():
                             "image_url":image_url+"behavioral.png"
                           }
                         bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
-                     if message['message'].get('text')=='physical':
+                        
+                    if message['message'].get('text')=='physical':
                         buttons = [
                                         {
                                         "type": "postback",
@@ -78,6 +79,7 @@ def receive_message():
                                         }
                                   ]
                         bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)  
+                        
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
