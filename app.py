@@ -13,8 +13,6 @@ bot = Bot (ACCESS_TOKEN)
 #client = Messager(ACCESS_TOKEN)
 app = Flask(__name__)
 
-image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
-
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -34,7 +32,7 @@ def receive_message():
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
-                    
+                    image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
                     if message['message'].get('text')=='start':
                         quick_replies = {
                             "type":"text",
