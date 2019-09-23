@@ -144,7 +144,7 @@ class Messenger(BaseMessenger):
 
 app = Flask(__name__)
 app.debug = True
-FB_VERIFY_TOKEN = Os.environ.get('ACCESS_TOKEN')
+FB_VERIFY_TOKEN = os.environ.get('ACCESS_TOKEN')
 messenger = Messenger(FB_VERIFY_TOKEN )
 
 
