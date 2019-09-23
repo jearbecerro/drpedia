@@ -336,6 +336,11 @@ class Bot:
           gs_obj: Your formatted get_started object as described by the API docs
         Output:
           Response from API as <dict>
+                      { 
+              "get_started":{
+                "payload":"<GET_STARTED_PAYLOAD>"
+              }
+            }
         """
         request_endpoint = '{0}/me/messenger_profile'.format(self.graph_url)
         response = requests.post(
@@ -353,6 +358,32 @@ class Bot:
           pm_obj: Your formatted persistent menu object as described by the API docs
         Output:
           Response from API as <dict>
+                      {
+                "persistent_menu": [
+                    {
+                        "locale": "default",
+                        "composer_input_disabled": false,
+                        "call_to_actions": [
+                            {
+                                "type": "postback",
+                                "title": "Talk to an agent",
+                                "payload": "CARE_HELP"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Outfit suggestions",
+                                "payload": "CURATION"
+                            },
+                            {
+                                "type": "web_url",
+                                "title": "Shop now",
+                                "url": "https://www.originalcoastclothing.com/",
+                                "webview_height_ratio": "full"
+                            }
+                        ]
+                    }
+                ]
+            }
         """
         request_endpoint = '{0}/me/messenger_profile'.format(self.graph_url)
         response = requests.post(
