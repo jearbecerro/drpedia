@@ -144,13 +144,14 @@ class Messenger(BaseMessenger):
 
 app = Flask(__name__)
 app.debug = True
-messenger = Messenger(os.environ.get('ACCESS_TOKEN'))
+FB_VERIFY_TOKEN = Os.environ.get('ACCESS_TOKEN')
+messenger = Messenger(FB_VERIFY_TOKEN )
 
 
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
     if request.method == 'GET':
-        if request.args.get('hub.verify_token') == os.environ.get('FB_VERIFY_TOKEN'):
+        if request.args.get('hub.verify_token') == FB_VERIFY_TOKEN :
             if request.args.get('init') and request.args.get('init') == 'true':
                 messenger.init_bot()
                 return ''
