@@ -49,9 +49,9 @@ def received_text(event):
     text = event["message"]["text"]
     #quick_reply = event["message"]["quick_reply.payload"]
     
-    if text:
+    if text == 'behaviroal':
         response_sent_nontext = get_message()
-        send_message(sender_id, response_sent_nontext)
+        send_message(sender_id, response_sent_nontext+'check')
    
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
