@@ -32,9 +32,9 @@ def receive_message():
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
                     #received_text(message)
-                    if message['message'].get('quick_reply')=='behavioral':
-                        #received_qr(message)
-                        send_message(sender_id, 'postback is good')  
+                    if message['message'].get('quick_reply').get('payload'):
+                        received_qr(message)
+                        #send_message(sender_id, 'postback is good')  
                     else:
                         received_text(message)
                 #if user sends us a GIF, photo,video, or any other non-text item
