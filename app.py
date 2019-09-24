@@ -32,14 +32,13 @@ def receive_message():
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
                     received_text(message)
+                    if message['message'].get('quick_reply'):
+                    received_qr(message)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 elif message['message'].get('attachments'):
                     #TO BE EDIT
                     response_sent_nontext = get_message()
                     send_message(sender_id, response_sent_nontext)
-                elif message['message'].get('quick_reply'):
-                    received_qr(message)
-                    
             elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
                 received_postback(message)
                     
@@ -48,7 +47,7 @@ def receive_message():
 def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-    text = event["message"]["payload"]
+    text = event["message"]["quick_reply"]
    
     if text=='behavioral':
             response_sent_nontext = get_message()
