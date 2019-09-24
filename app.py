@@ -61,11 +61,12 @@ def receive_message():
     return "Message Processed"
 
 def init_bot():
-        start ={ 
+        gs ={ 
               "get_started":{
-                "payload":"start"
+                "payload":'start'
               }
-        bot.set_get_started(start)
+        }
+        bot.set_get_started(gs)
         pm_menu = {
                 "persistent_menu": [
                     {
