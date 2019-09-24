@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
-
+image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 bot = Bot (ACCESS_TOKEN)
 #client = Messager(ACCESS_TOKEN)
 app = Flask(__name__)
@@ -60,9 +60,8 @@ def received_postback(event):
     
     if payload=='start':
         send_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
-        image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
         quick_replies = {
-                            "type":"postback",
+                            "type":"text",
                             "title":"Physical Health",
                             "payload":"physical",
                             "image_url":image_url+"physical.png"
