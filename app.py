@@ -73,7 +73,7 @@ def received_postback(event):
                           }
         bot.send_quick_replies_message(sender_id, 'What is your concern?', quick_replies)
         
-    if quick_reply ='behavioral':
+    if quick_reply=='behavioral':
         response_sent_nontext = get_message()
         send_message(sender_id, response_sent_nontext)
 
