@@ -70,37 +70,8 @@ def received_postback(event):
     payload = event["postback"]["payload"]
     qr = event["text"]["payload"]
     
-    if qr=='physical':
-        buttons = [
-                        {
-                        "type": "postback",
-                        "title": "Diagnose",
-                        "payload": "diagnose"
-                        }
-        
-                        ]
-
-        bot.send_button_message(sender_id,'Diagnose',buttons)
-        
-    if qr=='behavioral':
-        buttons = [
-                        {
-                        "type": "postback",
-                        "title": "ADHD",
-                        "payload": "adhd"
-                        },
-                        {
-                        "type": "postback",
-                        "title": "Autism",
-                        "payload": "autism"
-                        },
-                        {
-                        "type": "postback",
-                        "title": "Writing Disorder",
-                        "payload": "writing_disorder"
-                        }
-                  ]
-        bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)
+    if payload=='start':
+        send_message(sender_id, 'Hi wecome to dr Pedia')
     if payload=='adhd':
         response_sent_nontext = get_message()
         send_message(sender_id, response_sent_nontext)
