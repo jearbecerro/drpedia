@@ -1,7 +1,6 @@
 #Python libraries that we need to import for our bot
 import random
 from flask import Flask, request
-#from pymessager.message import Messager
 from messnger_syntax.bot import Bot
 import os
 
@@ -49,7 +48,7 @@ def receive_message():
 def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-    text = event["message"]["quick_reply"]
+    text = event["message"]["payload"]
    
     if text=='behavioral':
             response_sent_nontext = get_message()
