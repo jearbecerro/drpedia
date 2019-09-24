@@ -50,7 +50,7 @@ def received_text(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     
-    if text = 'start':
+    if text=='start':
         quick_replies = {
                             "content_type":"text",
                             "title":"Physical Health",
