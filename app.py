@@ -78,6 +78,7 @@ def received_postback(event):
 
         
 def init_bot():
+    #Greetings 
     greetings =  "greeting":[
           {
             "locale":"default",
@@ -85,12 +86,14 @@ def init_bot():
           }
         ]
     bot.set_greetings(greetings)
+    #Get started button
     gs ={ 
               "get_started":{
                 "payload":'start'
               }
         }
     bot.set_get_started(gs)
+    #Persistent Menu
     false=False
     pm_menu = {
                 "persistent_menu": [
@@ -100,13 +103,13 @@ def init_bot():
                         "call_to_actions": [
                             {
                                 "type": "postback",
-                                "title": "Talk to an agent",
-                                "payload": "CARE_HELP"
+                                "title": "Dengue Prevention",
+                                "payload": "pm_dengue_prevention"
                             },
                             {
                                 "type": "postback",
-                                "title": "Outfit suggestions",
-                                "payload": "CURATION"
+                                "title": "Behavioral Coaching",
+                                "payload": "pm_behavioral_coahing"
                             }
                         ]
                     }
