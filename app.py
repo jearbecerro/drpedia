@@ -49,16 +49,16 @@ def received_text(event):
     text = event["message"]["text"]
     #quick_reply = event["message"]["quick_reply.payload"]
     
-    if text == 'behaviroal':
+    if text:
         response_sent_nontext = get_message()
-        send_message(sender_id, response_sent_nontext+'check')
+        send_message(sender_id, response_sent_nontext)
    
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
     #quick_reply = event["quick_reply"]["payload"]
-    #quick_reply = event["postback"]["quick_reply"]
+    quick_reply = event["message"]["quick_reply_payload"]
     
     if payload=='start':
         send_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
@@ -75,7 +75,7 @@ def received_postback(event):
                           }
         bot.send_quick_replies_message(sender_id, 'What is your concern?', quick_replies)
         
-    if payload=='behavioral':
+    if quick_reply=='behavioral':
         response_sent_nontext = get_message()
         send_message(sender_id, 'postback is good')  
         
