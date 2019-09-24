@@ -328,7 +328,30 @@ class Bot:
     def _send_payload(self, payload):
         """ Deprecated, use send_raw instead """
         return self.send_raw(payload)
-
+    
+    def set_greetings(self, gs_obj):
+            """Set a get started button shown on welcome screen for first time users
+            https://developers.facebook.com/docs/messenger-platform/reference/messenger-profile-api/get-started-button
+            Input:
+              gs_obj: Your formatted get_started object as described by the API docs
+            Output:
+              Response from API as <dict>
+                          { 
+                  "get_started":{
+                    "payload":"<GET_STARTED_PAYLOAD>"
+                  }
+                }
+            """
+        request_endpoint = '{0}/me/messenger_profile'.format(self.graph_url)
+        #request_endpoint = '{0}/me/messenger_profile?access_token={1}'.format(self.graph_url,self.access_token)
+        response = requests.post(
+                request_endpoint,
+                params = self.auth_args,
+                json = gs_obj
+            )
+        result = response.json()
+        return result
+    
     def set_get_started(self, gs_obj):
         """Set a get started button shown on welcome screen for first time users
         https://developers.facebook.com/docs/messenger-platform/reference/messenger-profile-api/get-started-button
