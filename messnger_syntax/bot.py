@@ -336,11 +336,12 @@ class Bot:
               gs_obj: Your formatted get_started object as described by the API docs
             Output:
               Response from API as <dict>
-                          { 
-                  "get_started":{
-                    "payload":"<GET_STARTED_PAYLOAD>"
-                  }
-                }
+                            "greeting":[
+              {
+                "locale":"default",
+                "text":"Hello {{user_first_name}}!"
+              }
+            ]
             """
         request_endpoint = '{0}/me/messenger_profile'.format(self.graph_url)
         #request_endpoint = '{0}/me/messenger_profile?access_token={1}'.format(self.graph_url,self.access_token)
