@@ -90,12 +90,12 @@ def received_postback(event):
         
 def init_bot():
     #Greetings 
-    greetings =  "greeting":[
+    greetings =  {"greeting":[
           {
             "locale":"default",
             "text":"Hi {{user_full_name}}!"
           }
-        ]
+        ]}
     bot.set_greetings(greetings)
     #Get started button
     gs ={ 
