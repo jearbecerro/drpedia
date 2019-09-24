@@ -63,32 +63,14 @@ def received_text(event):
                             "image_url":image_url+"behavioral.png"
                           }
         bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
-    if text=='behavioral':
-        buttons = [
-                        {
-                        "type": "postback",
-                        "title": "ADHD",
-                        "payload": "adhd"
-                        },
-                        {
-                        "type": "postback",
-                        "title": "Autism",
-                        "payload": "autism"
-                        },
-                        {
-                        "type": "postback",
-                        "title": "Writing Disorder",
-                        "payload": "writing_disorder"
-                        }
-                  ]
-        bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)   
-        
+
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
+    qr = event["text"]["payload"]
     
-    if payload=='physical':
+    if qr=='physical':
         buttons = [
                         {
                         "type": "postback",
@@ -100,7 +82,7 @@ def received_postback(event):
 
         bot.send_button_message(sender_id,'Diagnose',buttons)
         
-    if payload=='behavioral':
+    if qr=='behavioral':
         buttons = [
                         {
                         "type": "postback",
