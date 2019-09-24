@@ -83,6 +83,7 @@ def received_postback(event):
                             "image_url":image_url+"behavioral.png"
                           }
         bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
+        
     if payload=='adhd':
         response_sent_nontext = get_message()
         send_message(sender_id, response_sent_nontext)
