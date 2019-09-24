@@ -13,8 +13,6 @@ bot = Bot (ACCESS_TOKEN)
 #client = Messager(ACCESS_TOKEN)
 app = Flask(__name__)
 
-image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
-
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -50,27 +48,17 @@ def received_text(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     
-    if text=='start':
-        quick_replies = {
-                            "type":"postback",
-                            "title":"Physical Health",
-                            "payload":"physical",
-                            "image_url":image_url+"physical.png"
-                          },{
-                            "content_type":"text",
-                            "title":"Behavioral Coaching",
-                            "payload":"behavioral",
-                            "image_url":image_url+"behavioral.png"
-                          }
-        bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
+    if text:
+        response_sent_nontext = get_message()
+        send_message(sender_id, response_sent_nontext)
 
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
+    image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
     
     if payload=='start':
-        send_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
         send_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
         quick_replies = {
                             "type":"postback",
