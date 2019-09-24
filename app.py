@@ -36,11 +36,11 @@ def receive_message():
                 if message['message'].get('text'):
                     received_text(message)
                 #if user sends us a GIF, photo,video, or any other non-text item
-                if message['message'].get('attachments'):
+                elif message['message'].get('attachments'):
                     response_sent_nontext = get_message()
                     send_message(sender_id, response_sent_nontext)
                     
-            if message.get("postback"):  # user clicked/tapped "postback" button in earlier message
+            elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
                 received_postback(message)
                     
     return "Message Processed"
@@ -68,10 +68,21 @@ def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
-    qr = event["text"]["payload"]
     
     if payload=='start':
-        send_message(sender_id, 'Hi wecome to dr Pedia')
+        send_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
+        quick_replies = {
+                            "type":"postback",
+                            "title":"Physical Health",
+                            "payload":"physical",
+                            "image_url":image_url+"physical.png"
+                          },{
+                            "content_type":"text",
+                            "title":"Behavioral Coaching",
+                            "payload":"behavioral",
+                            "image_url":image_url+"behavioral.png"
+                          }
+        bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
     if payload=='adhd':
         response_sent_nontext = get_message()
         send_message(sender_id, response_sent_nontext)
