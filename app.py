@@ -58,7 +58,7 @@ def received_postback(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
     #quick_reply = event["quick_reply"]["payload"]
-    quick_reply = event["postback"]["quick_reply"]
+    #quick_reply = event["postback"]["quick_reply"]
     
     if payload=='start':
         send_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
@@ -75,7 +75,7 @@ def received_postback(event):
                           }
         bot.send_quick_replies_message(sender_id, 'What is your concern?', quick_replies)
         
-    if quick_reply=='behavioral':
+    if payload=='behavioral':
         response_sent_nontext = get_message()
         send_message(sender_id, 'postback is good')  
         
