@@ -84,12 +84,12 @@ def init_bot():
               }
         }
         bot.set_get_started(gs)
-        f = false
+        false=False
         pm_menu = {
                 "persistent_menu": [
                     {
                         "locale": "default",
-                        "composer_input_disabled": f,
+                        "composer_input_disabled": false,
                         "call_to_actions": [
                             {
                                 "type": "postback",
