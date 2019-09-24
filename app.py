@@ -61,7 +61,7 @@ def received_postback(event):
     if payload=='start':
         send_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
         quick_replies = {
-                            "type":"text",
+                            "content_type":"text",
                             "title":"Physical Health",
                             "payload":"physical",
                             "image_url":image_url+"physical.png"
