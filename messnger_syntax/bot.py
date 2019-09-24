@@ -345,9 +345,9 @@ class Bot:
         #request_endpoint = '{0}/me/messenger_profile'.format(self.graph_url)
         request_endpoint = '{0}/me/messenger_profile?access_token={1}'.format(self.graph_url,self.access_token)
         response = requests.post(
-            request_endpoint,
             params = self.auth_args,
-            json = gs_obj
+            json = gs_obj,
+            request_endpoint
         )
         result = response.json()
         return result
