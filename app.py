@@ -34,6 +34,8 @@ def receive_message():
                     #received_text(message)
                     if message['message'].get('quick_reply'):
                         received_qr(message)
+                    else:
+                        received_text(message)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 elif message['message'].get('attachments'):
                     #TO BE EDIT
