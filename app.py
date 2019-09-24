@@ -60,11 +60,46 @@ def receive_message():
                     
     return "Message Processed"
 
-
+def init_bot():
+        start ={ 
+              "get_started":{
+                "payload":"start"
+              }
+        bot.set_get_started(start)
+        pm_menu = {
+                "persistent_menu": [
+                    {
+                        "locale": "default",
+                        "composer_input_disabled": false,
+                        "call_to_actions": [
+                            {
+                                "type": "postback",
+                                "title": "Talk to an agent",
+                                "payload": "CARE_HELP"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Outfit suggestions",
+                                "payload": "CURATION"
+                            },
+                            {
+                                "type": "web_url",
+                                "title": "Shop now",
+                                "url": "https://www.originalcoastclothing.com/",
+                                "webview_height_ratio": "full"
+                            }
+                        ]
+                    }
+                ]
+            }
+        bot.set_persistent_menu(pm_menu)    
 def verify_fb_token(token_sent):
     #take token sent by facebook and verify it matches the verify token you sent
     #if they match, allow the request, else return an error 
     if token_sent == VERIFY_TOKEN:
+        if request.args.get('init') and request.args.get('init') == 'true':
+            init_bot()
+            return ''
         return request.args.get("hub.challenge")
     return 'Invalid verification token'
 
