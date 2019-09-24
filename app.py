@@ -63,6 +63,25 @@ def received_text(event):
                             "image_url":image_url+"behavioral.png"
                           }
         bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
+    if text=='behavioral':
+        buttons = [
+                        {
+                        "type": "postback",
+                        "title": "ADHD",
+                        "payload": "adhd"
+                        },
+                        {
+                        "type": "postback",
+                        "title": "Autism",
+                        "payload": "autism"
+                        },
+                        {
+                        "type": "postback",
+                        "title": "Writing Disorder",
+                        "payload": "writing_disorder"
+                        }
+                  ]
+        bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)   
         
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -100,6 +119,10 @@ def received_postback(event):
                         }
                   ]
         bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)
+    if payload=='adhd':
+        response_sent_nontext = get_message()
+        send_message(sender_id, response_sent_nontext)
+
         
 def init_bot():
         gs ={ 
