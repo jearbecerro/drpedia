@@ -52,7 +52,7 @@ def received_text(event):
     
     if text=='start':
         quick_replies = {
-                            "content_type":"text",
+                            "type":"postback",
                             "title":"Physical Health",
                             "payload":"physical",
                             "image_url":image_url+"physical.png"
