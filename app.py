@@ -52,10 +52,7 @@ def received_text(event):
     if text:
         response_sent_nontext = get_message()
         send_message(sender_id, response_sent_nontext)
-    if quick_reply=='behavioral':
-        response_sent_nontext = get_message()
-        send_message(sender_id, 'postback is good')
-
+   
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
