@@ -65,7 +65,8 @@ def init_bot():
               "get_started":{
                 "payload":"start"
               }
-        bot.set_get_started(start)
+        gs=bot.set_get_started(start)
+        bot.send_raw(gs)    
         pm_menu = {
                 "persistent_menu": [
                     {
@@ -92,7 +93,9 @@ def init_bot():
                     }
                 ]
             }
-        bot.set_persistent_menu(pm_menu)    
+        pm=bot.set_persistent_menu(pm_menu)
+        bot.send_raw(pm)     
+            
 def verify_fb_token(token_sent):
     #take token sent by facebook and verify it matches the verify token you sent
     #if they match, allow the request, else return an error 
