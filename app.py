@@ -13,6 +13,8 @@ bot = Bot (ACCESS_TOKEN)
 #client = Messager(ACCESS_TOKEN)
 app = Flask(__name__)
 
+image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
+
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -32,24 +34,7 @@ def receive_message():
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
-                    image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
-                    
-                    if message['message'].get('text')=='start':
-                        quick_replies = {
-                            "content_type":"text",
-                            "title":"Physical Health",
-                            "payload":"physical",
-                            "image_url":image_url+"physical.png"
-                          },{
-                            "content_type":"text",
-                            "title":"Behavioral Coaching",
-                            "payload":"behavioral",
-                            "image_url":image_url+"behavioral.png"
-                          }
-                        bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
-                        
-                    if message['message'].get('text')=='behavioral':
-                        send_message(sender_id,get_message())    
+                    recieved_text(message)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
@@ -60,51 +45,25 @@ def receive_message():
                     
     return "Message Processed"
 
-def init_bot():
-        gs ={ 
-              "get_started":{
-                "payload":'start'
-              }
-        }
-        bot.set_get_started(gs)
-        pm_menu = {
-                "persistent_menu": [
-                    {
-                        "locale": "default",
-                        "composer_input_disabled": false,
-                        "call_to_actions": [
-                            {
-                                "type": "postback",
-                                "title": "Talk to an agent",
-                                "payload": "CARE_HELP"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Outfit suggestions",
-                                "payload": "CURATION"
-                            },
-                            {
-                                "type": "web_url",
-                                "title": "Shop now",
-                                "url": "https://www.originalcoastclothing.com/",
-                                "webview_height_ratio": "full"
-                            }
-                        ]
-                    }
-                ]
-            }
-        bot.set_persistent_menu(pm_menu)
-            
-def verify_fb_token(token_sent):
-    #take token sent by facebook and verify it matches the verify token you sent
-    #if they match, allow the request, else return an error 
-    if token_sent == VERIFY_TOKEN:
-        if request.args.get('init') and request.args.get('init') == 'true':
-            init_bot()
-            return ''
-        return request.args.get("hub.challenge")
-    return 'Invalid verification token'
-
+def received_text(event):
+    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
+    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+    text = event["message"]["text"]
+    
+    if text = 'start':
+        quick_replies = {
+                            "content_type":"text",
+                            "title":"Physical Health",
+                            "payload":"physical",
+                            "image_url":image_url+"physical.png"
+                          },{
+                            "content_type":"text",
+                            "title":"Behavioral Coaching",
+                            "payload":"behavioral",
+                            "image_url":image_url+"behavioral.png"
+                          }
+        bot.send_quick_replies_message(sender_id, 'Choose Pediatric Concern', quick_replies)
+        
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
@@ -141,6 +100,52 @@ def received_postback(event):
                         }
                   ]
         bot.send_button_message(sender_id,'Choose Behavioral Disorder',buttons)
+        
+def init_bot():
+        gs ={ 
+              "get_started":{
+                "payload":'start'
+              }
+        }
+        bot.set_get_started(gs)
+        pm_menu = {
+                "persistent_menu": [
+                    {
+                        "locale": "default",
+                        "composer_input_disabled": false,
+                        "call_to_actions": [
+                            {
+                                "type": "postback",
+                                "title": "Talk to an agent",
+                                "payload": "CARE_HELP"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Outfit suggestions",
+                                "payload": "CURATION"
+                            },
+                            {
+                                "type": "web_url",
+                                "title": "Shop now",
+                                "url": "https://www.originalcoastclothing.com/",
+                                "webview_height_ratio": "full"
+                            }
+                        ]
+                    }
+                ]
+            }
+        bot.set_persistent_menu(pm_menu)
+        
+def verify_fb_token(token_sent):
+    #take token sent by facebook and verify it matches the verify token you sent
+    #if they match, allow the request, else return an error 
+    if token_sent == VERIFY_TOKEN:
+        if request.args.get('init') and request.args.get('init') == 'true':
+            init_bot()
+            return ''
+        return request.args.get("hub.challenge")
+    return 'Invalid verification token'
+
     
 #chooses a random message to send to the user
 def get_message():
