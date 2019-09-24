@@ -78,14 +78,21 @@ def received_postback(event):
 
         
 def init_bot():
-        gs ={ 
+    greetings =  "greeting":[
+          {
+            "locale":"default",
+            "text":"Hi {{user_full_name}}!"
+          }
+        ]
+    bot.set_greetings(greetings)
+    gs ={ 
               "get_started":{
                 "payload":'start'
               }
         }
-        bot.set_get_started(gs)
-        false=False
-        pm_menu = {
+    bot.set_get_started(gs)
+    false=False
+    pm_menu = {
                 "persistent_menu": [
                     {
                         "locale": "default",
@@ -105,7 +112,7 @@ def init_bot():
                     }
                 ]
             }
-        bot.set_persistent_menu(pm_menu)
+    bot.set_persistent_menu(pm_menu)
         
 def verify_fb_token(token_sent):
     #take token sent by facebook and verify it matches the verify token you sent
