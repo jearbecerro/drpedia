@@ -357,7 +357,7 @@ class Bot:
         https://developers.facebook.com/docs/messenger-platform/reference/messenger-profile-api/get-started-button
         Input:
           gs_obj: Your formatted get_started object as described by the API docs
-        Output:
+        Output:#
           Response from API as <dict>
                       { 
               "get_started":{
