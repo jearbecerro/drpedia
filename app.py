@@ -51,9 +51,11 @@ def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
-   
+    
+    if text=='physical':
+            bot.send_text_message(sender_id,'Physical Infection Quick reply tapped.')
     if text=='behavioral':
-            send_message(sender_id, 'postback is good ' + get_message())  
+            bot.send_text_message(sender_id,'Behavioral Disorder Quick reply tapped.')
             
 def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -61,9 +63,9 @@ def received_text(event):
     text = event["message"]["text"]
     
     if text:
-        response_sent_nontext = get_message()
-        send_message(sender_id, response_sent_nontext)
-   
+        bot.send_text_message(sender_id,'Just a random compliment'+ get_message())
+    if text.lower()=='about':
+        bot.send_text_message(sender_id,'Intruction on how to user this chatbot under development')
    
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -72,8 +74,19 @@ def received_postback(event):
     
     
     if payload=='start':
-        send_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
-        quick_replies = {
+        send_choose_concern(sender_id)
+    #Persistent Menu Buttons        
+    if payload=='pm_get_pediatrician':
+        bot.send_text_message(sender_id,'Get a pediatrician Geo Mapping ToBeDevelop/not')
+    if payload=='pm_dengue_prevention':
+        bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
+    if payload=='pm_pediatric_concern':
+        send_choose_concern(sender_id)
+        
+def send_choose_concern(sender_id):
+    bot.send_text_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
+    bot.send_text_message(sender_id, "For that you'll have to answer a few questions about your concerns.")
+    quick_replies = {
                             "content_type":"text",
                             "title":"Physical Health",
                             "payload":"physical",
@@ -84,18 +97,21 @@ def received_postback(event):
                             "payload":"behavioral",
                             "image_url":image_url+"behavioral.png"
                           }
-        bot.send_quick_replies_message(sender_id, 'What is your concern?', quick_replies)
-        
-    
-        
+    bot.send_quick_replies_message(sender_id, 'What is your concern?', quick_replies)
+    return "success"
+
 def init_bot():
     #Greetings 
     greetings =  {"greeting":[
           {
             "locale":"default",
-            "text":"Hi {{user_full_name}}!"
+            "text":"Hi {{user_full_name}}!, Thank you for your interest in DrPedia."
+          },{
+            "locale":"default",
+            "text":"By accessing or using DrPedia, you are agreeing to the Terms of Service and other Policies with it.\nDisclaimer: This chatbot do not attempt to represent a real Pediatrician in any way."
           }
         ]}
+    
     bot.set_greetings(greetings)
     #Get started button
     gs ={ 
@@ -114,13 +130,18 @@ def init_bot():
                         "call_to_actions": [
                             {
                                 "type": "postback",
+                                "title": "Get a Pediatrician",
+                                "payload": "pm_get_pediatrician"
+                            },
+                            {
+                                "type": "postback",
                                 "title": "Dengue Prevention",
                                 "payload": "pm_dengue_prevention"
                             },
                             {
                                 "type": "postback",
-                                "title": "Behavioral Coaching",
-                                "payload": "pm_behavioral_coahing"
+                                "title": "Pediatric Concern",
+                                "payload": "pm_pediatric_concern"
                             }
                         ]
                     }
@@ -143,11 +164,6 @@ def get_message():
     return random.choice(sample_responses)
 
         
-#uses PyMessenger to send response to user
-def send_message(recipient_id, response):
-    #sends user the text message provided via input response parameter
-    bot.send_text_message(recipient_id, response)
-    return "success"
 
 init_bot()
 if __name__ == "__main__":
