@@ -33,8 +33,7 @@ def receive_message():
                 if message['message'].get('text'):
                     #received_text(message)
                     if message['message'].get('quick_reply'):
-                        received_qr(message)
-                        #send_message(sender_id, 'postback is good')  
+                        received_qr(message)  
                     else:
                         received_text(message)
                 #if user sends us a GIF, photo,video, or any other non-text item
@@ -103,7 +102,7 @@ def init_bot():
     #Greetings 
     greetings =  {"greeting":[
           {
-              "locale":"en_US",
+              "locale":"default",
               "text":"Hi {{user_full_name}}!, Thank you for your interest. Disclaimer: This chatbot do not attempt to represent a real Pediatrician in any way."
             }
         ]}
