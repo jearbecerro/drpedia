@@ -91,7 +91,7 @@ def send_choose_concern(sender_id):
                             "image_url":image_url+"physical.png"
                           },{
                             "content_type":"text",
-                            "title":"Behavioral Coaching",
+                            "title":"Behavioral Disorders",
                             "payload":"behavioral",
                             "image_url":image_url+"behavioral.png"
                           }
