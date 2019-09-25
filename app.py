@@ -80,8 +80,8 @@ def received_postback(event):
         bot.send_text_message(sender_id,'Get a pediatrician Geo Mapping ToBeDevelop/not')
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
-    if payload=='pm_pediatric_concern':
-        send_choose_concern(sender_id)
+    if payload=='pm_about':
+        bot.send_text_message(sender_id,'About Under Construction')
         
 def send_choose_concern(sender_id):
     bot.send_text_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
@@ -140,8 +140,8 @@ def init_bot():
                             },
                             {
                                 "type": "postback",
-                                "title": "Pediatric Concern",
-                                "payload": "pm_pediatric_concern"
+                                "title": "About",
+                                "payload": "pm_about
                             }
                         ]
                     }
