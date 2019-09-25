@@ -40,8 +40,7 @@ def receive_message():
                 #if user sends us a GIF, photo,video, or any other non-text item
                 elif message['message'].get('attachments'):
                     #TO BE EDIT
-                    response_sent_nontext = get_message()
-                    send_message(sender_id, response_sent_nontext)
+                    bot.send_text_message(sender_id,get_message())
             elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
                 received_postback(message)
                     
