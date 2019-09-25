@@ -53,8 +53,7 @@ def received_qr(event):
     text = event["message"]["quick_reply"]["payload"]
    
     if text=='behavioral':
-            response_sent_nontext = get_message()
-            send_message(sender_id, 'postback is good')  
+            send_message(sender_id, 'postback is good ' + get_message())  
             
 def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -65,11 +64,11 @@ def received_text(event):
         response_sent_nontext = get_message()
         send_message(sender_id, response_sent_nontext)
    
+   
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
-    #quick_reply = event["quick_reply"]["payload"]
     
     
     if payload=='start':
