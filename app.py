@@ -108,7 +108,7 @@ def init_bot():
             "text":"Hi {{user_full_name}}!, Thank you for your interest in DrPedia."
           },{
             "locale":"default",
-            "text":"By accessing or using DrPedia, you are agreeing to the Terms of Service and other Policies with it.\nDisclaimer: This chatbot do not attempt to represent a real Pediatrician in any way."
+            "text":"Disclaimer: This chatbot do not attempt to represent a real Pediatrician in any way."
           }
         ]}
     
