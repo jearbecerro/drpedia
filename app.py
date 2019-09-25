@@ -103,7 +103,7 @@ def init_bot():
     #Greetings 
     greetings =  {"greeting":[
           {
-            "locale":"default",
+            "locale":"en_US",
             "text":"Hi {{user_full_name}}!, Thank you for your interest in DrPedia."
           }, {
               "locale":"en_US",
