@@ -141,7 +141,7 @@ def init_bot():
                             {
                                 "type": "postback",
                                 "title": "About",
-                                "payload": "pm_about
+                                "payload": "pm_about"
                             }
                         ]
                     }
