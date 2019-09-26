@@ -126,17 +126,17 @@ def send_behavioral(sender_id):
                         "payload": "Conduct"
                         }
                     ] 
-    quick_replies = {
+    dont_know = {
                             "content_type":"text",
                             "title":"Symptoms Checker",
                             "payload":"bdknow",
                             "image_url":image_url+"behavioral.png"
                           }
     bot.send_text_message(sender_id,'What is your behavioral concern?')
-    send_button(sender_id,'Behavioral Disroders',buttons)
-    send_button(sender_id,'Behavioral Disroders',buttons2)
-    send_button(sender_id,'Behavioral Disroders',buttons3)
-    bot.send_quick_replies_message(sender_id, "You don't know yet?", quick_replies)
+    send_button(sender_id,'',buttons)
+    send_button(sender_id,'',buttons2)
+    send_button(sender_id,'',buttons3)
+    bot.send_quick_replies_message(sender_id, "You don't know yet?", dont_know)
     
 def send_button(sender_id,text,buttons):
     bot.send_button_message(sender_id,text, buttons)
