@@ -103,7 +103,7 @@ def send_behavioral(sender_id):
                         "payload": "anxiety"
                         }
                         ]
-      buttons2 = [{
+    buttons2 = [{
                         "type": "postback",
                         "title": "Depression",
                         "payload": "depression"
@@ -123,7 +123,8 @@ def send_behavioral(sender_id):
                         "title": "Conduct Disorders",
                         "payload": "Conduct"
                         }
-      ] quick_replies = {
+                    ] 
+    quick_replies = {
                             "content_type":"text",
                             "title":"Symptoms Checker",
                             "payload":"physical",
