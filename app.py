@@ -95,8 +95,33 @@ def send_behavioral(sender_id):
                         "type": "postback",
                         "title": "ODD",
                         "payload": "odd"
+                        },{
+                        "type": "postback",
+                        "title": "Anxiety Disorder",
+                        "payload": "anxiety"
+                        },{
+                        "type": "postback",
+                        "title": "Depression",
+                        "payload": "depression"
+                        },{
+                        "type": "postback",
+                        "title": "Depression",
+                        "payload": "depression"
+                        },{
+                        "type": "postback",
+                        "title": "Bipolar Disorder",
+                        "payload": "bipolar"
+                        },{
+                        "type": "postback",
+                        "title": "Learning Disorders",
+                        "payload": "learning"
+                        },{
+                        "type": "postback",
+                        "title": "Conduct Disorders",
+                        "payload": "Conduct"
                         }
                         ]
+    
     buttons2 = [        {
                         "type": "postback",
                         "title": "Anxiety Disorder",
@@ -109,7 +134,7 @@ def send_behavioral(sender_id):
                         "type": "postback",
                         "title": "Depression",
                         "payload": "depression"
-                        },
+                        }
                     ]
     buttons3 = [
                        {
@@ -133,8 +158,8 @@ def send_behavioral(sender_id):
                           }]
     bot.send_text_message(sender_id,'What is your behavioral concern?')
     send_button(sender_id,'Behavioral Disorders',buttons)
-    send_button(sender_id,'Behavioral Disorders',buttons2)
-    send_button(sender_id,'Behavioral Disorders',buttons3)
+    #send_button(sender_id,'Behavioral Disorders',buttons2)
+    #send_button(sender_id,'Behavioral Disorders',buttons3)
     send_button(sender_id,"Don't know yet?",dont_know)
     
 def send_button(sender_id,text,buttons):
