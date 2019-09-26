@@ -102,7 +102,8 @@ def send_behavioral(sender_id):
                         "payload": "anxiety"
                         }
                         ]
-    buttons2 = [{
+    buttons2 = [
+                        {
                         "type": "postback",
                         "title": "Depression",
                         "payload": "depression"
@@ -126,12 +127,12 @@ def send_behavioral(sender_id):
     quick_replies = {
                             "content_type":"text",
                             "title":"Symptoms Checker",
-                            "payload":"physical",
+                            "payload":"bdknow",
                             "image_url":image_url+"behavioral.png"
                           }
-    bot.send_text_message(sender_id,'What is your behavioral concern?')
-    send_button(sender_id,'',buttons)
-    send_button(sender_id,'',buttons2)
+    #bot.send_text_message(sender_id,'')
+    send_button(sender_id,'What is your behavioral concern?',buttons)
+    send_button(sender_id,'What is your behavioral concern?',buttons2)
     bot.send_quick_replies_message(sender_id, "You don't know yet?", quick_replies)
     
 def send_button(sender_id,text,buttons):
