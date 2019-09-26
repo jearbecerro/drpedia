@@ -52,7 +52,7 @@ def received_qr(event):
     
     if text=='physical':
             bot.send_text_message(sender_id,'Physical Infection Quick reply tapped.')
-    if text=='behavioral':
+    if text=='mental':
             send_behavioral(sender_id)
             
 def received_text(event):
@@ -152,8 +152,8 @@ def send_choose_concern(sender_id):
                             "image_url":image_url+"physical.png"
                           },{
                             "content_type":"text",
-                            "title":"Behavioral Disorders",
-                            "payload":"behavioral",
+                            "title":"Mental Health",
+                            "payload":"mental",
                             "image_url":image_url+"behavioral.png"
                           }
     bot.send_quick_replies_message(sender_id, 'What is your concern?', quick_replies)
