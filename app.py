@@ -53,7 +53,6 @@ def received_qr(event):
     if text=='physical':
             bot.send_text_message(sender_id,'Physical Infection Quick reply tapped.')
     if text=='behavioral':
-            bot.send_text_message(sender_id,'Behavioral Disorder Quick reply tapped.')
             send_behavioral(sender_id)
             
 def received_text(event):
@@ -130,8 +129,9 @@ def send_behavioral(sender_id):
                             "payload":"physical",
                             "image_url":image_url+"behavioral.png"
                           }
-    send_button(sender_id,text,buttons)
-    send_button(sender_id,text,buttons2)
+    bot.send_text_message(sender_id,'What is your behavioral concern?')
+    send_button(sender_id,'',buttons)
+    send_button(sender_id,'',buttons2)
     bot.send_quick_replies_message(sender_id, "You don't know yet?", quick_replies)
     
 def send_button(sender_id,text,buttons):
