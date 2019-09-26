@@ -106,10 +106,6 @@ def send_behavioral(sender_id):
                         "type": "postback",
                         "title": "Depression",
                         "payload": "depression"
-                        },{
-                        "type": "postback",
-                        "title": "Depression",
-                        "payload": "depression"
                         }
                     ]
     buttons3 = [
