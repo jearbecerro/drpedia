@@ -54,6 +54,7 @@ def received_qr(event):
             bot.send_text_message(sender_id,'Physical Infection Quick reply tapped.')
     if text=='behavioral':
             bot.send_text_message(sender_id,'Behavioral Disorder Quick reply tapped.')
+            send_behavioral(sender_id)
             
 def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -81,6 +82,61 @@ def received_postback(event):
     if payload=='pm_about':
         bot.send_text_message(sender_id,'About Under Construction')
         
+def send_behavioral(sender_id):
+    buttons = [
+                        {
+                        "type": "postback",
+                        "title": "ADHD",
+                        "payload": "adhd"
+                        },{
+                        "type": "postback",
+                        "title": "Autism",
+                        "payload": "autism"
+                        },{
+                        "type": "postback",
+                        "title": "ODD",
+                        "payload": "odd"
+                        }
+                        ,{
+                        "type": "postback",
+                        "title": "Anxiety Disorder",
+                        "payload": "anxiety"
+                        }
+                        ]
+      buttons2 = [{
+                        "type": "postback",
+                        "title": "Depression",
+                        "payload": "depression"
+                        }
+                        ,{
+                        "type": "postback",
+                        "title": "Bipolar Disorder",
+                        "payload": "bipolar"
+                        }
+                        ,{
+                        "type": "postback",
+                        "title": "Learning Disorders",
+                        "payload": "learning"
+                        }
+                        ,{
+                        "type": "postback",
+                        "title": "Conduct Disorders",
+                        "payload": "Conduct"
+                        }
+      ] quick_replies = {
+                            "content_type":"text",
+                            "title":"Symptoms Checker",
+                            "payload":"physical",
+                            "image_url":image_url+"behavioral.png"
+                          }
+    send_button(sender_id,text,buttons)
+    send_button(sender_id,text,buttons2)
+    bot.send_quick_replies_message(sender_id, "You don't know yet?", quick_replies)
+    
+def send_button(sender_id,text,buttons):
+    bot.send_button_message(sender_id,text, buttons)
+    return "success"
+
 def send_choose_concern(sender_id):
     bot.send_text_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
     bot.send_text_message(sender_id, "For that you'll have to answer a few questions about your concerns.")
@@ -159,7 +215,7 @@ def get_message():
     return random.choice(sample_responses)
 
         
-
+#Greetings, persisten menu, get started button
 init_bot()
 if __name__ == "__main__":
     app.run()
