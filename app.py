@@ -63,11 +63,11 @@ def received_qr(event):
                             "payload":"not_diagnosed_mental"
                           }
         bot.send_quick_replies_message(sender_id, 'Is the patient already diagnosed by a real doctor?', quick_replies)
-    if text=='yes_diagnosed_mental':
-        bot.send_text_message(sender_id,'tapped yes already diagnosed')
-    if text=='not_diagnosed_mental':
-        bot.send_text_message(sender_id,'tapped not  diagnosed')
-            #send_behavioral(sender_id)
+        if text=='yes_diagnosed_mental':
+            bot.send_text_message(sender_id,'tapped yes already diagnosed')
+        if text=='not_diagnosed_mental':
+            bot.send_text_message(sender_id,'tapped not  diagnosed')
+                #send_behavioral(sender_id)
             
 def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
