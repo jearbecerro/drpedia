@@ -157,7 +157,8 @@ def received_postback(event):
         bot.send_button_message(sender_id, "If you don't have any idea. Just tap'Symptom Checker'", yes_diagnosed_mental)
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
-        
+    if payload=='mental_symptom_checker':
+        bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
     #2.2.2.1}
     
         
