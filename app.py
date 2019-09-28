@@ -59,36 +59,30 @@ def received_qr(event):
         quick_replies = {
                             "content_type":"text",
                             "title":"Yes",
-                            "payload":"yes_diagnosed_mental"
+                            "payload":"yes_proceed_mental"
                           },{
                             "content_type":"text",
                             "title":"No",
-                            "payload":"not_diagnosed_mental"
+                            "payload":"no_proceedd_mental"
                           }
-        bot.send_quick_replies_message(sender_id, 'Is the patient already diagnosed by a real doctor?', quick_replies)
+        bot.send_text_message(sender_id,"If you suspect that your child may have mental disorder, talk to a doctor.\nYour doctor can help you create a treatment plan to help you manage your child's symptoms and live well.")
+        bot.send_text_message(sender_id,"Disclaimer: I'm DrPedia, I'm a chat that uses expert system to cater pediatric concern.\nI do not attempt to represent a real Pediatrician in any way.")
+        bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
     #2.2.1
-    if text=='yes_diagnosed_mental':
-        yes_diagnosed_mental = [
+    if text=='yes_proceed_mental':
+        mental_proceed = [
                         {
                         "type": "postback",
-                        "title": "Coaching",
-                        "payload": "coaching"
+                        "title": "Proceed",
+                        "payload": "mental_proceed"
                         }
                         ]
-        bot.send_text_message(sender_id,"So, you want to know how to handle the patient's with mental disorder?")
-        bot.send_button_message(sender_id, "Just tap 'Coaching' ", yes_diagnosed_mental)
+        bot.send_text_message(sender_id,"If you want to know how to handle a patient's with mental problem")
+        bot.send_button_message(sender_id, "Just tap 'Proceed' ", mental_proceed)
         #proceed to payload button if payload=='coaching'
     #2.2.2    
-    if text=='not_diagnosed_mental':
-        not_diagnosed_mental = [
-                        {
-                        "type": "postback",
-                        "title": "Symptom Checker",
-                        "payload": "mental_symptom_checker"
-                        }
-                        ]
+    if text=='no_proceed_mental':
         bot.send_text_message(sender_id,"So, you want to know what is you/your child's mental health problem?")
-        bot.send_button_message(sender_id, "Just tap 'Symptom Checker'", not_diagnosed_mental)
         #proceed to payload button if payload=='mental_symptom_checker'
 
 #if user send a message in text
@@ -140,8 +134,7 @@ def received_postback(event):
     payload = event["postback"]["payload"]
     
     #2.2.1.1{
-    if payload=='coaching':
-        bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
+    if payload=='mental_proceed':
         '''attention deficit hyperactivity disorder (ADHD)
         oppositional defiant disorder (ODD)
         autism spectrum disorder (ASD)
@@ -149,16 +142,24 @@ def received_postback(event):
         depression
         bipolar disorder
         learning disorders
-        conduct disorders'''                                                                                                   
-        bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD)\nOppositional Defiant Disorder (ODD)\nAutism Spectrum Disorder (ASD)\nAnxiety Disorder\nDepression\nBipolar Disorder\nLearning Disorders\nConduct Disorders')
-        bot.send_text_message(sender_id,'Just type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct.')
+        conduct disorders'''
+        bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
+        bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders')
+        bot.send_text_message(sender_id,'If you think your child has a mental disorder listed above.\nJust type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct.')
         bot.send_text_message(sender_id,'If your mental concern is not in the list,\nwe are very sorry to inform you that we cannot cater your concern.')
+        yes_diagnosed_mental = [
+                        {
+                        "type": "postback",
+                        "title": "Symptom Checker",
+                        "payload": "mental_symptom_checker"
+                        }
+                        ]
+        bot.send_button_message(sender_id, "If you don't have any idea. Just tap'Symptom Checker'", yes_diagnosed_mental)
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
         
     #2.2.2.1}
-    if payload=='mental_symptom_checker':
-        bot.send_text_message(sender_id,"symptom checker")
+    
         
         
     #Get started button tapped{
@@ -187,7 +188,7 @@ def choose_option_mental(sender_id,payload1,payload2,name):
                         "payload": payload2
                         }
                         ]
-    bot.send_text_message(sender_id,"With tapping 'Send Coaching Tips'.\nYou already know that you/your child or the patient had{}".format(name))
+    bot.send_text_message(sender_id,"With tapping 'Send Coaching Tips'\nYou already know that you/your child or the patient had a {}".format(name))
     bot.send_text_message(sender_id,"To check if you/your child or the patient has {}.\nTap 'Check'".format(name))
     bot.send_button_message(sender_id, "Choose:", confirm)
 #1   
