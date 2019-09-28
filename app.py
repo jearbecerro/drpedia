@@ -98,35 +98,35 @@ def received_text(event):
     text = event["message"]["text"]
     #2.2.1.1..{
     if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
-        choose_option_mental('send_tips_adhd','check_adhd','ADHD')
+        choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
     
     if text.lower() in ("oppositional defiant disorder", "odd"):
-        choose_option_mental('send_tips_odd','check_odd','ODD')
+        choose_option_mental(sender_id,'send_tips_odd','check_odd','ODD')
         #proceed to payload button if payload=='send_tips_odd' or if payload=='check_odd'
         
     if text.lower() in ("autism spectrum disorder", "asd", "autism"):
-        choose_option_mental('send_tips_asd','check_asd','Autism Spectrum Disorder')
+        choose_option_mental(sender_id,'send_tips_asd','check_asd','Autism Spectrum Disorder')
         #proceed to payload button if payload=='send_tips_asd' or if payload=='check_asd'
         
     if text.lower() in ("anxiety disorder", "anxiety","ad"):
-        choose_option_mental('send_tips_ad','check_ad','Anxiety Disorder')
+        choose_option_mental(sender_id,'send_tips_ad','check_ad','Anxiety Disorder')
         #proceed to payload button if payload=='send_tips_ad' or if payload=='check_ad'
         
     if text.lower() in ("depression", "depression disorder","depress"):
-        choose_option_mental('send_tips_d','check_d','Depression')
+        choose_option_mental(sender_id,'send_tips_d','check_d','Depression')
         #proceed to payload button if payload=='send_tips_d' or if payload=='check_d'
         
     if text.lower() in ("bipolar disorder", "bipolar","bd"):
-        choose_option_mental('send_tips_bd','check_bd','Bipolar Disorder')
+        choose_option_mental(sender_id,'send_tips_bd','check_bd','Bipolar Disorder')
         #proceed to payload button if payload=='send_tips_bd' or if payload=='check_bd' 
         
     if text.lower() in ("learning disorders", "learning","ld"):
-        choose_option_mental('send_tips_ld','check_ld','Learning Disorder')
+        choose_option_mental(sender_id,'send_tips_ld','check_ld','Learning Disorder')
         #proceed to payload button if payload=='send_tips_ld' or if payload=='check_ld' 
         
     if text.lower() in ("conduct disorders", "conduct","cd"):
-        choose_option_mental('send_tips_cd','check_cd', 'Conduct Disorder')
+        choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #2.2.1.1..}   
         
@@ -141,8 +141,7 @@ def received_postback(event):
     
     #2.2.1.1{
     if payload=='coaching':
-        bot.send_text_message(sender_id,'What is the diagnosed mental disorder of a patient from a real Doctor.')
-        bot.send_text_message(sender_id,'These are the following mental disorders we can cater:')
+        bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
         '''attention deficit hyperactivity disorder (ADHD)
         oppositional defiant disorder (ODD)
         autism spectrum disorder (ASD)
@@ -176,7 +175,7 @@ def received_postback(event):
         bot.send_text_message(sender_id,'About Under Construction')
     #}
 #2.2.1.1 use multipe times
-def choose_option_mental(payload1,payload2,name):
+def choose_option_mental(sender_id,payload1,payload2,name):
     confirm = [
                         {
                         "type": "postback",
@@ -194,7 +193,7 @@ def choose_option_mental(payload1,payload2,name):
 #1   
 def send_choose_concern(sender_id):
     bot.send_text_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
-    bot.send_text_message(sender_id, "For that you'll have to answer a few questions about your concerns.")
+    bot.send_text_message(sender_id, "For that you'll have to answer a few questions about your concern.")
     quick_replies = {
                             "content_type":"text",
                             "title":"Physical Health",
