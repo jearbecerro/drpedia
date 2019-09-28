@@ -45,6 +45,7 @@ def receive_message():
                     
     return "Message Processed"
 
+#if user tap a button from a quick reply
 def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
@@ -52,6 +53,7 @@ def received_qr(event):
     
     if text=='physical':
         bot.send_text_message(sender_id,'Physical Infection Quick reply tapped.')
+        
     if text=='mental':
         quick_replies = {
                             "content_type":"text",
@@ -63,22 +65,76 @@ def received_qr(event):
                             "payload":"not_diagnosed_mental"
                           }
         bot.send_quick_replies_message(sender_id, 'Is the patient already diagnosed by a real doctor?', quick_replies)
-        if text=='yes_diagnosed_mental':
-            bot.send_text_message(sender_id,'tapped yes already diagnosed')
-        if text=='not_diagnosed_mental':
-            bot.send_text_message(sender_id,'tapped not  diagnosed')
-                #send_behavioral(sender_id)
-            
+    if text=='yes_diagnosed_mental':
+        yes_diagnosed_mental = {
+                            "content_type":"text",
+                            "title":"Coaching",
+                            "payload":"coaching",
+                            "image_url":image_url+"symptom_checker.png"
+                          }
+        bot.send_text_message(sender_id,"So, you want to know how to handle the patient's with mental disorder?")
+        bot.send_quick_replies_message(sender_id, "Just tap 'Coaching' ", yes_diagnosed_mental)
+    if text=='coaching':
+        bot.send_text_message(sender_id,'What is the diagnosed mental disorder of a patient from a real Doctor.')
+        bot.send_text_message(sender_id,'These are the following mental disorders we can cater:')
+        '''attention deficit hyperactivity disorder (ADHD)
+        oppositional defiant disorder (ODD)
+        autism spectrum disorder (ASD)
+        anxiety disorder
+        depression
+        bipolar disorder
+        learning disorders
+        conduct disorders'''                                                                                                   
+        bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD)\nOppositional Defiant Disorder (ODD)\nAutism Spectrum Disorder (ASD)\nAnxiety Disorder\nDepression\nBipolar Disorder\nLearning Disorders\nConduct Disorders')
+        bot.send_text_message(sender_id,'Just type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct.')
+        bot.send_text_message(sender_id,'If your mental concern is not in the list,\nwe are very sorry to inform you that we cannot cater your concern.')
+      
+    if text=='not_diagnosed_mental':
+        bot.send_text_message(sender_id,"So, you did not know what is the patient's mental disorder.")
+        not_diagnosed_mental = {
+                            "content_type":"text",
+                            "title":"Symptom Checker",
+                            "payload":"mental_symptom_checker",
+                            "image_url":image_url+"symptom_checker.png"
+                          }
+        bot.send_quick_replies_message(sender_id, "Just tap 'Symptom Checker'", not_diagnosed_mental)
+    if text=='mental_symptom_checker':
+        bot.send_text_message(sender_id,"symptom checker")
+
+#if user send a message in text
 def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     
-    if text:
-        bot.send_text_message(sender_id,'Just a random compliment'+ get_message())
+    if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
+        bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')   
+        
+    if text.lower() in ("oppositional defiant disorder", "odd"):
+        bot.send_text_message(sender_id,'oppositional defiant disorder') 
+        
+    if text.lower() in ("autism spectrum disorder", "asd", "autism"):
+        bot.send_text_message(sender_id,'autism')   
+        
+    if text.lower() in ("anxiety disorder", "anxiety","ad"):
+        bot.send_text_message(sender_id,'anxiety disorder') 
+        
+    if text.lower() in ("depression", "depression disorder","depress"):
+        bot.send_text_message(sender_id,'depression') 
+        
+    if text.lower() in ("bipolar disorder", "bipolar","bd"):
+        bot.send_text_message(sender_id,'bipolar disorder')     
+        
+    if text.lower() in ("learning disorders", "learning","ld"):
+        bot.send_text_message(sender_id,'learning disorders')  
+        
+    if text.lower() in ("conduct disorders", "conduct","cd"):
+        bot.send_text_message(sender_id,'conduct disorders') 
+        
     if text.lower()=='about':
         bot.send_text_message(sender_id,'Intruction on how to user this chatbot under development')
-   
+
+#if user tap a button from a regular button
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
