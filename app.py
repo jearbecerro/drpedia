@@ -60,7 +60,7 @@ def received_qr(event):
                           },{
                             "content_type":"text",
                             "title":"No",
-                            "payload":"not_diagnose_mental"
+                            "payload":"not_diagnosed_mental"
                           }
         bot.send_quick_replies_message(sender_id, 'Is the patient already diagnosed by a real doctor?', quick_replies)
     if text=='yes_diagnosed_mental':
