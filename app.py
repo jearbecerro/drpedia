@@ -51,9 +51,23 @@ def received_qr(event):
     text = event["message"]["quick_reply"]["payload"]
     
     if text=='physical':
-            bot.send_text_message(sender_id,'Physical Infection Quick reply tapped.')
+        bot.send_text_message(sender_id,'Physical Infection Quick reply tapped.')
     if text=='mental':
-            send_behavioral(sender_id)
+        quick_replies = {
+                            "content_type":"text",
+                            "title":"Yes",
+                            "payload":"yes_diagnosed_mental"
+                          },{
+                            "content_type":"text",
+                            "title":"No",
+                            "payload":"not_diagnose_mental"
+                          }
+        bot.send_quick_replies_message(sender_id, 'Is the patient already diagnosed by a real doctor?', quick_replies)
+    if text=='yes_diagnosed_mental':
+        bot.send_text_message(sender_id,'tapped yes already diagnosed')
+    if text=='yes_diagnosed_mental':
+        bot.send_text_message(sender_id,'tapped not  diagnosed')
+            #send_behavioral(sender_id)
             
 def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -79,6 +93,8 @@ def received_postback(event):
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
     if payload=='pm_about':
+        bot.send_text_message(sender_id,'About Under Construction').
+    if payload=='adhd':
         bot.send_text_message(sender_id,'About Under Construction')
         
 def send_behavioral(sender_id):
@@ -130,8 +146,8 @@ def send_behavioral(sender_id):
                           }]
     bot.send_text_message(sender_id,'What is your behavioral concern?')
     send_button(sender_id,'Behavioral Disorders',buttons)
-    send_button(sender_id,'Behavioral Disorders',buttons2)
-    send_button(sender_id,'Behavioral Disorders',buttons3)
+    send_button(sender_id,'Emotional Disorders',buttons2)
+    send_button(sender_id,'Developmental Disorders',buttons3)
     send_button(sender_id,"Don't know yet?",dont_know)
     
 def send_button(sender_id,text,buttons):
