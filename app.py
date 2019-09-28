@@ -68,7 +68,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, 'Is the patient already diagnosed by a real doctor?', quick_replies)
     #2.2.1
     if text=='yes_diagnosed_mental':
-         yes_diagnosed_mental = [
+        yes_diagnosed_mental = [
                         {
                         "type": "postback",
                         "title": "Coaching",
