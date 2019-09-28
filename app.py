@@ -65,7 +65,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, 'Is the patient already diagnosed by a real doctor?', quick_replies)
     if text=='yes_diagnosed_mental':
         bot.send_text_message(sender_id,'tapped yes already diagnosed')
-    if text=='yes_diagnosed_mental':
+    if text=='not_diagnosed_mental':
         bot.send_text_message(sender_id,'tapped not  diagnosed')
             #send_behavioral(sender_id)
             
@@ -93,7 +93,7 @@ def received_postback(event):
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
     if payload=='pm_about':
-        bot.send_text_message(sender_id,'About Under Construction').
+        bot.send_text_message(sender_id,'About Under Construction')
     if payload=='adhd':
         bot.send_text_message(sender_id,'About Under Construction')
         
