@@ -216,7 +216,6 @@ def init_bot():
               "text":"Hi {{user_full_name}}!, Thank you for your interest in DrPedia. Disclaimer: This chatbot do not attempt to represent a real Pediatrician in any way."
             }
         ]}
-    
     bot.set_greetings(greetings)
     #Get started button
     gs ={ 
