@@ -146,8 +146,8 @@ def received_postback(event):
         conduct disorders'''
         bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
         bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders')
-        bot.send_text_message(sender_id,'If you think your child has a mental disorder listed above.\nJust type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct.')
-        bot.send_text_message(sender_id,'If your mental concern is not in the list,\nwe are very sorry to inform you that we cannot cater your concern.')
+        bot.send_text_message(sender_id,'If your mental concern is not in the list, we cannot cater your concern.')
+        bot.send_text_message(sender_id,'Just type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct to proceed.')b 
         yes_diagnosed_mental = [
                         {
                         "type": "postback",
@@ -200,6 +200,7 @@ def choose_howto_mental(sender_id,payload1,payload2,payload3,name):
                         ]
     bot.send_text_message(sender_id,"What do you want to know about {}.".format(name))
     bot.send_button_message(sender_id, "Choose:", choices)
+    
 #2.2.1.1 use multipe times
 def choose_option_mental(sender_id,payload1,payload2,name):
     confirm = [
@@ -213,8 +214,8 @@ def choose_option_mental(sender_id,payload1,payload2,name):
                         "payload": payload2
                         }
                         ]
-    bot.send_text_message(sender_id,"With tapping 'How to handle?'\nYou already know that you/your child or the patient had a {}".format(name))
-    bot.send_text_message(sender_id,"To check if you/your child or the patient has {}.\nTap 'Check'".format(name))
+    bot.send_text_message(sender_id,"With tapping 'How to handle?'\nYou already know that the patient had a {}".format(name))
+    bot.send_text_message(sender_id,"To check if the patient has {}.\nTap 'Check'".format(name))
     bot.send_button_message(sender_id, "Choose:", confirm)
 #1   
 def send_choose_concern(sender_id):
