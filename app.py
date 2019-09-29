@@ -63,7 +63,7 @@ def received_qr(event):
                           },{
                             "content_type":"text",
                             "title":"No",
-                            "payload":"no_proceedd_mental"
+                            "payload":"no_proceed_mental"
                           }
         bot.send_text_message(sender_id,"If you suspect that your child may have mental disorder, talk to a doctor.\nYour doctor can help you create a treatment plan to help you manage your child's symptoms and live well.")
         bot.send_text_message(sender_id,"Disclaimer: I'm DrPedia, I'm a chat that uses expert system to cater pediatric concern.\nI do not attempt to represent a real Pediatrician in any way.")
@@ -85,7 +85,20 @@ def received_qr(event):
         bot.send_text_message(sender_id,"Thank you for using DrPedia.")
         send_choose_concern(sender_id)
         #proceed to payload button if payload=='mental_symptom_checker'
-
+    if text=='yes_proceed':
+        bot.send_text_message(sender_id,'Just type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct to proceed.')
+        yes_diagnosed_mental = [
+                        {
+                        "type": "postback",
+                        "title": "Symptom Checker",
+                        "payload": "mental_symptom_checker"
+                        }
+                        ]
+        bot.send_button_message(sender_id, "If you don't have any idea. Just tap'Symptom Checker'", yes_diagnosed_mental)
+    if text=='no_proceed':     
+        bot.send_text_message(sender_id,"Thank you for using DrPedia.")
+        send_choose_concern(sender_id)
+        
 #if user send a message in text
 def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -147,15 +160,17 @@ def received_postback(event):
         bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
         bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders')
         bot.send_text_message(sender_id,'If your mental concern is not in the list, we cannot cater your concern.')
-        bot.send_text_message(sender_id,'Just type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct to proceed.')
-        yes_diagnosed_mental = [
-                        {
-                        "type": "postback",
-                        "title": "Symptom Checker",
-                        "payload": "mental_symptom_checker"
-                        }
-                        ]
-        bot.send_button_message(sender_id, "If you don't have any idea. Just tap'Symptom Checker'", yes_diagnosed_mental)
+        quick_replies = {
+                            "content_type":"text",
+                            "title":"Yes",
+                            "payload":"yes_proceed"
+                          },{
+                            "content_type":"text",
+                            "title":"No",
+                            "payload":"no_proceed"
+                          }
+        bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
+
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
         choose_howto_mental(sender_id,'remedies_adhd','medication_adhd','coaching_adhd','ADHD')
