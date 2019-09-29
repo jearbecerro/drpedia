@@ -65,8 +65,8 @@ def received_qr(event):
                             "title":"No",
                             "payload":"no_proceed_mental"
                           }
-        bot.send_text_message(sender_id,"If you suspect that your child may have mental disorder, talk to a doctor.\nYour doctor can help you create a treatment plan to help you manage your child's symptoms and live well.")
-        bot.send_text_message(sender_id,"Disclaimer: I'm DrPedia, I'm a chat that uses expert system to cater pediatric concern.\nI do not attempt to represent a real Pediatrician in any way.")
+        bot.send_text_message(sender_id,"By using this chatbot, you must be aware that any suggestions and recommendations for medication and remedies is base from the expert's knowledge.")
+        bot.send_text_message(sender_id,"Disclaimer: DrPedia is a chatbot that uses expert system to cater pediatric concern.\nDrPedia do not attempt to represent a real Pediatrician in any way.")
         bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
     #2.2.1
     if text=='yes_proceed_mental':
@@ -85,8 +85,9 @@ def received_qr(event):
         bot.send_text_message(sender_id,"Thank you for using DrPedia.")
         send_choose_concern(sender_id)
         #proceed to payload button if payload=='mental_symptom_checker'
+        
     if text=='yes_proceed':
-        bot.send_text_message(sender_id,'Just type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct to proceed.')
+        bot.send_text_message(sender_id,'Just type the suspected mental health problems listed above to proceed.')
         yes_diagnosed_mental = [
                         {
                         "type": "postback",
@@ -94,7 +95,7 @@ def received_qr(event):
                         "payload": "mental_symptom_checker"
                         }
                         ]
-        bot.send_button_message(sender_id, "If you don't have any idea. Just tap'Symptom Checker'", yes_diagnosed_mental)
+        bot.send_button_message(sender_id, "If you don't have any idea. Just tap 'Symptom Checker'", yes_diagnosed_mental)
     if text=='no_proceed':     
         bot.send_text_message(sender_id,"Thank you for using DrPedia.")
         send_choose_concern(sender_id)
@@ -159,7 +160,7 @@ def received_postback(event):
         conduct disorders'''
         bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
         bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders')
-        bot.send_text_message(sender_id,'If your mental concern is not in the list, we cannot cater your concern.')
+        bot.send_text_message(sender_id,'If your mental concern is not in the list, I` cannot cater your concern.')
         quick_replies = {
                             "content_type":"text",
                             "title":"Yes",
@@ -183,7 +184,7 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
-        bot.send_text_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
+        bot.send_text_message(sender_id, "Hi I'm DrPedia.\nI'm here to cater your pediatric concern.")
         bot.send_text_message(sender_id, "For that you'll have to answer a few questions about your concern.")
         send_choose_concern(sender_id)
     #Persistent Menu Buttons        
