@@ -65,7 +65,7 @@ def received_qr(event):
                             "title":"No",
                             "payload":"no_proceed_mental"
                           }
-        bot.send_text_message(sender_id,"By using this chatbot, you must be aware that any suggestions and recommendations for medication and remedies is base from the expert's knowledge.")
+        bot.send_text_message(sender_id,"By using this Drpedia, you must be aware that any suggestions and recommendations for medication and remedies is base from the expert's knowledge.")
         bot.send_text_message(sender_id,"Disclaimer: DrPedia is a chatbot that uses expert system to cater pediatric concern.\nDrPedia do not attempt to represent a real Pediatrician in any way.")
         bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
     #2.2.1
@@ -78,7 +78,7 @@ def received_qr(event):
         bipolar disorder
         learning disorders
         conduct disorders'''
-        bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
+        bot.send_text_message(sender_id,'These are the following mental health concerns I can cater:')
         bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders')
         bot.send_text_message(sender_id,'If your mental concern is not in the list, I cannot cater your concern.')
         quick_replies = {
@@ -98,7 +98,7 @@ def received_qr(event):
         #proceed to payload button if payload=='mental_symptom_checker'
         
     if text=='yes_proceed':
-        bot.send_text_message(sender_id,'Just type the suspected mental health problems listed above to proceed.\nExample: adhd')
+        bot.send_text_message(sender_id,"Just type the suspected mental health problems listed above to proceed.\nExample: 'adhd'")
         yes_diagnosed_mental = [
                         {
                         "type": "postback",
