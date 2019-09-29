@@ -147,7 +147,7 @@ def received_postback(event):
         bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
         bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders')
         bot.send_text_message(sender_id,'If your mental concern is not in the list, we cannot cater your concern.')
-        bot.send_text_message(sender_id,'Just type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct to proceed.')b 
+        bot.send_text_message(sender_id,'Just type ADHD, ODD, ASD/Autism, Anxiety, Depression, Bipolar, Learning or Conduct to proceed.')
         yes_diagnosed_mental = [
                         {
                         "type": "postback",
