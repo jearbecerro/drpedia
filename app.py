@@ -82,7 +82,8 @@ def received_qr(event):
         #proceed to payload button if payload=='coaching'
     #2.2.2    
     if text=='no_proceed_mental':
-        bot.send_text_message(sender_id,"So, you want to know what is you/your child's mental health problem?")
+        bot.send_text_message(sender_id,"Thank you for using DrPedia.")
+        send_choose_concern(sender_id)
         #proceed to payload button if payload=='mental_symptom_checker'
 
 #if user send a message in text
@@ -157,6 +158,8 @@ def received_postback(event):
         bot.send_button_message(sender_id, "If you don't have any idea. Just tap'Symptom Checker'", yes_diagnosed_mental)
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
+        choose_howto_mental(sender_id,'remedies_adhd','medication_adhd','coaching_adhd','ADHD')
+        
     if payload=='mental_symptom_checker':
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
     #2.2.2.1}
@@ -165,6 +168,8 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
+        bot.send_text_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
+        bot.send_text_message(sender_id, "For that you'll have to answer a few questions about your concern.")
         send_choose_concern(sender_id)
     #Persistent Menu Buttons        
     if payload=='pm_get_pediatrician':
@@ -176,12 +181,31 @@ def received_postback(event):
     if payload=='adhd':
         bot.send_text_message(sender_id,'About Under Construction')
     #}
+    
+def choose_howto_mental(sender_id,payload1,payload2,payload3,name):
+    choices = [
+                        {
+                        "type": "postback",
+                        "title": "Remedies",
+                        "payload": payload1
+                        },{
+                        "type": "postback",
+                        "title": "Medication",
+                        "payload": payload2
+                        },{
+                        "type": "postback",
+                        "title": "Coaching",
+                        "payload": payload3
+                        }
+                        ]
+    bot.send_text_message(sender_id,"What do you want to know about {}.".format(name))
+    bot.send_button_message(sender_id, "Choose:", choices)
 #2.2.1.1 use multipe times
 def choose_option_mental(sender_id,payload1,payload2,name):
     confirm = [
                         {
                         "type": "postback",
-                        "title": "Send Coaching Tips",
+                        "title": "How to handle?",
                         "payload": payload1
                         },{
                         "type": "postback",
@@ -189,13 +213,11 @@ def choose_option_mental(sender_id,payload1,payload2,name):
                         "payload": payload2
                         }
                         ]
-    bot.send_text_message(sender_id,"With tapping 'Send Coaching Tips'\nYou already know that you/your child or the patient had a {}".format(name))
+    bot.send_text_message(sender_id,"With tapping 'How to handle?'\nYou already know that you/your child or the patient had a {}".format(name))
     bot.send_text_message(sender_id,"To check if you/your child or the patient has {}.\nTap 'Check'".format(name))
     bot.send_button_message(sender_id, "Choose:", confirm)
 #1   
 def send_choose_concern(sender_id):
-    bot.send_text_message(sender_id, "Hi I'm DrPedia\nI'm here to cater your pediatric concern.")
-    bot.send_text_message(sender_id, "For that you'll have to answer a few questions about your concern.")
     quick_replies = {
                             "content_type":"text",
                             "title":"Physical Health",
