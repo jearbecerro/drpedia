@@ -70,16 +70,27 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
     #2.2.1
     if text=='yes_proceed_mental':
-        mental_proceed = [
-                        {
-                        "type": "postback",
-                        "title": "Proceed",
-                        "payload": "mental_proceed"
-                        }
-                        ]
-        bot.send_text_message(sender_id,"If you want to know how to handle a patient's with mental problem")
-        bot.send_button_message(sender_id, "Just tap 'Proceed' ", mental_proceed)
-        #proceed to payload button if payload=='coaching'
+        '''attention deficit hyperactivity disorder (ADHD)
+        oppositional defiant disorder (ODD)
+        autism spectrum disorder (ASD)
+        anxiety disorder
+        depression
+        bipolar disorder
+        learning disorders
+        conduct disorders'''
+        bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
+        bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders')
+        bot.send_text_message(sender_id,'If your mental concern is not in the list, I cannot cater your concern.')
+        quick_replies = {
+                            "content_type":"text",
+                            "title":"Yes",
+                            "payload":"yes_proceed"
+                          },{
+                            "content_type":"text",
+                            "title":"No",
+                            "payload":"no_proceed"
+                          }
+        bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
     #2.2.2    
     if text=='no_proceed_mental':
         bot.send_text_message(sender_id,"Thank you for using DrPedia.")
@@ -87,7 +98,7 @@ def received_qr(event):
         #proceed to payload button if payload=='mental_symptom_checker'
         
     if text=='yes_proceed':
-        bot.send_text_message(sender_id,'Just type the suspected mental health problems listed above to proceed.')
+        bot.send_text_message(sender_id,'Just type the suspected mental health problems listed above to proceed.\nExample: adhd')
         yes_diagnosed_mental = [
                         {
                         "type": "postback",
@@ -149,28 +160,7 @@ def received_postback(event):
     payload = event["postback"]["payload"]
     
     #2.2.1.1{
-    if payload=='mental_proceed':
-        '''attention deficit hyperactivity disorder (ADHD)
-        oppositional defiant disorder (ODD)
-        autism spectrum disorder (ASD)
-        anxiety disorder
-        depression
-        bipolar disorder
-        learning disorders
-        conduct disorders'''
-        bot.send_text_message(sender_id,'These are the following mental health concerns we can cater:')
-        bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders')
-        bot.send_text_message(sender_id,'If your mental concern is not in the list, I` cannot cater your concern.')
-        quick_replies = {
-                            "content_type":"text",
-                            "title":"Yes",
-                            "payload":"yes_proceed"
-                          },{
-                            "content_type":"text",
-                            "title":"No",
-                            "payload":"no_proceed"
-                          }
-        bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
+    
 
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
