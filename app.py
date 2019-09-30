@@ -72,7 +72,7 @@ def received_qr(event):
                             "title":"No",
                             "payload":"no_proceed_mental"
                           }
-        bot.send_text_message(sender_id,"By using this Drpedia, you must be aware that any suggestions and recommendations for medication and remedies is base from the expert's knowledge.")
+        bot.send_text_message(sender_id,"By using this Drpedia, you must be aware that any suggestions and recommendations for medication and remedies is base from an expert's knowledge. (Pediatrician)")
         bot.send_text_message(sender_id,"Disclaimer: DrPedia is a chatbot that uses expert system to cater pediatric concern.\nDrPedia do not attempt to represent a real Pediatrician in any way.")
         bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
     #2.2.1
