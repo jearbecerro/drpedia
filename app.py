@@ -13,7 +13,11 @@ bot = Bot (ACCESS_TOKEN)
 app = Flask(__name__)
 
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
-        
+      
+def get_remedies_adhd():
+    remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
+    # return selected item to the user
+    return random.choice(remedies_adhd)
 
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
@@ -189,9 +193,9 @@ def received_postback(event):
         get at least 60 minutes of physical activity per day
         get plenty of sleep
         limit daily screen time from phones, computers, and TV'''
-        bot.send_text_message(sender_id, remedies_adhd)
+        bot.send_text_message(sender_id, get_remedies_adhd())
     if payload=='send_remedies_adhd':   
-        bot.send_text_message(sender_id, remedies_adhd)
+        bot.send_text_message(sender_id, get_remedies_adhd())
         
     if payload=='mental_symptom_checker':
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
