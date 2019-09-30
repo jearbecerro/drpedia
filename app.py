@@ -194,6 +194,14 @@ def received_postback(event):
         get plenty of sleep
         limit daily screen time from phones, computers, and TV'''
         bot.send_text_message(sender_id, get_remedies_adhd())
+        sendanother = [
+                        {
+                        "type": "postback",
+                        "title": "send another",
+                        "payload": "send_remedies_adhd"
+                        }
+                        ]
+        bot.send_button_message(sender_id, "Remedies:", sendanother)    
     if payload=='send_remedies_adhd':   
         bot.send_text_message(sender_id, get_remedies_adhd())
         
