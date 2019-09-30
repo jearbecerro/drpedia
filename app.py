@@ -187,8 +187,7 @@ def received_postback(event):
         '''eat a healthy, balanced diet
         get at least 60 minutes of physical activity per day
         get plenty of sleep
-        limit daily screen time from phones, computers, and TV'''
-        bot.send_text_message(sender_id, get_remedies_adhd())          
+        limit daily screen time from phones, computers, and TV'''    
         sendanother = [
                         {
                         "type": "postback",
@@ -196,7 +195,7 @@ def received_postback(event):
                         "payload": "send_remedies_adhd"
                         }
                         ]
-        bot.send_button_message(sender_id, "Remedies:", sendanother)    
+        bot.send_button_message(sender_id, get_remedies_adhd(), sendanother)    
     if payload=='send_remedies_adhd':   
         sendanother = [
                         {
