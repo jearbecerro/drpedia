@@ -193,7 +193,7 @@ def received_postback(event):
                         }
                         ]
         bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ADHD?", sendanother)
-     if payload=='send_symptoms_adhd':  
+    if payload=='send_symptoms_adhd':  
         '''having trouble focusing or concentrating on tasks
         being forgetful about completing tasks
         being easily distracted
