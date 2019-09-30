@@ -223,7 +223,8 @@ def received_postback(event):
         bot.send_button_message(sender_id, "What causes ADHD?", sendanother)
     if payload=='send_cause_adhd':   
         bot.send_text_message(sender_id,"Despite how common ADHD is, doctors and researchers still aren’t sure what causes the condition. It’s believed to have neurological origins. Genetics may also play a role.")
-        if payload=='remedies_adhd':
+    
+    if payload=='remedies_adhd':
         '''eat a healthy, balanced diet
         get at least 60 minutes of physical activity per day
         get plenty of sleep
