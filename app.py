@@ -72,7 +72,7 @@ def received_qr(event):
                             "title":"See details",
                             "payload":"see_details"
                           }
-        bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any suggestions and recommendations for medication and remedies is base from from an expert's information. (Pediatrician)")
+        bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any information and suggestions for medication and remedies is base from an expert's knowledge. (Pediatrician)")
         bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers:")
         bot.send_text_message(sender_id,"Remember that DrPedia is just a robot, not a doctor.")
         bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real Pediatrician in any way.")
@@ -179,11 +179,51 @@ def received_postback(event):
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
         bot.send_text_message(sender_id,'I will ask a few questions inorder to identify if the patient had adhd')
+    
     if payload=='send_tips_adhd':
         choose_howto_mental(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
+        
     if payload=='about_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
-    if payload=='remedies_adhd':
+        sendanother = [
+                        {
+                        "type": "postback",
+                        "title": "ADHD Symptoms",
+                        "payload": "send_symptoms_adhd"
+                        }
+                        ]
+        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ADHD?", sendanother)
+     if payload=='send_symptoms_adhd':  
+        '''having trouble focusing or concentrating on tasks
+        being forgetful about completing tasks
+        being easily distracted
+        having difficulty sitting still
+        interrupting people while they’re talking'''                                                                                                                                                                                                                                    
+        bot.send_text_message(sender_id,"A wide range of behaviors are associated with ADHD. Some of the more common ones include:\nhaving trouble focusing or concentrating on tasks\nbeing forgetful about completing tasks\nbeing easily distracted\nhaving difficulty sitting still\ninterrupting people while they’re talking")
+        sendanother = [
+                        {
+                        "type": "postback",
+                        "title": "Types of ADHD",
+                        "payload": "send_types_adhd"
+                        }
+                        ]
+        bot.send_button_message(sender_id, "Want to know the types of ADHD?", sendanother)
+    if payload=='send_types_adhd':
+        bot.send_text_message(sender_id,"To make ADHD diagnoses more consistent, the APA(American Psychological Association) has grouped the condition into three categories, or types. These types are predominantly inattentive, predominantly hyperactivity-impulsive, and a combination of both.")
+        bot.send_text_message(sender_id,"Predominantly inattentive\n\nAs the name suggests, people with this type of ADHD have extreme difficulty focusing, finishing tasks, and following instructions.\n\nExperts also think that many children with the inattentive type of ADHD may not receive a proper diagnosis because they don’t tend to disrupt the classroom. This type is most common among girls with ADHD.")
+        bot.send_text_message(sender_id,"Predominantly hyperactive-impulsive type.\n\nPeople with this type of ADHD show primarily hyperactive and impulsive behavior. This can include fidgeting, interrupting people while they’re talking, and not being able to wait their turn.\n\nAlthough inattention is less of a concern with this type of ADHD, people with predominantly hyperactive-impulsive ADHD may still find it difficult to focus on tasks")
+        bot.send_text_message(sender_id,"Combined hyperactive-impulsive and inattentive type\n\nThis is the most common type of ADHD. People with this combined type of ADHD display both inattentive and hyperactive symptoms. These include an inability to pay attention, a tendency toward impulsiveness, and above-normal levels of activity and energy.")
+        sendanother = [
+                        {
+                        "type": "postback",
+                        "title": "Cause of ADHD",
+                        "payload": "send_cause_adhd"
+                        }
+                        ]
+        bot.send_button_message(sender_id, "What causes ADHD?", sendanother)
+    if payload=='send_cause_adhd':   
+        bot.send_text_message(sender_id,"Despite how common ADHD is, doctors and researchers still aren’t sure what causes the condition. It’s believed to have neurological origins. Genetics may also play a role.")
+        if payload=='remedies_adhd':
         '''eat a healthy, balanced diet
         get at least 60 minutes of physical activity per day
         get plenty of sleep
@@ -218,7 +258,7 @@ def received_postback(event):
         bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")    
         send_choose_concern(sender_id)
     #Persistent Menu Buttons        
-    if payload=='start':
+    if payload=='start_over':
         send_choose_concern(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
