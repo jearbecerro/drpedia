@@ -73,9 +73,9 @@ def received_qr(event):
                             "payload":"see_details"
                           }
         bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any suggestions and recommendations for medication and remedies is base from from an expert's information. (Pediatrician)")
-        bot.send_text_message(sender_id,"Before we proceed onward, it's the ideal opportunity for a short break from my great companions, the lawyers.")
-        bot.send_text_message(sender_id,"Remember that I am just a robot, not a doctor.")
-        bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and I don't attempt to represent a real Pediatrician in any way.")
+        bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers:")
+        bot.send_text_message(sender_id,"Remember that DrPedia is just a robot, not a doctor.")
+        bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real Pediatrician in any way.")
         bot.send_quick_replies_message(sender_id, "By tapping 'Agree and proceed' you accept DrPedia's Terms of Use and Privacy Policy", quick_replies)
     #2.2.1
     if text =="yes_agree":
@@ -278,7 +278,8 @@ def choose_option_mental(sender_id,payload1,payload2,name):
                         "payload": payload2
                         }
                         ]
-    bot.send_text_message(sender_id,"With tapping 'How to handle?'\nYou already know that the patient had a {}".format(name))
+    bot.send_text_message(sender_id,"Got it!")
+    bot.send_text_message(sender_id,"With tapping 'How to handle?'\nThe patient is already diagnosed by a real Pediatrician and you already know that the patient had a {}".format(name))
     bot.send_text_message(sender_id,"To check if the patient may have  {}.\nTap 'Check'".format(name))
     bot.send_button_message(sender_id, "Choose:", confirm)
 #1   
