@@ -198,7 +198,6 @@ def received_postback(event):
                         ]
         bot.send_button_message(sender_id, "Remedies:", sendanother)    
     if payload=='send_remedies_adhd':   
-        bot.send_text_message(sender_id, get_remedies_adhd())
         sendanother = [
                         {
                         "type": "postback",
@@ -206,7 +205,7 @@ def received_postback(event):
                         "payload": "send_remedies_adhd"
                         }
                         ]
-        bot.send_button_message(sender_id, "Remedies:", sendanother)    
+        bot.send_button_message(sender_id, get_remedies_adhd(), sendanother)    
     if payload=='mental_symptom_checker':
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
     #2.2.2.1}
