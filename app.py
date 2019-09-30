@@ -72,7 +72,7 @@ def received_qr(event):
                             "title":"No",
                             "payload":"no_proceed_mental"
                           }
-        bot.send_text_message(sender_id,"By using this Drpedia, you must be aware that any suggestions and recommendations for medication and remedies is base from an expert's knowledge. (Pediatrician)")
+        bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any suggestions and recommendations for medication and remedies is base from an expert's knowledge. (Pediatrician)")
         bot.send_text_message(sender_id,"Disclaimer: DrPedia is a chatbot that uses expert system to cater pediatric concern.\nDrPedia do not attempt to represent a real Pediatrician in any way.")
         bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
     #2.2.1
@@ -256,7 +256,7 @@ def choose_option_mental(sender_id,payload1,payload2,name):
                         }
                         ]
     bot.send_text_message(sender_id,"With tapping 'How to handle?'\nYou already know that the patient had a {}".format(name))
-    bot.send_text_message(sender_id,"To check if the patient has {}.\nTap 'Check'".format(name))
+    bot.send_text_message(sender_id,"To check if the patient may have  {}.\nTap 'Check'".format(name))
     bot.send_button_message(sender_id, "Choose:", confirm)
 #1   
 def send_choose_concern(sender_id):
