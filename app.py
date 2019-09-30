@@ -123,18 +123,7 @@ def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
-    
-    
-    if text.lower() in (remedies_adhd):
-        sendanother = [
-                        {
-                        "type": "postback",
-                        "title": "send another",
-                        "payload": "send_remedies_adhd"
-                        }
-                        ]
-        bot.send_button_message(sender_id, "Remedies:", sendanother)
-        
+       
     #2.2.1.1..{
     if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
@@ -193,7 +182,7 @@ def received_postback(event):
         get at least 60 minutes of physical activity per day
         get plenty of sleep
         limit daily screen time from phones, computers, and TV'''
-        bot.send_text_message(sender_id, get_remedies_adhd())
+        bot.send_text_message(sender_id, get_remedies_adhd())          
         sendanother = [
                         {
                         "type": "postback",
@@ -204,7 +193,14 @@ def received_postback(event):
         bot.send_button_message(sender_id, "Remedies:", sendanother)    
     if payload=='send_remedies_adhd':   
         bot.send_text_message(sender_id, get_remedies_adhd())
-        
+        sendanother = [
+                        {
+                        "type": "postback",
+                        "title": "send another",
+                        "payload": "send_remedies_adhd"
+                        }
+                        ]
+        bot.send_button_message(sender_id, "Remedies:", sendanother)    
     if payload=='mental_symptom_checker':
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
     #2.2.2.1}
