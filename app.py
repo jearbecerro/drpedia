@@ -209,7 +209,8 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
-        bot.send_text_message(sender_id, "Hi I'm DrPedia.\nI'm here to cater your pediatric concern.")
+        bot.send_text_message(sender_id, "Hi I'm DrPedia.\nyour personal pediatric concern companion")
+        bot.send_text_message(sender_id, "My job is to help you to cater pediatric concern including physical and mental health concern")
         bot.send_text_message(sender_id, "For that you'll have to answer a few questions about your concern.")
         send_choose_concern(sender_id)
     #Persistent Menu Buttons        
