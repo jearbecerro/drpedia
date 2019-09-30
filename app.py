@@ -183,6 +183,7 @@ def received_postback(event):
     if payload=='send_tips_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
         choose_howto_mental(sender_id,'remedies_adhd','medication_adhd','coaching_adhd','ADHD')
+        
     if payload=='remedies_adhd':
         '''eat a healthy, balanced diet
         get at least 60 minutes of physical activity per day
@@ -191,6 +192,7 @@ def received_postback(event):
         bot.send_text_message(sender_id, remedies_adhd)
     if payload=='send_remedies_adhd':   
         bot.send_text_message(sender_id, remedies_adhd)
+        
     if payload=='mental_symptom_checker':
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
     #2.2.2.1}
