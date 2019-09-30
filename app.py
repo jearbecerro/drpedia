@@ -218,13 +218,11 @@ def received_postback(event):
         bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")    
         send_choose_concern(sender_id)
     #Persistent Menu Buttons        
-    if payload=='pm_get_pediatrician':
-        bot.send_text_message(sender_id,'Get a pediatrician Geo Mapping ToBeDevelop/not')
+    if payload=='start':
+        send_choose_concern(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
     if payload=='pm_about':
-        bot.send_text_message(sender_id,'About Under Construction')
-    if payload=='adhd':
         bot.send_text_message(sender_id,'About Under Construction')
     #}
 
@@ -322,8 +320,8 @@ def init_bot():
                         "call_to_actions": [
                             {
                                 "type": "postback",
-                                "title": "Get a Pediatrician",
-                                "payload": "pm_get_pediatrician"
+                                "title": "Start Over",
+                                "payload": "start_over"
                             },
                             {
                                 "type": "postback",
