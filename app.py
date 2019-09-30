@@ -180,9 +180,9 @@ def received_postback(event):
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
         bot.send_text_message(sender_id,'I will ask a few questions inorder to identify if the patient had adhd')
     if payload=='send_tips_adhd':
+        choose_howto_mental(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
+    if payload=='about_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
-        choose_howto_mental(sender_id,'remedies_adhd','medication_adhd','coaching_adhd','ADHD')
-        
     if payload=='remedies_adhd':
         '''eat a healthy, balanced diet
         get at least 60 minutes of physical activity per day
@@ -256,7 +256,7 @@ def choose_howto_mental(sender_id,payload1,payload2,payload3,name):
                         "payload": payload2
                         },{
                         "type": "postback",
-                        "title": "Coaching",
+                        "title": "About",
                         "payload": payload3
                         }
                         ]
