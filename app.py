@@ -120,9 +120,7 @@ def received_text(event):
     if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
-        if text.lower() in ("23"):#if user send text 'adhd'
-            bot.send_text_message(sender_id,'your age is 23')
-            
+
     elif text.lower() in ("oppositional defiant disorder", "odd"):
         choose_option_mental(sender_id,'send_tips_odd','check_odd','ODD')
         #proceed to payload button if payload=='send_tips_odd' or if payload=='check_odd'
