@@ -3,7 +3,6 @@ import random
 from flask import Flask, request
 from messnger_syntax.bot import Bot
 import os
-from emoji import emojize as emj
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
