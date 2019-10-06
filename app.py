@@ -116,15 +116,16 @@ def received_qr(event):
         #proceed to payload button if payload=='mental_symptom_checker'
    
     if text=='yes_proceed_mental':
-        bot.send_text_message(sender_id,"Just type the suspected mental health problems listed above to proceed.\nExample: 'adhd'")
+        bot.send_text_message(sender_id,"If you have suspected mental health problem listed above.\nSimply type it in\nExample: 'adhd'⌨️")
         yes_diagnosed_mental = [
                         {
                         "type": "postback",
-                        "title": "Symptom Checker",
+                        "title": "🔍Check Symptom",
                         "payload": "mental_symptom_checker"
                         }
                         ]
-        bot.send_button_message(sender_id, "If you don't have any idea. Just tap 'Symptom Checker'", yes_diagnosed_mental)
+        bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", yes_diagnosed_mental)
+        
     if text=='no_proceed_mental':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
@@ -306,11 +307,11 @@ def after_accept_terms(sender_id,concern,listofconcern,yes_PorM,no_PorM):
     bot.send_text_message(sender_id,'If your suspected {} is not in the list, Im sorry 🙁 I cannot cater your concern.'.format(concern))
     quick_replies = {
                             "content_type":"text",
-                            "title":"Yes",
+                            "title":"👌Yes",
                             "payload":yes_PorM
                           },{
                             "content_type":"text",
-                            "title":"No",
+                            "title":"👎No",
                             "payload":no_PorM
                           }
     bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)    
