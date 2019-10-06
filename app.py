@@ -13,7 +13,9 @@ bot = Bot (ACCESS_TOKEN)
 app = Flask(__name__)
 
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
-behavioral_age = 0;
+mental_age = 0
+physical_age = 0
+physical_weight = 0
 
 def get_remedies_adhd():
     #remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
