@@ -108,7 +108,7 @@ def received_qr(event):
         readytogo = [
                         {
                         "type": "postback",
-                        "title": "Agree and proceed",
+                        "title": "🤝Agree and proceed",
                         "payload": "ready_accept"
                         }
                         ]
