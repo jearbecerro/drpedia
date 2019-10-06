@@ -81,15 +81,16 @@ def received_qr(event):
         greet_disclaimer() 
     #2.1
     if text=='physical':
-       
+        listofconcern = 'To be written'
+        concern= 'physical health'
+        after_accept_terms(sender_id,concern,listofconcern,yes_proceed_physical,no_proceed_physical)
     #2.2    
     if text=='mental':
-        
-    #2.2.1
-    if text =="yes_agree":
         listofconcern = 'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders'
         concern= 'mental health'
-        after_accept_terms(sender_id,concern,listofconcern)
+        after_accept_terms(sender_id,concern,listofconcern,yes_proceed_mental,no_proceed_mental)
+    #2.2.1
+    if text =="yes_agree":
         bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff") 
         send_choose_concern(sender_id)
     #2.2.2    
@@ -106,7 +107,7 @@ def received_qr(event):
         bot.send_button_message(sender_id, 'Ready to go?', readytogo)
         #proceed to payload button if payload=='mental_symptom_checker'
    
-    if text=='yes_proceed':
+    if text=='yes_proceed_mental':
         bot.send_text_message(sender_id,"Just type the suspected mental health problems listed above to proceed.\nExample: 'adhd'")
         yes_diagnosed_mental = [
                         {
@@ -116,7 +117,7 @@ def received_qr(event):
                         }
                         ]
         bot.send_button_message(sender_id, "If you don't have any idea. Just tap 'Symptom Checker'", yes_diagnosed_mental)
-    if text=='no_proceed':     
+    if text=='no_proceed_mental':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
         
@@ -175,20 +176,9 @@ def received_postback(event):
     #2.2.1.1{
     
     if payload=='ready_accept':
-        bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff")  
-        bot.send_text_message(sender_id,'To give you the most precise guidance, these are the following mental health concerns I can provide:')
-        bot.send_text_message(sender_id,'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders')
-        bot.send_text_message(sender_id,'If your suspected mental concern is not in the list, Im sorry I cannot cater your concern.')
-        quick_replies = {
-                            "content_type":"text",
-                            "title":"Yes",
-                            "payload":"yes_proceed"
-                          },{
-                            "content_type":"text",
-                            "title":"No",
-                            "payload":"no_proceed"
-                          }
-        bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)
+        bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff") 
+        send_choose_concern(sender_id)
+        
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
         bot.send_text_message(sender_id,'I will ask a few questions inorder to identify if the patient had adhd')
@@ -286,7 +276,7 @@ def received_postback(event):
         bot.send_text_message(sender_id,'About Under Construction')
     #}
 
-def after_accept_terms(sender_id,concern,listofconcern):
+def after_accept_terms(sender_id,concern,listofconcern,yes_PorM,no_PorM):
     
     bot.send_text_message(sender_id,'To give you the most precise guidance, these are the following {} concerns I can provide:'.format(concern))
     bot.send_text_message(sender_id,listofconcern)
@@ -294,11 +284,11 @@ def after_accept_terms(sender_id,concern,listofconcern):
     quick_replies = {
                             "content_type":"text",
                             "title":"Yes",
-                            "payload":"yes_proceed"
+                            "payload":yes_PorM
                           },{
                             "content_type":"text",
                             "title":"No",
-                            "payload":"no_proceed"
+                            "payload":no_PorM
                           }
     bot.send_quick_replies_message(sender_id, 'Do you want to proceed?', quick_replies)    
     
