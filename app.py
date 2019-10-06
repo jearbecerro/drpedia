@@ -57,14 +57,14 @@ def receive_message():
 def greet_disclaimer(sender_id):
     quick_replies = {
                             "content_type":"text",
-                            "title":"Agree and proceed",
+                            "title":"🤝Agree and proceed",
                             "payload":"yes_agree"
                           },{
                             "content_type":"text",
-                            "title":"See details",
+                            "title":"📇See details",
                             "payload":"see_details"
                           }
-    bot.send_text_message(sender_id,"I'm glad to meet you too. :)")  
+    bot.send_text_message(sender_id,"I'm glad to meet you too. 😉")  
     #bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any information and suggestions for medication and remedies is base from an expert's knowledge. (Pediatrician)")
     bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers. ⚖️")
     bot.send_text_message(sender_id,"Remember that DrPedia is just a robot 🤖, not a doctor 👨‍⚕️.")
