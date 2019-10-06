@@ -116,7 +116,7 @@ def received_qr(event):
         #proceed to payload button if payload=='mental_symptom_checker'
    
     if text=='yes_proceed_mental':
-        bot.send_text_message(sender_id,"If you have suspected mental health problem listed above.\nSimply type it in\nExample: 'adhd'⌨️")
+        bot.send_text_message(sender_id,"If you have suspected mental health problem listed above.\nSimply type it in⌨️\nExample: 'adhd'")
         yes_diagnosed_mental = [
                         {
                         "type": "postback",
@@ -204,14 +204,14 @@ def received_postback(event):
         
     if payload=='about_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
-        sendanother = [
+        buttons = [
                         {
                         "type": "postback",
                         "title": "ADHD Symptoms",
                         "payload": "send_symptoms_adhd"
                         }
                         ]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ADHD?", sendanother)
+        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ADHD?", buttons)
         
     if payload=='send_symptoms_adhd':  
         '''having trouble focusing or concentrating on tasks
@@ -220,27 +220,27 @@ def received_postback(event):
         having difficulty sitting still
         interrupting people while they’re talking'''                                                                                                                                                                                                                                    
         bot.send_text_message(sender_id,"A wide range of behaviors are associated with ADHD. Some of the more common ones include:\nhaving trouble focusing or concentrating on tasks\nbeing forgetful about completing tasks\nbeing easily distracted\nhaving difficulty sitting still\ninterrupting people while they’re talking")
-        sendanother = [
+        buttons = [
                         {
                         "type": "postback",
                         "title": "Types of ADHD",
                         "payload": "send_types_adhd"
                         }
                         ]
-        bot.send_button_message(sender_id, "Want to know the types of ADHD?", sendanother)
+        bot.send_button_message(sender_id, "Want to know the types of ADHD?", buttons)
     if payload=='send_types_adhd':
         bot.send_text_message(sender_id,"To make ADHD diagnoses more consistent, the APA(American Psychological Association) has grouped the condition into three categories, or types. These types are predominantly inattentive, predominantly hyperactivity-impulsive, and a combination of both.")
         bot.send_text_message(sender_id,"Predominantly inattentive\n\nAs the name suggests, people with this type of ADHD have extreme difficulty focusing, finishing tasks, and following instructions.\n\nExperts also think that many children with the inattentive type of ADHD may not receive a proper diagnosis because they don’t tend to disrupt the classroom. This type is most common among girls with ADHD.")
         bot.send_text_message(sender_id,"Predominantly hyperactive-impulsive type.\n\nPeople with this type of ADHD show primarily hyperactive and impulsive behavior. This can include fidgeting, interrupting people while they’re talking, and not being able to wait their turn.\n\nAlthough inattention is less of a concern with this type of ADHD, people with predominantly hyperactive-impulsive ADHD may still find it difficult to focus on tasks")
         bot.send_text_message(sender_id,"Combined hyperactive-impulsive and inattentive type\n\nThis is the most common type of ADHD. People with this combined type of ADHD display both inattentive and hyperactive symptoms. These include an inability to pay attention, a tendency toward impulsiveness, and above-normal levels of activity and energy.")
-        sendanother = [
+        buttons = [
                         {
                         "type": "postback",
                         "title": "Cause of ADHD",
                         "payload": "send_cause_adhd"
                         }
                         ]
-        bot.send_button_message(sender_id, "What causes ADHD?", sendanother)
+        bot.send_button_message(sender_id, "What causes ADHD?", buttons)
     if payload=='send_cause_adhd':   
         bot.send_text_message(sender_id,"Despite how common ADHD is, doctors and researchers still aren’t sure what causes the condition. It’s believed to have neurological origins. Genetics may also play a role.")
     
@@ -249,24 +249,25 @@ def received_postback(event):
         get at least 60 minutes of physical activity per day
         get plenty of sleep
         limit daily screen time from phones, computers, and TV'''    
-        sendanother = [
+        buttons = [
                         {
                         "type": "postback",
-                        "title": "send another",
+                        "title": "📩Send Another",
                         "payload": "send_remedies_adhd"
                         }
                         ]
-        bot.send_button_message(sender_id, get_remedies_adhd(), sendanother)    
+        bot.send_button_message(sender_id, get_remedies_adhd(), buttons)    
         
     if payload=='send_remedies_adhd':   
-        sendanother = [
+        buttons = [
                         {
                         "type": "postback",
-                        "title": "send another",
+                        "title": "📩Send Another",
                         "payload": "send_remedies_adhd"
                         }
                         ]
-        bot.send_button_message(sender_id, get_remedies_adhd(), sendanother)    
+        bot.send_button_message(sender_id, get_remedies_adhd(), buttons)  
+        
     if payload=='mental_symptom_checker':
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
     #2.2.2.1}
@@ -320,15 +321,15 @@ def choose_howto_mental(sender_id,payload1,payload2,payload3,name):
     choices = [
                         {
                         "type": "postback",
-                        "title": "Remedies",
+                        "title": "💁‍♂️Natural Remedies",
                         "payload": payload1
                         },{
                         "type": "postback",
-                        "title": "Medication",
+                        "title": "💊Medication",
                         "payload": payload2
                         },{
                         "type": "postback",
-                        "title": "About",
+                        "title": "📃About",
                         "payload": payload3
                         }
                         ]
@@ -340,17 +341,17 @@ def choose_option_mental(sender_id,payload1,payload2,name):
     confirm = [
                         {
                         "type": "postback",
-                        "title": "How to handle?",
+                        "title": "💡How to handle?",
                         "payload": payload1
                         },{
                         "type": "postback",
-                        "title": "Check",
+                        "title": "🔎Check Symptom",
                         "payload": payload2
                         }
                         ]
     bot.send_text_message(sender_id,"Got it!")
-    bot.send_text_message(sender_id,"With tapping 'How to handle?'\nThe patient is already diagnosed by a real Pediatrician and you already know that the patient had a {}".format(name))
-    bot.send_text_message(sender_id,"To check if the patient may have  {}.\nTap 'Check'".format(name))
+    bot.send_text_message(sender_id,"If you already know that the patient had {} and you simply need to realize how to deal with it.\nJust tap 'How to handle?' ".format(name))
+    bot.send_text_message(sender_id,"To check if the patient may have  {}.\nTap 'Check Symptom'".format(name))
     bot.send_button_message(sender_id, "Choose:", confirm)
 #1   
 def send_choose_concern(sender_id):
