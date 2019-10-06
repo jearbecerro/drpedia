@@ -138,7 +138,7 @@ def received_text(event):
     if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
         GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there", "I am glad! You are talking to me", "What's up"]
         greet = random.choice(GREETING_RESPONSES)
-        bot.send_text_message(sender_id, greet+", I'm DrPedia, your own pediatric concern companion.")
+        bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         send_choose_concern(sender_id)
     
     #2.2.1.1..{
@@ -273,7 +273,7 @@ def received_postback(event):
     if payload=='start':
         GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there", "I am glad! You are talking to me"]
         greet = random.choice(GREETING_RESPONSES)
-        bot.send_text_message(sender_id, greet+ first_name(sender_id)", I'm DrPedia, your own pediatric concern companion.")
+        bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
         #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
         #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
