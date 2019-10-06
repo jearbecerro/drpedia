@@ -142,7 +142,7 @@ def received_text(event):
         send_choose_concern(sender_id)
     
     #2.2.1.1..{
-    if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
+    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
 
@@ -280,7 +280,7 @@ def received_postback(event):
         button = [
                         {
                         "type": "postback",
-                        "title": "Please to meet you!",
+                        "title": "Pleased to meet you!",
                         "payload": "pmyou"
                         }
                         ]
