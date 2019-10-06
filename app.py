@@ -64,7 +64,7 @@ def greet_disclaimer(sender_id):
                             "title":"See details",
                             "payload":"see_details"
                           }
-    bot.send_text_message(sender_id,"I'm glad to meet you too.")  
+    bot.send_text_message(sender_id,"I'm glad to meet you too. :)")  
     #bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any information and suggestions for medication and remedies is base from an expert's knowledge. (Pediatrician)")
     bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers.")
     bot.send_text_message(sender_id,"Remember that DrPedia is just a robot, not a doctor.")
@@ -79,6 +79,16 @@ def received_qr(event):
 
     #2.1
     if text=='physical':
+        quick_replies = {
+                            "content_type":"text",
+                            "title":"Yes",
+                            "payload":yes_PorM
+                          },{
+                            "content_type":"text",
+                            "title":"No",
+                            "payload":no_PorM
+                          }
+        bot.send_quick_replies_message(sender_id, 'It is useful to know, based on your symptoms, what do you think you should do?', quick_replies)
         listofconcern = 'To be written'
         concern= 'physical health'
         after_accept_terms(sender_id,concern,listofconcern,yes_proceed_physical,no_proceed_physical)
@@ -124,7 +134,13 @@ def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
-       
+    
+    if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
+        GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there", "I am glad! You are talking to me", "What's up"]
+        greet = random.choice(GREETING_RESPONSES)
+        bot.send_text_message(sender_id, greet+", I'm DrPedia, your own pediatric concern companion.")
+        send_choose_concern(sender_id)
+    
     #2.2.1.1..{
     if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
@@ -255,8 +271,10 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
-        bot.send_text_message(sender_id, "Hi, I'm DrPedia, your own pediatric concern companion.")
-        bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health concern")
+        GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there", "I am glad! You are talking to me"]
+        greet = random.choice(GREETING_RESPONSES)
+        bot.send_text_message(sender_id, greet+", I'm DrPedia, your own pediatric concern companion.")
+        bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
         #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
         bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
         button = [
