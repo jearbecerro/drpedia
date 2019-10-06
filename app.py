@@ -262,11 +262,11 @@ def received_postback(event):
         button = [
                         {
                         "type": "postback",
-                        "title": "Please to meet you!:)",
+                        "title": "Please to meet you!",
                         "payload": "pmyou"
                         }
                         ]
-        bot.send_button_message(sender_id, 'Thanks for using DrPedia.', button)    
+        bot.send_button_message(sender_id, 'Thanks for using DrPedia :)', button)    
         #send_choose_concern(sender_id)
     if payload=='pmyou':
         greet_disclaimer(sender_id)
