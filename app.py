@@ -13,11 +13,13 @@ bot = Bot (ACCESS_TOKEN)
 app = Flask(__name__)
 
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
-behavioral_age = 0;      
+behavioral_age = 0;
+
 def get_remedies_adhd():
-    remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
+    #remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
     # return selected item to the user
     return random.choice(remedies_adhd)
+
 
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
@@ -52,18 +54,8 @@ def receive_message():
                     
     return "Message Processed"
 
-#if user tap a button from a quick reply
-def received_qr(event):
-    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
-    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-    text = event["message"]["quick_reply"]["payload"]
-    #2.1
-    if text=='physical':
-        bot.send_text_message(sender_id,'Physical Infection Quick reply tapped.')
-    
-    #2.2    
-    if text=='mental':
-        quick_replies = {
+def greet_disclaimer():
+    quick_replies = {
                             "content_type":"text",
                             "title":"Agree and proceed",
                             "payload":"yes_agree"
@@ -72,16 +64,34 @@ def received_qr(event):
                             "title":"See details",
                             "payload":"see_details"
                           }
-        bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any information and suggestions for medication and remedies is base from an expert's knowledge. (Pediatrician)")
-        bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers:")
-        bot.send_text_message(sender_id,"Remember that DrPedia is just a robot, not a doctor.")
-        bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real Pediatrician in any way.")
-        bot.send_quick_replies_message(sender_id, "By tapping 'Agree and proceed' you accept DrPedia's Terms of Use and Privacy Policy", quick_replies)
+    bot.send_text_message(sender_id,"I'm glad to meet you too.")  
+    #bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any information and suggestions for medication and remedies is base from an expert's knowledge. (Pediatrician)")
+    bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers.")
+    bot.send_text_message(sender_id,"Remember that DrPedia is just a robot, not a doctor.")
+    bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real Pediatrician in any way.")
+    bot.send_quick_replies_message(sender_id, "By tapping 'Agree and proceed' you accept DrPedia's Terms of Use and Privacy Policy", quick_replies)
+        
+#if user tap a button from a quick reply
+def received_qr(event):
+    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
+    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+    text = event["message"]["quick_reply"]["payload"]
+    
+    if text=='pmyou':
+        greet_disclaimer() 
+    #2.1
+    if text=='physical':
+       
+    #2.2    
+    if text=='mental':
+        
     #2.2.1
     if text =="yes_agree":
         listofconcern = 'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders'
         concern= 'mental health'
         after_accept_terms(sender_id,concern,listofconcern)
+        bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff") 
+        send_choose_concern(sender_id)
     #2.2.2    
     if text=='see_details':
         bot.send_text_message(sender_id,"Sure here it is..")
@@ -256,11 +266,17 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
-        bot.send_text_message(sender_id, "Hey I'm DrPedia, your own pediatric concern companion.")
+        bot.send_text_message(sender_id, "Hi, I'm DrPedia, your own pediatric concern companion.")
         bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and psychological well-being concern")
         bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
-        bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")    
-        send_choose_concern(sender_id)
+        #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
+        quick_replies = {
+                            "content_type":"text",
+                            "title":"Please to meet you!",
+                            "payload":"pmyou"
+                          }
+        bot.send_quick_replies_message(sender_id, 'Of course, what ever you tell me will remain carefully between us!.', quick_replies)
+        #send_choose_concern(sender_id)
     #Persistent Menu Buttons        
     if payload=='start_over':
         send_choose_concern(sender_id)
@@ -271,7 +287,7 @@ def received_postback(event):
     #}
 
 def after_accept_terms(sender_id,concern,listofconcern):
-    bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff")  
+    
     bot.send_text_message(sender_id,'To give you the most precise guidance, these are the following {} concerns I can provide:'.format(concern))
     bot.send_text_message(sender_id,listofconcern)
     bot.send_text_message(sender_id,'If your suspected {} is not in the list, Im sorry I cannot cater your concern.'.format(concern))
