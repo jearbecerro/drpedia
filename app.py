@@ -54,7 +54,7 @@ def receive_message():
                     
     return "Message Processed"
 
-def greet_disclaimer():
+def greet_disclaimer(sender_id):
     quick_replies = {
                             "content_type":"text",
                             "title":"Agree and proceed",
@@ -269,7 +269,7 @@ def received_postback(event):
         bot.send_button_message(sender_id, 'Thanks for using DrPedia :)', button)    
         #send_choose_concern(sender_id)
     if payload=='pmyou':
-        greet_disclaimer()
+        greet_disclaimer(sender_id)
     #Persistent Menu Buttons        
     if payload=='start_over':
         send_choose_concern(sender_id)
