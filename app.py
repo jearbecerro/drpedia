@@ -259,13 +259,13 @@ def received_postback(event):
         bot.send_text_message(sender_id, "Hi, I'm DrPedia, your own pediatric concern companion.")
         bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and psychological well-being concern")
         bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
-        #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
+        bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
         quick_replies = {
                             "content_type":"text",
                             "title":"Please to meet you!",
                             "payload":"pmyou"
                           }
-        bot.send_quick_replies_message(sender_id, 'Of course, what ever you tell me will remain carefully between us!.', quick_replies)
+        bot.send_quick_replies_message(sender_id, 'Thanks for using DrPedia :)', quick_replies)
         #send_choose_concern(sender_id)
     #Persistent Menu Buttons        
     if payload=='start_over':
