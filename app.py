@@ -76,9 +76,7 @@ def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
-    
-    if text=='pmyou':
-        greet_disclaimer() 
+
     #2.1
     if text=='physical':
         listofconcern = 'To be written'
@@ -240,6 +238,7 @@ def received_postback(event):
                         }
                         ]
         bot.send_button_message(sender_id, get_remedies_adhd(), sendanother)    
+        
     if payload=='send_remedies_adhd':   
         sendanother = [
                         {
@@ -260,13 +259,17 @@ def received_postback(event):
         bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and psychological well-being concern")
         bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
         bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
-        quick_replies = {
-                            "content_type":"text",
-                            "title":"Please to meet you!",
-                            "payload":"pmyou"
-                          }
-        bot.send_quick_replies_message(sender_id, 'Thanks for using DrPedia :)', quick_replies)
+        button = [
+                        {
+                        "type": "postback",
+                        "title": "Please to meet you!",
+                        "payload": "pmyou"
+                        }
+                        ]
+        bot.send_button_message(sender_id, 'Thanks for using DrPedia :)', button)    
         #send_choose_concern(sender_id)
+    if payload=='pmyou':
+        greet_disclaimer()
     #Persistent Menu Buttons        
     if payload=='start_over':
         send_choose_concern(sender_id)
