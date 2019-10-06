@@ -181,7 +181,7 @@ def received_text(event):
    
     else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not train to understain stupid things')
-        bot.send_text_message(sender_id, emj(thumbs_up))
+        bot.send_text_message(sender_id, '👍')
 
 #if user tap a button from a regular button
 def received_postback(event):
