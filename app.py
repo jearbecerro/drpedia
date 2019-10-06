@@ -94,7 +94,7 @@ def received_qr(event):
         after_accept_terms(sender_id,concern,listofconcern,yes_proceed_physical,no_proceed_physical)
     #2.2    
     if text=='mental':
-        listofconcern = 'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders'
+        listofconcern = 'Attention Deficit Hyperactivity Disorder (ADHD)🤪,\nOppositional Defiant Disorder (ODD)😕,\nAutism Spectrum Disorder (ASD)😔,\nAnxiety Disorder😰,\nDepression😞,\nBipolar Disorder🤗😠,\nLearning Disorders🤔,\nConduct Disorders🤬'
         concern= 'mental health'
         after_accept_terms(sender_id,concern,listofconcern,"yes_proceed_mental","no_proceed_mental")
     #2.2.1
@@ -303,7 +303,7 @@ def after_accept_terms(sender_id,concern,listofconcern,yes_PorM,no_PorM):
     
     bot.send_text_message(sender_id,'To give you the most precise guidance, these are the following {} concerns I can provide:'.format(concern))
     bot.send_text_message(sender_id,listofconcern)
-    bot.send_text_message(sender_id,'If your suspected {} is not in the list, Im sorry I cannot cater your concern.'.format(concern))
+    bot.send_text_message(sender_id,'If your suspected {} is not in the list, Im sorry 🙁 I cannot cater your concern.'.format(concern))
     quick_replies = {
                             "content_type":"text",
                             "title":"Yes",
