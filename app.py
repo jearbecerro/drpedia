@@ -79,19 +79,9 @@ def received_qr(event):
 
     #2.1
     if text=='physical':
-        quick_replies = {
-                            "content_type":"text",
-                            "title":"Yes",
-                            "payload":yes_PorM
-                          },{
-                            "content_type":"text",
-                            "title":"No",
-                            "payload":no_PorM
-                          }
-        bot.send_quick_replies_message(sender_id, 'It is useful to know, based on your symptoms, what do you think you should do?', quick_replies)
-        listofconcern = 'To be written'
+        listofconcern = 'Dengue\nAcute Gastroenteritis\nUrinary Tract Infection\nAcute Tonsilitis\nFLU'
         concern= 'physical health'
-        after_accept_terms(sender_id,concern,listofconcern,yes_proceed_physical,no_proceed_physical)
+        after_accept_terms(sender_id,concern,listofconcern,'yes_proceed_physical','no_proceed_physical')
     #2.2    
     if text=='mental':
         listofconcern = 'Attention Deficit Hyperactivity Disorder (ADHD)🤪,\nOppositional Defiant Disorder (ODD)😕,\nAutism Spectrum Disorder (ASD)😔,\nAnxiety Disorder😰,\nDepression😞,\nBipolar Disorder🤗😠,\nLearning Disorders🤔,\nConduct Disorders🤬'
@@ -117,16 +107,31 @@ def received_qr(event):
    
     if text=='yes_proceed_mental':
         bot.send_text_message(sender_id,"If you have suspected mental health problem listed above.\nSimply type it in⌨️\nExample: 'adhd'")
-        yes_diagnosed_mental = [
+        button = [
                         {
                         "type": "postback",
                         "title": "🔍Check Symptom",
                         "payload": "mental_symptom_checker"
                         }
                         ]
-        bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", yes_diagnosed_mental)
+        bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", button)
         
     if text=='no_proceed_mental':     
+        bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
+        send_choose_concern(sender_id)
+        
+    if text=='yes_proceed_physical':
+        bot.send_text_message(sender_id,"If you have suspected physical health problem listed above.\nSimply type it in⌨️\nExample: 'dengue'")
+        button = [
+                        {
+                        "type": "postback",
+                        "title": "🔍Check Symptom",
+                        "payload": "physical_symptom_checker"
+                        }
+                        ]
+        bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", button)
+        
+    if text=='no_proceed_physical':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
         
@@ -270,6 +275,9 @@ def received_postback(event):
         
     if payload=='mental_symptom_checker':
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
+        
+    if payload=='physical_symptom_checker':
+        bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")        
     #2.2.2.1}
     
         
@@ -305,7 +313,7 @@ def after_accept_terms(sender_id,concern,listofconcern,yes_PorM,no_PorM):
     
     bot.send_text_message(sender_id,'To give you the most precise guidance, these are the following {} concerns I can provide:'.format(concern))
     bot.send_text_message(sender_id,listofconcern)
-    bot.send_text_message(sender_id,'If your suspected {} is not in the list, Im sorry 🙁 I cannot cater your concern.'.format(concern))
+    bot.send_text_message(sender_id,"If your suspected {} is not in the list, Im sorry 🙁 I'm not trained to cater other {} concerns.".format(concern,concern))
     quick_replies = {
                             "content_type":"text",
                             "title":"👌Yes",
