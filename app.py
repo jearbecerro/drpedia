@@ -68,7 +68,7 @@ def greet_disclaimer(sender_id):
     #bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any information and suggestions for medication and remedies is base from an expert's knowledge. (Pediatrician)")
     bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers.")
     bot.send_text_message(sender_id,"Remember that DrPedia is just a robot, not a doctor.")
-    bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real Pediatrician in any way.")
+    bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real pediatrician or a doctor in any way.")
     bot.send_quick_replies_message(sender_id, "By tapping 'Agree and proceed' you accept DrPedia's Terms of Use and Privacy Policy", quick_replies)
         
 #if user tap a button from a quick reply
@@ -210,6 +210,7 @@ def received_postback(event):
                         }
                         ]
         bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ADHD?", sendanother)
+        
     if payload=='send_symptoms_adhd':  
         '''having trouble focusing or concentrating on tasks
         being forgetful about completing tasks
