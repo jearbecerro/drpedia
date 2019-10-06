@@ -86,7 +86,7 @@ def received_qr(event):
     if text=='mental':
         listofconcern = 'Attention Deficit Hyperactivity Disorder (ADHD),\nOppositional Defiant Disorder (ODD),\nAutism Spectrum Disorder (ASD),\nAnxiety Disorder,\nDepression,\nBipolar Disorder,\nLearning Disorders,\nConduct Disorders'
         concern= 'mental health'
-        after_accept_terms(sender_id,concern,listofconcern,yes_proceed_mental,no_proceed_mental)
+        after_accept_terms(sender_id,concern,listofconcern,"yes_proceed_mental","no_proceed_mental")
     #2.2.1
     if text =="yes_agree":
         bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff") 
