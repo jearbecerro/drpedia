@@ -3,6 +3,7 @@ import random
 from flask import Flask, request
 from messnger_syntax.bot import Bot
 import os
+from emoji import emojize as emj
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
@@ -180,6 +181,7 @@ def received_text(event):
    
     else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not train to understain stupid things')
+        bot.send_text_message(sender_id, emj(:thumbs_up:))
 
 #if user tap a button from a regular button
 def received_postback(event):
