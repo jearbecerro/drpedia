@@ -1,16 +1,15 @@
-#Python libraries that we need to import for our bot
+#Libraries to be import START
 import random
 from flask import Flask, request
 from messnger_syntax.bot import Bot
 import os
+#Libraries to be import END
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 bot = Bot (ACCESS_TOKEN)
-#client = Messager(ACCESS_TOKEN)
-app = Flask(__name__)
 
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
 mental_age = 0
@@ -108,7 +107,7 @@ def received_qr(event):
         #proceed to payload button if payload=='mental_symptom_checker'
    
     if text=='yes_proceed_mental':
-        bot.send_text_message(sender_id,"If you have suspected mental health problem listed above.\nSimply type it in⌨️\nExample: 'adhd'")
+        bot.send_text_message(sender_id,"If you have suspected mental health problem listed above.\nSimply type it in⌨️\nFor example: 'adhd'")
         button = [
                         {
                         "type": "postback",
