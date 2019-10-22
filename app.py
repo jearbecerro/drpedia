@@ -12,8 +12,7 @@ image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 bot = Bot (ACCESS_TOKEN)
 
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
-mental_age = 0
-physical_age = 0
+age = 0
 physical_weight = 0
 
 def get_remedies_adhd():
@@ -55,6 +54,66 @@ def receive_message():
                     
     return "Message Processed"
 
+#if user send a message in text
+def received_text(event):
+    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
+    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+    text = event["message"]["text"]
+    
+    if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
+        GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there", "I am glad! You are talking to me", "What's up"]
+        greet = random.choice(GREETING_RESPONSES)
+        bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
+        send_choose_concern(sender_id)
+    
+    #Mental Health{
+    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
+        choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
+        #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
+
+    elif text.lower() in ("oppositional defiant disorder", "odd"):
+        choose_option_mental(sender_id,'send_tips_odd','check_odd','ODD')
+        #proceed to payload button if payload=='send_tips_odd' or if payload=='check_odd'
+        
+    elif text.lower() in ("autism spectrum disorder", "asd", "autism"):
+        choose_option_mental(sender_id,'send_tips_asd','check_asd','Autism Spectrum Disorder')
+        #proceed to payload button if payload=='send_tips_asd' or if payload=='check_asd'
+        
+    elif text.lower() in ("anxiety disorder", "anxiety","ad"):
+        choose_option_mental(sender_id,'send_tips_ad','check_ad','Anxiety Disorder')
+        #proceed to payload button if payload=='send_tips_ad' or if payload=='check_ad'
+        
+    elif text.lower() in ("depression", "depression disorder","depress"):
+        choose_option_mental(sender_id,'send_tips_d','check_d','Depression')
+        #proceed to payload button if payload=='send_tips_d' or if payload=='check_d'
+        
+    elif text.lower() in ("bipolar disorder", "bipolar","bd"):
+        choose_option_mental(sender_id,'send_tips_bd','check_bd','Bipolar Disorder')
+        #proceed to payload button if payload=='send_tips_bd' or if payload=='check_bd' 
+        
+    elif text.lower() in ("learning disorders", "learning","ld"):
+        choose_option_mental(sender_id,'send_tips_ld','check_ld','Learning Disorder')
+        #proceed to payload button if payload=='send_tips_ld' or if payload=='check_ld' 
+        
+    elif text.lower() in ("conduct disorders", "conduct","cd"):
+        choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
+        #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
+    #end Mental Health}   
+        
+    elif text.lower()=='about':
+        bot.send_text_message(sender_id,'Intruction on how to user this chatbot under development')
+    
+    #to get the age
+    elif text.isdigit() and text.isdigit() in range(0,18):
+        global age = text
+        
+    elif text.isdigit() > 18:
+        bot.send_text_message(sender_id,'Sorry buddy we can only cater children from 0 to 18 years old.')
+            
+    else:
+        bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
+        bot.send_text_message(sender_id, '👍')
+
 def greet_disclaimer(sender_id):
     quick_replies = {
                             "content_type":"text",
@@ -80,7 +139,7 @@ def received_qr(event):
 
     #2.1
     if text=='physical':
-        listofconcern = 'Dengue\nAcute Gastroenteritis\nUrinary Tract Infection\nAcute Tonsilitis\nFLU'
+        listofconcern = 'Dengue,\nAcute Gastroenteritis,\nUrinary Tract Infection,\nAcute Tonsilitis,\nFLU\nand minor symptoms simply like soar throat, back pain, cold and so on.'
         concern= 'physical health'
         after_accept_terms(sender_id,concern,listofconcern,'yes_proceed_physical','no_proceed_physical')
     #2.2    
@@ -135,60 +194,7 @@ def received_qr(event):
     if text=='no_proceed_physical':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
-        
-#if user send a message in text
-def received_text(event):
-    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
-    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-    text = event["message"]["text"]
-    
-    if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
-        GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there", "I am glad! You are talking to me", "What's up"]
-        greet = random.choice(GREETING_RESPONSES)
-        bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
-        send_choose_concern(sender_id)
-    
-    #2.2.1.1..{
-    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
-        choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
-        #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
-
-    elif text.lower() in ("oppositional defiant disorder", "odd"):
-        choose_option_mental(sender_id,'send_tips_odd','check_odd','ODD')
-        #proceed to payload button if payload=='send_tips_odd' or if payload=='check_odd'
-        
-    elif text.lower() in ("autism spectrum disorder", "asd", "autism"):
-        choose_option_mental(sender_id,'send_tips_asd','check_asd','Autism Spectrum Disorder')
-        #proceed to payload button if payload=='send_tips_asd' or if payload=='check_asd'
-        
-    elif text.lower() in ("anxiety disorder", "anxiety","ad"):
-        choose_option_mental(sender_id,'send_tips_ad','check_ad','Anxiety Disorder')
-        #proceed to payload button if payload=='send_tips_ad' or if payload=='check_ad'
-        
-    elif text.lower() in ("depression", "depression disorder","depress"):
-        choose_option_mental(sender_id,'send_tips_d','check_d','Depression')
-        #proceed to payload button if payload=='send_tips_d' or if payload=='check_d'
-        
-    elif text.lower() in ("bipolar disorder", "bipolar","bd"):
-        choose_option_mental(sender_id,'send_tips_bd','check_bd','Bipolar Disorder')
-        #proceed to payload button if payload=='send_tips_bd' or if payload=='check_bd' 
-        
-    elif text.lower() in ("learning disorders", "learning","ld"):
-        choose_option_mental(sender_id,'send_tips_ld','check_ld','Learning Disorder')
-        #proceed to payload button if payload=='send_tips_ld' or if payload=='check_ld' 
-        
-    elif text.lower() in ("conduct disorders", "conduct","cd"):
-        choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
-        #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
-    #2.2.1.1..}   
-        
-    elif text.lower()=='about':
-        bot.send_text_message(sender_id,'Intruction on how to user this chatbot under development')
-   
-    else:
-        bot.send_text_message(sender_id,'Humans are so complicated Im not train to understain stupid things')
-        bot.send_text_message(sender_id, '👍')
-
+  
 #if user tap a button from a regular button
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -278,7 +284,20 @@ def received_postback(event):
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
         
     if payload=='physical_symptom_checker':
-        bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")        
+        quick_replies = {
+                            "content_type":"text",
+                            "title":"Myself",
+                            "payload":"myself"
+                          },{
+                            "content_type":"text",
+                            "title":"My Child",
+                            "payload":"mychild"
+                          },{
+                            "content_type":"text",
+                            "title":"Someone else",
+                            "payload":"someone"
+                          }
+        bot.send_quick_replies_message(sender_id, 'Who do you want to check symptoms, {}?'.format(first_name(sender_id)), quick_replies)      
     #2.2.2.1}
     
         
@@ -286,7 +305,7 @@ def received_postback(event):
     if payload=='start':
         GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there", "I am glad! You are talking to me"]
         greet = random.choice(GREETING_RESPONSES)
-        bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
+        bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
         bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
         #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
         #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
