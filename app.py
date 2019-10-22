@@ -101,7 +101,7 @@ def received_text(event):
     #end Mental Health}   
         
     elif text.lower()=='about':
-        bot.send_text_message(sender_id,'Intruction on how to user this chatbot under development')
+        bot.send_text_message(sender_id,age)
     
     #to get the age
     elif text.isdigit() and text.isdigit() in range(0,18):
