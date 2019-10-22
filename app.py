@@ -105,7 +105,7 @@ def received_text(event):
     
     #to get the age
     elif text.isdigit() and text.isdigit() in range(0,18):
-        global age
+        #global age
         age = text
         
     elif text.isdigit() > 18:
