@@ -12,7 +12,7 @@ image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 bot = Bot (ACCESS_TOKEN)
 
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
-age = 0
+age = ''
 physical_weight = 0
 
 def get_remedies_adhd():
@@ -100,14 +100,13 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}   
         
-    elif text.lower()=='about':
-        bot.send_text_message(sender_id,age)
-    
     #to get the age
-    elif text.isdigit() and text.isdigit() in range(0,18):
-        #global age
+    elif text.isdigit() in range(0,18):
+        global age
         age = text
-        
+        bot.send_text_message(sender_id,age) 
+    elif text.lower()=='about':
+        bot.send_text_message(sender_id,age)     
     elif text.isdigit() > 18:
         bot.send_text_message(sender_id,'Sorry buddy we can only cater children from 0 to 18 years old.')
             
