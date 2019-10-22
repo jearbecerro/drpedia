@@ -105,7 +105,8 @@ def received_text(event):
     
     #to get the age
     elif text.isdigit() and text.isdigit() in range(0,18):
-        global age = text
+        global age
+        age = text
         
     elif text.isdigit() > 18:
         bot.send_text_message(sender_id,'Sorry buddy we can only cater children from 0 to 18 years old.')
