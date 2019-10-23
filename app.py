@@ -111,16 +111,15 @@ def received_text(event):
     #end Mental Health}   
         
     #to get the age
-    elif text.isdigit() in range(0,18):
-        bot.send_text_message(sender_id,'got it') 
-        
     elif text.lower()=='about':
         bot.send_text_message(sender_id,'about is read')
     elif text.lower()=='about is read':
         bot.send_text_message(sender_id,'confirmed')     
     elif text.isdigit() > 18:
         bot.send_text_message(sender_id,'Sorry buddy we can only cater children from 0 to 18 years old.')
-           
+    elif text.isdigit() in range(0,18):
+        bot.send_text_message(sender_id,'got it')        
+        
     else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
         bot.send_text_message(sender_id, '👍')
