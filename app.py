@@ -112,9 +112,8 @@ def received_text(event):
         
     #to get the age
     elif text.isdigit() in range(0,18):
-        global age
-        age = text
-        bot.send_text_message(sender_id,age) 
+        bot.send_text_message(sender_id,'got it') 
+        
     elif text.lower()=='about':
         bot.send_text_message(sender_id,'about is read')
     elif text.lower()=='about is read':
