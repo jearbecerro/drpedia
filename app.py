@@ -11,7 +11,6 @@ app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
-
 #Mongo---
 cluster = MongoClient(MONGO_TOKEN)
 db = cluster["DrPedia"]
