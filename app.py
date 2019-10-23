@@ -3,13 +3,24 @@ import random
 from flask import Flask, request
 from messnger_syntax.bot import Bot
 import os
+import pymongo
+from pymongo import MongoClient
 #Libraries to be import END
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
-image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
+MONGO_TOKEN = os.environ['MONGO_DB']
+
+#Mongo---
+cluster = MongoClient(MONGO_TOKEN)
+db = cluster["DrPedia"]
+users = db["users"]
+patient = db["patient"]
+#Mongo---
 bot = Bot (ACCESS_TOKEN)
+image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
+
 
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
 age = ''
@@ -106,10 +117,12 @@ def received_text(event):
         age = text
         bot.send_text_message(sender_id,age) 
     elif text.lower()=='about':
-        bot.send_text_message(sender_id,age)     
+        bot.send_text_message(sender_id,'about is read')
+    elif text.lower()=='about is read':
+        bot.send_text_message(sender_id,'confirmed')     
     elif text.isdigit() > 18:
         bot.send_text_message(sender_id,'Sorry buddy we can only cater children from 0 to 18 years old.')
-            
+           
     else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
         bot.send_text_message(sender_id, '👍')
