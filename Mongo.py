@@ -44,7 +44,7 @@ def create_user(users, user_id, user_fb):
     users.insert(user_insert)
  
 def set_terms(users, sender_id):
-    users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": 'Yes'}})
+    users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": "Yes"}})
 def get_terms(users, sender_id):
     return users.find_one({'user_id': sender_id})['accept_disclaimer']
 
