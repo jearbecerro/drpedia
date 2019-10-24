@@ -54,7 +54,8 @@ def set_ask(users, sender_id, ask):
     users.update({"user_id": sender_id},{"$set":{"last_message_ask": ask}})
 #get last message ask by the chatbot
 def get_ask(users, sender_id):
-    return users.find_one({'user_id': sender_id})['last_message_ask']
+    return users.find_one({'user_id': sender_id},{ 'last_message_ask' })
+    #return users.find_one({'user_id': sender_id})['last_message_ask']
 #End Setter Getter last message send by the DrPedia ---
 
 #Setter Getter for last message send by the user ---
