@@ -27,7 +27,6 @@ def create_patient(patient, user_id,name, age, weight, relation):
                     'weight': weight,
                     'relation': relation
                     }
-                }
     patient.insert(patient_insert)
 
 # Has to use user_id since user has not existed
@@ -43,8 +42,7 @@ def create_user(users, user_id, user_fb):
                     'last_message_ask':None,
                     'last_message_answer':None,
                     'accept_disclaimer':'No'
-                    }
-                }
+                   }
     users.insert(user_insert)
  
 def set_terms(users, sender_id):
