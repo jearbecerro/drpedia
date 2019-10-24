@@ -1,10 +1,11 @@
 #Libraries to be import START
 import random
-from flask import Flask, request
+from flask import Flask, request,g #flask.g means global g = global
 from messnger_syntax.bot import Bot
 import os
 import pymongo
 from pymongo import MongoClient
+import Mongo #import Mongo.py
 #Libraries to be import END
 
 app = Flask(__name__)
@@ -20,7 +21,7 @@ patient = db["patient"]
 bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 
-
+GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
 age = ''
 physical_weight = 0
@@ -50,10 +51,9 @@ def receive_message():
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
                 if message['message'].get('text'):
-                    #received_text(message)
                     if message['message'].get('quick_reply'):
                         received_qr(message)  
-                    else:
+                    else: #else if message is just a text
                         received_text(message)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 elif message['message'].get('attachments'):
@@ -70,59 +70,59 @@ def received_text(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     
-    if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
-        GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there", "I am glad! You are talking to me", "What's up"]
+    if Mongo.get_ask(users, sender_id) == None:
+        button = [
+                            {
+                            "type": "postback",
+                            "title": "🤗I'm pleased to meet you!",
+                            "payload": "pmyou"
+                            }
+                            ]
+        bot.send_button_message(sender_id, 'Are you not pleased to meet me {} 😕?'.format(first_name(sender_id)), button)
+        
+    elif text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow") and Mongo.get_answer(users, sender_id) == None and Mongo.get_ask(users, sender_id) != None:
         greet = random.choice(GREETING_RESPONSES)
         bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         send_choose_concern(sender_id)
     
     #Mental Health{
-    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
+    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd") and Mongo.get_ask(users, sender_id) in ('type mental'):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
 
-    elif text.lower() in ("oppositional defiant disorder", "odd"):
+    elif text.lower() in ("oppositional defiant disorder", "odd")  and Mongo.get_ask(users, sender_id) in ('type mental'):
         choose_option_mental(sender_id,'send_tips_odd','check_odd','ODD')
         #proceed to payload button if payload=='send_tips_odd' or if payload=='check_odd'
         
-    elif text.lower() in ("autism spectrum disorder", "asd", "autism"):
+    elif text.lower() in ("autism spectrum disorder", "asd", "autism")  and Mongo.get_ask(users, sender_id) in ('type mental'):
         choose_option_mental(sender_id,'send_tips_asd','check_asd','Autism Spectrum Disorder')
         #proceed to payload button if payload=='send_tips_asd' or if payload=='check_asd'
         
-    elif text.lower() in ("anxiety disorder", "anxiety","ad"):
+    elif text.lower() in ("anxiety disorder", "anxiety","ad")  and Mongo.get_ask(users, sender_id) in ('type mental'):
         choose_option_mental(sender_id,'send_tips_ad','check_ad','Anxiety Disorder')
         #proceed to payload button if payload=='send_tips_ad' or if payload=='check_ad'
         
-    elif text.lower() in ("depression", "depression disorder","depress"):
+    elif text.lower() in ("depression", "depression disorder","depress")  and Mongo.get_ask(users, sender_id) in ('type mental'):
         choose_option_mental(sender_id,'send_tips_d','check_d','Depression')
         #proceed to payload button if payload=='send_tips_d' or if payload=='check_d'
         
-    elif text.lower() in ("bipolar disorder", "bipolar","bd"):
+    elif text.lower() in ("bipolar disorder", "bipolar","bd")  and Mongo.get_ask(users, sender_id) in ('type mental'):
         choose_option_mental(sender_id,'send_tips_bd','check_bd','Bipolar Disorder')
         #proceed to payload button if payload=='send_tips_bd' or if payload=='check_bd' 
         
-    elif text.lower() in ("learning disorders", "learning","ld"):
+    elif text.lower() in ("learning disorders", "learning","ld")  and Mongo.get_ask(users, sender_id) in ('type mental'):
         choose_option_mental(sender_id,'send_tips_ld','check_ld','Learning Disorder')
         #proceed to payload button if payload=='send_tips_ld' or if payload=='check_ld' 
         
-    elif text.lower() in ("conduct disorders", "conduct","cd"):
+    elif text.lower() in ("conduct disorders", "conduct","cd")  and Mongo.get_ask(users, sender_id) in ('type mental'):
         choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}   
         
-    #to get the age
-    elif text.lower()=='about':
-        bot.send_text_message(sender_id,'about is read')
-    elif text.lower()=='about is read':
-        bot.send_text_message(sender_id,'confirmed')     
-    elif text.isdigit() > 18:
-        bot.send_text_message(sender_id,'Sorry buddy we can only cater children from 0 to 18 years old.')
-    elif text.isdigit() in range(0,18):
-        bot.send_text_message(sender_id,'got it')        
-        
     else:
-        bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
-        bot.send_text_message(sender_id, '👍')
+        if Mongo.get_ask(users, sender_id) != None:
+            bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
+            bot.send_text_message(sender_id, '👍')
 
 def greet_disclaimer(sender_id):
     quick_replies = {
@@ -134,8 +134,6 @@ def greet_disclaimer(sender_id):
                             "title":"📇See details",
                             "payload":"see_details"
                           }
-    bot.send_text_message(sender_id,"I'm glad to meet you too {}. 😉".format(first_name(sender_id)))  
-    #bot.send_text_message(sender_id,"By using Drpedia, you must be aware that any information and suggestions for medication and remedies is base from an expert's knowledge. (Pediatrician)")
     bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers. ⚖️")
     bot.send_text_message(sender_id,"Remember that DrPedia is just a robot 🤖, not a doctor 👨‍⚕️.")
     bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real pediatrician or a doctor in any way.")
@@ -159,7 +157,8 @@ def received_qr(event):
         after_accept_terms(sender_id,concern,listofconcern,"yes_proceed_mental","no_proceed_mental")
     #2.2.1
     if text =="yes_agree":
-        bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff") 
+        bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
+        Mongo.set_terms(users, sender_id)#set terms to yes statically
         send_choose_concern(sender_id)
     #2.2.2    
     if text=='see_details':
@@ -185,7 +184,7 @@ def received_qr(event):
                         }
                         ]
         bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", button)
-        
+        Mongo.set_ask(users, sender_id, 'type mental')
     if text=='no_proceed_mental':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
@@ -214,7 +213,8 @@ def received_postback(event):
     #2.2.1.1{
     
     if payload=='ready_accept':
-        bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff") 
+        bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff")
+        Mongo.set_terms(users, sender_id)
         send_choose_concern(sender_id)
         
     if payload=='check_adhd':
@@ -313,32 +313,42 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
-        GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there", "I am glad! You are talking to me"]
         greet = random.choice(GREETING_RESPONSES)
-        bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
-        bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
-        #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
-        #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
-        button = [
-                        {
-                        "type": "postback",
-                        "title": "🤗Pleased to meet you!",
-                        "payload": "pmyou"
-                        }
-                        ]
-        bot.send_button_message(sender_id, 'Thanks for using DrPedia 🙏❤️', button)    
-        #send_choose_concern(sender_id)
+        if not Mongo.user_exists(users, sender_id): #if user_exists == false add user information
+            bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
+            bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
+            #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
+            #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
+            button = [
+                            {
+                            "type": "postback",
+                            "title": "🤗I'm pleased to meet you!",
+                            "payload": "pmyou"
+                            }
+                            ]
+            bot.send_button_message(sender_id, 'Thanks for using DrPedia 🙏❤️', button)    
+            
+        else:
+            bot.send_text_message(sender_id,"{} {}, welcome back!".format(greet,first_name(sender_id)))
+            send_choose_concern(sender_id)
     if payload=='pmyou':
+        bot.send_text_message(sender_id,"I'm glad to meet you too {}. 😉".format(first_name(sender_id)))  
         greet_disclaimer(sender_id)
+        Mongo.set_ask(users, sender_id,'please to meet you')
     #Persistent Menu Buttons        
     if payload=='start_over':
-        send_choose_concern(sender_id)
+        if Mongo.get_terms(users, sender_id) == 'Yes':
+            bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
+            send_choose_concern(sender_id)
+        else:
+            greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
     if payload=='pm_about':
         bot.send_text_message(sender_id,'About Under Construction')
     #}
-
+    
+    
 def after_accept_terms(sender_id,concern,listofconcern,yes_PorM,no_PorM):
     
     bot.send_text_message(sender_id,'To give you the most precise guidance, these are the following {} concerns I can provide:'.format(concern))
