@@ -76,41 +76,41 @@ def received_text(event):
         send_choose_concern(sender_id)
     
     #Mental Health{
-    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd") and Mongo.get_ask(users, sender_id) in ('type mental'):#if user send text 'adhd'
+    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
 
-    elif text.lower() in ("oppositional defiant disorder", "odd")  and Mongo.get_ask(users, sender_id) in ('type mental'):
+    elif text.lower() in ("oppositional defiant disorder", "odd") :
         choose_option_mental(sender_id,'send_tips_odd','check_odd','ODD')
         #proceed to payload button if payload=='send_tips_odd' or if payload=='check_odd'
         
-    elif text.lower() in ("autism spectrum disorder", "asd", "autism")  and Mongo.get_ask(users, sender_id) in ('type mental'):
+    elif text.lower() in ("autism spectrum disorder", "asd", "autism"):
         choose_option_mental(sender_id,'send_tips_asd','check_asd','Autism Spectrum Disorder')
         #proceed to payload button if payload=='send_tips_asd' or if payload=='check_asd'
         
-    elif text.lower() in ("anxiety disorder", "anxiety","ad")  and Mongo.get_ask(users, sender_id) in ('type mental'):
+    elif text.lower() in ("anxiety disorder", "anxiety","ad"):
         choose_option_mental(sender_id,'send_tips_ad','check_ad','Anxiety Disorder')
         #proceed to payload button if payload=='send_tips_ad' or if payload=='check_ad'
         
-    elif text.lower() in ("depression", "depression disorder","depress")  and Mongo.get_ask(users, sender_id) in ('type mental'):
+    elif text.lower() in ("depression", "depression disorder","depress"):
         choose_option_mental(sender_id,'send_tips_d','check_d','Depression')
         #proceed to payload button if payload=='send_tips_d' or if payload=='check_d'
         
-    elif text.lower() in ("bipolar disorder", "bipolar","bd")  and Mongo.get_ask(users, sender_id) in ('type mental'):
+    elif text.lower() in ("bipolar disorder", "bipolar","bd"):
         choose_option_mental(sender_id,'send_tips_bd','check_bd','Bipolar Disorder')
         #proceed to payload button if payload=='send_tips_bd' or if payload=='check_bd' 
         
-    elif text.lower() in ("learning disorders", "learning","ld")  and Mongo.get_ask(users, sender_id) in ('type mental'):
+    elif text.lower() in ("learning disorders", "learning","ld"):
         choose_option_mental(sender_id,'send_tips_ld','check_ld','Learning Disorder')
         #proceed to payload button if payload=='send_tips_ld' or if payload=='check_ld' 
         
-    elif text.lower() in ("conduct disorders", "conduct","cd")  and Mongo.get_ask(users, sender_id) in ('type mental'):
+    elif text.lower() in ("conduct disorders", "conduct","cd"):
         choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}   
         
     else:
-        if Mongo.get_ask(users, sender_id) != None:
+        if Mongo.get_ask(users, sender_id) == "":
             bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
             bot.send_text_message(sender_id, '👍')
 
