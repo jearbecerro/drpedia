@@ -37,7 +37,6 @@ def create_user(users, user_id, user_fb):
                     'last_seen': "1970-01-01 00:00:00",
                     'first_name':user_fb['first_name'],
                     'last_name':user_fb['last_name'],
-                    'gender': user_fb['gender'],
                     'timezone':user_fb['timezone'],
                     'last_message_ask':None,
                     'last_message_answer':None,
