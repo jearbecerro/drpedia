@@ -12,13 +12,12 @@ def find_user_id(users, user_object_id):
 def user_exists(users, user_id):
     user = users.find_one({'user_id': user_id})
     if user is None:
-        print user_id
         user_fb = bot.get_user_info(user_id)#all information
         create_user(users, user_id, user_fb)
         return False
     return True
 
-
+# Manual input
 def create_patient(patient, user_id,name, age, weight, relation):
     timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     patient_insert = {'user_id': user_id, 
@@ -40,30 +39,45 @@ def create_user(users, user_id, user_fb):
                     'first_name':user_fb['first_name'],
                     'last_name':user_fb['last_name'],
                     'gender': user_fb['gender'],
-                    'timezone':user_fb['timezone']
+                    'timezone':user_fb['timezone'],
+                    'last_message_ask':None,
+                    'last_message_answer':None,
+                    'accept_disclaimer':'No'
                     }
                 }
     users.insert(user_insert)
+ 
+def set_terms(users, sender_id):
+    users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": 'Yes'}})
+def get_terms(users, sender_id):
+    return users.find_one({'user_id': sender_id})['accept_disclaimer']
 
-# Input: Facebook's user_id
-def get_user_mongo(users, user_id):
-    return users.find_one({'user_id': user_id})
+#Setter Getter for last message send by the DrPedia ---
+#set last message ask by the chatbot
+def set_ask(users, sender_id, ask):
+    users.update({"user_id": sender_id},{"$set":{"last_message_ask": ask}})
+#get last message ask by the chatbot
+def get_ask(users, sender_id):
+    return users.find_one({'user_id': sender_id})['last_message_ask']
+#End Setter Getter last message send by the DrPedia ---
 
+#Setter Getter for last message send by the user ---
+#set last message ask by the chatbot
+def set_answer(users, sender_id, asnwer):
+    users.update({"user_id": sender_id},{"$set":{"last_message_answer": answer}})
+#get last message ask by the chatbot
+def get_answer(users, sender_id):
+    return users.find_one({'user_id': sender_id})['last_message_answer']
+#End Setter Getter last message send by the user ---
 
-def update_last_seen(users, user):
+# Input: Facebook's sender_id
+def get_user_mongo(users, sender_id):
+    return users.find_one({'user_id': sender_id})
+
+def update_last_seen(users, sender_id):
     now = datetime.now()
     timestamp = datetime.strftime(now,"%Y-%m-%d %H:%M:%S")
-    users.update({"user_id": user['user_id']},{"$set":{"last_seen": timestamp}})
+    users.update({"user_id": sender_id},{"$set":{"last_seen": timestamp}})
 
-def update_first_time(users, user, first_time_name):
-    users.update({'_id': user['_id']},{"$set":{"first_time_using." + first_time_name: 0}})
-
-def first_time_using(users, user, first_time_name):
-    tried = users.find_one({'_id': user['_id']},{"first_time_using." + first_time_name: 1})['first_time_using']
-    if tried:
-        return False
-    else:
-        update_first_time(users, user, first_time_name)
-        return True
 
 
