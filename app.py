@@ -110,7 +110,9 @@ def received_text(event):
     #end Mental Health}   
         
     elif text:
-        if Mongo.get_ask(users, sender_id) == "pleased to meet you" and Mongo.get_answer(users,sender_id) == "":
+        a = Mongo.get_ask(users, sender_id)
+        ask = a['last_message_ask']
+        if  ask == "pleased to meet you": '''and Mongo.get_answer(users,sender_id) == "":'''
             button = [
                             {
                             "type": "postback",
@@ -121,7 +123,7 @@ def received_text(event):
             bot.send_button_message(sender_id, 'Are you not pleased to meet me {}😕?'.format(first_name(sender_id)), button)    
         else:
             bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
-            bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_ask(users, sender_id)))
+            bot.send_text_message(sender_id, '👍{}'.format(ask))
 
 def greet_disclaimer(sender_id):
     quick_replies = {
