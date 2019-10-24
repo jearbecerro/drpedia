@@ -110,7 +110,7 @@ def received_text(event):
     #end Mental Health}   
             
     elif text:
-        bot.send_button_message(sender_id, Mongo.get_ask(users, sender_id))
+        bot.send_button_message(sender_id, 'check')
         if Mongo.get_ask(users, sender_id) == "pleased to meet you":
             button = [
                                     {
