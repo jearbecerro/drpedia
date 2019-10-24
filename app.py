@@ -112,7 +112,7 @@ def received_text(event):
     elif text:
         a = Mongo.get_ask(users, sender_id)
         ask = a['last_message_ask']
-        if  ask == "pleased to meet you": '''and Mongo.get_answer(users,sender_id) == "":'''
+        if ask == "pleased to meet you":
             button = [
                             {
                             "type": "postback",
