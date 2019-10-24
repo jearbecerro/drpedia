@@ -109,7 +109,7 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}   
             
-    elif text:
+        ''''
         bot.send_button_message(sender_id, 'check')
         if Mongo.get_ask(users, sender_id) == "pleased to meet you":
             button = [
@@ -119,10 +119,10 @@ def received_text(event):
                                     "payload": "pmyou"
                                     }
                                     ]
-            bot.send_button_message(sender_id, 'Are you not pleased to meet me {}😕?'.format(first_name(sender_id)), button)  
-        else:
-            bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
-            bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_ask(users, sender_id)))
+            bot.send_button_message(sender_id, 'Are you not pleased to meet me {}😕?'.format(first_name(sender_id)), button)  ''''
+    else:
+        bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
+        bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_ask(users, sender_id)))
 
 def greet_disclaimer(sender_id):
     quick_replies = {
