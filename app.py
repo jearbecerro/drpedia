@@ -69,14 +69,15 @@ def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
-    
+    '''
     if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
         greet = random.choice(GREETING_RESPONSES)
         bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         send_choose_concern(sender_id)
+    '''
     
     #Mental Health{
-    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
+    if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
 
@@ -109,8 +110,17 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}   
         
-    else:
-        if Mongo.get_ask(users, sender_id) == "":
+    elif text:
+        if Mongo.get_ask(users, sender_id) == "pleased to meet you" and Mongo.get_answer(users,sender_id) == "":
+            button = [
+                            {
+                            "type": "postback",
+                            "title": "🤗Nice to meet you!",
+                            "payload": "pmyou"
+                            }
+                            ]
+            bot.send_button_message(sender_id, 'Are you not pleased to meet me {}😕?'.format(first_name(sender_id)), button)    
+        else:
             bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
             bot.send_text_message(sender_id, '👍')
 
@@ -312,19 +322,19 @@ def received_postback(event):
             button = [
                             {
                             "type": "postback",
-                            "title": "🤗I'm pleased to meet you!",
+                            "title": "Nice to meet you!",
                             "payload": "pmyou"
                             }
                             ]
-            bot.send_button_message(sender_id, 'Thanks for using DrPedia 🙏❤️', button)    
-            
+            bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)    
+            Mongo.set_ask(users, sender_id, "pleased to meet you")
         else:
             bot.send_text_message(sender_id,"{} {}, welcome back!".format(greet,first_name(sender_id)))
             send_choose_concern(sender_id)
     if payload=='pmyou':
         bot.send_text_message(sender_id,"I'm glad to meet you too {}. 😉".format(first_name(sender_id)))  
         greet_disclaimer(sender_id)
-        Mongo.set_ask(users, sender_id,'please to meet you')
+        Mongo.set_answer(users, sender_id,'glad to meet you')
     #Persistent Menu Buttons        
     if payload=='start_over':
         if Mongo.get_terms(users, sender_id) == 'Yes':
