@@ -59,7 +59,7 @@ def get_ask(users, sender_id):
 
 #Setter Getter for last message send by the user ---
 #set last message ask by the chatbot
-def set_answer(users, sender_id, asnwer):
+def set_answer(users, sender_id, answer):
     users.update({"user_id": sender_id},{"$set":{"last_message_answer": answer}})
 #get last message ask by the chatbot
 def get_answer(users, sender_id):
