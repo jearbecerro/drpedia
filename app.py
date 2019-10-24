@@ -31,7 +31,6 @@ def get_remedies_adhd():
     # return selected item to the user
     return random.choice(remedies_adhd)
 
-
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
