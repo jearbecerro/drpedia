@@ -1,6 +1,6 @@
 #Libraries to be import START
 import random
-from flask import Flask, request,g #flask.g means global g = global
+from flask import Flask, request
 from messnger_syntax.bot import Bot
 import os
 import pymongo
@@ -70,17 +70,7 @@ def received_text(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     
-    if Mongo.get_ask(users, sender_id) not in ("please to meet you"):
-        button = [
-                            {
-                            "type": "postback",
-                            "title": "🤗I'm pleased to meet you!",
-                            "payload": "pmyou"
-                            }
-                            ]
-        bot.send_button_message(sender_id, 'Are you not pleased to meet me {} 😕?'.format(first_name(sender_id)), button)
-        
-    if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow") and Mongo.get_answer(users, sender_id) == None and Mongo.get_ask(users, sender_id) != None:
+    if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
         greet = random.choice(GREETING_RESPONSES)
         bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         send_choose_concern(sender_id)
