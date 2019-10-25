@@ -74,9 +74,17 @@ def received_text(event):
         bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         send_choose_concern(sender_id)
     '''
-    
+    if text and Mongo.get_ask(users,sender_id) == 'pleased to meet me?' and Mongo.get_answer(users,sender_id) == '':
+        button = [
+                            {
+                            "type": "postback",
+                            "title": "Nice to meet you!",
+                            "payload": "pmyou"
+                            }
+                            ]
+        bot.send_button_message(sender_id, 'Your not happy to meet me {}🤗?'.format(first_name(sender_id)), button)   
     #Mental Health{
-    if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
+    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
 
@@ -108,11 +116,8 @@ def received_text(event):
         choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}   
-    elif text == 'a':
-        bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_terms(users, sender_id)))
-        bot.send_text_message(sender_id, sender_id)
     else:
-        bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
+        bot.send_text_message(sender_id,'Humans are so complicated {} Im not train to understand things well. Sorry :('.format(first_name(sender_id)))
         #bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_terms(users, sender_id)))
 
 def greet_disclaimer(sender_id):
