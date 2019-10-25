@@ -43,8 +43,8 @@ def create_user(users, user_id, user_fb):
                    }
     users.insert(user_insert)
  
-def set_terms(users, sender_id):
-    users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": "Yes"}})
+def set_terms(users, sender_id,yes):
+    users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": yes}})
 def get_terms(users, sender_id):
     a = users.find_one({'user_id': sender_id},{'accept_disclaimer':1,'_id':0})
     return a["accept_disclaimer"]
@@ -56,7 +56,7 @@ def set_ask(users, sender_id, ask):
     #get last message ask by the chatbot
 def get_ask(users, sender_id):
     a = users.find_one({'user_id': sender_id},{'last_message_ask':1,'_id':0})
-    return a['last_message_ask']
+    return a["last_message_ask"]
 #End Setter Getter last message send by the DrPedia ---
 
 #Setter Getter for last message send by the user ---
@@ -66,7 +66,7 @@ def set_answer(users, sender_id, answer):
 #get last message ask by the chatbot
 def get_answer(users, sender_id):
     a = users.find_one({'user_id': sender_id},{'last_message_answer':1,'_id':0})
-    return a['last_message_answer']
+    return a["last_message_answer"]
 #End Setter Getter last message send by the user ---
 
 # Input: Facebook's sender_id
