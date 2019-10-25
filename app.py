@@ -326,7 +326,7 @@ def received_postback(event):
         Mongo.set_answer(users, sender_id,'glad to meet you')
     #Persistent Menu Buttons        
     if payload=='start_over':
-        if Mongo.get_terms(users, sender_id) == 'Yes':
+        if Mongo.get_terms(users, sender_id) == "Yes":
             bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
             send_choose_concern(sender_id)
         else:
