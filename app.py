@@ -74,7 +74,7 @@ def received_text(event):
         bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         send_choose_concern(sender_id)
     '''
-    if text and Mongo.get_ask(users,sender_id) == 'pleased to meet me?' and Mongo.get_answer(users,sender_id) == '':
+    if text and Mongo.get_ask(users,sender_id) == 'pleased to meet me?' and Mongo.get_answer(users,sender_id) == 'None':
         button = [
                             {
                             "type": "postback",
