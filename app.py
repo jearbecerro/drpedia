@@ -319,10 +319,10 @@ def received_postback(event):
             bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)    
         else:
             if Mongo.get_terms(users, sender_id) == "Yes":
-            bot.send_text_message(sender_id,"Welcome back!\nWhat seems you trouble today {} ?".format(first_name(sender_id)))
-            send_choose_concern(sender_id)
+                bot.send_text_message(sender_id,"Welcome back!\nWhat seems you trouble today {} ?".format(first_name(sender_id)))
+                send_choose_concern(sender_id)
             elif Mongo.get_terms(users, sender_id) == "No":
-            greet_disclaimer(sender_id)
+                greet_disclaimer(sender_id)
             
     if payload=='pmyou':
         Mongo.set_answer(users, sender_id,'glad to meet you')
