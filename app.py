@@ -317,7 +317,7 @@ def received_postback(event):
                             }
                             ]
             bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)    
-            Mongo.set_ask(users, sender_id, "pleased to meet you")
+            Mongo.set_ask(users, sender_id, "pleased to meet me?")
         else:
             bot.send_text_message(sender_id,"{} {}, welcome back!".format(greet,first_name(sender_id)))
             send_choose_concern(sender_id)
