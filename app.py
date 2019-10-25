@@ -74,7 +74,7 @@ def received_text(event):
         bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         send_choose_concern(sender_id)
     '''
-    if text and Mongo.get_ask(users,sender_id) == 'pleased to meet me?' and Mongo.get_answer(users,sender_id) == 'None':
+    '''if text and Mongo.get_ask(users,sender_id) == 'pleased to meet me?' and Mongo.get_answer(users,sender_id) == 'None':
         button = [
                             {
                             "type": "postback",
@@ -82,9 +82,9 @@ def received_text(event):
                             "payload": "pmyou"
                             }
                             ]
-        bot.send_button_message(sender_id, 'Your not happy to meet me {}🤗?'.format(first_name(sender_id)), button)   
+        bot.send_button_message(sender_id, 'Your not happy to meet me {}?'.format(first_name(sender_id)), button) ''''  
     #Mental Health{
-    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
+    if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
 
