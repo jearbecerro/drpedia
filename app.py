@@ -106,12 +106,16 @@ def received_text(event):
     elif text.lower() in ("conduct disorders", "conduct","cd"):
         choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
-    #end Mental Health}   
+    #end Mental Health}  
+    elif text.lower() == 'term':
+        bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_terms(users, sender_id)))
+    elif text.lower() == 'ask':
+        bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_ask(users, sender_id)))
+    elif text.lower() == 'ans':
+        bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_answer(users, sender_id)))
     else:
         bot.send_text_message(sender_id,'Humans are so complicated {} Im not train to understand things well. Sorry :('.format(first_name(sender_id)))
-        bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_terms(users, sender_id)))
-        bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_ask(users, sender_id)))
-        bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_answer(users, sender_id)))
+        
         
 def greet_disclaimer(sender_id):
     quick_replies = {
