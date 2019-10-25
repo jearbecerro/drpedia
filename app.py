@@ -203,7 +203,7 @@ def received_postback(event):
     #2.2.1.1{
     
     if payload=='ready_accept':
-        bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff")
+        bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
         Mongo.set_terms(users, sender_id)
         
@@ -330,7 +330,7 @@ def received_postback(event):
         if Mongo.get_terms(users, sender_id) == "Yes":
             bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
             send_choose_concern(sender_id)
-        else:
+        elif Mongo.get_terms(users, sender_id) == "No":
             greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
