@@ -9,18 +9,18 @@ def find_user_id(users, user_object_id):
     return users.find_one({'_id': ObjectId(user_object_id)})
 
 # Has to use user_id since user might not exist
-def user_exists(users, user_id):
-    user = users.find_one({'user_id': user_id})
+def user_exists(users, sender_id):
+    user = users.find_one({'user_id': sender_id})
     if user is None:
-        user_fb = bot.get_user_info(user_id)#all information
+        user_fb = bot.get_user_info(sender_id)#all information
         create_user(users, user_id, user_fb)
         return False
     return True
 
 # Manual input
-def create_patient(patient, user_id,name, age, weight, relation):
+def create_patient(patient, sender_id, name, age, weight, relation):
     timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    patient_insert = {'user_id': user_id, 
+    patient_insert = {'user_id': sender_id, 
                     'created_at': timestamp,
                     'name': name,
                     'age':age,
@@ -30,9 +30,9 @@ def create_patient(patient, user_id,name, age, weight, relation):
     patient.insert(patient_insert)
 
 # Has to use user_id since user has not existed
-def create_user(users, user_id, user_fb):
+def create_user(users, sender_id, user_fb):
     timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    user_insert = {'user_id': user_id, 
+    user_insert = {'user_id': sender_id, 
                     'created_at': timestamp,
                     'last_seen': "1970-01-01 00:00:00",
                     'first_name':user_fb['first_name'],
@@ -47,7 +47,7 @@ def set_terms(users, sender_id):
     users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": "Yes"}})
 def get_terms(users, sender_id):
     #,{'accept_disclaimer':1,'_id':0}
-    a = users.find_one({'user_id': sender_id},{'accept_disclaimer':1,'_id':0})
+    a = users.find_one({'user_id': sender_id})
     a["accept_disclaimer"]
 
 #Setter Getter for last message send by the DrPedia ---
