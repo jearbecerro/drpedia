@@ -147,7 +147,7 @@ def received_qr(event):
     #2.2.1
     if text =="yes_agree":
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
-        Mongo.set_terms(users, sender_id)#set terms to yes statically
+        Mongo.set_terms(users, sender_id,'Yes')
         send_choose_concern(sender_id)
     #2.2.2    
     if text=='see_details':
