@@ -110,6 +110,7 @@ def received_text(event):
     #end Mental Health}   
     elif text == 'a':
         bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_terms(users, sender_id)))
+        bot.send_text_message(sender_id, sender_id)
     else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
         #bot.send_text_message(sender_id, '👍{}'.format(Mongo.get_terms(users, sender_id)))
