@@ -47,7 +47,8 @@ def set_terms(users, sender_id):
     users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": "Yes"}})
 def get_terms(users, sender_id):
     a = users.find_one({'user_id': sender_id},{'accept_disclaimer':1,'_id':0})
-    return a["accept_disclaimer"]
+    for x in a:
+        return x["accept_disclaimer"]
 
 #Setter Getter for last message send by the DrPedia ---
     #set last message ask by the chatbot
