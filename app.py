@@ -147,8 +147,8 @@ def received_qr(event):
     #2.2.1
     if text =="yes_agree":
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
-        Mongo.set_terms(users, sender_id,'Yes')
         send_choose_concern(sender_id)
+        Mongo.set_terms(users, sender_id)
     #2.2.2    
     if text=='see_details':
         bot.send_text_message(sender_id,"Sure here it is..")
@@ -203,8 +203,8 @@ def received_postback(event):
     
     if payload=='ready_accept':
         bot.send_text_message(sender_id,"Exellent!, Now that we got that secured, we can proceed onward to the significant stuff")
-        Mongo.set_terms(users, sender_id)
         send_choose_concern(sender_id)
+        Mongo.set_terms(users, sender_id)
         
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
