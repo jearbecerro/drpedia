@@ -13,14 +13,14 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
 
-'''
+
 #Mongo---
 cluster = MongoClient(MONGO_TOKEN)
 db = cluster["DrPedia"]
 users = db["users"]
 patient = db["patient"]
-#Mongo---
-'''
+#Mongo
+
 bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 
@@ -149,7 +149,7 @@ def received_qr(event):
     if text =="yes_agree":
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
-        #Mongo.set_terms(users, sender_id)
+        Mongo.set_terms(users, sender_id)
     #2.2.2    
     if text=='see_details':
         bot.send_text_message(sender_id,"Sure here it is..")
@@ -174,7 +174,7 @@ def received_qr(event):
                         }
                         ]
         bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", button)
-        #Mongo.set_ask(users, sender_id, 'type mental')
+        Mongo.set_ask(users, sender_id, 'type mental')
     if text=='no_proceed_mental':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
@@ -205,7 +205,7 @@ def received_postback(event):
     if payload=='ready_accept':
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
-        #Mongo.set_terms(users, sender_id)
+        Mongo.set_terms(users, sender_id)
         
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
@@ -303,20 +303,8 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
-        greet = random.choice(GREETING_RESPONSES)
-        bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
-        bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
-        #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
-        #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
-        button = [
-                            {
-                            "type": "postback",
-                            "title": "Nice to meet you!",
-                            "payload": "pmyou"
-                            }
-                            ]
-        bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)    
-        '''if not Mongo.user_exists(users, sender_id): #if user_exists == false add user information
+        greet = random.choice(GREETING_RESPONSES) 
+        if not Mongo.user_exists(users, sender_id): #if user_exists == false add user information
             Mongo.set_ask(users, sender_id, "pleased to meet me?")
             bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
@@ -335,21 +323,19 @@ def received_postback(event):
                 bot.send_text_message(sender_id,"Welcome back!\nWhat seems you trouble today {} ?".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
             elif Mongo.get_terms(users, sender_id) == "No":
-                greet_disclaimer(sender_id)'''
+                greet_disclaimer(sender_id)
             
     if payload=='pmyou':
-        #Mongo.set_answer(users, sender_id,'glad to meet you')
+        Mongo.set_answer(users, sender_id,'glad to meet you')
         bot.send_text_message(sender_id,"I'm glad to meet you too {}. 😉".format(first_name(sender_id)))  
         greet_disclaimer(sender_id)
     #Persistent Menu Buttons        
     if payload=='start_over':
-        bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
-        send_choose_concern(sender_id)
-        '''if Mongo.get_terms(users, sender_id) == "Yes":
+        if Mongo.get_terms(users, sender_id) == "Yes":
             bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
             send_choose_concern(sender_id)
         elif Mongo.get_terms(users, sender_id) == "No":
-            greet_disclaimer(sender_id)'''
+            greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
     if payload=='pm_about':
