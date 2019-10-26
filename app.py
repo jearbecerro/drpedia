@@ -12,6 +12,22 @@ app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
+
+import sqlite3
+db=sqlite3.connect('test.db')
+try:        
+    cur =db.cursor()
+    cur.execute('''CREATE TABLE student (
+    StudentID INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT (20) NOT NULL,
+    age INTEGER,
+    marks REAL);''')
+    print ('table created successfully')
+except:
+    print ('error in operation')
+    db.rollback()
+db.close()
+
 #Mongo---
 cluster = MongoClient(MONGO_TOKEN)
 db = cluster["DrPedia"]
