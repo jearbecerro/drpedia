@@ -110,7 +110,7 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}  
     else:
-        bot.send_text_message(sender_id,'Humans are so complicated {} Im not train to understand things well. Sorry :('.format(first_name(sender_id)))
+        bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
         
         
 def greet_disclaimer(sender_id):
@@ -412,7 +412,7 @@ def send_choose_concern(sender_id):
 
 def first_name(sender_id):
     user_info = bot.get_user_info(sender_id)
-    name = user_info['first_name']
+    name = user_info["first_name"]
     return name
 
 def init_bot():
