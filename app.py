@@ -14,7 +14,7 @@ VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
 
 import sqlite3
-db=sqlite3.connect('test.db')
+db=sqlite3.connect('drpedia/test.db')
 try:        
     cur =db.cursor()
     cur.execute('''CREATE TABLE student (
