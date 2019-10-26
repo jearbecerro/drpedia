@@ -110,7 +110,7 @@ def received_text(event):
         choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}
-    elif Mongo.get_ask(users,sender_id) == 'please to meet me?' and Mongo.get_answer(users,sender_id) =='None':
+    elif Mongo.get_ask(users,sender_id) == 'pleased to meet me?' and Mongo.get_answer(users,sender_id) =='None':
         button = [
                             {
                             "type": "postback",
