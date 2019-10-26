@@ -1,4 +1,4 @@
 Flask==0.12.2
 gunicorn==19.6.0
 pymongo[srv]
-pysqlite
+sqlite3
