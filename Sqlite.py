@@ -14,7 +14,7 @@ def con():
     except Error:
         print(Error)
 con()
-cur = con.cursor()
+cur = con().cursor()
 #Happen once after debugging
 def create_table(con, qry):
     cur.execute("DROP TABLE users;")#for debugging
