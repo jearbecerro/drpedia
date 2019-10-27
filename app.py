@@ -13,6 +13,18 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
 
+import sqlite3
+db=sqlite3.connect('drpedia.db')
+qry="insert into student (last_name, first_name) values('Becerro','Je Ar');"
+try:
+    cur=db.cursor()
+    cur.execute(qry)
+    db.commit()
+    print ("one record added successfully")
+except:
+    print ("error in operation")
+    db.rollback()
+db.close()
 
 #Mongo---
 cluster = MongoClient(MONGO_TOKEN)
