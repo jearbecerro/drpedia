@@ -21,7 +21,8 @@ def create_table(con, qry):
     con.commit()
     cur.execute(")
     con.commit()
-    
+    print("Created")
+                
 create = "CREATE TABLE users(id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text);"
 create_table(con(),create)
 
