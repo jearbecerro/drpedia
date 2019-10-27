@@ -27,7 +27,7 @@ cur.execute(qry)
 db.commit()
 print ("one record added successfully")
     
-sql="SELECT * from users;"
+sql="SELECT first_name from users where lastname = 'Becerro';"
 cur.execute(sql)
 while True:
     record=cur.fetchone()
