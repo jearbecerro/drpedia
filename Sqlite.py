@@ -17,7 +17,7 @@ con()
 cur = con().cursor()
 #Happen once after debugging
 def create_table(con, qry):
-    cur.execute()
+    cur.execute(qry)
     con.commit()
     print("Created")
                 
