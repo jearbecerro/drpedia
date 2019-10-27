@@ -339,7 +339,7 @@ def received_postback(event):
             bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
             send_choose_concern(sender_id)
         elif Sqlite.get_terms(sender_id) == "No":
-            #greet_disclaimer(sender_id)
+            greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
     if payload=='pm_about':
