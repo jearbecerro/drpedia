@@ -36,7 +36,7 @@ def user_exists(sender_id):
     
 def create_user(sender_id, user_fb):
     timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    qry="insert into users (sender_id, created_at, last_seen, first_name, last_name, last_message_ask, last_message_answer, accept_disclaimer) values({},{},{},{},{},{},{},{});".format(sender_id, str(timestamp), "1970-01-01 00:00:00", user_fb['first_name'], user_fb['last_name'], 'None','None','No')
+    qry="insert into users (sender_id, created_at, last_seen, first_name, last_name, last_message_ask, last_message_answer, accept_disclaimer) values(?, ?, ?, ?, ?, ?, ?, ?);",(sender_id, str(timestamp), "1970-01-01 00:00:00", user_fb['first_name'], user_fb['last_name'], 'None','None','No')
     cur.execute(qry)
     con.commit() 
     
