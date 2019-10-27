@@ -70,3 +70,8 @@ def get_answer(users, sender_id):
     return result
 #End Setter Getter last message send by the user ---
 
+def update_last_seen(sender_id):
+    now = datetime.now()
+    timestamp = datetime.strftime(now,"%Y-%m-%d %H:%M:%S")
+    cur.execute('UPDATE users SET last_seen = {} where sender_id = {}'.format(timestamp, sender_id))
+    con.commit()
