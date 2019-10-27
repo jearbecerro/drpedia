@@ -17,13 +17,11 @@ con()
 cur = con().cursor()
 #Happen once after debugging
 def create_table(con, qry):
-    cur.execute("DROP TABLE [IF EXISTS] users;")#for debugging
-    con.commit()
     cur.execute()
     con.commit()
     print("Created")
                 
-create = "CREATE TABLE [IF NOT EXISTS] users (id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text);"
+create = "CREATE TABLE users (id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text);"
 create_table(con(),create)
 
 def user_exists(sender_id):
