@@ -24,7 +24,7 @@ try:
 except:
     print ("error in operation")
     
-sql="SELECT * from student;"
+sql="SELECT * from users;"
 cur=db.cursor()
 cur.execute(sql)
 while True:
