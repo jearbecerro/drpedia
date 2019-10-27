@@ -5,7 +5,7 @@ from messnger_syntax.bot import Bot
 import os
 import pymongo
 from pymongo import MongoClient
-import Mongo #import Mongo.py
+import Sqlite #import Sqlite.py
 #Libraries to be import END
 
 app = Flask(__name__)
@@ -13,14 +13,7 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
 
-'''
-#Mongo---
-cluster = MongoClient(MONGO_TOKEN)
-db = cluster["DrPedia"]
-users = db["users"]
-patient = db["patient"]
-#Mongo
-'''
+
 bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 
@@ -314,21 +307,9 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
-        greet = random.choice(GREETING_RESPONSES) 
-        bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
-        bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
-            #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
-            #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
-        button = [
-                            {
-                            "type": "postback",
-                            "title": "Nice to meet you!",
-                            "payload": "pmyou"
-                            }
-                            ]
-        bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)   
-        '''if not Mongo.user_exists(users, sender_id): #if user_exists == false add user information
-            Mongo.set_ask(users, sender_id, "pleased to meet me?")
+        greet = random.choice(GREETING_RESPONSES)  
+        if not Sqlite.user_exists(sender_id): #if user_exists == false add user information
+            Sqlite.set_ask(users, sender_id, "pleased to meet me?")
             bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
@@ -342,22 +323,22 @@ def received_postback(event):
                             ]
             bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)    
         else:
-            if Mongo.get_terms(users, sender_id) == "Yes":
+            if Sqlite.get_terms(sender_id) == "Yes":
                 bot.send_text_message(sender_id,"Welcome back!\nWhat seems you trouble today {} ?".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
-            elif Mongo.get_terms(users, sender_id) == "No":
+            elif Sqlite.get_terms(sender_id) == "No":
                 greet_disclaimer(sender_id)
-            '''
+            
     if payload=='pmyou':
-        #Mongo.set_answer(users, sender_id,'glad to meet you')
+        Sqlite.set_answer(sender_id,'glad to meet you')
         bot.send_text_message(sender_id,"I'm glad to meet you too {}. 😉".format(first_name(sender_id)))  
         greet_disclaimer(sender_id)
     #Persistent Menu Buttons        
     if payload=='start_over':
-        #if Mongo.get_terms(users, sender_id) == "Yes":
-        bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
-        send_choose_concern(sender_id)
-        #elif Mongo.get_terms(users, sender_id) == "No":
+        if Sqlite.get_terms(sender_id) == "Yes":
+            bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
+            send_choose_concern(sender_id)
+        elif Sqlite.get_terms(sender_id) == "No":
             #greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
