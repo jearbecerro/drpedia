@@ -15,7 +15,7 @@ MONGO_TOKEN = os.environ['MONGO_DB']
 
 import sqlite3
 db=sqlite3.connect('drpedia.db')
-qry="insert into users (last_name, first_name) values('Becerro','Je Ar');"
+qry="insert into users (last_name, first_name) values('Buhayan','Aljie Rose');"
 try:
     cur=db.cursor()
     cur.execute(qry)
@@ -30,7 +30,6 @@ cur.execute(sql)
 while True:
     record=cur.fetchone()
     if record==None:
-        print('No Record')
         break
     print (record)
 db.close()
