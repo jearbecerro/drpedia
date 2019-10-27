@@ -24,7 +24,7 @@ cur = con().cursor()
                 
 #create = "CREATE TABLE users (id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text);"
 #create_table(con(),create)
-''''
+
 def user_exists(sender_id):
     cur.execute("Select sender_id from users where sender_id = {}".format(sender_id))
     user = cur.fetchone()
