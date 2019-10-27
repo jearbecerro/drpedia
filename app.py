@@ -23,7 +23,16 @@ try:
     print ("one record added successfully")
 except:
     print ("error in operation")
-    db.rollback()
+    
+sql="SELECT * from student;"
+cur=db.cursor()
+cur.execute(sql)
+while True:
+    record=cur.fetchone()
+    if record==None:
+        print('No Record')
+        break
+    print (record)
 db.close()
 '''
 #Mongo---
