@@ -29,12 +29,8 @@ print ("one record added successfully")
     
 sql="SELECT first_name from users where last_name = 'Becerro';"
 cur.execute(sql)
-while True:
-    record=cur.fetchone()
-    if record==None:
-        break
-    print (record)
-db.close()
+record=cur.fetchone()
+print (record)
 '''
 #Mongo---
 cluster = MongoClient(MONGO_TOKEN)
