@@ -20,17 +20,17 @@ qry="insert into users (last_name, first_name) values('Buhayan','Aljie Rose');"
 cur=db.cursor()
 cur.execute(qry)
 db.commit()
-    
+db.close()    
 qry="insert into users (last_name, first_name) values('Becerro','Aljie Rose');"
 cur=db.cursor()
 cur.execute(qry)
 db.commit()
-print ("one record added successfully")
-    
+db.close()    
 sql="SELECT first_name from users where last_name = 'Becerro';"
 cur.execute(sql)
 record=cur.fetchone()
 print (record)
+db.close()
 '''
 #Mongo---
 cluster = MongoClient(MONGO_TOKEN)
