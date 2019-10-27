@@ -17,7 +17,7 @@ con()
 cur = con().cursor()
 #Happen once after debugging
 def create_table(con, qry):
-    cur.execute("DROP TABLE [IF NOT EXISTS] users;")#for debugging
+    cur.execute("DROP TABLE [IF EXISTS] users;")#for debugging
     con.commit()
     cur.execute()
     con.commit()
