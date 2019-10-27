@@ -15,15 +15,15 @@ def con():
         print(Error)
 con()
 cur = con().cursor()
-''''
+
 #Happen once after debugging
-def create_table(con, qry):
-    cur.execute(qry)
-    con.commit()
-    print("Created")
+#def create_table(con, qry):
+#    cur.execute(qry)
+#    con.commit()
+#    print("Created")
                 
-create = "CREATE TABLE users (id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text);"
-create_table(con(),create)
+#create = "CREATE TABLE users (id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text);"
+#create_table(con(),create)
 ''''
 def user_exists(sender_id):
     cur.execute("Select sender_id from users where sender_id = {}".format(sender_id))
