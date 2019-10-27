@@ -43,7 +43,7 @@ def set_terms(sender_id):
     cur.execute('UPDATE users SET accept_disclaimer = ? where sender_id = ?',('Yes',str(sender_id),))
     con.commit()
 def get_terms(sender_id):
-    cur.execute("SELECT accept_disclaimer from users where sender_id = ?",str(sender_id),)
+    cur.execute("SELECT accept_disclaimer from users where sender_id = ?",(str(sender_id),))
     result = cur.fetchone()            
     return result
 
