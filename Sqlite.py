@@ -19,7 +19,7 @@ cur = con.cursor()
 def create_table(con, qry):
     cur.execute("DROP TABLE users;")#for debugging
     con.commit()
-    cur.execute(")
+    cur.execute()
     con.commit()
     print("Created")
                 
