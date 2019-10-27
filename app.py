@@ -23,6 +23,14 @@ try:
     print ("one record added successfully")
 except:
     print ("error in operation")
+qry="insert into users (last_name, first_name) values('Becerro','Aljie Rose');"
+try:
+    cur=db.cursor()
+    cur.execute(qry)
+    db.commit()
+    print ("one record added successfully")
+except:
+    print ("error in operation")
     
 sql="SELECT * from users;"
 cur=db.cursor()
