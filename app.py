@@ -14,8 +14,8 @@ VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
 
 import sqlite3
-db=sqlite3.connect('clvrjc2/drpedia/drpedia.db')
-qry="insert into student (last_name, first_name) values('Becerro','Je Ar');"
+db=sqlite3.connect('drpedia.db')
+qry="insert into users (last_name, first_name) values('Becerro','Je Ar');"
 try:
     cur=db.cursor()
     cur.execute(qry)
