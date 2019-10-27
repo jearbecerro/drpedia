@@ -16,16 +16,11 @@ MONGO_TOKEN = os.environ['MONGO_DB']
 import sqlite3
 db=sqlite3.connect('drpedia.db')
 
-qry="insert into users (last_name, first_name) values('Buhayan','Aljie Rose');"
-cur=db.cursor()
-cur.execute(qry)
-db.commit()
-db.close()    
 qry="insert into users (last_name, first_name) values('Becerro','Aljie Rose');"
 cur=db.cursor()
 cur.execute(qry)
-db.commit()
-db.close()    
+db.commit() 
+
 sql="SELECT first_name from users where last_name = 'Becerro';"
 cur.execute(sql)
 record=cur.fetchone()
