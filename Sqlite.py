@@ -38,8 +38,11 @@ def user_exists(sender_id):
     
 def create_user(sender_id, user_fb):
     timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")#user_fb['first_name'], user_fb['last_name']
-    cur.execute("insert into users (sender_id, created_at, last_seen, first_name, last_name, last_message_ask, last_message_answer, accept_disclaimer) values(?, ?, ?, ?, ?, ?, ?, ?);",(str(sender_id), str(timestamp), "1970-01-01 00:00:00", str(user_fb['first_name']), str(user_fb['last_name']), "None","None","No",))
-    con.commit() 
+    if user_fb is not None: 
+        fname = user_fb['first_name']
+        lname = user_fb['last_name']
+        cur.execute("insert into users (sender_id, created_at, last_seen, first_name, last_name, last_message_ask, last_message_answer, accept_disclaimer) values(?, ?, ?, ?, ?, ?, ?, ?);",(str(sender_id), str(timestamp), "1970-01-01 00:00:00", fname, lname, "None","None","No",))
+        con.commit() 
     
 def set_terms(sender_id):
     cur.execute('UPDATE users SET accept_disclaimer = ? where sender_id = ?;',('Yes',str(sender_id),))
@@ -48,8 +51,8 @@ def get_terms(sender_id):
     cur.execute("SELECT accept_disclaimer from users where sender_id = ?;",(str(sender_id),))
     row = cur.fetchone()
     if row is not None: 
-     result = row[0]
-     return result
+        result = row[0]
+        return result
 
 #Setter Getter for last message send by the DrPedia ---
     #set last message ask by the chatbot
@@ -62,8 +65,8 @@ def get_ask(sender_id):
     #return str(result)
     row = cur.fetchone()
     if row is not None: 
-     result = row[0]
-     return str(result)
+        result = row[0]
+        return str(result)
 #End Setter Getter last message send by the DrPedia ---
 #Setter Getter for last message send by the user ---
 #set last message ask by the chatbot
@@ -77,10 +80,10 @@ def get_answer(sender_id):
     #return str(result)
     row = cur.fetchone()
     if row is not None: 
-     result = row[0]
-     return result
+        result = row[0]
+        return result
     else:
-     return "No return value"
+        return "No return value"
 #End Setter Getter last message send by the user ---
 
 def update_last_seen(sender_id):
