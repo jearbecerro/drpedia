@@ -24,8 +24,8 @@ def create_table(con, qry):
     con.commit()
     print("Created")
                 
-create = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text, created_at text, accept_disclaimer text);"
-create_table(con,create)
+#create = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text, created_at text, accept_disclaimer text);"
+#create_table(con,create)
 
 def user_exists(sender_id):
     cur.execute("Select sender_id from users where sender_id = ?;",(str(sender_id),))
