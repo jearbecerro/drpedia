@@ -304,7 +304,7 @@ class Bot:
         """
         r = requests.get(self.graph_url + recipient_id,
                     params={"fields": "first_name,last_name,profile_pic,locale,timezone,gender"
-                        ,"access_token": self.auth_arg
+                        ,"access_token": self.access_token
                     })
         if r.status_code != requests.codes.ok:
             print(r.text)
