@@ -38,11 +38,10 @@ def user_exists(sender_id):
     
 def create_user(sender_id, user_fb):
     timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")#user_fb['first_name'], user_fb['last_name']
-    if user_fb is not None: 
-        fname = user_fb['first_name']
-        lname = user_fb['last_name']
-        cur.execute("insert into users (sender_id, created_at, last_seen, first_name, last_name, last_message_ask, last_message_answer, accept_disclaimer) values(?, ?, ?, ?, ?, ?, ?, ?);",(str(sender_id), str(timestamp), "1970-01-01 00:00:00", fname, lname, "None","None","No",))
-        con.commit() 
+    fname = user_fb['first_name']
+    lname = user_fb['last_name']
+    cur.execute("insert into users (sender_id, created_at, last_seen, first_name, last_name, last_message_ask, last_message_answer, accept_disclaimer) values(?, ?, ?, ?, ?, ?, ?, ?);",(str(sender_id), str(timestamp), "1970-01-01 00:00:00", fname, lname, "None","None","No",))
+    con.commit() 
     
 def set_terms(sender_id):
     cur.execute('UPDATE users SET accept_disclaimer = ? where sender_id = ?;',('Yes',str(sender_id),))
