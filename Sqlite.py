@@ -48,8 +48,8 @@ def get_terms(sender_id):
     cur.execute("SELECT accept_disclaimer from users where sender_id = ?;",(str(sender_id),))
     row = cur.fetchone()
     if row is not None: 
-     result = row[0][0]
-     return str(result)
+     result = row[0]
+     return result
 
 #Setter Getter for last message send by the DrPedia ---
     #set last message ask by the chatbot
@@ -62,7 +62,7 @@ def get_ask(sender_id):
     #return str(result)
     row = cur.fetchone()
     if row is not None: 
-     result = row[0][0]
+     result = row[0]
      return str(result)
 #End Setter Getter last message send by the DrPedia ---
 #Setter Getter for last message send by the user ---
@@ -77,8 +77,8 @@ def get_answer(sender_id):
     #return str(result)
     row = cur.fetchone()
     if row is not None: 
-     result = row[0][0]
-     return str(result)
+     result = row[0]
+     return result
     else:
      return "No return value"
 #End Setter Getter last message send by the user ---
