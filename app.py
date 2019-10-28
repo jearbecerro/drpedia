@@ -418,7 +418,7 @@ def send_choose_concern(sender_id):
 
 def first_name(sender_id):
     user_info = bot.get_user_info(sender_id)
-    name = user_info["first_name"]
+    name = user_info['first_name']
     return name
 
 def init_bot():
