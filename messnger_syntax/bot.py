@@ -301,7 +301,7 @@ class Bot:
           recipient_id: recipient id to send to
         Output:
           Response from API as <dict>
-        """
+        
         r = requests.get("https://graph.facebook.com/v4.0/" + recipient_id,
                     params={"fields": "first_name,last_name"
                         ,"access_token": self.access_token
@@ -312,7 +312,7 @@ class Bot:
         user = json.loads(r.content)
         print(user)
         return user
-        '''  
+        """ 
         params = {}
         if fields is not None and isinstance(fields, (list, tuple)):
             params['fields'] = ",".join(fields)
@@ -325,7 +325,6 @@ class Bot:
             return response.json()
 
         return None
-        '''
     def send_raw(self, payload):
         request_endpoint = '{0}/me/messages'.format(self.graph_url)
         response = requests.post(
