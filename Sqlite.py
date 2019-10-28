@@ -47,7 +47,7 @@ def set_terms(sender_id):
 def get_terms(sender_id):
     cur.execute("SELECT accept_disclaimer from users where sender_id = ?",(str(sender_id),))
     result = cur.fetchone()            
-    return result
+    return str(result)
 
 #Setter Getter for last message send by the DrPedia ---
     #set last message ask by the chatbot
@@ -57,7 +57,7 @@ def set_ask(sender_id, ask):
 def get_ask(sender_id):
     cur.execute("SELECT last_message_ask from users where sender_id = ?",(str(sender_id),))
     result = cur.fetchone()            
-    return result
+    return str(result)
 #End Setter Getter last message send by the DrPedia ---
 #Setter Getter for last message send by the user ---
 #set last message ask by the chatbot
@@ -68,7 +68,7 @@ def set_answer(sender_id, answer):
 def get_answer(sender_id):
     cur.execute("SELECT last_message_answer from users where sender_id = ?",(str(sender_id),))
     result = cur.fetchone()            
-    return result
+    return str(result)
 #End Setter Getter last message send by the user ---
 
 def update_last_seen(sender_id):
