@@ -29,7 +29,7 @@ create_table(con,create)
 
 def user_exists(sender_id):
     cur.execute("Select sender_id from users where sender_id = ?",(str(sender_id),))
-    user = cur.fetchone()
+    user = cur.fetchone()[0]
     if user is None:
         user_fb = bot.get_user_info(sender_id)#all information
         create_user(sender_id, user_fb)
@@ -46,7 +46,7 @@ def set_terms(sender_id):
     con.commit()
 def get_terms(sender_id):
     cur.execute("SELECT accept_disclaimer from users where sender_id = ?",(str(sender_id),))
-    result = cur.fetchone()            
+    result = cur.fetchone()[0]           
     return str(result)
 
 #Setter Getter for last message send by the DrPedia ---
@@ -56,7 +56,7 @@ def set_ask(sender_id, ask):
     con.commit()
 def get_ask(sender_id):
     cur.execute("SELECT last_message_ask from users where sender_id = ?",(str(sender_id),))
-    result = cur.fetchone()            
+    result = cur.fetchone()[0]           
     return str(result)
 #End Setter Getter last message send by the DrPedia ---
 #Setter Getter for last message send by the user ---
@@ -67,7 +67,7 @@ def set_answer(sender_id, answer):
 #get last message ask by the chatbot
 def get_answer(sender_id):
     cur.execute("SELECT last_message_answer from users where sender_id = ?",(str(sender_id),))
-    result = cur.fetchone()            
+    result = cur.fetchone()[0]      
     return str(result)
 #End Setter Getter last message send by the user ---
 
