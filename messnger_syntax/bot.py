@@ -307,7 +307,7 @@ class Bot:
                         ,"access_token": self.auth_arg
                     })
         if r.status_code != requests.codes.ok:
-            print r.text
+            print(r.text)
             return
         user = json.loads(r.content)
         return user
