@@ -303,7 +303,7 @@ class Bot:
           Response from API as <dict>
         """
         r = requests.get(self.graph_url + recipient_id,
-                    params={"fields": "first_name,last_name,profile_pic,locale,timezone,gender"
+                    params={"fields": "first_name,last_name"
                         ,"access_token": self.access_token
                     })
         if r.status_code != requests.codes.ok:
