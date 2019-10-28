@@ -61,11 +61,11 @@ def get_ask(sender_id):
 #End Setter Getter last message send by the DrPedia ---
 #Setter Getter for last message send by the user ---
 #set last message ask by the chatbot
-def set_answer(users, sender_id, answer):
+def set_answer(sender_id, answer):
     cur.execute('UPDATE users SET last_message_answer = ? where sender_id = ?',(answer, str(sender_id),))
     con.commit()
 #get last message ask by the chatbot
-def get_answer(users, sender_id):
+def get_answer(sender_id):
     cur.execute("SELECT last_message_answer from users where sender_id = ?",(str(sender_id),))
     result = cur.fetchone()            
     return result
