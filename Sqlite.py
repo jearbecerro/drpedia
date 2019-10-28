@@ -31,7 +31,7 @@ def user_exists(sender_id):
     cur.execute("Select sender_id from users where sender_id = ?;",(str(sender_id),))
     user = cur.fetchone()
     if user is None:
-        user_fb = bot.get_user_info(sender_id,"first_name,last_name")#all information
+        user_fb = bot.get_user_info(sender_id,"fields": "first_name,last_name")#all information
         create_user(sender_id, user_fb)
         return False
     return True
