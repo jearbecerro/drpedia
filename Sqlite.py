@@ -31,7 +31,7 @@ def user_exists(sender_id):
     cur.execute("Select sender_id from users where sender_id = ?;",(str(sender_id),))
     user = cur.fetchone()
     if user is None:
-        user_fb = bot.get_user_info(sender_id)#all information
+        user_fb = bot.get_user_info(sender_id,"first_name,last_name")#all information
         create_user(sender_id, user_fb)
         return False
     return True
@@ -40,6 +40,7 @@ def create_user(sender_id, user_fb):
     timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")#user_fb['first_name'], user_fb['last_name']
     fname = user_fb['first_name']
     lname = user_fb['last_name']
+    print(user_fb)
     cur.execute("insert into users (sender_id, created_at, last_seen, first_name, last_name, last_message_ask, last_message_answer, accept_disclaimer) values(?, ?, ?, ?, ?, ?, ?, ?);",(str(sender_id), str(timestamp), "1970-01-01 00:00:00", fname, lname, "None","None","No",))
     con.commit() 
     
