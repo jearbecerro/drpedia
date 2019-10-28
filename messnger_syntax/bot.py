@@ -310,6 +310,7 @@ class Bot:
             print(r.text)
             return
         user = json.loads(r.content)
+        print(user)
         return user
         '''  
         params = {}
