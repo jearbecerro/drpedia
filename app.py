@@ -418,8 +418,13 @@ def send_choose_concern(sender_id):
 
 def first_name(sender_id):
     user_info = bot.get_user_info(sender_id)
-    name = user_info['first_name']
-    return name
+    if user_info is not None: 
+        fname = user_fb['first_name']
+        #lname = user_fb['last_name']
+        return fname
+    '''user_fb['last_name']
+    name = user_info['first_name']'''
+    return ''
 
 def init_bot():
     #Greetings 
