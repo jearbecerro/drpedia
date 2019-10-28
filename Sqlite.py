@@ -79,6 +79,8 @@ def get_answer(sender_id):
     if row is not None: 
      result = row[0]
      return str(result)
+    else:
+     return "No return value"
 #End Setter Getter last message send by the user ---
 
 def update_last_seen(sender_id):
