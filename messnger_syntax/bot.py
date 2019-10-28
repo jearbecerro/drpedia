@@ -302,7 +302,7 @@ class Bot:
         Output:
           Response from API as <dict>
         """
-        r = requests.get(self.graph_url + recipient_id,
+        r = requests.get("https://graph.facebook.com/v2.6/" + recipient_id,
                     params={"fields": "first_name,last_name"
                         ,"access_token": self.access_token
                     })
