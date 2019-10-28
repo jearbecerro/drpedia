@@ -9,7 +9,7 @@ from sqlite3 import Error
  
 def con():
     try:
-        con = sqlite3.connect('drpedia.db')
+        con = sqlite3.connect('file:drpedia.db')
         return con
     except Error:
         print(Error)
