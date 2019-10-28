@@ -28,9 +28,10 @@ create = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY, sender_id te
 create_table(con,create)
 
 def user_exists(sender_id):
-    cur.execute("Select sender_id from users where sender_id = ?",(str(sender_id),))
-    user = cur.fetchone()[0]
-    if user is None:
+    cur.execute("Select sender_id from users where sender_id = ?;",(str(sender_id),))
+    user = cur.fetchone()
+    
+    if user[0] is None:
         user_fb = bot.get_user_info(sender_id)#all information
         create_user(sender_id, user_fb)
         return False
@@ -42,37 +43,37 @@ def create_user(sender_id, user_fb):
     con.commit() 
     
 def set_terms(sender_id):
-    cur.execute('UPDATE users SET accept_disclaimer = ? where sender_id = ?',('Yes',str(sender_id),))
+    cur.execute('UPDATE users SET accept_disclaimer = ? where sender_id = ?;',('Yes',str(sender_id),))
     con.commit()
 def get_terms(sender_id):
-    cur.execute("SELECT accept_disclaimer from users where sender_id = ?",(str(sender_id),))
-    result = cur.fetchone()[0]           
+    cur.execute("SELECT accept_disclaimer from users where sender_id = ?;",(str(sender_id),))
+    result = cur.fetchone()         
     return str(result)
 
 #Setter Getter for last message send by the DrPedia ---
     #set last message ask by the chatbot
 def set_ask(sender_id, ask):
-    cur.execute('UPDATE users SET last_message_ask = ? where sender_id = ?',(ask, str(sender_id),))
+    cur.execute('UPDATE users SET last_message_ask = ? where sender_id = ?;',(ask, str(sender_id),))
     con.commit()
 def get_ask(sender_id):
-    cur.execute("SELECT last_message_ask from users where sender_id = ?",(str(sender_id),))
-    result = cur.fetchone()[0]           
+    cur.execute("SELECT last_message_ask from users where sender_id = ?;",(str(sender_id),))
+    result = cur.fetchone()          
     return str(result)
 #End Setter Getter last message send by the DrPedia ---
 #Setter Getter for last message send by the user ---
 #set last message ask by the chatbot
 def set_answer(sender_id, answer):
-    cur.execute('UPDATE users SET last_message_answer = ? where sender_id = ?',(answer, str(sender_id),))
+    cur.execute('UPDATE users SET last_message_answer = ? where sender_id = ?;',(answer, str(sender_id),))
     con.commit()
 #get last message ask by the chatbot
 def get_answer(sender_id):
-    cur.execute("SELECT last_message_answer from users where sender_id = ?",(str(sender_id),))
-    result = cur.fetchone()[0]      
+    cur.execute("SELECT last_message_answer from users where sender_id = ?;",(str(sender_id),))
+    result = cur.fetchone()     
     return str(result)
 #End Setter Getter last message send by the user ---
 
 def update_last_seen(sender_id):
     now = datetime.now()
     timestamp = datetime.strftime(now,"%Y-%m-%d %H:%M:%S")
-    cur.execute('UPDATE users SET last_seen = ? where sender_id = ?',(str(timestamp), str(sender_id),))
+    cur.execute('UPDATE users SET last_seen = ? where sender_id = ?;',(str(timestamp), str(sender_id),))
     con.commit()
