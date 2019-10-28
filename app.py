@@ -13,8 +13,6 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
 
-create = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text, created_at text, accept_disclaimer text);"
-Sqlite.create_table(Sqlite.con,create)
 
 bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
@@ -115,9 +113,10 @@ def received_text(event):
                             }
                             ]
         bot.send_button_message(sender_id, 'Your not happy to meet me {} 😕?'.format(first_name(sender_id)), button) 
+        bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))
     else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
-        bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_answer(sender_id))
+        
         
         
 def greet_disclaimer(sender_id):
