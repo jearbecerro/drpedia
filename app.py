@@ -310,7 +310,6 @@ def received_postback(event):
     if payload=='start':
         greet = random.choice(GREETING_RESPONSES)  
         if not Sqlite.user_exists(sender_id): #if user_exists == false add user information
-            Sqlite.set_ask(sender_id, "pleased to meet me?")
             bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
@@ -323,6 +322,7 @@ def received_postback(event):
                             }
                             ]
             bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)    
+            Sqlite.set_ask(sender_id, "pleased to meet me?")
         else:
             if Sqlite.get_terms(sender_id) == "Yes":
                 bot.send_text_message(sender_id,"Welcome back!\nWhat seems you trouble today {} ?".format(first_name(sender_id)))
