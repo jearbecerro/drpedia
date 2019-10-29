@@ -179,7 +179,7 @@ def received_qr(event):
                         }
                         ]
         bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", button)
-        Sqlite.set_ask(users, sender_id, 'type mental')
+        Sqlite.set_ask(sender_id, 'type mental')
     if text=='no_proceed_mental':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
