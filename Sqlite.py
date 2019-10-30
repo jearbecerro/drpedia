@@ -9,7 +9,7 @@ from sqlite3 import Error
  
 def con():
     try:
-        con = sqlite3.connect('file:drpedia.db?branches=on')
+        con = sqlite3.connect(':memory:')#file:drpedia.db?branches=on
         return con
     except Error:
         print(Error)
