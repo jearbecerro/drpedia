@@ -18,8 +18,6 @@ cur = con.cursor()
 
 #Happen once after debugging
 def create_table(con, qry):
-    cur.execute("DROP TABLE IF EXISTS users ;")
-    con.commit()
     cur.execute(qry)
     con.commit()
     print("Created")
