@@ -5,6 +5,7 @@ from messnger_syntax.bot import Bot
 import os
 import pymongo
 from pymongo import MongoClient
+import Mongo#import Mongo.py
 import Sqlite #import Sqlite.py
 #Libraries to be import END
 
@@ -13,6 +14,10 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
 
+cluster = MongoClient(MONGO_TOKEN)
+db = cluster["DrPedia"]
+users = db["users"]
+patient = db["Patient"]
 
 bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
@@ -104,7 +109,7 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}
     #sender_id) == 'pleased to meet me?' and 
-    elif Sqlite.get_answer(sender_id) =='None':
+    elif Mongo.get_answer(users,sender_id) == 'None':# Sqlite.get_answer(sender_id) == 'None'
         button = [
                             {
                             "type": "postback",
@@ -113,9 +118,10 @@ def received_text(event):
                             }
                             ]
         bot.send_button_message(sender_id, 'Your not happy to meet me {} 😕?'.format(first_name(sender_id)), button) 
-        bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))
+        #bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))
     else:
-        bot.send_text_message(sender_id,'Humans are so complicated Im not train to understand things well. Sorry :(')
+        
+        bot.send_text_message(sender_id,'Humans are so complicated {} Im not trained to understand things well. Sorry :('.format(first_name(sender_id)))
         
         
         
@@ -145,16 +151,21 @@ def received_qr(event):
         listofconcern = 'Dengue,\nAcute Gastroenteritis,\nUrinary Tract Infection,\nAcute Tonsilitis,\nFLU\nand minor symptoms simply like soar throat, back pain, cold and so on.'
         concern= 'physical health'
         after_accept_terms(sender_id,concern,listofconcern,'yes_proceed_physical','no_proceed_physical')
+        #Sqlite.set_answer(sender_id,'physical')
+        Mongo.set_answer(users,sender_id,'physical')
     #2.2    
     if text=='mental':
         listofconcern = 'Attention Deficit Hyperactivity Disorder (ADHD)🤪,\nOppositional Defiant Disorder (ODD)😕,\nAutism Spectrum Disorder (ASD)😔,\nAnxiety Disorder😰,\nDepression😞,\nBipolar Disorder🤗😠,\nLearning Disorders🤔,\nConduct Disorders🤬'
         concern= 'mental health'
         after_accept_terms(sender_id,concern,listofconcern,"yes_proceed_mental","no_proceed_mental")
+        #Sqlite.set_answer(sender_id,'mental')
+        Mongo.set_answer(users,sender_id,'mental')
     #2.2.1
     if text =="yes_agree":
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
-        Sqlite.set_terms(sender_id)
+        '''Sqlite.set_terms(sender_id)
+        Sqlite.set_ask(sender_id,'What is your concern?')'''
     #2.2.2    
     if text=='see_details':
         bot.send_text_message(sender_id,"Sure here it is..")
@@ -179,7 +190,7 @@ def received_qr(event):
                         }
                         ]
         bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", button)
-        Sqlite.set_ask(sender_id, 'type mental')
+        '''Sqlite.set_ask(sender_id, 'type mental')'''
     if text=='no_proceed_mental':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
@@ -210,7 +221,8 @@ def received_postback(event):
     if payload=='ready_accept':
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
-        Sqlite.set_terms(sender_id)
+        '''Sqlite.set_terms(sender_id)
+        Sqlite.set_ask(sender_id,'What is your concern?')'''
         
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
@@ -309,7 +321,7 @@ def received_postback(event):
     #Get started button tapped{
     if payload=='start':
         greet = random.choice(GREETING_RESPONSES)  
-        if not Sqlite.user_exists(sender_id): #if user_exists == false add user information
+        if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
             bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
@@ -322,24 +334,25 @@ def received_postback(event):
                             }
                             ]
             bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)    
-            Sqlite.set_ask(sender_id, "pleased to meet me?")
+            #Sqlite.set_ask(sender_id, "pleased to meet me?")
+            Mongo.set_ask(users,sender_id, "pleased to meet me?")
         else:
-            if Sqlite.get_terms(sender_id) == "Yes":
+            if Mongo.get_terms(users,sender_id) == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
                 bot.send_text_message(sender_id,"Welcome back!\nWhat seems you trouble today {} ?".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
-            elif Sqlite.get_terms(sender_id) == "No":
+            elif Mongo.get_terms(users,sender_id) == "No":#Sqlite.get_terms(sender_id) == "No"
                 greet_disclaimer(sender_id)
             
     if payload=='pmyou':
-        Sqlite.set_answer(sender_id,'glad to meet you')
+        Mongo.set_answer(users,sender_id,'glad to meet you')#Sqlite.set_answer(sender_id,'glad to meet you')
         bot.send_text_message(sender_id,"I'm glad to meet you too {}. 😉".format(first_name(sender_id)))  
         greet_disclaimer(sender_id)
     #Persistent Menu Buttons        
     if payload=='start_over':
-        if Sqlite.get_terms(sender_id) == "Yes":
+        if Mongo.get_terms(users,sender_id) == "Yes":# Sqlite.get_terms(sender_id) == "Yes":
             bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
             send_choose_concern(sender_id)
-        elif Sqlite.get_terms(sender_id) == "No":
+        elif Mongo.get_terms(users,sender_id) == "No":#Sqlite.get_terms(sender_id) == "No"
             greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
@@ -352,7 +365,7 @@ def after_accept_terms(sender_id,concern,listofconcern,yes_PorM,no_PorM):
     
     bot.send_text_message(sender_id,'To give you the most precise guidance, these are the following {} concerns I can provide:'.format(concern))
     bot.send_text_message(sender_id,listofconcern)
-    bot.send_text_message(sender_id,"If your suspected {} is not in the list, Im sorry 🙁 I'm not trained to cater other {} concerns.".format(concern,concern))
+    bot.send_text_message(sender_id,"If your suspected {} problem is not in the list, Im sorry {} 🙁 I'm not trained to cater other {} concerns.".format(concern,first_name(sender_id),concern))
     quick_replies = {
                             "content_type":"text",
                             "title":"👌Yes",
