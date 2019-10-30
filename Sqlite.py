@@ -26,12 +26,21 @@ def create_table(con, qry):
                 
 create = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY, sender_id text, last_seen text, first_name text, last_name text, last_message_ask text, last_message_answer text, created_at text, accept_disclaimer text);"
 create_table(con,create)
+patient = "CREATE TABLE IF NOT EXISTS patient (id integer PRIMARY KEY, sender_id text, name text, age text, weight text, relation text);"
+create_table(con,patient)
 
+def create_patient(sender_id, name, age, weight, relation):
+    cur.execute("Select sender_id from patient where sender_id = ?;",(str(sender_id),))
+    patient = cur.fetchone()
+    if user is None:
+        cur.execute("insert into patient (sender_id, name, age, weight, relation) values(?, ?, ?, ?, ?);",(str(sender_id),name,age,weight,relation,))
+        con.commit() 
+    
 def user_exists(sender_id):
     cur.execute("Select sender_id from users where sender_id = ?;",(str(sender_id),))
     user = cur.fetchone()
     if user is None:
-        user_fb = bot.get_user_info(sender_id)#all information
+        user_fb = bot.get_user_info(sender_id)#profile information of user
         create_user(sender_id, user_fb)
         return False
     return True
