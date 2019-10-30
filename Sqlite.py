@@ -15,7 +15,7 @@ def con():
         print(Error)
 con = con()
 cur = con.cursor()
-
+'''
 #Happen once after debugging
 def create_table(con, qry):
     cur.execute(qry)
@@ -26,7 +26,7 @@ create = "CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY, sender_id te
 create_table(con,create)
 patient = "CREATE TABLE IF NOT EXISTS patient (id integer PRIMARY KEY, sender_id text, name text, age text, weight text, relation text);"
 create_table(con,patient)
-
+'''
 def create_patient(sender_id, name, age, weight, relation):
     cur.execute("Select sender_id from patient where sender_id = ?;",(str(sender_id),))
     patient = cur.fetchone()
