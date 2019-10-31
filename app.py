@@ -322,7 +322,7 @@ def received_postback(event):
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
             print(Mongo.get_data_users(users, sender_id))
             a = Mongo.get_data_users(users, sender_id)
-            print(a['firstname'])
+            print(a['first_name'])
             bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
