@@ -116,11 +116,10 @@ def received_text(event):
                             "title": "Nice to meet you!",
                             "payload": "pmyou"
                             }
-                            ]'''
-        #bot.send_button_message(sender_id, 'Your not happy to meet me {} 😕?'.format(first_name(sender_id)), button) 
-        #bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))
+                            ]
+        bot.send_button_message(sender_id, 'Your not happy to meet me {} ?'.format(first_name(sender_id)), button) 
+        #bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))'''
     else:
-        
         bot.send_text_message(sender_id,'Humans are so complicated {} Im not trained to understand things well. Sorry :('.format(first_name(sender_id)))
         
         
