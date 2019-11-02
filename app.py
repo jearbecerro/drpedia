@@ -8,6 +8,20 @@ from pymongo import MongoClient
 import Mongo#import Mongo.py
 import Sqlite #import Sqlite.py
 #Libraries to be import END
+import json
+
+def writeToJSONFile(path, fileName, data):
+    filePathNameWExt = './' + path + '/' + fileName + '.json'
+    with open(filePathNameWExt, 'w') as fp:
+        json.dump(data, fp)
+        print('file created')
+
+
+# Example
+data = {}
+data['key'] = 'value'
+
+writeToJSONFile('./','file-name',data)
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
