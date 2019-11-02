@@ -21,6 +21,7 @@ patient = db["Patient"]
 
 fname = ''
 created_at = ''
+last_seen = ''
 fname = ''
 lname = ''
 ask = ''
