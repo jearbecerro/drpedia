@@ -127,8 +127,6 @@ def received_text(event):
         #bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))'''
     bot.send_text_message(sender_id,'Humans are so complicated {} Im not trained to understand things well. Sorry :('.format(first_name(sender_id)))
         
-        
-        
 def greet_disclaimer(sender_id):
     quick_replies = {
                             "content_type":"text",
@@ -374,10 +372,10 @@ def received_postback(event):
         greet_disclaimer(sender_id)
     #Persistent Menu Buttons        
     if payload=='start_over':
-        if Mongo.get_terms(users,sender_id) == "Yes":# Sqlite.get_terms(sender_id) == "Yes":
+        if accept_disclaimer == "Yes":# Sqlite.get_terms(sender_id) == "Yes":
             bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
             send_choose_concern(sender_id)
-        elif Mongo.get_terms(users,sender_id) == "No":#Sqlite.get_terms(sender_id) == "No"
+        elif accept_disclaimer == "No":#Sqlite.get_terms(sender_id) == "No"
             greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
