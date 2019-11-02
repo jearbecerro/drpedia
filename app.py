@@ -21,8 +21,8 @@ patient = db["Patient"]
 
 user_id = ''
 created_at = ''
-first_name = ''
-last_name = ''
+fname = ''
+lname = ''
 last_message_ask = ''
 last_message_answer = ''
 accept_disclaimer = ''
@@ -324,7 +324,7 @@ def received_postback(event):
     if payload=='start':
         user_data = Mongo.get_data_users(users, sender_id)
         if user_data != None:
-            global user_id, created_at, first_name, last_name, last_message_ask, last_message_answer, accept_disclaimer
+            global user_id, created_at, fname, lname, last_message_ask, last_message_answer, accept_disclaimer
             user_id = user_data['user_id']
             created_at = user_data['created_at']
             first_name = user_data['first_name']
