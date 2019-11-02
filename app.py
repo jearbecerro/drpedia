@@ -68,7 +68,8 @@ def receive_message():
                     asnwer = user_data['last_message_answer']
                     terms = user_data['accept_disclamer']
                 print(create_at+last_seen+lname)  
-                elif message['message'].get('text'):
+                
+                if message['message'].get('text'):
                     if message['message'].get('quick_reply'):
                         received_qr(message)  
                     else: #else if message is just a text
