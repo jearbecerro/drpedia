@@ -20,7 +20,12 @@ users = db["users"]
 patient = db["Patient"]
 
 fname = ''
-user_data = None
+created_at = ''
+fname = ''
+lname = ''
+ask = ''
+answer = ''
+terms = ''
 
 bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
@@ -51,7 +56,18 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
-                if message['message'].get('text'):
+                global created_at, last_seen, fname, lname, ask, answer, terms
+                user_data = Mongo.get_data_users(users, sender_id)
+                if user_data != None:
+                    create_at = user_data['created_at']
+                    last_seen = last_seen['last_seen']
+                    fname = user_data['first_name']
+                    lname = user_data['last_name']
+                    ask = user_data['last_message_ask']
+                    asnwer = user_data['last_message_answer']
+                    terms = user_data['accept_disclamer']
+                  
+                elif message['message'].get('text'):
                     if message['message'].get('quick_reply'):
                         received_qr(message)  
                     else: #else if message is just a text
@@ -110,7 +126,7 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}
     #sender_id) == 'pleased to meet me?' and 
-    elif user_data['last_message_answer'] == 'None':# Sqlite.get_answer(sender_id) == 'None'
+    elif answer == 'None':# Sqlite.get_answer(sender_id) == 'None'
         button = [
                             {
                             "type": "postback",
@@ -320,10 +336,7 @@ def received_postback(event):
         greet = random.choice(GREETING_RESPONSES)
         
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
-            global user_data, fname
-            user_data = Mongo.get_data_users(users, sender_id)
-            fname = user_data['first_name']
-            print(user_data['accept_disclaimer'])
+            print(terms)
             bot.send_text_message(sender_id, "Hi {} I'm DrPedia, your own pediatric companion.".format(fname))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
@@ -339,11 +352,11 @@ def received_postback(event):
             #Sqlite.set_ask(sender_id, "pleased to meet me?")
             Mongo.set_ask(users,sender_id, "pleased to meet me?")
         else:
-            if user_data['accept_disclaimer'] == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
+            if terms == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
                 bot.send_text_message(sender_id,"{} {} welcome back!🤗".format(greet,first_name(sender_id)))
                 bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
-            elif user_data['accept_disclaimer'] == "No":#Sqlite.get_terms(sender_id) == "No"
+            elif terms == "No":#Sqlite.get_terms(sender_id) == "No"
                 greet_disclaimer(sender_id)
             
     if payload=='pmyou':
@@ -352,10 +365,10 @@ def received_postback(event):
         greet_disclaimer(sender_id)
     #Persistent Menu Buttons        
     if payload=='start_over':
-        if user_data['accept_disclaimer'] == "Yes":# Sqlite.get_terms(sender_id) == "Yes":
+        if terms == "Yes":# Sqlite.get_terms(sender_id) == "Yes":
             bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
             send_choose_concern(sender_id)
-        elif user_data['accept_disclaimer'] == "No":#Sqlite.get_terms(sender_id) == "No"
+        elif terms == "No":#Sqlite.get_terms(sender_id) == "No"
             greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
