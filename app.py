@@ -324,6 +324,16 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
+        user_data = Mongo.get_data_users(users, sender_id)
+        if user_data != None:
+            user_id = user_data['user_id']
+            created_at = user_data['created_at']
+            first_name = user_data['first_name']
+            last_name = user_data['last_name']
+            last_message_ask = user_data['last_message_ask']
+            last_message_answer = user_data['last_message_answer']
+            accept_disclaimer = user_data['accept_disclaimer']
+            
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
             
             user_data = Mongo.get_data_users(users, sender_id)
@@ -351,11 +361,11 @@ def received_postback(event):
             #Sqlite.set_ask(sender_id, "pleased to meet me?")
             Mongo.set_ask(users,sender_id, "pleased to meet me?")
         else:
-            if Mongo.get_terms(users,sender_id) == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
+            if accept_disclaimer == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
                 bot.send_text_message(sender_id,"{} {} welcome back!🤗".format(greet,first_name(sender_id)))
                 bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
-            elif Mongo.get_terms(users,sender_id) == "No":#Sqlite.get_terms(sender_id) == "No"
+            elif accept_disclaimer == "No":#Sqlite.get_terms(sender_id) == "No"
                 greet_disclaimer(sender_id)
             
     if payload=='pmyou':
