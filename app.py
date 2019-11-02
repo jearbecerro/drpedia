@@ -108,7 +108,7 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}
     #sender_id) == 'pleased to meet me?' and 
-    elif get_answer(users, sender_id) == 'None':# Sqlite.get_answer(sender_id) == 'None'
+    elif Mongo.get_answer(users, sender_id) == 'None':# Sqlite.get_answer(sender_id) == 'None'
         button = [
                             {
                             "type": "postback",
