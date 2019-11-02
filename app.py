@@ -334,8 +334,8 @@ def received_postback(event):
             last_message_answer = user_data['last_message_answer']
             accept_disclaimer = user_data['accept_disclaimer']
             print(user_id + '\n' + created_at + '\n' +first_name+ '\n' +last_name + '\n' +last_message_ask + '\n' + last_message_answer)
-            
-            bot.send_text_message(sender_id, "Hi {}, I'm DrPedia your own pediatric companion.".format(first_name(sender_id)))
+            "foo %s bar %s coffee"%("blah","asdf")
+            bot.send_text_message(sender_id, "Hi %s, I'm DrPedia your own pediatric companion."%(first_name(sender_id)))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
             #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
