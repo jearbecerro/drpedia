@@ -332,7 +332,7 @@ def received_postback(event):
             last_message_answer = user_data['last_message_answer']
             accept_disclaimer = user_data['accept_disclaimer']
             
-        if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
+        elif not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
             '''
             user_data = Mongo.get_data_users(users, sender_id)
             user_id = user_data['user_id']
