@@ -61,7 +61,7 @@ def receive_message():
                 user_data = Mongo.get_data_users(users, sender_id)
                 if user_data != None:
                     create_at = user_data['created_at']
-                    last_seen = last_seen['last_seen']
+                    last_seen = user_data['last_seen']
                     fname = user_data['first_name']
                     lname = user_data['last_name']
                     ask = user_data['last_message_ask']
@@ -338,7 +338,7 @@ def received_postback(event):
         
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
             print(terms)
-            bot.send_text_message(sender_id, "Hi {} I'm DrPedia, your own pediatric companion.".format(fname))
+            bot.send_text_message(sender_id, "Hi I'm DrPedia, your own pediatric companion.")
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
             #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
