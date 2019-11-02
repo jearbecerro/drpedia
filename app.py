@@ -139,8 +139,9 @@ def received_text(event):
                             ]
         bot.send_button_message(sender_id, 'Your not happy to meet me {}?'.format(fname), button) 
         #bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))'''
-    bot.send_text_message(sender_id,'Humans are so complicated {} Im not trained to understand things well. Sorry :('.format(first_name(sender_id)))
-    bot.send_text_message(sender_id,asnwer+ask)
+    else:
+        bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')
+        bot.send_text_message(sender_id,asnwer+ask)
                            
 def greet_disclaimer(sender_id):
     quick_replies = {
