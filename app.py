@@ -322,8 +322,8 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
-        user_data = Mongo.get_data_users(users, sender_id)
-        if user_data != None:
+        elif not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
+            user_data = Mongo.get_data_users(users, sender_id)
             global user_id, created_at, fname, lname, last_message_ask, last_message_answer, accept_disclaimer
             user_id = user_data['user_id']
             created_at = user_data['created_at']
@@ -332,17 +332,6 @@ def received_postback(event):
             last_message_ask = user_data['last_message_ask']
             last_message_answer = user_data['last_message_answer']
             accept_disclaimer = user_data['accept_disclaimer']
-            
-        elif not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
-            '''
-            user_data = Mongo.get_data_users(users, sender_id)
-            user_id = user_data['user_id']
-            created_at = user_data['created_at']
-            first_name = user_data['first_name']
-            last_name = user_data['last_name']
-            last_message_ask = user_data['last_message_ask']
-            last_message_answer = user_data['last_message_answer']
-            accept_disclaimer = user_data['accept_disclaimer']'''
             print(user_id + '\n' + created_at + '\n' +first_name+ '\n' +last_name + '\n' +last_message_ask + '\n' + last_message_answer)
             
             bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(str(greet),first_name(sender_id)))
