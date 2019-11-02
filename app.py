@@ -66,7 +66,7 @@ def receive_message():
                     lname = user_data['last_name']
                     ask = user_data['last_message_ask']
                     asnwer = user_data['last_message_answer']
-                    terms = user_data['accept_disclamer']
+                    terms = user_data['accept_disclaimer']
                 print(create_at+last_seen+lname)  
                 
                 if message['message'].get('text'):
