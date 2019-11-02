@@ -69,7 +69,7 @@ def receive_message():
                     terms = user_data['accept_disclaimer']
                     print(created_at+last_seen+lname)
                 
-                if message['message'].get('text'):
+                elif message['message'].get('text'):
                     if message['message'].get('quick_reply'):
                         received_qr(message)  
                     else: #else if message is just a text
