@@ -333,7 +333,7 @@ def received_postback(event):
             accept_disclaimer = user_data['accept_disclaimer']
             
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
-            
+            '''
             user_data = Mongo.get_data_users(users, sender_id)
             user_id = user_data['user_id']
             created_at = user_data['created_at']
@@ -341,10 +341,10 @@ def received_postback(event):
             last_name = user_data['last_name']
             last_message_ask = user_data['last_message_ask']
             last_message_answer = user_data['last_message_answer']
-            accept_disclaimer = user_data['accept_disclaimer']
+            accept_disclaimer = user_data['accept_disclaimer']'''
             print(user_id + '\n' + created_at + '\n' +first_name+ '\n' +last_name + '\n' +last_message_ask + '\n' + last_message_answer)
             
-            bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
+            bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(str(greet),first_name(sender_id)))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
             #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
