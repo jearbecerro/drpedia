@@ -4,11 +4,26 @@ from messnger_syntax.bot import Bot
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 bot = Bot (ACCESS_TOKEN)
 
+
+def get_data_users(users, sender_id):
+    a = users.find_one({'user_id': sender_id})
+    if a != None:
+        return a
+    return None
+
+def set_terms(users, sender_id):
+    users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": "Yes"}})
+def set_ask(users, sender_id, ask):
+    users.update({"user_id": sender_id},{"$set":{"last_message_ask": ask}})
+    #get last message ask by the chatbot
+def set_answer(users, sender_id, answer):
+    users.update({"user_id": sender_id},{"$set":{"last_message_answer": answer}})
+    
 def find_user_id(users, user_object_id):
     # Convert from string to ObjectId:
     return users.find_one({'_id': ObjectId(user_object_id)})
 
-# Has to use user_id since user might not exist
+# Has to use user_id since user has not existed
 def user_exists(users, sender_id):
     user = users.find_one({'user_id': sender_id})
     if user is None:
@@ -17,19 +32,6 @@ def user_exists(users, sender_id):
         return False
     return True
 
-# Manual input
-def create_patient(patient, sender_id, name, age, weight, relation):
-    timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    patient_insert = {'user_id': sender_id, 
-                    'created_at': timestamp,
-                    'name': name,
-                    'age':age,
-                    'weight': weight,
-                    'relation': relation
-                    }
-    patient.insert(patient_insert)
-
-# Has to use user_id since user has not existed
 def create_user(users, sender_id, user_fb):
     timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
     user_insert = {'user_id': sender_id, 
@@ -42,41 +44,19 @@ def create_user(users, sender_id, user_fb):
                     'accept_disclaimer':'No'
                    }
     users.insert(user_insert)
- 
-def get_data_users(users, sender_id):
-    a = users.find_one({'user_id': sender_id})
-    
-    if a != None:
-        return a
-    return None
 
-def set_terms(users, sender_id):
-    users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": "Yes"}})
-def get_terms(users, sender_id):
-    a = users.find_one({'user_id': sender_id})
-    var = a["accept_disclaimer"]
-    return var
-#Setter Getter for last message send by the DrPedia ---
-    #set last message ask by the chatbot
-def set_ask(users, sender_id, ask):
-    users.update({"user_id": sender_id},{"$set":{"last_message_ask": ask}})
-    #get last message ask by the chatbot
-def get_ask(users, sender_id):
-    a = users.find_one({'user_id': sender_id})
-    var = a["last_message_ask"]
-    return var
-#End Setter Getter last message send by the DrPedia ---
 
-#Setter Getter for last message send by the user ---
-#set last message ask by the chatbot
-def set_answer(users, sender_id, answer):
-    users.update({"user_id": sender_id},{"$set":{"last_message_answer": answer}})
-#get last message ask by the chatbot
-def get_answer(users, sender_id):
-    a = users.find_one({'user_id': sender_id})
-    var = a["last_message_answer"]
-    return var
-#End Setter Getter last message send by the user ---
+# Manual input
+def create_patient(patient, sender_id, name, age, weight, relation):
+    timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+    patient_insert = {'user_id': sender_id, 
+                    'created_at': timestamp,
+                    'name': name,
+                    'age':age,
+                    'weight': weight,
+                    'relation': relation
+                    }
+    patient.insert(patient_insert)
 
 # Input: Facebook's sender_id
 def get_user_mongo(users, sender_id):
