@@ -19,17 +19,23 @@ db = cluster["DrPedia"]
 users = db["users"]
 patient = db["Patient"]
 
+user_id = ''
+created_at = ''
+first_name = ''
+last_name = ''
+last_message_ask = ''
+last_message_answer = ''
+accept_disclaimer = ''
+
 bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 
 GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
-remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
-age = ''
-physical_weight = 0
+greet = random.choice(GREETING_RESPONSES)  
 
+#to be deleted
+remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
 def get_remedies_adhd():
-    #remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
-    # return selected item to the user
     return random.choice(remedies_adhd)
 
 #We will receive messages that Facebook sends our bot at this endpoint 
@@ -109,7 +115,7 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}
     #sender_id) == 'pleased to meet me?' and 
-    '''elif Mongo.get_answer(users,sender_id) == 'None':# Sqlite.get_answer(sender_id) == 'None'
+    elif last_message_answer == 'None':# Sqlite.get_answer(sender_id) == 'None'
         button = [
                             {
                             "type": "postback",
@@ -318,11 +324,18 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
-        greet = random.choice(GREETING_RESPONSES)  
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
-            print(Mongo.get_data_users(users, sender_id))
-            a = Mongo.get_data_users(users, sender_id)
-            print(a['first_name'])
+            
+            user_data = Mongo.get_data_users(users, sender_id)
+            user_id = user_data['user_id']
+            created_at = user_data['created_at']
+            first_name = user_data['first_name']
+            last_name = user_data['last_name']
+            last_message_ask = user_data['last_message_ask']
+            last_message_answer = user_data['last_message_answer']
+            accept_disclaimer = user_data['accept_disclaimer']
+            print(user_id + '\n' + created_at + '\n' +first_name+ '\n' +last_name + '\n' +last_message_ask + '\n' + last_message_answer)
+            
             bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
@@ -339,7 +352,8 @@ def received_postback(event):
             Mongo.set_ask(users,sender_id, "pleased to meet me?")
         else:
             if Mongo.get_terms(users,sender_id) == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
-                bot.send_text_message(sender_id,"Welcome back!\nWhat seems you trouble today {} ?".format(first_name(sender_id)))
+                bot.send_text_message(sender_id,"{} {} welcome back!🤗".format(greet,first_name(sender_id))
+                bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
             elif Mongo.get_terms(users,sender_id) == "No":#Sqlite.get_terms(sender_id) == "No"
                 greet_disclaimer(sender_id)
