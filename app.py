@@ -31,7 +31,7 @@ bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 
 GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
-greet = random.choice(GREETING_RESPONSES)  
+  
 
 #to be deleted
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
@@ -322,6 +322,7 @@ def received_postback(event):
         
     #Get started button tapped{
     if payload=='start':
+        greet = random.choice(GREETING_RESPONSES)
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
             user_data = Mongo.get_data_users(users, sender_id)
             global user_id, created_at, fname, lname, last_message_ask, last_message_answer, accept_disclaimer
@@ -334,7 +335,7 @@ def received_postback(event):
             accept_disclaimer = user_data['accept_disclaimer']
             print(user_id + '\n' + created_at + '\n' +first_name+ '\n' +last_name + '\n' +last_message_ask + '\n' + last_message_answer)
             
-            bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(str(greet),first_name(sender_id)))
+            bot.send_text_message(sender_id, "{} {}😁, I'm DrPedia, your own pediatric companion.".format(greet,first_name(sender_id)))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
             #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
