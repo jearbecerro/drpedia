@@ -54,8 +54,8 @@ def set_terms(users, sender_id):
     users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": "Yes"}})
 def get_terms(users, sender_id):
     a = users.find_one({'user_id': sender_id})
-    return a["accept_disclaimer"]
-
+    var = a["accept_disclaimer"]
+    return var
 #Setter Getter for last message send by the DrPedia ---
     #set last message ask by the chatbot
 def set_ask(users, sender_id, ask):
@@ -63,7 +63,8 @@ def set_ask(users, sender_id, ask):
     #get last message ask by the chatbot
 def get_ask(users, sender_id):
     a = users.find_one({'user_id': sender_id})
-    return a["last_message_ask"]
+    var = a["last_message_ask"]
+    return var
 #End Setter Getter last message send by the DrPedia ---
 
 #Setter Getter for last message send by the user ---
@@ -73,7 +74,8 @@ def set_answer(users, sender_id, answer):
 #get last message ask by the chatbot
 def get_answer(users, sender_id):
     a = users.find_one({'user_id': sender_id})
-    return a["last_message_answer"]
+    var = a["last_message_answer"]
+    return var
 #End Setter Getter last message send by the user ---
 
 # Input: Facebook's sender_id
