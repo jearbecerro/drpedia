@@ -125,7 +125,7 @@ def received_text(event):
                             ]
         bot.send_button_message(sender_id, 'Your not happy to meet me {} ?'.format(first_name(sender_id)), button) 
         #bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))'''
-    bot.send_text_message(sender_id,'Humans are so complicated {} Im not trained to understand things well. Sorry :('.format(first_name(sender_id)))
+    #bot.send_text_message(sender_id,'Humans are so complicated {} Im not trained to understand things well. Sorry :('.format(first_name(sender_id)))
         
 def greet_disclaimer(sender_id):
     quick_replies = {
@@ -458,8 +458,6 @@ def first_name(sender_id):
         fname = user_info['first_name']
         #lname = user_info['last_name']
         return fname
-    '''user_fb['last_name']
-    name = user_info['first_name']'''
     return ''
 
 def init_bot():
