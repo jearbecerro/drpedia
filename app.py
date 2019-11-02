@@ -352,7 +352,7 @@ def received_postback(event):
             Mongo.set_ask(users,sender_id, "pleased to meet me?")
         else:
             if Mongo.get_terms(users,sender_id) == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
-                bot.send_text_message(sender_id,"{} {} welcome back!🤗".format(greet,first_name(sender_id))
+                bot.send_text_message(sender_id,"{} {} welcome back!🤗".format(greet,first_name(sender_id)))
                 bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
             elif Mongo.get_terms(users,sender_id) == "No":#Sqlite.get_terms(sender_id) == "No"
