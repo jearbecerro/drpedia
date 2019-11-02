@@ -139,8 +139,9 @@ def received_text(event):
                             ]
         bot.send_button_message(sender_id, 'Your not happy to meet me {}?'.format(fname), button) 
         #bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))'''
-    #bot.send_text_message(sender_id,'Humans are so complicated {} Im not trained to understand things well. Sorry :('.format(first_name(sender_id)))
-        
+    bot.send_text_message(sender_id,'Humans are so complicated {} Im not trained to understand things well. Sorry :('.format(first_name(sender_id)))
+    bot.send_text_message(sender_id,asnwer+ask)
+                           
 def greet_disclaimer(sender_id):
     quick_replies = {
                             "content_type":"text",
@@ -180,8 +181,7 @@ def received_qr(event):
     if text =="yes_agree":
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
-        '''Sqlite.set_terms(sender_id)
-        Sqlite.set_ask(sender_id,'What is your concern?')'''
+        Mongo.set_terms(users, sender_id)
     #2.2.2    
     if text=='see_details':
         bot.send_text_message(sender_id,"Sure here it is..")
@@ -237,8 +237,7 @@ def received_postback(event):
     if payload=='ready_accept':
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
-        '''Sqlite.set_terms(sender_id)
-        Sqlite.set_ask(sender_id,'What is your concern?')'''
+        Mongo.set_terms(users, sender_id)
         
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
