@@ -59,7 +59,7 @@ def receive_message():
                 sender_id = message['sender']['id']
                 global created_at, last_seen, fname, lname, ask, answer, terms
                 user_data = Mongo.get_data_users(users, sender_id)
-                if user_data !=None
+                if user_data !=None:
                     created_at = user_data['created_at']
                     last_seen = user_data['last_seen']
                     fname = user_data['first_name']
