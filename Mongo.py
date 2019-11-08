@@ -13,14 +13,12 @@ def get_data_users(users, sender_id):
 
 def set_terms(users, sender_id):
     users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": "Yes"}})
-    users.close()
 def set_ask(users, sender_id, ask):
     users.update({"user_id": sender_id},{"$set":{"last_message_ask": ask}})
-    users.close()
+
     #get last message ask by the chatbot
 def set_answer(users, sender_id, answer):
     users.update({"user_id": sender_id},{"$set":{"last_message_answer": answer}})
-    users.close()
     
 def find_user_id(users, user_object_id):
     # Convert from string to ObjectId:
@@ -48,7 +46,7 @@ def create_user(users, sender_id, user_fb):
                     'accept_disclaimer':'No'
                    }
     users.insert(user_insert)
-    users.close()
+
 
 # Manual input
 def create_patient(patient, sender_id, name, age, weight, relation):
@@ -61,7 +59,7 @@ def create_patient(patient, sender_id, name, age, weight, relation):
                     'relation': relation
                     }
     patient.insert(patient_insert)
-    patient.close()
+
 
 # Input: Facebook's sender_id
 def get_user_mongo(users, sender_id):
@@ -71,7 +69,7 @@ def update_last_seen(users, sender_id):
     now = datetime.now()
     timestamp = datetime.strftime(now,"%Y-%m-%d %H:%M:%S")
     users.update({"user_id": sender_id},{"$set":{"last_seen": timestamp}})
-    users.close()
+
 
 
 
