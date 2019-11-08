@@ -143,16 +143,6 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     #end Mental Health}
     #sender_id) == 'pleased to meet me?' and 
-    elif answer == 'None':# Sqlite.get_answer(sender_id) == 'None'
-        button = [
-                            {
-                            "type": "postback",
-                            "title": "Nice to meet you!",
-                            "payload": "pmyou"
-                            }
-                            ]
-        bot.send_button_message(sender_id, 'Your not happy to meet me {}?'.format(fname), button) 
-        #bot.send_text_message(sender_id, ' ASDA' +Sqlite.get_ask(sender_id))'''
     else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')
                            
