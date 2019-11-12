@@ -83,7 +83,7 @@ def receive_message():
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
                 global created_at, last_seen, fname, lname, ask, answer, terms
-                '''user_data = Mongo.get_data_users(users, sender_id)
+                user_data = Mongo.get_data_users(users, sender_id)
                 if user_data !=None:
                     created_at = user_data['created_at']
                     last_seen = user_data['last_seen']
@@ -92,9 +92,9 @@ def receive_message():
                     ask = user_data['last_message_ask']
                     asnwer = user_data['last_message_answer']
                     terms = user_data['accept_disclaimer']
-                    print(created_at+last_seen+lname)'''
+                    print(created_at+last_seen+lname)
                 
-                elif message['message'].get('text'):
+                if message['message'].get('text'):
                     if message['message'].get('quick_reply'):
                         received_qr(message)  
                     else: #else if message is just a text
