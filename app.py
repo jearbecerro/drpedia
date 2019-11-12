@@ -93,6 +93,7 @@ def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
+    global created_at, last_seen, fname, lname, ask, answer, terms
     user_data = Mongo.get_data_users(users, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
@@ -100,7 +101,7 @@ def received_text(event):
         fname = user_data['first_name']
         lname = user_data['last_name']
         ask = user_data['last_message_ask']
-        asnwer = user_data['last_message_answer']
+        answer = user_data['last_message_answer']
         terms = user_data['accept_disclaimer']
     '''
     if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
@@ -172,6 +173,7 @@ def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
+    global created_at, last_seen, fname, lname, ask, answer, terms
     user_data = Mongo.get_data_users(users, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
@@ -179,7 +181,7 @@ def received_qr(event):
         fname = user_data['first_name']
         lname = user_data['last_name']
         ask = user_data['last_message_ask']
-        asnwer = user_data['last_message_answer']
+        answer = user_data['last_message_answer']
         terms = user_data['accept_disclaimer'] 
     #2.1
     if text=='physical':
@@ -250,6 +252,7 @@ def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
+    global created_at, last_seen, fname, lname, ask, answer, terms
     user_data = Mongo.get_data_users(users, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
@@ -257,7 +260,7 @@ def received_postback(event):
         fname = user_data['first_name']
         lname = user_data['last_name']
         ask = user_data['last_message_ask']
-        asnwer = user_data['last_message_answer']
+        answer = user_data['last_message_answer']
         terms = user_data['accept_disclaimer'] 
     #2.2.1.1{
     
