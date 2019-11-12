@@ -141,15 +141,6 @@ def received_text(event):
     if text.lower() in ("conduct disorders", "conduct","cd"):
         choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
-    if text and ask == 'pleased to meet me?' and answer =='None':
-        button = [
-                            {
-                            "type": "postback",
-                            "title": "Nice to meet you!",
-                            "payload": "pmyou"
-                            }
-                            ]
-        bot.send_button_message(sender_id, 'Are you not pleased to meet me {}😕?'.format(first_name(sender_id)), button)    
     
     bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')
                            
