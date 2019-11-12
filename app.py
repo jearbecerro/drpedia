@@ -10,8 +10,8 @@ import Sqlite #import Sqlite.py
 #Libraries to be import END
 import json
 
-def writeToJSONFile(path, fileName, data):
-    filePathNameWExt = path + '/' + fileName + '.json'
+def writeToJSONFile(fileName, data):
+    filePathNameWExt = './' + fileName + '.json'
     with open(filePathNameWExt, 'w') as fp:
         json.dump(data, fp)
         print('file created')
@@ -21,7 +21,7 @@ def writeToJSONFile(path, fileName, data):
 data = {}
 data['key'] = 'value'
 
-writeToJSONFile('./','file-name',data)
+writeToJSONFile('file-name',data)
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
