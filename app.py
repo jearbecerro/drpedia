@@ -94,6 +94,7 @@ def received_text(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     global created_at, last_seen, fname, lname, ask, answer, terms
+    user_data = Mongo.get_data_users(users, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
         last_seen = user_data['last_seen']
