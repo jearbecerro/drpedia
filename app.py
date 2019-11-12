@@ -28,6 +28,7 @@ def create_user():
     test = json.dumps(data)
     print(test)
     
+        
 create_user()
 
 
@@ -193,9 +194,10 @@ def received_qr(event):
         Mongo.set_answer(users,sender_id,'mental')
     #2.2.1
     if text =="yes_agree":
+        Mongo.set_terms(users, sender_id,'Yes')
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
-        Mongo.set_terms(users, sender_id)
+        
     #2.2.2    
     if text=='see_details':
         bot.send_text_message(sender_id,"Sure here it is..")
@@ -249,9 +251,10 @@ def received_postback(event):
     #2.2.1.1{
     
     if payload=='ready_accept':
+        Mongo.set_terms(users, sender_id,'Yes')
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
-        Mongo.set_terms(users, sender_id)
+        
         
     if payload=='check_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
@@ -352,7 +355,7 @@ def received_postback(event):
         greet = random.choice(GREETING_RESPONSES)
         
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
-            print(terms)
+            Mongo.set_ask(users,sender_id, "pleased to meet me?")
             bot.send_text_message(sender_id, "Hi I'm DrPedia, your own pediatric companion.")
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
@@ -366,14 +369,14 @@ def received_postback(event):
                             ]
             bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)    
             #Sqlite.set_ask(sender_id, "pleased to meet me?")
-            Mongo.set_ask(users,sender_id, "pleased to meet me?")
+            
         else:
-            if terms == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
+            '''if terms == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
                 bot.send_text_message(sender_id,"{} {} welcome back!🤗".format(greet,first_name(sender_id)))
                 bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
-            elif terms == "No":#Sqlite.get_terms(sender_id) == "No"
-                greet_disclaimer(sender_id)
+            elif terms == "No":#Sqlite.get_terms(sender_id) == "No"'''
+            greet_disclaimer(sender_id)
             
     if payload=='pmyou':
         Mongo.set_answer(users,sender_id,'glad to meet you')#Sqlite.set_answer(sender_id,'glad to meet you')
