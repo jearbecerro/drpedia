@@ -10,6 +10,11 @@ import Sqlite #import Sqlite.py
 #Libraries to be import END
 import json
 def create_user():
+    with open('users.json') as file:
+        data = json.load(file)
+
+    for users in data['users']:
+        print(users)
     users = {"user_id":"123456",
          "created_at":"2019-11-08 17:37:00",
          "last_seen":"1970-01-01 00:00:00",
@@ -19,15 +24,12 @@ def create_user():
          "last_message_answer":"glad to meet you",
          "accept_disclaimer": "No"
         }
-    with open('users.json', 'a') as file:
-      json.dump(users, file)
+    data['users'].append((users))
+    test = json.dumps(data)
+    print(test)
     
 create_user()
-with open('users.json') as file:
-    data = json.load(file)
 
-for users in data['users']:
-    print(users)
 
 
 
