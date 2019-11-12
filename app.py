@@ -9,12 +9,26 @@ import Mongo#import Mongo.py
 import Sqlite #import Sqlite.py
 #Libraries to be import END
 import json
-with open('intents.json') as file:
+
+create_user()
+with open('users.json') as file:
     data = json.load(file)
 
-for intent in data['intents']:
-    for pattern in intent['patterns']:
-        print(pattern)
+for users in data['users']:
+    print(users)
+
+def create_user():
+    users = {"user_id":"123456",
+         "created_at":"2019-11-08 17:37:00",
+         "last_seen":"1970-01-01 00:00:00",
+         "first_name":"Jaw",
+         "last_name":"Becerro",
+         "last_message_ask":"pleased to meet me?",
+         "last_message_answer":"glad to meet you",
+         "accept_disclaimer": "No"
+        }
+    with open('users.json', 'a') as file:
+      json.dump(users, file)
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
