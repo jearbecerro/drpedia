@@ -29,7 +29,7 @@ def create_user():
     print(test)
     
         
-create_user()
+#create_user()
 
 
 
@@ -44,14 +44,6 @@ db = cluster["DrPedia"]
 users = db["users"]
 patient = db["Patient"]
 
-fname = ''
-created_at = ''
-last_seen = ''
-fname = ''
-lname = ''
-ask = ''
-answer = ''
-terms = ''
 
 bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
@@ -82,18 +74,6 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
-                global created_at, last_seen, fname, lname, ask, answer, terms
-                user_data = Mongo.get_data_users(users, sender_id)
-                if user_data !=None:
-                    created_at = user_data['created_at']
-                    last_seen = user_data['last_seen']
-                    fname = user_data['first_name']
-                    lname = user_data['last_name']
-                    ask = user_data['last_message_ask']
-                    asnwer = user_data['last_message_answer']
-                    terms = user_data['accept_disclaimer']
-                    print(created_at+last_seen+lname)
-                
                 if message['message'].get('text'):
                     if message['message'].get('quick_reply'):
                         received_qr(message)  
@@ -113,7 +93,15 @@ def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
-    
+    user_data = Mongo.get_data_users(users, sender_id)
+    if user_data !=None:
+        created_at = user_data['created_at']
+        last_seen = user_data['last_seen']
+        fname = user_data['first_name']
+        lname = user_data['last_name']
+        ask = user_data['last_message_ask']
+        asnwer = user_data['last_message_answer']
+        terms = user_data['accept_disclaimer']
     '''
     if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
         greet = random.choice(GREETING_RESPONSES)
@@ -177,7 +165,14 @@ def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
-
+    if user_data !=None:
+        created_at = user_data['created_at']
+        last_seen = user_data['last_seen']
+        fname = user_data['first_name']
+        lname = user_data['last_name']
+        ask = user_data['last_message_ask']
+        asnwer = user_data['last_message_answer']
+        terms = user_data['accept_disclaimer'] 
     #2.1
     if text=='physical':
         listofconcern = 'Dengue,\nAcute Gastroenteritis,\nUrinary Tract Infection,\nAcute Tonsilitis,\nFLU\nand minor symptoms simply like soar throat, back pain, cold and so on.'
@@ -247,7 +242,14 @@ def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
-
+    if user_data !=None:
+        created_at = user_data['created_at']
+        last_seen = user_data['last_seen']
+        fname = user_data['first_name']
+        lname = user_data['last_name']
+        ask = user_data['last_message_ask']
+        asnwer = user_data['last_message_answer']
+        terms = user_data['accept_disclaimer'] 
     #2.2.1.1{
     
     if payload=='ready_accept':
