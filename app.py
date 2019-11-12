@@ -9,28 +9,12 @@ import Mongo#import Mongo.py
 import Sqlite #import Sqlite.py
 #Libraries to be import END
 import json
+with open('intents.json') as file:
+    data = json.load(file)
 
-data = {}
-data['people'] = []
-data['people'].append({
-    'name': 'Scott',
-    'website': 'stackabuse.com',
-    'from': 'Nebraska'
-})
-data['people'].append({
-    'name': 'Larry',
-    'website': 'google.com',
-    'from': 'Michigan'
-})
-data['people'].append({
-    'name': 'Tim',
-    'website': 'apple.com',
-    'from': 'Alabama'
-})
-
-with open('.//data.json', 'w') as outfile:
-    json.dump(data, outfile)
-    print('file created')
+for intent in data['intents']:
+    for pattern in intent['patterns']:
+        print(pattern)
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
