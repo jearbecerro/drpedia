@@ -28,8 +28,9 @@ data['people'].append({
     'from': 'Alabama'
 })
 
-with open('./data.json', 'w') as outfile:
+with open('.//data.json', 'w') as outfile:
     json.dump(data, outfile)
+    print('file created')
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
