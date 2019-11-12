@@ -11,12 +11,10 @@ def get_data_users(users, sender_id):
         return a
     return None
 
-def set_terms(users, sender_id):
-    users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": "Yes"}})
+def set_terms(users, sender_id,yes):
+    users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": yes}})
 def set_ask(users, sender_id, ask):
     users.update({"user_id": sender_id},{"$set":{"last_message_ask": ask}})
-
-    #get last message ask by the chatbot
 def set_answer(users, sender_id, answer):
     users.update({"user_id": sender_id},{"$set":{"last_message_answer": answer}})
     
