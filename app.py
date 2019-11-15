@@ -174,6 +174,13 @@ def received_qr(event):
         ask = user_data['last_message_ask']
         answer = user_data['last_message_answer']
         terms = user_data['accept_disclaimer'] 
+    
+    if text =='myself':
+        pass   
+    if text =='mychild':
+        pass  
+    if text =='someone':
+        pass
     #2.1
     if text=='physical':
         listofconcern = 'Dengue,\nAcute Gastroenteritis,\nUrinary Tract Infection,\nAcute Tonsilitis,\nFLU\nand minor symptoms simply like soar throat, back pain, cold and so on.'
