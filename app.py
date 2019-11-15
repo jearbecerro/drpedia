@@ -8,31 +8,6 @@ from pymongo import MongoClient
 import Mongo#import Mongo.py
 import Sqlite #import Sqlite.py
 #Libraries to be import END
-import json
-def create_user():
-    with open('users.json') as file:
-        data = json.load(file)
-
-    for users in data['users']:
-        print(users)
-    users = {"user_id":"123456",
-         "created_at":"2019-11-08 17:37:00",
-         "last_seen":"1970-01-01 00:00:00",
-         "first_name":"Jaw",
-         "last_name":"Becerro",
-         "last_message_ask":"pleased to meet me?",
-         "last_message_answer":"glad to meet you",
-         "accept_disclaimer": "No"
-        }
-    data['users'].append((users))
-    test = json.dumps(data)
-    print(test)
-    
-        
-#create_user()
-
-
-
 
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
@@ -394,6 +369,7 @@ def received_postback(event):
         Mongo.set_answer(users,sender_id,'glad to meet you')#Sqlite.set_answer(sender_id,'glad to meet you')
         bot.send_text_message(sender_id,"I'm glad to meet you too {}. 😉".format(first_name(sender_id)))  
         greet_disclaimer(sender_id)
+        
     #Persistent Menu Buttons        
     if payload=='start_over':
         if terms == "Yes":# Sqlite.get_terms(sender_id) == "Yes":
