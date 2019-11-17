@@ -6,7 +6,6 @@ import os
 import pymongo
 from pymongo import MongoClient
 import Mongo#import Mongo.py
-import Sqlite #import Sqlite.py
 #Libraries to be import END
 
 app = Flask(__name__)
@@ -69,7 +68,9 @@ def received_text(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     global created_at, last_seen, fname, lname, ask, answer, terms
+    global name, age, weight, relation
     user_data = Mongo.get_data_users(users, sender_id)
+    patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
         last_seen = user_data['last_seen']
@@ -78,6 +79,15 @@ def received_text(event):
         ask = user_data['last_message_ask']
         answer = user_data['last_message_answer']
         terms = user_data['accept_disclaimer'] 
+    else: 
+        pass
+    if patient_data !=None:
+        name = patient_data['name']
+        age = patient_data['age']
+        weight = patient_data['weight']
+        relation  = patient_data['relation']
+    else: 
+        pass
     '''
     if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
         greet = random.choice(GREETING_RESPONSES)
@@ -118,29 +128,42 @@ def received_text(event):
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
     else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')
-                           
-def greet_disclaimer(sender_id):
-    quick_replies = {
-                            "content_type":"text",
-                            "title":"🤝Agree and proceed",
-                            "payload":"yes_agree"
-                          },{
-                            "content_type":"text",
-                            "title":"📇See details",
-                            "payload":"see_details"
-                          }
-    bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers. ⚖️")
-    bot.send_text_message(sender_id,"Remember that DrPedia is just a robot 🤖, not a doctor 👨‍⚕️.")
-    bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real pediatrician or a doctor in any way.")
-    bot.send_quick_replies_message(sender_id, "By tapping 'Agree and proceed' you accept DrPedia's Terms of Use and Privacy Policy", quick_replies)
-        
+    
+    if ask == "Whats the name of your child?" or ask == "Whats the name of the child?":
+        Mongo.set_patient(patient, sender_id, 'name', text)
+        Mongo.set_ask(users, sender_id, "How old are you?")
+        bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
+        bot.send_text_message(sender_id, "Just type '18'\n'of course you are not 200 years old 😉'")
+    else:
+        pass
+    if ask == "How old are you?":
+        if int(text) >18 and int(text)<30:
+            Mongo.set_patient(patient, sender_id, 'age', text)
+            Mongo.set_ask('What is your weight in kg?')
+            bot.send_text_message(sender_id,'Oh right, I can only cater children between 0 - 18 years old.\nBut anyway we can still proceed.')
+            bot.send_text_message(sender_id,'What is your weight in kg?')
+        elif int(text) >=18:
+            Mongo.set_patient(patient, sender_id, 'age', text)
+            Mongo.set_ask('What is your weight in kg?')
+            bot.send_text_message(sender_id,'Perfect!')
+            bot.send_text_message(sender_id,'What is your weight in kg?')
+    else:
+        pass
+    if ask == "What is your weight in kg?":
+        Mongo.set_patient(patient, sender_id, 'weight', text)
+        bot.send_text_message(sender_id,'Great!') 
+        bot.send_text_message(sender_id,'Now we can proceed to your concern')
+    else:
+        pass
 #if user tap a button from a quick reply
 def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
+    global name, age, weight, relation
     user_data = Mongo.get_data_users(users, sender_id)
+    patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
         last_seen = user_data['last_seen']
@@ -149,7 +172,16 @@ def received_qr(event):
         ask = user_data['last_message_ask']
         answer = user_data['last_message_answer']
         terms = user_data['accept_disclaimer'] 
-        
+    else: 
+        pass
+    if patient_data !=None:
+        name = patient_data['name']
+        age = patient_data['age']
+        weight = patient_data['weight']
+        relation  = patient_data['relation']
+    else: 
+        pass
+    
     unique_symptom = {
                             "content_type":"text",
                             "title":"Fever",
@@ -172,11 +204,21 @@ def received_qr(event):
                             "payload":""
                           }
     if text =='myself':
-        bot.send_quick_replies_message(sender_id, "Are you experiencing one of this symptoms?", unique_symptom)        
+        Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself')
+        Mongo.set_ask(users, sender_id, "How old are you?")
+        bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
+        bot.send_text_message(sender_id, "Just type '18'\n'of course you are not 200 years old 😉'")
+        #bot.send_quick_replies_message(sender_id, "Are you experiencing one of this symptoms?", unique_symptom)        
     if text =='mychild':
-        bot.send_quick_replies_message(sender_id, "Is your child experiencing one of this symptoms?", unique_symptom)        
+        Mongo.create_patient(patient, sender_id, '', '', '', 'mychild')
+        Mongo.set_ask(users, sender_id, "Whats the name of your child?")?
+        bot.send_text_message(sender_id, "Whats the name of your child {}".format(first_name(sender_id)))
+        #bot.send_quick_replies_message(sender_id, "Is your child experiencing one of this symptoms?", unique_symptom)        
     if text =='someone':
-        bot.send_quick_replies_message(sender_id, "Is the child experiencing one of this symptoms?", unique_symptom)
+        Mongo.create_patient(patient, sender_id, '', '', '', 'someone')
+        Mongo.set_ask(users, sender_id, "Whats the name of the child?")?
+        bot.send_text_message(sender_id, "Whats the name of your child {}".format(first_name(sender_id)))
+        #bot.send_quick_replies_message(sender_id, "Is the child experiencing one of this symptoms?", unique_symptom)
     #2.1
     if text=='physical':
         listofconcern = 'Dengue,\nAcute Gastroenteritis,\nUrinary Tract Infection,\nAcute Tonsilitis,\nFLU\nand minor symptoms simply like soar throat, back pain, cold and so on.'
@@ -247,7 +289,9 @@ def received_postback(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
+    global name, age, weight, relation
     user_data = Mongo.get_data_users(users, sender_id)
+    patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
         last_seen = user_data['last_seen']
@@ -256,6 +300,15 @@ def received_postback(event):
         ask = user_data['last_message_ask']
         answer = user_data['last_message_answer']
         terms = user_data['accept_disclaimer'] 
+    else: 
+        pass
+    if patient_data !=None:
+        name = patient_data['name']
+        age = patient_data['age']
+        weight = patient_data['weight']
+        relation  = patient_data['relation']
+    else: 
+        pass
     #2.2.1.1{
     
     if payload=='ready_accept':
@@ -525,7 +578,22 @@ def init_bot():
                 ]
             }
     bot.set_persistent_menu(pm_menu)
-        
+    
+def greet_disclaimer(sender_id):
+    quick_replies = {
+                            "content_type":"text",
+                            "title":"🤝Agree and proceed",
+                            "payload":"yes_agree"
+                          },{
+                            "content_type":"text",
+                            "title":"📇See details",
+                            "payload":"see_details"
+                          }
+    bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers. ⚖️")
+    bot.send_text_message(sender_id,"Remember that DrPedia is just a robot 🤖, not a doctor 👨‍⚕️.")
+    bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real pediatrician or a doctor in any way.")
+    bot.send_quick_replies_message(sender_id, "By tapping 'Agree and proceed' you accept DrPedia's Terms of Use and Privacy Policy", quick_replies)
+                
 def verify_fb_token(token_sent):
     #take token sent by facebook and verify it matches the verify token you sent
     #if they match, allow the request, else return an error 
