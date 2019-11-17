@@ -16,7 +16,7 @@ MONGO_TOKEN = os.environ['MONGO_DB']
 cluster = MongoClient(MONGO_TOKEN)
 db = cluster["DrPedia"]
 users = db["users"]
-patient = db["Patient"]
+patient = db["patient"]
 
 
 bot = Bot (ACCESS_TOKEN)
