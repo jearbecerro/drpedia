@@ -150,7 +150,7 @@ def received_text(event):
     else:
         pass
     if ask == "How old are you?":
-        if text != None:
+        if text.isdigit():
             if int(text) >18 and int(text)<30:
                 Mongo.set_patient(patient, sender_id, 'age', text)
                 Mongo.set_ask(users,'What is your weight in kg?')
