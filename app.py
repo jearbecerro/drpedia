@@ -192,7 +192,7 @@ def received_text(event):
             elif relation == 'someone':
                 bot.send_text_message(sender_id,'The childs name is {} and he/she is {} years old,\nalso he/she is {} kg in weight.'.format(name, age, weight))
                 bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
-    else
+    else:
         pass
 #if user tap a button from a quick reply
 def received_qr(event):
