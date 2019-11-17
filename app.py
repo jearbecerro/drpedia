@@ -143,9 +143,9 @@ def received_text(event):
     
     if ask == "Whats the name of your child?" or ask == "Whats the name of the child?":
         Mongo.set_patient(patient, sender_id, 'name', text)
-        Mongo.set_ask(users, sender_id, "How old is the child?")
-        bot.send_text_message(sender_id, "May I ask how old is {}? In human years.".format(name))
-        bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old 😉")
+        Mongo.set_ask(users, sender_id, "How old are you?")
+        bot.send_text_message(sender_id, "May I ask how old is the child? In human years.")
+        bot.send_text_message(sender_id, "Just type '18'\nof course human years are not 200 years old. 😉")
     else:
         pass
     if ask == "How old are you?":
