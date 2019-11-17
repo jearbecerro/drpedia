@@ -453,7 +453,7 @@ def received_postback(event):
                 send_choose_concern(sender_id)
             elif terms == "No":#Sqlite.get_terms(sender_id) == "No"'''
             if terms == 'Yes':
-                bot.send_text_message(sender_id, "Hi {} welcome back!".format(first_name(send4er_id)))
+                bot.send_text_message(sender_id, "Hi {} welcome back!".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
             else:
               greet_disclaimer(sender_id)
