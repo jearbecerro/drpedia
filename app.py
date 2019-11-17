@@ -168,30 +168,33 @@ def received_text(event):
     else:
         pass
     if ask == "What is your weight in kg?":
-        if text != None and int(text) > 150 and int(text) < 0:
-            bot.send_text_message(sender_id,'I told you in kilogram.')
-            bot.send_text_message(sender_id,'What is the weight again?')
+        if text.isdigit():
+            if text != None and int(text) > 150 and int(text) < 0:
+                bot.send_text_message(sender_id,'I told you in kilogram.')
+                bot.send_text_message(sender_id,'What is the weight again?')
+            else:
+                Mongo.set_patient(patient, sender_id, 'weight', text)
+                bot.send_text_message(sender_id,'Oh right {}'.format(first_name(sender_id))) 
+                quick_replies = {
+                                "content_type":"text",
+                                "title":"👌Yes",
+                                "payload":'ýes_correct'
+                              },{
+                                "content_type":"text",
+                                "title":"👎No",
+                                "payload":'no_correct'
+                              }
+                if relation == 'myself':
+                    bot.send_text_message(sender_id,'You are {} years old and you are {} kg in weight.'.format(age, weight))
+                    bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+                elif relation == 'mychild':
+                    bot.send_text_message(sender_id,'Your childs name is {} and he/she is {} years old,\nalso he/she is {} kg in weight.'.format(name, age, weight))
+                    bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+                elif relation == 'someone':
+                    bot.send_text_message(sender_id,'The childs name is {} and he/she is {} years old,\nalso he/she is {} kg in weight.'.format(name, age, weight))
+                    bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
         else:
-            Mongo.set_patient(patient, sender_id, 'weight', text)
-            bot.send_text_message(sender_id,'Oh right {}'.format(first_name(sender_id))) 
-            quick_replies = {
-                            "content_type":"text",
-                            "title":"👌Yes",
-                            "payload":'ýes_correct'
-                          },{
-                            "content_type":"text",
-                            "title":"👎No",
-                            "payload":'no_correct'
-                          }
-            if relation == 'myself':
-                bot.send_text_message(sender_id,'You are {} years old and you are {} kg in weight.'.format(age, weight))
-                bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
-            elif relation == 'mychild':
-                bot.send_text_message(sender_id,'Your childs name is {} and he/she is {} years old,\nalso he/she is {} kg in weight.'.format(name, age, weight))
-                bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
-            elif relation == 'someone':
-                bot.send_text_message(sender_id,'The childs name is {} and he/she is {} years old,\nalso he/she is {} kg in weight.'.format(name, age, weight))
-                bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+            pass
     else:
         pass
 #if user tap a button from a quick reply
