@@ -442,7 +442,11 @@ def received_postback(event):
                 bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
             elif terms == "No":#Sqlite.get_terms(sender_id) == "No"'''
-            greet_disclaimer(sender_id)
+            if terms == 'Yes':
+                bot.send_text_message(sender_id, "Hi {} welcome back!".format(first_name(send4er_id)))
+                send_choose_concern(sender_id)
+            else:
+              greet_disclaimer(sender_id)
             
     if payload=='pmyou':
         Mongo.set_answer(users,sender_id,'glad to meet you')#Sqlite.set_answer(sender_id,'glad to meet you')
@@ -451,10 +455,10 @@ def received_postback(event):
         
     #Persistent Menu Buttons        
     if payload=='start_over':
-        if terms == "Yes":# Sqlite.get_terms(sender_id) == "Yes":
+        if terms == "Yes":
             bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
             send_choose_concern(sender_id)
-        elif terms == "No":#Sqlite.get_terms(sender_id) == "No"
+        elif terms == "No":
             greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
         bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
