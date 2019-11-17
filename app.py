@@ -138,8 +138,8 @@ def received_text(event):
     elif text.lower() in ("conduct disorders", "conduct","cd"):
         choose_option_mental(sender_id,'send_tips_cd','check_cd', 'Conduct Disorder')
         #proceed to payload button if payload=='send_tips_cd' or if payload=='check_cd' 
-    else:
-        bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')
+    '''else:
+        bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')'''
     
     if ask == "Whats the name of your child?" or ask == "Whats the name of the child?":
         Mongo.set_patient(patient, sender_id, 'name', text)
