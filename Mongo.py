@@ -52,8 +52,8 @@ def create_user(users, sender_id, user_fb):
 
 # Manual input
 def create_patient(patient, sender_id, name, age, weight, relation):
-    patient = patient.find_one({'user_id': sender_id})
-    if patient is None:                      
+    spatient = patient.find_one({'user_id': sender_id})
+    if spatient is None:                      
         timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
         patient_insert = {'user_id': sender_id, 
                         'created_at': timestamp,
