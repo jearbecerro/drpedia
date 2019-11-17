@@ -149,13 +149,34 @@ def received_qr(event):
         ask = user_data['last_message_ask']
         answer = user_data['last_message_answer']
         terms = user_data['accept_disclaimer'] 
-    
+        
+    unique_symptom = {
+                            "content_type":"text",
+                            "title":"Fever",
+                            "payload":""
+                          },{
+                            "content_type":"text",
+                            "title":"Diarrhea",
+                            "payload":""
+                          },{
+                            "content_type":"text",
+                            "title":"Pain in swallowing",
+                            "payload":""
+                          },{
+                            "content_type":"text",
+                            "title":"Pain in urination",
+                            "payload":""
+                          },{
+                            "content_type":"text",
+                            "title":"Body pain",
+                            "payload":""
+                          }
     if text =='myself':
-        pass   
+        bot.send_quick_replies_message(sender_id, "Are you experiencing one of this symptoms?", unique_symptom)        
     if text =='mychild':
-        pass  
+        bot.send_quick_replies_message(sender_id, "Is your child experiencing one of this symptoms?", unique_symptom)        
     if text =='someone':
-        pass
+        bot.send_quick_replies_message(sender_id, "Is the child experiencing one of this symptoms?", unique_symptom)
     #2.1
     if text=='physical':
         listofconcern = 'Dengue,\nAcute Gastroenteritis,\nUrinary Tract Infection,\nAcute Tonsilitis,\nFLU\nand minor symptoms simply like soar throat, back pain, cold and so on.'
