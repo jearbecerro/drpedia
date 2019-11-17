@@ -150,21 +150,24 @@ def received_text(event):
     else:
         pass
     if ask == "How old are you?":
-        if text != None and int(text) >18 and int(text)<30:
-            Mongo.set_patient(patient, sender_id, 'age', text)
-            Mongo.set_ask(users,'What is your weight in kg?')
-            bot.send_text_message(sender_id,'Oh right, I can only cater children between 0 - 18 years old.\nBut anyway we can still proceed.')
-            bot.send_text_message(sender_id,'What is the weight of the child in kg?')
-        elif text != None and int(text) <=18:
-            Mongo.set_patient(patient, sender_id, 'age', text)
-            Mongo.set_ask(users,sender_id,'What is the weight of the child in kg?')
-            bot.send_text_message(sender_id,'Perfect!')
-            bot.send_text_message(sender_id,'What is the weight of the child in kg?')
-        elif int(text) in range(31,100):
-            bot.send_text_message(sender_id,'I do apologize, I can only cater 0 - 18 years old.')
+        if text != None:
+            if int(text) >18 and int(text)<30:
+                Mongo.set_patient(patient, sender_id, 'age', text)
+                Mongo.set_ask(users,'What is your weight in kg?')
+                bot.send_text_message(sender_id,'Oh right, I can only cater children between 0 - 18 years old.\nBut anyway we can still proceed.')
+                bot.send_text_message(sender_id,'What is the weight of the child in kg?')
+            elif text != None and int(text) <=18:
+                Mongo.set_patient(patient, sender_id, 'age', text)
+                Mongo.set_ask(users,sender_id,'What is the weight of the child in kg?')
+                bot.send_text_message(sender_id,'Perfect!')
+                bot.send_text_message(sender_id,'What is the weight of the child in kg?')
+            elif int(text) in range(31,100):
+                bot.send_text_message(sender_id,'I do apologize, I can only cater 0 - 18 years old.')
+            else:
+                bot.send_text_message(sender_id,'I told you in human years')
+                bot.send_text_message(sender_id,'What is the age again?')
         else:
-            bot.send_text_message(sender_id,'I told you in human years')
-            bot.send_text_message(sender_id,'What is the age again?')
+            pass
     else:
         pass
     if ask == "What is your weight in kg?":
@@ -260,7 +263,6 @@ def received_qr(event):
             bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
         else:
             Mongo.set_ask(users, sender_id, "Whats the name of your child?")
-            Mongo.set_ask(users, sender_id, "Whats the name of the child?")
             bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
     if text =='myself':
         Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself')
