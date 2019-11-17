@@ -36,6 +36,7 @@ weight = ''
 relation  = ''
 
 phrase = ''
+myself = False
 #to be deleted
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
 def get_remedies_adhd():
@@ -153,24 +154,45 @@ def received_text(event):
             Mongo.set_patient(patient, sender_id, 'age', text)
             Mongo.set_ask(users,'What is your weight in kg?')
             bot.send_text_message(sender_id,'Oh right, I can only cater children between 0 - 18 years old.\nBut anyway we can still proceed.')
-            bot.send_text_message(sender_id,'What is your weight in kg?')
+            bot.send_text_message(sender_id,'What is the weight of the child in kg?')
         elif text != None and int(text) <=18:
             Mongo.set_patient(patient, sender_id, 'age', text)
-            Mongo.set_ask(users,sender_id,'What is your weight in kg?')
+            Mongo.set_ask(users,sender_id,'What is the weight of the child in kg?')
             bot.send_text_message(sender_id,'Perfect!')
-            bot.send_text_message(sender_id,'What is your weight in kg?')
+            bot.send_text_message(sender_id,'What is the weight of the child in kg?')
         elif int(text) in range(31,100):
-            bot.send_text_message(sender_id,'I do apologize, I can only cater 0 -18 years old.')
+            bot.send_text_message(sender_id,'I do apologize, I can only cater 0 - 18 years old.')
         else:
             bot.send_text_message(sender_id,'I told you in human years')
             bot.send_text_message(sender_id,'What is the age again?')
     else:
         pass
     if ask == "What is your weight in kg?":
-        Mongo.set_patient(patient, sender_id, 'weight', text)
-        bot.send_text_message(sender_id,'Great!') 
-        bot.send_text_message(sender_id,'Now we can proceed to your concern')
-    else:
+        if text != None and int(text) > 150 and int(text) < 0:
+            bot.send_text_message(sender_id,'I told you in kilogram.')
+            bot.send_text_message(sender_id,'What is the weight again?')
+        else:
+            Mongo.set_patient(patient, sender_id, 'weight', text)
+            bot.send_text_message(sender_id,'Oh right {}'.format(first_name(sender_id))) 
+            quick_replies = {
+                            "content_type":"text",
+                            "title":"👌Yes",
+                            "payload":'ýes_correct'
+                          },{
+                            "content_type":"text",
+                            "title":"👎No",
+                            "payload":'no_correct'
+                          }
+            if relation == 'myself':
+                bot.send_text_message(sender_id,'You are {} years old and you are {} kg in weight.'.format(age, weight))
+                bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+            elif relation == 'mychild':
+                bot.send_text_message(sender_id,'Your childs name is {} and he/she is {} years old,\nalso he/she is {} kg in weight.'.format(name, age, weight))
+                bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+            elif relation == 'someone':
+                bot.send_text_message(sender_id,'The childs name is {} and he/she is {} years old,\nalso he/she is {} kg in weight.'.format(name, age, weight))
+                bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+    else
         pass
 #if user tap a button from a quick reply
 def received_qr(event):
@@ -178,7 +200,7 @@ def received_qr(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation
+    global name, age, weight, relation, phrase , myself
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
@@ -198,28 +220,45 @@ def received_qr(event):
         relation  = patient_data['relation']
     else: 
         pass
-    
+    if relation == 'myself':
+        phrase = 'Are you '
+        myself = True
+    else:
+        phrase = 'Is {} '.format(name)
+        myself = False
     unique_symptom = {
                             "content_type":"text",
                             "title":"Fever",
-                            "payload":""
+                            "payload":"fever"
                           },{
                             "content_type":"text",
                             "title":"Diarrhea",
-                            "payload":""
+                            "payload":"diarrhea"
                           },{
                             "content_type":"text",
                             "title":"Pain in swallowing",
-                            "payload":""
+                            "payload":"swallowing"
                           },{
                             "content_type":"text",
                             "title":"Pain in urination",
-                            "payload":""
+                            "payload":"urination"
                           },{
                             "content_type":"text",
                             "title":"Body pain",
-                            "payload":""
-                          }
+                            "payload":"body"
+    if text == 'yes_correct':
+        bot.send_text_message(sender_id, "Great!")
+        bot.send_text_message(sender_id, "Now we can proceed to your concern.")
+        bot.send_quick_replies_message(sender_id, "{} experiencing one of this symptoms?".format(phrase), unique_symptom)  
+    if text == 'no_correct':
+        if myself == True:
+            Mongo.set_ask(users, sender_id, "How old are you?")
+            bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
+            bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
+        else:
+            Mongo.set_ask(users, sender_id, "Whats the name of your child?")
+            Mongo.set_ask(users, sender_id, "Whats the name of the child?")
+            bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
     if text =='myself':
         Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself')
         Mongo.set_ask(users, sender_id, "How old are you?")
@@ -229,7 +268,7 @@ def received_qr(event):
     if text =='mychild':
         Mongo.create_patient(patient, sender_id, '', '', '', 'mychild')
         Mongo.set_ask(users, sender_id, "Whats the name of your child?")
-        bot.send_text_message(sender_id, "Whats the name of your child {}".format(first_name(sender_id)))
+        bot.send_text_message(sender_id, "Whats the name of your child {}?".format(first_name(sender_id)))
         #bot.send_quick_replies_message(sender_id, "Is your child experiencing one of this symptoms?", unique_symptom)        
     if text =='someone':
         Mongo.create_patient(patient, sender_id, '', '', '', 'someone')
