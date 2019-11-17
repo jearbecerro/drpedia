@@ -23,7 +23,8 @@ bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 
 GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
-  
+created_at, last_seen, fname, lname, ask, answer, terms
+name, age, weight, relation  
 
 #to be deleted
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
@@ -67,8 +68,8 @@ def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
-    '''global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation'''
+    global created_at, last_seen, fname, lname, ask, answer, terms
+    global name, age, weight, relation
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
