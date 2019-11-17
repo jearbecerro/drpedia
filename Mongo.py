@@ -25,7 +25,7 @@ def set_answer(users, sender_id, answer):
     
 def find_user_id(users, user_object_id):
     # Convert from string to ObjectId:
-    return users.find_one({'_id': ObjectId(user_object_id)} 
+    return users.find_one({'_id': ObjectId(user_object_id)}) 
 
 # Has to use user_id since user has not existed
 def user_exists(users, sender_id):
