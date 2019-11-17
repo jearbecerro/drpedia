@@ -23,8 +23,17 @@ bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 
 GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
-created_at, last_seen, fname, lname, ask, answer, terms
-name, age, weight, relation  
+created_at = ''
+last_seen = ''
+fname = ''
+lname = '' 
+ask = '' 
+answer = '' 
+terms = ''
+name = ''
+age = ''
+weight = ''
+relation  = ''
 
 #to be deleted
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
