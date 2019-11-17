@@ -216,7 +216,7 @@ def received_qr(event):
         #bot.send_quick_replies_message(sender_id, "Is your child experiencing one of this symptoms?", unique_symptom)        
     if text =='someone':
         Mongo.create_patient(patient, sender_id, '', '', '', 'someone')
-        Mongo.set_ask(users, sender_id, "Whats the name of the child?")?
+        Mongo.set_ask(users, sender_id, "Whats the name of the child?")
         bot.send_text_message(sender_id, "Whats the name of your child {}".format(first_name(sender_id)))
         #bot.send_quick_replies_message(sender_id, "Is the child experiencing one of this symptoms?", unique_symptom)
     #2.1
