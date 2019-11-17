@@ -25,13 +25,12 @@ def set_answer(users, sender_id, answer):
     
 def find_user_id(users, user_object_id):
     # Convert from string to ObjectId:
-    return users.find_one({'_id': ObjectId(user_object_id)})
-    
+    return users.find_one({'_id': ObjectId(user_object_id)} 
 
 # Has to use user_id since user has not existed
 def user_exists(users, sender_id):
     user = users.find_one({'user_id': sender_id})
-    if user is None:
+    if user is None:s
         user_fb = bot.get_user_info(sender_id)#all information
         create_user(users, sender_id, user_fb)
         return False
@@ -53,15 +52,19 @@ def create_user(users, sender_id, user_fb):
 
 # Manual input
 def create_patient(patient, sender_id, name, age, weight, relation):
-    timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
-    patient_insert = {'user_id': sender_id, 
-                    'created_at': timestamp,
-                    'name': name,
-                    'age':age,
-                    'weight': weight,
-                    'relation': relation
-                    }
-    patient.insert(patient_insert)
+    patient = patient.find_one({'user_id': sender_id})
+    if patient is None:                      
+        timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
+        patient_insert = {'user_id': sender_id, 
+                        'created_at': timestamp,
+                        'name': name,
+                        'age':age,
+                        'weight': weight,
+                        'relation': relation
+                        }
+        patient.insert(patient_insert)
+    else:
+        users.update({"user_id": sender_id},{"$set":{'name': name, 'age':age, 'weight':weight, 'relation':relation}})                      
     
 def set_patient(patient, sender_id, column, value):
     users.update({"user_id": sender_id},{"$set":{column: value}})
