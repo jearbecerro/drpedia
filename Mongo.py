@@ -67,7 +67,7 @@ def create_patient(patient, sender_id, name, age, weight, relation):
         patient.update({"user_id": sender_id},{"$set":{'name': name, 'age':age, 'weight':weight, 'relation':relation}})                      
     
 def set_patient(patient, sender_id, column, value):
-    users.update({"user_id": sender_id},{"$set":{column: value}})
+    patient.update({"user_id": sender_id},{"$set":{column: value}})
 
 # Input: Facebook's sender_id
 def get_user_mongo(users, sender_id):
