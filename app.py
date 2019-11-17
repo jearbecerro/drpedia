@@ -245,7 +245,7 @@ def received_qr(event):
                           },{
                             "content_type":"text",
                             "title":"Body pain",
-                            "payload":"body"
+                            "payload":"body"}
     if text == 'yes_correct':
         bot.send_text_message(sender_id, "Great!")
         bot.send_text_message(sender_id, "Now we can proceed to your concern.")
