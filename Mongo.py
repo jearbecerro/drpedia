@@ -10,6 +10,11 @@ def get_data_users(users, sender_id):
     if a != None:
         return a
     return None
+def get_data_patient(patient, sender_id):
+    a = patient.find_one({'user_id': sender_id})
+    if a != None:
+        return a
+    return None
 
 def set_terms(users, sender_id,yes):
     users.update({"user_id": sender_id},{"$set":{"accept_disclaimer": yes}})
@@ -57,7 +62,9 @@ def create_patient(patient, sender_id, name, age, weight, relation):
                     'relation': relation
                     }
     patient.insert(patient_insert)
-
+    
+def set_patient(patient, sender_id, column, value):
+    users.update({"user_id": sender_id},{"$set":{column: value}})
 
 # Input: Facebook's sender_id
 def get_user_mongo(users, sender_id):
