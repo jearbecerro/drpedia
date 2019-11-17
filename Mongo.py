@@ -30,7 +30,7 @@ def find_user_id(users, user_object_id):
 # Has to use user_id since user has not existed
 def user_exists(users, sender_id):
     user = users.find_one({'user_id': sender_id})
-    if user is None:s
+    if user is None:
         user_fb = bot.get_user_info(sender_id)#all information
         create_user(users, sender_id, user_fb)
         return False
