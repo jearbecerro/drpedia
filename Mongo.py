@@ -64,7 +64,7 @@ def create_patient(patient, sender_id, name, age, weight, relation):
                         }
         patient.insert(patient_insert)
     else:
-        users.update({"user_id": sender_id},{"$set":{'name': name, 'age':age, 'weight':weight, 'relation':relation}})                      
+        patient.update({"user_id": sender_id},{"$set":{'name': name, 'age':age, 'weight':weight, 'relation':relation}})                      
     
 def set_patient(patient, sender_id, column, value):
     users.update({"user_id": sender_id},{"$set":{column: value}})
