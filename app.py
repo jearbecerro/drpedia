@@ -133,7 +133,7 @@ def received_text(event):
         Mongo.set_patient(patient, sender_id, 'name', text)
         Mongo.set_ask(users, sender_id, "How old are you?")
         bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
-        bot.send_text_message(sender_id, "Just type '18'\n'of course you are not 200 years old 😉'")
+        bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old 😉")
     else:
         pass
     if ask == "How old are you?":
@@ -142,11 +142,16 @@ def received_text(event):
             Mongo.set_ask('What is your weight in kg?')
             bot.send_text_message(sender_id,'Oh right, I can only cater children between 0 - 18 years old.\nBut anyway we can still proceed.')
             bot.send_text_message(sender_id,'What is your weight in kg?')
-        elif int(text) >=18:
+        elif int(text) <=18:
             Mongo.set_patient(patient, sender_id, 'age', text)
             Mongo.set_ask('What is your weight in kg?')
             bot.send_text_message(sender_id,'Perfect!')
             bot.send_text_message(sender_id,'What is your weight in kg?')
+        elif int(text) in range(31,100):
+            bot.send_text_message(sender_id,'I do apologize, I can only cater 0 -18 years old.')
+        else:
+            bot.send_text_message(sender_id,'I told you in human years')
+            bot.send_text_message(sender_id,'What is the age again?')
     else:
         pass
     if ask == "What is your weight in kg?":
@@ -207,7 +212,7 @@ def received_qr(event):
         Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself')
         Mongo.set_ask(users, sender_id, "How old are you?")
         bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
-        bot.send_text_message(sender_id, "Just type '18'\n'of course you are not 200 years old 😉'")
+        bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
         #bot.send_quick_replies_message(sender_id, "Are you experiencing one of this symptoms?", unique_symptom)        
     if text =='mychild':
         Mongo.create_patient(patient, sender_id, '', '', '', 'mychild')
