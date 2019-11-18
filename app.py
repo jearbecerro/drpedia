@@ -79,12 +79,14 @@ def receive_message():
     return "Message Processed"
 
 #if user send a message in text
-def received_text(event, user_data, patient_data):
+def received_text(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     global created_at, last_seen, fname, lname, ask, answer, terms
     global name, age, weight, relation , phrase
+    user_data = Mongo.get_data_users(users, sender_id)
+    patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
         last_seen = user_data['last_seen']
@@ -199,18 +201,18 @@ def received_text(event, user_data, patient_data):
                     bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
                 elif relation == 'someone':
                     bot.send_text_message(sender_id,'The childs name is {} and he/she is {} years old.'.format(name, age))
-                    bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
-        else:
-            pass
+                    bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
     else:
         pass
 #if user tap a button from a quick reply
-def received_qr(event, user_data, patient_data):
+def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
     global name, age, weight, relation, phrase , myself
+    user_data = Mongo.get_data_users(users, sender_id)
+    patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
         last_seen = user_data['last_seen']
