@@ -533,7 +533,7 @@ def received_postback(event, user_data, patient_data):
             if terms == 'Yes':
                 bot.send_text_message(sender_id, "Hi {} welcome back!".format(first_name(sender_id)))
                 send_choose_concern(sender_id)
-            elif terms == 'No'
+            elif terms == 'No':
               greet_disclaimer(sender_id)
             
     if payload=='pmyou':
