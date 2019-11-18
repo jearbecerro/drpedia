@@ -153,12 +153,12 @@ def received_text(event):
         if text.isdigit():
             if int(text) >18 and int(text)<30:
                 Mongo.set_patient(patient, sender_id, 'age', text)
-                Mongo.set_ask(users,sender_id,'What is your weight in kg?')
+                Mongo.set_ask(users,sender_id,"What is your weight in kg?")
                 bot.send_text_message(sender_id,'Oh right, I can only cater children between 0 - 18 years old.\nBut anyway we can still proceed.')
                 bot.send_text_message(sender_id,'What is the weight of the child in kg?')
             elif text != None and int(text) <=18:
                 Mongo.set_patient(patient, sender_id, 'age', text)
-                Mongo.set_ask(users,sender_id,'What is your weight in kg?')
+                Mongo.set_ask(users,sender_id,"What is your weight in kg?")
                 bot.send_text_message(sender_id,'Perfect!')
                 bot.send_text_message(sender_id,'What is the weight of the child in kg?')
             elif int(text) in range(31,100):
