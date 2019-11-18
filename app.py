@@ -180,6 +180,7 @@ def received_text(event, user_data, patient_data):
                 bot.send_text_message(sender_id,'What is the weight again?')
             else:
                 Mongo.set_patient(patient, sender_id, 'weight', text)
+                Mongo.set_ask(users,sender_id,"Is it correct?")
                 bot.send_text_message(sender_id,'Oh right {}'.format(first_name(sender_id))) 
                 quick_replies = {
                                 "content_type":"text",
