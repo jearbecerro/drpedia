@@ -260,66 +260,80 @@ def received_qr(event):
             bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
             
     has_fever = {"content_type":"text","title":"Yes","payload":'yes_fever'},{"content_type":"text","title":"No","payload":'no_fever'}        
-    if text =='breathing':
-        Mongo.set_answer(users,sender_id,'breathing')
-        bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
+    
     if text =='diarrhea':
         Mongo.set_answer(users,sender_id,'diarrhea')
+        bot.send_text_message(sender_id, "Well that doesn't sound healthy")
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
     if text =='swallowing':
         Mongo.set_answer(users,sender_id,'swallowing')
+        bot.send_text_message(sender_id, "Well that doesn't sound healthy")
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
     if text =='urination':
         Mongo.set_answer(users,sender_id,'urination')
+        bot.send_text_message(sender_id, "Well that doesn't sound healthy")
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
     if text =='body':
-        Mongo.set_answer(users,sender_id,'body')                 
+        Mongo.set_answer(users,sender_id,'body') 
+        bot.send_text_message(sender_id, "Well that doesn't sound healthy")
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
                          
-                         
+    #Dengue
+    if text =='breathing':
+        Mongo.set_answer(users,sender_id,'breathing')
+        bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
+        
     if text =='yes_fever' and answer == 'breathing':
         f2days = {"content_type":"text","title":"Yes","payload":'yes_fever2days'},{"content_type":"text","title":"No","payload":'no_fever2days'}                    
         bot.send_quick_replies_message(sender_id, 'Is the fever occurs 2 days or more?', f2days)
-                         
+    fnight  = {"content_type":"text","title":"Yes","payload":'yes_fnight'},{"content_type":"text","title":"No","payload":'no_fnight'}   
+    if text == 'yes_fever2days':  
+        bot.send_quick_replies_message(sender_id, 'Is the fever occurs sunset to sunset or in night time?', fnight)
+    if text == 'no_fever2days':    
+        bot.send_quick_replies_message(sender_id, 'Is the fever occurs sunset to sunset or in night time?', fnight)
+        
+    ha = {"content_type":"text","title":"Yes","payload":'yes_ha'},{"content_type":"text","title":"No","payload":'no_ha'}     
+    if text == 'yes_fnight' and answer =='breathing':  
+        bot.send_quick_replies_message(sender_id, 'Is the fever occurs sunset to sunset or in night time?', ha)
+    if text == 'no_fnight' and answer =='breathing':    
+        bot.send_quick_replies_message(sender_id, '{} experiencing headache?'.format(phrase), ha)
+    if text =='no_fever' and answer == 'breathing':                 
+        bot.send_quick_replies_message(sender_id, '{} experiencing headache?'.format(phrase), ha)
+        
+    ap = {"content_type":"text","title":"Yes","payload":'yes_ap'},{"content_type":"text","title":"No","payload":'no_ap'}    
+    if text == 'yes_ha' and answer =='breathing':
+        bot.send_quick_replies_message(sender_id, '{} experiencing body pain?'.format(phrase), ap)
+    if text == 'no_ha'and answer == 'breating':
+        bot.send_quick_replies_message(sender_id, '{} experiencing body pain?'.format(phrase), ap)
+        #dre tiwas
+    #End Dengue
+    d3times = {"content_type":"text","title":"Yes","payload":'yes_d3times'},{"content_type":"text","title":"No","payload":'no_d3times'}
     if text =='yes_fever' and answer == 'diarrhea':
-        d3times = {"content_type":"text","title":"Yes","payload":'yes_d3times'},{"content_type":"text","title":"No","payload":'no_d3times'}                                  
-        bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)    
-                         
-    if text =='yes_fever' and answer == 'swallowing':
-        st = {"content_type":"text","title":"Yes","payload":'yes_st'},{"content_type":"text","title":"No","payload":'no_st'}                  
-        bot.send_quick_replies_message(sender_id, '{} experiencing sore throat?'.format(phrase), st)         
-                         
-    if text =='yes_fever' and answer == 'urination':
-        pu = {"content_type":"text","title":"Yes","payload":'yes_pu'},{"content_type":"text","title":"No","payload":'no_pu'}
-        bot.send_quick_replies_message(sender_id, '{} experiencing:\n\t*frequent urination\n\t*burning feeling when urinating'.format(phrase), pu) 
-    
-    if text =='yes_fever' and answer == 'body':
-        cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}                
-        bot.send_quick_replies_message(sender_id, '{} having cough?'.format(phrase), cough)                      
-    
-    if text =='no_fever' and answer == 'breathing':
-        f2days = {"content_type":"text","title":"Yes","payload":'yes_fever2days'},{"content_type":"text","title":"No","payload":'no_fever2days'}                    
-        bot.send_quick_replies_message(sender_id, 'Is the fever occurs 2 days or more?', f2days)
-                         
+        bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)     
     if text =='no_fever' and answer == 'diarrhea':
-        d3times = {"content_type":"text","title":"Yes","payload":'yes_d3times'},{"content_type":"text","title":"No","payload":'no_d3times'}                                  
-        bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)    
-                         
-    if text =='no_fever' and answer == 'swallowing':
-        st = {"content_type":"text","title":"Yes","payload":'yes_st'},{"content_type":"text","title":"No","payload":'no_st'}                  
-        bot.send_quick_replies_message(sender_id, '{} experiencing sore throat?'.format(phrase), st)         
-                         
+        bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)         
+    
+    st = {"content_type":"text","title":"Yes","payload":'yes_st'},{"content_type":"text","title":"No","payload":'no_st'}
+    if text =='yes_fever' and answer == 'swallowing':      
+        bot.send_quick_replies_message(sender_id, '{} experiencing sore throat?'.format(phrase), st)          
+    if text =='no_fever' and answer == 'swallowing':               
+        bot.send_quick_replies_message(sender_id, '{} experiencing sore throat?'.format(phrase), st)     
+    
+    pu = {"content_type":"text","title":"Yes","payload":'yes_pu'},{"content_type":"text","title":"No","payload":'no_pu'}
+    if text =='yes_fever' and answer == 'urination':
+        bot.send_quick_replies_message(sender_id, '{} experiencing:\n\t*frequent urination\n\t*burning feeling when urinating'.format(phrase), pu) 
     if text =='no_fever' and answer == 'urination':
-        pu = {"content_type":"text","title":"Yes","payload":'yes_pu'},{"content_type":"text","title":"No","payload":'no_pu'}
         bot.send_quick_replies_message(sender_id, '{} experiencing:\n\t*frequent urination\n\t*burning feeling when urinating'.format(phrase), pu) 
     
-    if text =='no_fever' and answer == 'body':
-        cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}                
+    cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}
+    if text =='yes_fever' and answer == 'body':
+        bot.send_quick_replies_message(sender_id, '{} having cough?'.format(phrase), cough)                      
+    if text =='no_fever' and answer == 'body':               
         bot.send_quick_replies_message(sender_id, '{} having cough?'.format(phrase), cough)   
 
     if text == 'yes_correct1':
         if relation == 'myself':
-           bot.send_text_message(sender_id,'And you are {} kg in weight'.format(age))
+           bot.send_text_message(sender_id,'And you are {} kg in weight'.format(weight))
         elif relation == 'mychild':
            bot.send_text_message(sender_id,'And your childs is {} kg in weight'.format(age))
         elif relation == 'someone':
