@@ -187,7 +187,7 @@ def received_text(event):
                 quick_replies = {
                                 "content_type":"text",
                                 "title":"👌Yes",
-                                "payload":'ýes_correct1'
+                                "payload":'yes_correct1'
                               },{
                                 "content_type":"text",
                                 "title":"👎No",
@@ -261,7 +261,7 @@ def received_qr(event):
     quick_replies = {
                                 "content_type":"text",
                                 "title":"👌Yes",
-                                "payload":'ýes_correct'
+                                "payload":'yes_correct'
                               },{
                                 "content_type":"text",
                                 "title":"👎No",
