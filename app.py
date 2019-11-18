@@ -277,43 +277,43 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
                          
                          
-    if text =='yes_fever' and asnwer == 'breathing':
+    if text =='yes_fever' and answer == 'breathing':
         f2days = {"content_type":"text","title":"Yes","payload":'yes_fever2days'},{"content_type":"text","title":"No","payload":'no_fever2days'}                    
         bot.send_quick_replies_message(sender_id, 'Is the fever occurs 2 days or more?', f2days)
                          
-    if text =='yes_fever' and asnwer == 'diarrhea':
+    if text =='yes_fever' and answer == 'diarrhea':
         d3times = {"content_type":"text","title":"Yes","payload":'yes_d3times'},{"content_type":"text","title":"No","payload":'no_d3times'}                                  
         bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)    
                          
-    if text =='yes_fever' and asnwer == 'swallowing':
+    if text =='yes_fever' and answer == 'swallowing':
         st = {"content_type":"text","title":"Yes","payload":'yes_st'},{"content_type":"text","title":"No","payload":'no_st'}                  
         bot.send_quick_replies_message(sender_id, '{} experiencing sore throat?'.format(phrase), st)         
                          
-    if text =='yes_fever' and asnwer == 'urination':
+    if text =='yes_fever' and answer == 'urination':
         pu = {"content_type":"text","title":"Yes","payload":'yes_pu'},{"content_type":"text","title":"No","payload":'no_pu'}
         bot.send_quick_replies_message(sender_id, '{} experiencing:\n\t*frequent urination\n\t*burning feeling when urinating'.format(phrase), pu) 
     
-    if text =='yes_fever' and asnwer == 'body':
+    if text =='yes_fever' and answer == 'body':
         cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}                
         bot.send_quick_replies_message(sender_id, '{} having cough?'.format(phrase), cough)                      
     
-    if text =='no_fever' and asnwer == 'breathing':
+    if text =='no_fever' and answer == 'breathing':
         f2days = {"content_type":"text","title":"Yes","payload":'yes_fever2days'},{"content_type":"text","title":"No","payload":'no_fever2days'}                    
         bot.send_quick_replies_message(sender_id, 'Is the fever occurs 2 days or more?', f2days)
                          
-    if text =='no_fever' and asnwer == 'diarrhea':
+    if text =='no_fever' and answer == 'diarrhea':
         d3times = {"content_type":"text","title":"Yes","payload":'yes_d3times'},{"content_type":"text","title":"No","payload":'no_d3times'}                                  
         bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)    
                          
-    if text =='no_fever' and asnwer == 'swallowing':
+    if text =='no_fever' and answer == 'swallowing':
         st = {"content_type":"text","title":"Yes","payload":'yes_st'},{"content_type":"text","title":"No","payload":'no_st'}                  
         bot.send_quick_replies_message(sender_id, '{} experiencing sore throat?'.format(phrase), st)         
                          
-    if text =='no_fever' and asnwer == 'urination':
+    if text =='no_fever' and answer == 'urination':
         pu = {"content_type":"text","title":"Yes","payload":'yes_pu'},{"content_type":"text","title":"No","payload":'no_pu'}
         bot.send_quick_replies_message(sender_id, '{} experiencing:\n\t*frequent urination\n\t*burning feeling when urinating'.format(phrase), pu) 
     
-    if text =='no_fever' and asnwer == 'body':
+    if text =='no_fever' and answer == 'body':
         cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}                
         bot.send_quick_replies_message(sender_id, '{} having cough?'.format(phrase), cough)   
 
