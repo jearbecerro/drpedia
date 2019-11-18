@@ -270,7 +270,7 @@ def received_qr(event):
         Mongo.set_answer(users,sender_id,'swallowing')
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
     if text =='urination':
-        Mongo.set_answer(users,sender_id,'urination)
+        Mongo.set_answer(users,sender_id,'urination')
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
     if text =='body':
         Mongo.set_answer(users,sender_id,'body')                 
