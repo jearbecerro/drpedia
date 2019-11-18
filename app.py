@@ -73,10 +73,8 @@ def receive_message():
                 elif message['message'].get('attachments'):
                     #TO BE EDIT
                     bot.send_text_message(sender_id,get_message())
-            elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                user_data = Mongo.get_data_users(users, sender_id)
-                patient_data = Mongo.get_data_patient(patient, sender_id)
-                received_postback(message, user_data, patient_data)
+                elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                    received_postback(message, user_data, patient_data)
                     
     return "Message Processed"
 
