@@ -267,13 +267,11 @@ def received_qr(event, user_data, patient_data):
     if text == 'yes_correct1':
          if relation == 'myself':
             bot.send_text_message(sender_id,'And you are {} kg in weight'.format(age))
-            bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
          elif relation == 'mychild':
-            bot.send_text_message(sender_id,'Your childs is {} kg in weight'.format(age))
-            bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+            bot.send_text_message(sender_id,'And your childs is {} kg in weight'.format(age))
          elif relation == 'someone':
-            bot.send_text_message(sender_id,'The childs weight is {} kg.'.format(name, age))
-            bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+            bot.send_text_message(sender_id,'And the childs weight is {} kg.'.format(name, age))
+         bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
             
     if text == 'no_correct1':
         if myself == True:
