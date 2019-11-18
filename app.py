@@ -195,13 +195,14 @@ def received_text(event):
                               }
                 if relation == 'myself':
                     bot.send_text_message(sender_id,'You are {} years old'.format(age))
-                    bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+                    #bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
                 elif relation == 'mychild':
                     bot.send_text_message(sender_id,'Your childs name is {} and he/she is {} years old.'.format(name, age))
-                    bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+                    #bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
                 elif relation == 'someone':
                     bot.send_text_message(sender_id,'The childs name is {} and he/she is {} years old.'.format(name, age))
-                    bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
+                    
+                bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
     else:
         pass
 #if user tap a button from a quick reply
