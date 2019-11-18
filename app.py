@@ -188,20 +188,20 @@ def received_text(event, user_data, patient_data):
                 quick_replies = {
                                 "content_type":"text",
                                 "title":"👌Yes",
-                                "payload":'ýes_correct'
+                                "payload":'ýes_correct1'
                               },{
                                 "content_type":"text",
                                 "title":"👎No",
-                                "payload":'no_correct'
+                                "payload":'no_correct1'
                               }
                 if relation == 'myself':
-                    bot.send_text_message(sender_id,'You are {} years old and you are {} kg in weight.'.format(age, weight))
+                    bot.send_text_message(sender_id,'You are {} years old'.format(age))
                     bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
                 elif relation == 'mychild':
-                    bot.send_text_message(sender_id,'Your childs name is {} and he/she is {} years old,\nalso he/she is {} kg in weight.'.format(name, age, weight))
+                    bot.send_text_message(sender_id,'Your childs name is {} and he/she is {} years old.'.format(name, age))
                     bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
                 elif relation == 'someone':
-                    bot.send_text_message(sender_id,'The childs name is {} and he/she is {} years old,\nalso he/she is {} kg in weight.'.format(name, age, weight))
+                    bot.send_text_message(sender_id,'The childs name is {} and he/she is {} years old.'.format(name, age))
                     bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
         else:
             pass
@@ -231,6 +231,7 @@ def received_qr(event, user_data, patient_data):
         relation  = patient_data['relation']
     else: 
         pass
+    
     if relation == 'myself':
         phrase = 'Are you '
         myself = True
@@ -257,6 +258,34 @@ def received_qr(event, user_data, patient_data):
                             "content_type":"text",
                             "title":"Body pain",
                             "payload":"body"}
+    quick_replies = {
+                                "content_type":"text",
+                                "title":"👌Yes",
+                                "payload":'ýes_correct'
+                              },{
+                                "content_type":"text",
+                                "title":"👎No",
+                                "payload":'no_correct'
+                              }
+    if text == 'yes_correct1':
+         if relation == 'myself':
+            bot.send_text_message(sender_id,'And you are {} kg in weight'.format(age))
+            bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+         elif relation == 'mychild':
+            bot.send_text_message(sender_id,'Your childs is {} kg in weight'.format(age))
+            bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+         elif relation == 'someone':
+            bot.send_text_message(sender_id,'The childs weight is {} kg.'.format(name, age))
+            bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)
+            
+    if text == 'no_correct1':
+        if myself == True:
+            Mongo.set_ask(users, sender_id, "How old are you?")
+            bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
+            bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
+        else:
+            Mongo.set_ask(users, sender_id, "Whats the name of your child?")
+            bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
     if text == 'yes_correct':
         bot.send_text_message(sender_id, "Great!")
         bot.send_text_message(sender_id, "Now we can proceed to your concern.")
