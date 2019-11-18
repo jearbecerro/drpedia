@@ -66,9 +66,9 @@ def receive_message():
     
                 if message['message'].get('text'):
                     if message['message'].get('quick_reply'):
-                        received_qr(message, user_data, patient_data)  
+                        received_qr(message)  
                     else: #else if message is just a text
-                        received_text(message, user_data, patient_data)
+                        received_text(message)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 elif message['message'].get('attachments'):
                     #TO BE EDIT
