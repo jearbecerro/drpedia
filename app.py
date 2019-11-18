@@ -73,8 +73,8 @@ def receive_message():
                 elif message['message'].get('attachments'):
                     #TO BE EDIT
                     bot.send_text_message(sender_id,get_message())
-                elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    received_postback(message, user_data, patient_data)
+            elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                received_postback(message)
                     
     return "Message Processed"
 
@@ -375,12 +375,14 @@ def received_qr(event, user_data, patient_data):
         send_choose_concern(sender_id)
   
 #if user tap a button from a regular button
-def received_postback(event, user_data, patient_data):
+def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     payload = event["postback"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
     global name, age, weight, relation
+    user_data = Mongo.get_data_users(users, sender_id)
+    patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
         created_at = user_data['created_at']
         last_seen = user_data['last_seen']
