@@ -24,9 +24,6 @@ image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 
 GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
 
-user_data = None
-patient_data = None
-
 created_at = ''
 last_seen = ''
 fname = ''
@@ -64,7 +61,6 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
-                global user_data, patient_data
                 user_data = Mongo.get_data_users(users, sender_id)
                 patient_data = Mongo.get_data_patient(patient, sender_id)
     
@@ -78,6 +74,8 @@ def receive_message():
                     #TO BE EDIT
                     bot.send_text_message(sender_id,get_message())
             elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                user_data = Mongo.get_data_users(users, sender_id)
+                patient_data = Mongo.get_data_patient(patient, sender_id)
                 received_postback(message, user_data, patient_data)
                     
     return "Message Processed"
