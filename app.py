@@ -155,16 +155,20 @@ def received_text(event):
         pass
     if ask == "How old are you?":
         if text.isdigit():
+            if relation =='myself':
+                phrase = 'What is your weight in kg?'
+            else:
+                phrase = 'What is the weight of the child in kg?'
             if int(text) >18 and int(text)<30:
                 Mongo.set_patient(patient, sender_id, 'age', text)
                 Mongo.set_ask(users,sender_id,"What is your weight in kg?")
                 bot.send_text_message(sender_id,'Oh right, I can only cater children between 0 - 18 years old.\nBut anyway we can still proceed.')
-                bot.send_text_message(sender_id,'What is the weight of the child in kg?')
+                bot.send_text_message(sender_id,phrase)
             elif text != None and int(text) <=18:
                 Mongo.set_patient(patient, sender_id, 'age', text)
                 Mongo.set_ask(users,sender_id,"What is your weight in kg?")
                 bot.send_text_message(sender_id,'Perfect!')
-                bot.send_text_message(sender_id,'What is the weight of the child in kg?')
+                bot.send_text_message(sender_id,phrase)
             elif int(text) in range(31,100):
                 bot.send_text_message(sender_id,'I do apologize, I can only cater 0 - 18 years old.')
                 bot.send_text_message(sender_id,"To simply start again, just tap 'Start Over' in the persistent menu.")
@@ -238,52 +242,10 @@ def received_qr(event):
     else:
         phrase = 'Is {} '.format(name)
         myself = False
-    unique_symptom = {
-                            "content_type":"text",
-                            "title":"Fever",
-                            "payload":"fever"
-                          },{
-                            "content_type":"text",
-                            "title":"Diarrhea",
-                            "payload":"diarrhea"
-                          },{
-                            "content_type":"text",
-                            "title":"Pain in swallowing",
-                            "payload":"swallowing"
-                          },{
-                            "content_type":"text",
-                            "title":"Pain in urination",
-                            "payload":"urination"
-                          },{
-                            "content_type":"text",
-                            "title":"Body pain",
-                            "payload":"body"}
-    quick_replies = {
-                                "content_type":"text",
-                                "title":"👌Yes",
-                                "payload":'yes_correct'
-                              },{
-                                "content_type":"text",
-                                "title":"👎No",
-                                "payload":'no_correct'
-                              }
-    if text == 'yes_correct1':
-         if relation == 'myself':
-            bot.send_text_message(sender_id,'And you are {} kg in weight'.format(age))
-         elif relation == 'mychild':
-            bot.send_text_message(sender_id,'And your childs is {} kg in weight'.format(age))
-         elif relation == 'someone':
-            bot.send_text_message(sender_id,'And the childs weight is {} kg.'.format(name, age))
-         bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
-            
-    if text == 'no_correct1':
-        if myself == True:
-            Mongo.set_ask(users, sender_id, "How old are you?")
-            bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
-            bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
-        else:
-            Mongo.set_ask(users, sender_id, "Whats the name of your child?")
-            bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
+        
+    unique_symptom = {"content_type":"text","title":"Rapid Breathing","payload":"breathing" },{"content_type":"text","title":"Diarrhea","payload":"diarrhea"},{"content_type":"text","title":"Pain in swallowing","payload":"swallowing"},{"content_type":"text","title":"Pain in urination","payload":"urination"},{"content_type":"text","title":"Body pain","payload":"body"}
+    quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
+    
     if text == 'yes_correct':
         bot.send_text_message(sender_id, "Great!")
         bot.send_text_message(sender_id, "Now we can proceed to your concern.")
@@ -296,22 +258,96 @@ def received_qr(event):
         else:
             Mongo.set_ask(users, sender_id, "Whats the name of your child?")
             bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
+            
+    has_fever = {"content_type":"text","title":"Yes","payload":'yes_fever'},{"content_type":"text","title":"No","payload":'no_fever'}        
+    if text =='breathing':
+        Mongo.set_answer(users,sender_id,'breathing')
+        bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
+    if text =='diarrhea':
+        Mongo.set_answer(users,sender_id,'diarrhea')
+        bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
+    if text =='swallowing':
+        Mongo.set_answer(users,sender_id,'swallowing')
+        bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
+    if text =='urination':
+        Mongo.set_answer(users,sender_id,'urination)
+        bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
+    if text =='body':
+        Mongo.set_answer(users,sender_id,'body')                 
+        bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
+                         
+                         
+    if text =='yes_fever' and asnwer == 'breathing':
+        f2days = {"content_type":"text","title":"Yes","payload":'yes_fever2days'},{"content_type":"text","title":"No","payload":'no_fever2days'}                    
+        bot.send_quick_replies_message(sender_id, 'Is the fever occurs 2 days or more?', f2days)
+                         
+    if text =='yes_fever' and asnwer == 'diarrhea':
+        d3times = {"content_type":"text","title":"Yes","payload":'yes_d3times'},{"content_type":"text","title":"No","payload":'no_d3times'}                                  
+        bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)    
+                         
+    if text =='yes_fever' and asnwer == 'swallowing':
+        st = {"content_type":"text","title":"Yes","payload":'yes_st'},{"content_type":"text","title":"No","payload":'no_st'}                  
+        bot.send_quick_replies_message(sender_id, '{} experiencing sore throat?'.format(phrase), st)         
+                         
+    if text =='yes_fever' and asnwer == 'urination':
+        pu = {"content_type":"text","title":"Yes","payload":'yes_pu'},{"content_type":"text","title":"No","payload":'no_pu'}
+        bot.send_quick_replies_message(sender_id, '{} experiencing:\n\t*frequent urination\n\t*burning feeling when urinating'.format(phrase), pu) 
+    
+    if text =='yes_fever' and asnwer == 'body':
+        cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}                
+        bot.send_quick_replies_message(sender_id, '{} having cough?'.format(phrase), cough)                      
+    
+    if text =='no_fever' and asnwer == 'breathing':
+        f2days = {"content_type":"text","title":"Yes","payload":'yes_fever2days'},{"content_type":"text","title":"No","payload":'no_fever2days'}                    
+        bot.send_quick_replies_message(sender_id, 'Is the fever occurs 2 days or more?', f2days)
+                         
+    if text =='no_fever' and asnwer == 'diarrhea':
+        d3times = {"content_type":"text","title":"Yes","payload":'yes_d3times'},{"content_type":"text","title":"No","payload":'no_d3times'}                                  
+        bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)    
+                         
+    if text =='no_fever' and asnwer == 'swallowing':
+        st = {"content_type":"text","title":"Yes","payload":'yes_st'},{"content_type":"text","title":"No","payload":'no_st'}                  
+        bot.send_quick_replies_message(sender_id, '{} experiencing sore throat?'.format(phrase), st)         
+                         
+    if text =='no_fever' and asnwer == 'urination':
+        pu = {"content_type":"text","title":"Yes","payload":'yes_pu'},{"content_type":"text","title":"No","payload":'no_pu'}
+        bot.send_quick_replies_message(sender_id, '{} experiencing:\n\t*frequent urination\n\t*burning feeling when urinating'.format(phrase), pu) 
+    
+    if text =='no_fever' and asnwer == 'body':
+        cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}                
+        bot.send_quick_replies_message(sender_id, '{} having cough?'.format(phrase), cough)   
+
+    if text == 'yes_correct1':
+        if relation == 'myself':
+           bot.send_text_message(sender_id,'And you are {} kg in weight'.format(age))
+        elif relation == 'mychild':
+           bot.send_text_message(sender_id,'And your childs is {} kg in weight'.format(age))
+        elif relation == 'someone':
+           bot.send_text_message(sender_id,'And the childs weight is {} kg.'.format(name, age))
+        bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
+            
+    if text == 'no_correct1':
+        if myself == True:
+            Mongo.set_ask(users, sender_id, "How old are you?")
+            bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
+            bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
+        else:
+            Mongo.set_ask(users, sender_id, "Whats the name of your child?")
+            bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
+
     if text =='myself':
         Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself')
         Mongo.set_ask(users, sender_id, "How old are you?")
         bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
-        bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
-        #bot.send_quick_replies_message(sender_id, "Are you experiencing one of this symptoms?", unique_symptom)        
+        bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")   
     if text =='mychild':
         Mongo.create_patient(patient, sender_id, '', '', '', 'mychild')
         Mongo.set_ask(users, sender_id, "Whats the name of your child?")
-        bot.send_text_message(sender_id, "Whats the name of your child {}?".format(first_name(sender_id)))
-        #bot.send_quick_replies_message(sender_id, "Is your child experiencing one of this symptoms?", unique_symptom)        
+        bot.send_text_message(sender_id, "Whats the name of your child {}?".format(first_name(sender_id)))    
     if text =='someone':
         Mongo.create_patient(patient, sender_id, '', '', '', 'someone')
         Mongo.set_ask(users, sender_id, "Whats the name of the child?")
         bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
-        #bot.send_quick_replies_message(sender_id, "Is the child experiencing one of this symptoms?", unique_symptom)
     #2.1
     if text=='physical':
         listofconcern = 'Dengue,\nAcute Gastroenteritis,\nUrinary Tract Infection,\nAcute Tonsilitis,\nFLU\nand minor symptoms simply like soar throat, back pain, cold and so on.'
