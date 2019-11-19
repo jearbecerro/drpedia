@@ -693,21 +693,108 @@ def received_qr(event):
     musc = {"content_type":"text","title":"Yes","payload":'yes_musc'},{"content_type":"text","title":"No","payload":'no_musc'}     
     if text == 'yes_fvo' and answer =='body':  
         bot.send_quick_replies_message(sender_id, '{} experiencing muscle pain ?'.format(phrase), musc)
-    if text == 'no_fvo' and answer =='urination':    
+    if text == 'no_fvo' and answer =='body':    
         bot.send_quick_replies_message(sender_id, '{} experiencing muscle pain ?'.format(phrase), musc)
-    if text =='no_fever' and answer == 'urination':                
+    if text =='no_fever' and answer == 'body':                
         bot.send_quick_replies_message(sender_id, '{} experiencing muscle pain ?'.format(phrase), musc)
     
     cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}    
-    if text == 'yes_piu' and answer =='urination':
-        bot.send_quick_replies_message(sender_id, '{} having frequent urination ?'.format(phrase), fru)
-    if text == 'no_piu' and answer == 'urination':
-        bot.send_quick_replies_message(sender_id, '{} having frequent urination ?'.format(phrase), fru)
+    if text == 'yes_musc' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having cough ?'.format(phrase), cough)
+    if text == 'no_musc' and answer == 'body':
+        bot.send_quick_replies_message(sender_id, '{} having cough ?'.format(phrase), cough)
+        
+    dpc = {"content_type":"text","title":"Yes","payload":'yes_dpc'},{"content_type":"text","title":"No","payload":'no_dpc'}
+    if text == 'yes_cough' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having dry, persistent cough ?'.format(phrase), dpc)
+    if text == 'no_cough' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having dry, persistent cough ?'.format(phrase), dpc)
+        
+    cold = {"content_type":"text","title":"Yes","payload":'yes_cold'},{"content_type":"text","title":"No","payload":'no_cold'}   
+    if text == 'yes_dpc' and answer =='body':
+         bot.send_quick_replies_message(sender_id, '{} having cold ?'.format(phrase), cold)
+    if text == 'no_dpc' and answer =='body':
+         bot.send_quick_replies_message(sender_id, '{} having cold ?'.format(phrase), cold)
+    
+    rn = {"content_type":"text","title":"Yes","payload":'yes_rn'},{"content_type":"text","title":"No","payload":'no_rn'}
+    if text == 'yes_cold' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having runny nose ?'.format(phrase), rn)
+    if text == 'no_cold' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having runny nose ?'.format(phrase), rn)
+        
+    nac = {"content_type":"text","title":"Yes","payload":'yes_nac'},{"content_type":"text","title":"No","payload":'no_nac'}
+    if text == 'yes_rn' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having nasal congestion ?'.format(phrase), nac)
+    if text == 'no_rn' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having nasal congestion ?'.format(phrase), nac)
+        
+    pora = {"content_type":"text","title":"Yes","payload":'yes_pora'},{"content_type":"text","title":"No","payload":'no_pora'}
+    if text == 'yes_nac' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having poor appetite ?'.format(phrase), pora)
+     if text == 'no_nac' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having poor appetite ?'.format(phrase), pora)
+    
+    headach = {"content_type":"text","title":"Yes","payload":'yes_headach'},{"content_type":"text","title":"No","payload":'no_headach'}
+    if text == 'yes_pora' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having headache ?'.format(phrase), headach)
+    if text == 'no_pora' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having headache ?'.format(phrase), headach)
+        
+    cas = {"content_type":"text","title":"Yes","payload":'yes_cas'},{"content_type":"text","title":"No","payload":'no_cas'}
+    if text == 'yes_headach' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having chills and sweats ?'.format(phrase), cas)
+    if text == 'no_headach' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having chills and sweats ?'.format(phrase), cas)
+   
+    fati = {"content_type":"text","title":"Yes","payload":'yes_fati'},{"content_type":"text","title":"No","payload":'no_fati'}
+    if text == 'yes_cas' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having fatigue ?'.format(phrase), fati)
+    if text == 'no_cas' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having fatigue ?'.format(phrase), fati)
+
+    fw = {"content_type":"text","title":"Yes","payload":'yes_fw'},{"content_type":"text","title":"No","payload":'no_fw'}
+    if text == 'yes_fati' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} feels weak ?'.format(phrase), fw)
+    if text == 'no_fati' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} feels weak ?'.format(phrase), fw)
      
+    sthroat = {"content_type":"text","title":"Yes","payload":'yes_sthroat'},{"content_type":"text","title":"No","payload":'no_sthroat'}
+    if text == 'yes_fw' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having sore throat ?'.format(phrase), sthroat)
+    if text == 'no_fw' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having sore throat ?'.format(phrase), sthroat)
+        
+    pte = {"content_type":"text","title":"Yes","payload":'yes_pte'},{"content_type":"text","title":"No","payload":'no_pte'}
+    if text == 'yes_sthroat' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having pain and tiredness around the eyes ?'.format(phrase), pte)
+    if text == 'no_sthroat' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having pain and tiredness around the eyes ?'.format(phrase), pte)
+        
+    tbs = {"content_type":"text","title":"Yes","payload":'yes_tbs'},{"content_type":"text","title":"No","payload":'no_tbs'}
+    if text == 'yes_pte' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having trouble breathing or shortness of breathing ?'.format(phrase), tbs)
+    if text == 'no_pte' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having trouble breathing or shortness of breathing ?'.format(phrase), tbs)
+            
+    ppc = {"content_type":"text","title":"Yes","payload":'yes_ppc'},{"content_type":"text","title":"No","payload":'no_ppc'}  
+    if text == 'yes_tbs' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having pain or pressure in your chest or belly ?'.format(phrase), ppc)
+    if text == 'no_tbs' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having pain or pressure in your chest or belly ?'.format(phrase), ppc)
+        
+    sdiz = {"content_type":"text","title":"Yes","payload":'yes_sdiz'},{"content_type":"text","title":"No","payload":'no_sdiz'}
+    if text == 'yes_ppc' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having sudden dizziness ?'.format(phrase), sdiz)
+    if text == 'no_ppc' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having sudden dizziness ?'.format(phrase), sdiz)
     
+    css = {"content_type":"text","title":"Yes","payload":'yes_sdiz'},{"content_type":"text","title":"No","payload":'no_sdiz'}
+    if text == 'yes_sdiz' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having cold sweats and shivers ?'.format(phrase), css)
+    if text == 'no_sdiz' and answer =='body':
+        bot.send_quick_replies_message(sender_id, '{} having cold sweats and shivers ?'.format(phrase), css)
+        #end flu
     
-    
-    #end flu
     if text =='yes_fever' and answer == 'diarrhea':
         bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)     
     if text =='no_fever' and answer == 'diarrhea':
