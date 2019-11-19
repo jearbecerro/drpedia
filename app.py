@@ -279,7 +279,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
                          
     #Dengue
-    if text =='breathing':
+    if text =='breathing': 
         Mongo.set_answer(users,sender_id,'breathing')
         bot.send_text_message(sender_id, "Well that doesn't sound healthy")
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
@@ -393,7 +393,8 @@ def received_qr(event):
     if text == 'no_wbcb' and answer == 'breathing': 
         bot.send_quick_replies_message(sender_id, '{} Platelet below 150 ?'.format(phrase), platb) 
      #End Dengue
-    
+    #count_yes ++
+    #count_yes / 14 * 100
     #Gastroenteritis
     if text =='diarrhea':
         Mongo.set_answer(users,sender_id,'diarrhea')
@@ -475,7 +476,7 @@ def received_qr(event):
     if text == 'yes_sorethroat':  
         bot.send_quick_replies_message(sender_id, 'having chills ?', chls)
     if text == 'no_sorethroat':    
-        bot.send_quick_replies_message(sender_id, 'having chills ?', cls)
+        bot.send_quick_replies_message(sender_id, 'having chills ?', chls)
     
     porap = {"content_type":"text","title":"Yes","payload":'yes_porap'},{"content_type":"text","title":"No","payload":'no_porap'}     
     if text == 'yes_chls' and answer =='swallowing':  
@@ -491,10 +492,222 @@ def received_qr(event):
     if text == 'no_porap' and answer == 'swallowing':
         bot.send_quick_replies_message(sender_id, '{} having red swollen tonsils ?'.format(phrase), rst)
     
+    wyc = {"content_type":"text","title":"Yes","payload":'yes_wyc'},{"content_type":"text","title":"No","payload":'no_wyc'} 
+    if text == 'yes_rst' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} experiencing white or yellow coating or patches on the tonsils ?'.format(phrase), wyc)
+    if text == 'no_rst' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} experiencing white or yellow coating or patches on the tonsils ?'.format(phrase), wyc)
+    
+    etg = {"content_type":"text","title":"Yes","payload":'yes_etg'},{"content_type":"text","title":"No","payload":'no_etg'} 
+    if text == 'yes_wyc' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having enlarged tender glands/lymph nodes in the neck ?'.format(phrase), etg)
+    if text == 'no_wyc' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having enlarged tender glands/lymph nodes in the neck ?'.format(phrase), etg)
+
+    smt = {"content_type":"text","title":"Yes","payload":'yes_smt'},{"content_type":"text","title":"No","payload":'no_smt'} 
+    if text == 'yes_etg' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having scratchy, muffled or throaty voice ?'.format(phrase), smt)
+    if text == 'no_etg' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having scratchy, muffled or throaty voice ?'.format(phrase), smt)
+    
+    bbo = {"content_type":"text","title":"Yes","payload":'yes_bbo'},{"content_type":"text","title":"No","payload":'no_bbo'} 
+    if text == 'yes_smt' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having bad breath occurs ?'.format(phrase), bbo)
+    if text == 'no_smt' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having sbad breath occurs ?'.format(phrase), bbo)  
+       
+    stifn = {"content_type":"text","title":"Yes","payload":'yes_stifn'},{"content_type":"text","title":"No","payload":'no_stifn'} 
+    if text == 'yes_bbo' and answer =='swallowing':  
+        bot.send_quick_replies_message(sender_id, '{} having stiff neck ?'.format(phrase), stifn)
+    if text == 'no_bbo' and answer =='swallowing':    
+        bot.send_quick_replies_message(sender_id, '{} having stiff neck ?'.format(phrase), stifn)
+       
+    head = {"content_typne":"text","title":"Yes","payload":'yes_head'},{"content_type":"text","title":"No","payload":'no_head'} 
+    if text == 'yes_stifn' and answer =='swallowing': 
+        bot.send_quick_replies_message(sender_id, '{} having headache ?'.format(phrase), head)
+    if text == 'no_stifn' and answer =='swallowing': 
+        bot.send_quick_replies_message(sender_id, '{} having headache ?'.format(phrase), head)
+    
+    thrp = {"content_typne":"text","title":"Yes","payload":'yes_thrp'},{"content_type":"text","title":"No","payload":'no_thrp'} 
+    if text == 'yes_head' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having throat pain or tenderness ?'.format(phrase), thrp)
+    if text == 'no_head' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having throat pain or tenderness ?'.format(phrase), thrp)
+    
+    dbt = {"content_typne":"text","title":"Yes","payload":'yes_dbt'},{"content_type":"text","title":"No","payload":'no_dbt'} 
+    if text == 'yes_thrp' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having difficulty breathing through the mouth ?'.format(phrase), dbt)
+    if text == 'no_thrp' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having difficulty breathing through the mouth ?'.format(phrase), dbt)
+    
+    sgn = {"content_typne":"text","title":"Yes","payload":'yes_sgn'},{"content_type":"text","title":"No","payload":'no_sgn'}
+    if text == 'yes_dbt' and answer =='swallowing':    
+        bot.send_quick_replies_message(sender_id, '{} having swollen glands in the neck or jaw area ?'.format(phrase), sgn)
+    if text == 'no_dbt' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having swollen glands in the neck or jaw area ?'.format(phrase), sgn)
+    
+    pin = {"content_typne":"text","title":"Yes","payload":'yes_pin'},{"content_type":"text","title":"No","payload":'no_pin'}
+    if text == 'yes_sgn' and answer =='swallowing':  
+        bot.send_quick_replies_message(sender_id, '{} having pain in the neck ?'.format(phrase), pin)
+    if text == 'no_sgn' and answer =='swallowing': 
+        bot.send_quick_replies_message(sender_id, '{} having pain in the neck ?'.format(phrase), pin)
+
+    cgrs = {"content_typne":"text","title":"Yes","payload":'yes_cgrs'},{"content_type":"text","title":"No","payload":'no_cgrs'}
+    if text == 'yes_pin' and answer =='swallowing':  
+        bot.send_quick_replies_message(sender_id, '{} having cough ?'.format(phrase), cgrs)
+    if text == 'no_pin' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} having cough ?'.format(phrase), cgrs)
+
+    furt = {"content_typne":"text","title":"Yes","payload":'yes_furt'},{"content_type":"text","title":"No","payload":'no_furt'}
+    if text == 'yes_cgrs' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} furry tounge ?'.format(phrase), furt)
+    if text == 'no_cgrs' and answer =='swallowing':
+        bot.send_quick_replies_message(sender_id, '{} furry tounge ?'.format(phrase), furt)
+        #end tonsil
+        
+     #UTI
+    if text =='urination':
+        Mongo.set_answer(users,sender_id,'urination')
+        bot.send_text_message(sender_id, "Well that doesn't sound healthy")
+        bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
+        
+    if text =='yes_fever' and answer == 'urination':
+        stoma = {"content_type":"text","title":"Yes","payload":'yes_stomachace'},{"content_type":"text","title":"No","payload":'no_stomachache'}                    
+        bot.send_quick_replies_message(sender_id, 'having a stomachache ?', stoma)
+    
+    vomit  = {"content_type":"text","title":"Yes","payload":'yes_vomit'},{"content_type":"text","title":"No","payload":'no_vomit'}   
+    if text == 'yes_stomachache':  
+        bot.send_quick_replies_message(sender_id, 'experiencing vomiting ?', vomit)
+    if text == 'no_stomachache':    
+        bot.send_quick_replies_message(sender_id, 'experiencing vomiting ?', vomit)
+    
+    piu = {"content_type":"text","title":"Yes","payload":'yes_piu'},{"content_type":"text","title":"No","payload":'no_pui'}     
+    if text == 'yes_vomit' and answer =='urination':  
+        bot.send_quick_replies_message(sender_id, '{} experiencing pain in urethra ?'.format(phrase), piu)
+    if text == 'no_vomit' and answer =='urination':    
+        bot.send_quick_replies_message(sender_id, '{} experiencing pain in urethra ?'.format(phrase), piu)
+    if text =='no_fever' and answer == 'urination':                
+        bot.send_quick_replies_message(sender_id, '{} experiencing pain in urethra ?'.format(phrase), piu)
+    
+    fru = {"content_type":"text","title":"Yes","payload":'yes_fru'},{"content_type":"text","title":"No","payload":'no_fru'}    
+    if text == 'yes_piu' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having frequent urination ?'.format(phrase), fru)
+    if text == 'no_piu' and answer == 'urination':
+        bot.send_quick_replies_message(sender_id, '{} having frequent urination ?'.format(phrase), fru)
+        
+    abpc = {"content_type":"text","title":"Yes","payload":'yes_abpc'},{"content_type":"text","title":"No","payload":'no_abpc'}      
+    if text == 'yes_fru' and answer =='urination':   
+        bot.send_quick_replies_message(sender_id, '{} having abdominal pain ?'.format(phrase), abpc)
+    if text == 'no_fru' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having abdominal pain ?'.format(phrase), abpc)
+      
+    dysur = {"content_type":"text","title":"Yes","payload":'yes_dysur'},{"content_type":"text","title":"No","payload":'no_dysur'}
+    if text == 'yes_abpc' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having Dysuria  or discomfort when urinating ?'.format(phrase), dysur)
+    if text == 'no_abpc' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having Dysuria  or discomfort when urinating ?'.format(phrase), dysur)
+    
+    flank = {"content_type":"text","title":"Yes","payload":'yes_flank'},{"content_type":"text","title":"No","payload":'no_flank'}
+    if text == 'yes_dysur' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having flank pain ?'.format(phrase), flank)
+    if text == 'no_dysur' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having flank pain ?'.format(phrase), flank)
+    
+    dyu = {"content_type":"text","title":"Yes","payload":'yes_dyu'},{"content_type":"text","title":"No","payload":'no_dyu'}
+    if text == 'yes_flank' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having dark yellow urine ?'.format(phrase), dyu)
+    if text == 'no_flank' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having dark yellow urine ?'.format(phrase), dyu)
+
+    burn = {"content_type":"text","title":"Yes","payload":'yes_burn'},{"content_type":"text","title":"No","payload":'no_burn'}
+    if text == 'yes_dyu' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having burning feeling when urinating ?'.format(phrase), burn)
+    if text == 'no_dyu' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having burning feeling when urinating ?'.format(phrase), burn)
+
+    foi = {"content_type":"text","title":"Yes","payload":'yes_foi'},{"content_type":"text","title":"No","payload":'no_foi'}
+    if text == 'yes_burn' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having frequent or intense urge to urinate, even though little comes out when you do ?'.format(phrase), foi)
+    if text == 'no_burn' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having frequent or intense urge to urinate, even though little comes out when you do ?'.format(phrase), foi)
+        
+    pop = {"content_type":"text","title":"Yes","payload":'yes_pop'},{"content_type":"text","title":"No","payload":'no_pop'}
+    if text == 'yes_foi' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having fain or pressure in your back or lower abdomen ?'.format(phrase), pop)
+    if text == 'no_foi' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having fain or pressure in your back or lower abdomen ?'.format(phrase), pop)
+        
+    cdb = {"content_type":"text","title":"Yes","payload":'yes_cdb'},{"content_type":"text","title":"No","payload":'no_cdb'}   
+    if text == 'yes_pop' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having cloudy, dark, bloody, or strange-smelling urine ?'.format(phrase), cdb)
+    if text == 'no_pop' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having cloudy, dark, bloody, or strange-smelling urine ?'.format(phrase), cdb)
+        
+    fts = {"content_type":"text","title":"Yes","payload":'yes_fts'},{"content_type":"text","title":"No","payload":'no_fts'}   
+    if text == 'yes_cdb' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having feeling tired or shaky ?'.format(phrase), fts)
+    if text == 'no_cdb' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having feeling tired or shaky ?'.format(phrase), fts)
+        
+    uar = {"content_type":"text","title":"Yes","payload":'yes_uar'},{"content_type":"text","title":"No","payload":'no_uar'}
+    if text == 'yes_fts' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having urine appears red, bright pink or cola-colored which is a sign of blood in the urine ?'.format(phrase), uar)
+    if text == 'no_fts' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having urine appears red, bright pink or cola-colored which is a sign of blood in the urine ?'.format(phrase), uar)
+        
+    naus = {"content_type":"text","title":"Yes","payload":'yes_naus'},{"content_type":"text","title":"No","payload":'no_naus'}
+    if text == 'yes_uar' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having nausea ?'.format(phrase), naus)
+     if text == 'no_uar' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having nausea ?'.format(phrase), naus)
+    
+    wbnc = {"content_type":"text","title":"Yes","payload":'yes_wbnc'},{"content_type":"text","title":"No","payload":'no_wbnc'}
+    if text == 'yes_naus' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having WBC is to numeros to count ?'.format(phrase), wbnc)
+    if text == 'no_naus' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having WBC is to numeros to count ?'.format(phrase), wbnc)
+        
+    pro = {"content_type":"text","title":"Yes","payload":'yes_pro'},{"content_type":"text","title":"No","payload":'no_pro'}
+    if text == 'yes_wbnc' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having WBC is to numeros to count ?'.format(phrase), pro)
+    if text == 'no_wbnc' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having WBC is to numeros to count ?'.format(phrase), pro)
+        #end uti
+        
+     #Flu
+    if text =='body':
+        Mongo.set_answer(users,sender_id,'body') 
+        bot.send_text_message(sender_id, "Well that doesn't sound healthy")
+        bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
+    
+    if text =='yes_fever' and answer == 'body':
+        nas = {"content_type":"text","title":"Yes","payload":'yes_nasaldischarge'},{"content_type":"text","title":"No","payload":'no_nasaldischarge'}                    
+        bot.send_quick_replies_message(sender_id, 'having a nasal discharge ?', nas)
+        
+    fvo  = {"content_type":"text","title":"Yes","payload":'yes_fvo'},{"content_type":"text","title":"No","payload":'no_fvo'}   
+    if text == 'yes_nasaldischarge':  
+        bot.send_quick_replies_message(sender_id, 'fever is over 38 degress ?', fvo)
+    if text == 'no_nasaldischarge':    
+        bot.send_quick_replies_message(sender_id, 'fever is over 38 degress ?', fvo)
+    
+    musc = {"content_type":"text","title":"Yes","payload":'yes_musc'},{"content_type":"text","title":"No","payload":'no_musc'}     
+    if text == 'yes_fvo' and answer =='body':  
+        bot.send_quick_replies_message(sender_id, '{} experiencing muscle pain ?'.format(phrase), musc)
+    if text == 'no_fvo' and answer =='urination':    
+        bot.send_quick_replies_message(sender_id, '{} experiencing muscle pain ?'.format(phrase), musc)
+    if text =='no_fever' and answer == 'urination':                
+        bot.send_quick_replies_message(sender_id, '{} experiencing muscle pain ?'.format(phrase), musc)
+    
+    cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}    
+    if text == 'yes_piu' and answer =='urination':
+        bot.send_quick_replies_message(sender_id, '{} having frequent urination ?'.format(phrase), fru)
+    if text == 'no_piu' and answer == 'urination':
+        bot.send_quick_replies_message(sender_id, '{} having frequent urination ?'.format(phrase), fru)
+     
     
     
     
-    #end tonsil
+    #end flu
     if text =='yes_fever' and answer == 'diarrhea':
         bot.send_quick_replies_message(sender_id, 'Is the diarrhea occurs more than 3 times in one day?', d3times)     
     if text =='no_fever' and answer == 'diarrhea':
