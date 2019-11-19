@@ -219,7 +219,7 @@ def received_qr(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation, phrase , myself, has_fever, percentage
+    global name, age, weight, relation, phrase , myself, has_fever, percentage, count_yes
     has_fever = False
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
