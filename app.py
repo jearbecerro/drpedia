@@ -658,7 +658,7 @@ def received_qr(event):
     naus = {"content_type":"text","title":"Yes","payload":'yes_naus'},{"content_type":"text","title":"No","payload":'no_naus'}
     if text == 'yes_uar' and answer =='urination':
         bot.send_quick_replies_message(sender_id, '{} having nausea ?'.format(phrase), naus)
-     if text == 'no_uar' and answer =='urination':
+    if text == 'no_uar' and answer =='urination':
         bot.send_quick_replies_message(sender_id, '{} having nausea ?'.format(phrase), naus)
     
     wbnc = {"content_type":"text","title":"Yes","payload":'yes_wbnc'},{"content_type":"text","title":"No","payload":'no_wbnc'}
