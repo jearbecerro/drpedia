@@ -731,7 +731,7 @@ def received_qr(event):
     pora = {"content_type":"text","title":"Yes","payload":'yes_pora'},{"content_type":"text","title":"No","payload":'no_pora'}
     if text == 'yes_nac' and answer =='body':
         bot.send_quick_replies_message(sender_id, '{} having poor appetite ?'.format(phrase), pora)
-     if text == 'no_nac' and answer =='body':
+    if text == 'no_nac' and answer =='body':
         bot.send_quick_replies_message(sender_id, '{} having poor appetite ?'.format(phrase), pora)
     
     headach = {"content_type":"text","title":"Yes","payload":'yes_headach'},{"content_type":"text","title":"No","payload":'no_headach'}
