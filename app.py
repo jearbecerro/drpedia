@@ -305,59 +305,59 @@ def received_qr(event):
     bp = {"content_type":"text","title":"Yes","payload":'yes_bp'},{"content_type":"text","title":"No","payload":'no_bp'}    
     if text == 'yes_ha' and answer =='breathing':
         bot.send_quick_replies_message(sender_id, '{} experiencing body pain?'.format(phrase), bp)
-    if text == 'no_ha'and answer == 'breating':
+    if text == 'no_ha' and answer == 'breating':
         bot.send_quick_replies_message(sender_id, '{} experiencing body pain?'.format(phrase), bp)
         
     v = {"content_type":"text","title":"Yes","payload":'yes_v'},{"content_type":"text","title":"No","payload":'no_v'}    
-    if text == 'yes_bp'and answer == 'breating':
+    if text == 'yes_bp' and answer == 'breating':
         bot.send_quick_replies_message(sender_id, '{} experiencing vomiting?'.format(phrase), v)
-    if text == 'no_bp'and answer == 'breating':
+    if text == 'no_bp' and answer == 'breating':
         bot.send_quick_replies_message(sender_id, '{} experiencing vomiting?'.format(phrase), v)
         
-    if text == 'yes_v'and answer == 'breating':
+    if text == 'yes_v' and answer == 'breating':
         vo3 = {"content_type":"text","title":"Yes","payload":'yes_vo3'},{"content_type":"text","title":"No","payload":'no_vo3'} 
         bot.send_quick_replies_message(sender_id, 'Is vomiting occurs at least 3 times within day?', vo3)      
     ap = {"content_type":"text","title":"Yes","payload":'yes_ap'},{"content_type":"text","title":"No","payload":'no_ap'}  
-    if text == 'no_v'and answer == 'breating':
+    if text == 'no_v' and answer == 'breating':
         bot.send_quick_replies_message(sender_id, '{} experiencing Abdominal Pain ?'.format(phrase), ap )   
     vbs = {"content_type":"text","title":"Yes","payload":'yes_vbs'},{"content_type":"text","title":"No","payload":'no_vbs'} 
-    if text == 'yes_vo3'and answer == 'breating':    
+    if text == 'yes_vo3' and answer == 'breating':    
         bot.send_quick_replies_message(sender_id, '{} vomiting blood, or blood in the stool'.format(phrase), vbs)  
-    if text == 'no_vo3'and answer == 'breating':    
+    if text == 'no_vo3' and answer == 'breating':    
         bot.send_quick_replies_message(sender_id, '{} vomiting blood, or blood in the stool'.format(phrase), vbs)  
         
-    if text == 'yes_vbs'and answer == 'breating':    
+    if text == 'yes_vbs' and answer == 'breating':    
         bot.send_quick_replies_message(sender_id, '{} experiencing Abdominal Pain ?'.format(phrase), ap )    
-    if text == 'no_vbs'and answer == 'breating':    
+    if text == 'no_vbs' and answer == 'breating':    
         bot.send_quick_replies_message(sender_id, '{} experiencing Abdominal Pain ?'.format(phrase), ap )    
     pa = {"content_type":"text","title":"Yes","payload":'yes_pa'},{"content_type":"text","title":"No","payload":'no_pa'}   
-    if text == 'yes_ap'and answer == 'breating':    
+    if text == 'yes_ap' and answer == 'breating':    
         bot.send_quick_replies_message(sender_id, '{} having poor appetite?'.format(phrase), pa)      
-    if text == 'no_ap'and answer == 'breating':    
+    if text == 'no_ap' and answer == 'breating':    
         bot.send_quick_replies_message(sender_id, '{} having poor appetite?'.format(phrase), pa) 
         
     r2f = {"content_type":"text","title":"Yes","payload":'yes_r2f'},{"content_type":"text","title":"No","payload":'no_r2f'}  
-    if text == 'yes_pa'and answer == 'breating':#dapat epangutana rani siya if fever is YES
+    if text == 'yes_pa' and answer == 'breating':#dapat epangutana rani siya if fever is YES
         bot.send_quick_replies_message(sender_id, '{} having rashes 2 days or more after fever?'.format(phrase), r2f)   
-    if text == 'no_pa'and answer == 'breating': 
+    if text == 'no_pa' and answer == 'breating': 
         bot.send_quick_replies_message(sender_id, '{} having rashes 2 days or more after fever?'.format(phrase), r2f) 
         
     pbe = {"content_type":"text","title":"Yes","payload":'yes_pbe'},{"content_type":"text","title":"No","payload":'no_pbe'}   
-    if text == 'yes_r2f'and answer == 'breating':  
+    if text == 'yes_r2f' and answer == 'breating':  
         bot.send_quick_replies_message(sender_id, '{} having pain behind the eyes?'.format(phrase), pbe)   
-    if text == 'no_r2f'and answer == 'breating':    
+    if text == 'no_r2f' and answer == 'breating':    
         bot.send_quick_replies_message(sender_id, '{} having pain behind the eyes?'.format(phrase), pbe)
     
     fat = {"content_type":"text","title":"Yes","payload":'yes_fat'},{"content_type":"text","title":"No","payload":'no_fat'}
-    if text == 'yes_pbe'and answer == 'breating':  
+    if text == 'yes_pbe' and answer == 'breating':  
         bot.send_quick_replies_message(sender_id, '{} fatigue?'.format(phrase), fat)       
-    if text == 'no_pbe'and answer == 'breating':  
+    if text == 'no_pbe' and answer == 'breating':  
         bot.send_quick_replies_message(sender_id, '{} fatigue?'.format(phrase), fat) 
         
     nas = {"content_type":"text","title":"Yes","payload":'yes_nas'},{"content_type":"text","title":"No","payload":'no_nas'} 
-    if text == 'yes_fat'and answer == 'breating':  
+    if text == 'yes_fat' and answer == 'breating':  
         bot.send_quick_replies_message(sender_id, '{} feeling nausea ?'.format(phrase), nas) 
-    if text == 'no_fat'and answer == 'breating':  
+    if text == 'no_fat' and answer == 'breating':  
         bot.send_quick_replies_message(sender_id, '{} feeling nausea ?'.format(phrase), nas) 
         
     #End Dengue
