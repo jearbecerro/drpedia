@@ -244,12 +244,12 @@ def received_qr(event):
     
     if relation == 'myself':
         phrase = 'Are you '
-        phrase2 = ''
+        phrase2 = 'you'
         myself = True
     else:
         phrase = 'Is {} '.format(name)
         myself = False
-        phrase2 = ''
+        phrase2 = name
         
     unique_symptom = {"content_type":"text","title":"Rapid Breathing","payload":"breathing" },{"content_type":"text","title":"Diarrhea","payload":"diarrhea"},{"content_type":"text","title":"Pain in swallowing","payload":"swallowing"},{"content_type":"text","title":"Pain in urination","payload":"urination"},{"content_type":"text","title":"Body pain","payload":"body"}
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
@@ -397,7 +397,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} having cold or clammy skin ?'.format(phrase), ccs) 
     if text == 'no_tri' and answer == 'breathing':
         bot.send_quick_replies_message(sender_id, '{} having cold or clammy skin ?'.format(phrase), ccs)
-   ''' 
+    ''' 
     wbcb = {"content_type":"text","title":"Yes","payload":'yes_wbcb'},{"content_type":"text","title":"No","payload":'no_wbcb'}
     if text == 'yes_ccs' and answer == 'breathing': 
         count_yes += 1
@@ -411,13 +411,14 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} Platelet below 150 ?'.format(phrase), platb) 
     if text == 'no_wbcb' and answer == 'breathing': 
         bot.send_quick_replies_message(sender_id, '{} Platelet below 150 ?'.format(phrase), platb) 
-    '''#22    
+    '''
+    #22    
     percentage = count_yes / 19 * 100
     if int(percentage) >=75:
-        bot.send_text_message(sender_id, "You have 75% change you might have dengue.")
-        bot.send_text_message(sender_id, "You must undergo a laboratory test for blood.")
+        bot.send_text_message(sender_id, "{} have 75% change you might have dengue.".format(phrase2.capitalize()))
+        bot.send_text_message(sender_id, "{} must undergo a laboratory test for blood.".format(phrase2.capitalize()))
         bot.send_text_message(sender_id, "If WBC is below 4.5 and platelet below 150")
-        bot.send_text_message(sender_id, "Then you are currently in dengue.")
+        bot.send_text_message(sender_id, "Then {} are currently in dengue.".format(phrase2))
     else:
         pass
     count_yes = 0
