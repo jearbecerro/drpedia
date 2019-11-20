@@ -1373,7 +1373,7 @@ def received_qr(event):
     if text == 'yes_eas' and answer =='Anxiety':  
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Has your child ever gotten so scared that she says it’s hard to breathe?'., eve)
+        bot.send_quick_replies_message(sender_id, 'Has your child ever gotten so scared that she says it’s hard to breathe?', eve)
     if text == 'no_eas' and answer =='Anxiety':    
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Has your child ever gotten so scared that she says it’s hard to breathe?', eve)
