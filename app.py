@@ -119,7 +119,7 @@ def received_text(event):
         send_choose_concern(sender_id)
     '''
     if text.lower() in ("test"):
-        choose_howto(sender_id,'remedies_dengue','medication_dengue','about_dengue','Dengue')
+        choose_howto(sender_id,'remedies_uti','medication_dengue','about_dengue','uti')
     #Mental Health{
     elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
         choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
