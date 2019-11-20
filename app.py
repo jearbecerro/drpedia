@@ -290,8 +290,8 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
         
     if text =='yes_fever' and answer == 'breathing':
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         has_fever = True
         print(count_yes, total_symptoms)
         f2days = {"content_type":"text","title":"Yes","payload":'yes_fever2days'},{"content_type":"text","title":"No","payload":'no_fever2days'}                    
@@ -299,8 +299,8 @@ def received_qr(event):
         
     fnight  = {"content_type":"text","title":"Yes","payload":'yes_fnight'},{"content_type":"text","title":"No","payload":'no_fnight'}   
     if text == 'yes_fever2days': 
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, 'Is the fever occurs sunset to sunset or in night time?', fnight)
     if text == 'no_fever2days':    
@@ -309,8 +309,8 @@ def received_qr(event):
         
     ha = {"content_type":"text","title":"Yes","payload":'yes_ha'},{"content_type":"text","title":"No","payload":'no_ha'}     
     if text == 'yes_fnight' and answer =='breathing':
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} experiencing headache?'.format(phrase), ha)
     if text == 'no_fnight' and answer =='breathing':    
@@ -322,8 +322,8 @@ def received_qr(event):
         
     bp = {"content_type":"text","title":"Yes","payload":'yes_bp'},{"content_type":"text","title":"No","payload":'no_bp'}    
     if text == 'yes_ha' and answer =='breathing':
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} experiencing body pain?'.format(phrase), bp)
     if text == 'no_ha' and answer == 'breathing':
@@ -332,8 +332,8 @@ def received_qr(event):
     
     v = {"content_type":"text","title":"Yes","payload":'yes_v'},{"content_type":"text","title":"No","payload":'no_v'}    
     if text == 'yes_bp' and answer == 'breathing':
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} experiencing vomiting?'.format(phrase), v)
     if text == 'no_bp' and answer == 'breathing':
@@ -341,8 +341,8 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} experiencing vomiting?'.format(phrase), v)
         
     if text == 'yes_v' and answer == 'breathing':
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         print(count_yes, total_symptoms)
         vo3 = {"content_type":"text","title":"Yes","payload":'yes_vo3'},{"content_type":"text","title":"No","payload":'no_vo3'} 
         bot.send_quick_replies_message(sender_id, 'Is vomiting occurs at least 3 times within day?', vo3)      
@@ -354,28 +354,28 @@ def received_qr(event):
            
     vbs = {"content_type":"text","title":"Yes","payload":'yes_vbs'},{"content_type":"text","title":"No","payload":'no_vbs'} 
     if text == 'yes_vo3' and answer == 'breathing':  
-        total_symptoms += 1
-        count_yes += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} vomiting blood, or blood in the stool'.format(phrase), vbs)  
     if text == 'no_vo3' and answer == 'breathing':    
         bot.send_quick_replies_message(sender_id, '{} vomiting blood, or blood in the stool'.format(phrase), vbs)  
         total_symptoms += 1
     if text == 'yes_vbs' and answer == 'breathing':   
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} experiencing Abdominal Pain ?'.format(phrase), ap )    
     if text == 'no_vbs' and answer == 'breathing':  
-        total_symptoms += 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} experiencing Abdominal Pain ?'.format(phrase), ap )    
     
     pa = {"content_type":"text","title":"Yes","payload":'yes_pa'},{"content_type":"text","title":"No","payload":'no_pa'}   
     if text == 'yes_ap' and answer == 'breathing': 
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} having poor appetite?'.format(phrase), pa)      
     if text == 'no_ap' and answer == 'breathing':  
-        total_symptoms += 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} having poor appetite?'.format(phrase), pa) 
     '''    
     check = {"content_type":"text","title":"Yes","payload":'yes_check'},{"content_type":"text","title":"No","payload":'no_check'}   
@@ -401,65 +401,66 @@ def received_qr(event):
     '''
     r2f = {"content_type":"text","title":"Yes","payload":'yes_r2f'},{"content_type":"text","title":"No","payload":'no_r2f'}  
     if text == 'yes_pa' and answer == 'breathing':#dapat epangutana rani siya if fever is YES
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} having rashes 2 days or more after fever?'.format(phrase), r2f)
             
     if text == 'no_pa' and answer == 'breathing': 
-        total_symptoms += 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} having rashes 2 days or more after fever?'.format(phrase), r2f) 
     pbe = {"content_type":"text","title":"Yes","payload":'yes_pbe'},{"content_type":"text","title":"No","payload":'no_pbe'}   
     if text == 'yes_r2f' and answer == 'breathing':  
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} having pain behind the eyes?'.format(phrase), pbe)   
     if text == 'no_r2f' and answer == 'breathing':  
-        total_symptoms += 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} having pain behind the eyes?'.format(phrase), pbe)
     
     fat = {"content_type":"text","title":"Yes","payload":'yes_fat'},{"content_type":"text","title":"No","payload":'no_fat'}
     if text == 'yes_pbe' and answer == 'breathing':  
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} fatigue?'.format(phrase), fat)       
     if text == 'no_pbe' and answer == 'breathing':  
-        total_symptoms += 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} fatigue?'.format(phrase), fat) 
         
     nas = {"content_type":"text","title":"Yes","payload":'yes_nas'},{"content_type":"text","title":"No","payload":'no_nas'} 
     if text == 'yes_fat' and answer == 'breathing':  
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} feeling nausea ?'.format(phrase), nas) 
     if text == 'no_fat' and answer == 'breathing':  
-        total_symptoms += 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} feeling nausea ?'.format(phrase), nas) 
         
     mbn = {"content_type":"text","title":"Yes","payload":'yes_mbn'},{"content_type":"text","title":"No","payload":'no_mbn'}
     if text == 'yes_nas' and answer == 'breathing': 
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} having mild bleeding such as nose bleed, bleeding gums, or easy bruising  ?'.format(phrase), mbn) 
     if text == 'no_nas' and answer == 'breathing':
-        total_symptoms += 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} having mild bleeding such as nose bleed, bleeding gums, or easy brusing ?'.format(phrase), mbn) 
     
     tri = {"content_type":"text","title":"Yes","payload":'yes_tri'},{"content_type":"text","title":"No","payload":'no_tri'}
     if text == 'yes_mbn' and answer == 'breathing': 
-        count_yes += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} feeling tired, restless, or irritable ?'.format(phrase), tri) 
     if text == 'no_mbn' and answer == 'breathing':
-        total_symptoms += 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} feeling tired, restless, or irritable ?'.format(phrase), tri) 
     
     ccs = {"content_type":"text","title":"Yes","payload":'yes_ccs'},{"content_type":"text","title":"No","payload":'no_ccs'}
     if text == 'yes_tri' and answer == 'breathing': 
-        count_yes += 1
-        total_symptoms += 1
+        count_yes = count_yes + 1
+        total_symptoms = total_symptoms + 1
         print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} having cold or clammy skin ?'.format(phrase), ccs) 
     if text == 'no_tri' and answer == 'breathing':
-        total_symptoms += 1
+        total_symptoms = total_symptoms + 1
         bot.send_quick_replies_message(sender_id, '{} having cold or clammy skin ?'.format(phrase), ccs)
     ''' 
     wbcb = {"content_type":"text","title":"Yes","payload":'yes_wbcb'},{"content_type":"text","title":"No","payload":'no_wbcb'}
