@@ -1889,7 +1889,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'All of a sudden, is your child convinced she can be a famous singer, president of the United States, an international spy, and a millionaire — all at once?', conv)
-    if text == 'no_alto' and answer =='Bipolar':=
+    if text == 'no_alto' and answer =='Bipolar':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'All of a sudden, is your child convinced she can be a famous singer, president of the United States, an international spy, and a millionaire — all at once?', conv)
 
