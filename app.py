@@ -349,16 +349,25 @@ def received_qr(event):
         pass
     if text == 'no_check':
         pass# tobe edit dapat mo adto siya sa kapareha niyag symptom
-    '''
+    
     if has_fever == True:
         r2f = {"content_type":"text","title":"Yes","payload":'yes_r2f'},{"content_type":"text","title":"No","payload":'no_r2f'}  
         if text == 'yes_pa' and answer == 'breathing':#dapat epangutana rani siya if fever is YES
             count_yes += 1
-            bot.send_quick_replies_message(sender_id, '{} having rashes 2 days or more after fever?'.format(phrase), r2f)   
+            bot.send_quick_replies_message(sender_id, '{} having rashes 2 days or more after fever?'.format(phrase), r2f)
+            
         if text == 'no_pa' and answer == 'breathing': 
             bot.send_quick_replies_message(sender_id, '{} having rashes 2 days or more after fever?'.format(phrase), r2f) 
     else:
         pass
+    '''
+    r2f = {"content_type":"text","title":"Yes","payload":'yes_r2f'},{"content_type":"text","title":"No","payload":'no_r2f'}  
+    if text == 'yes_pa' and answer == 'breathing':#dapat epangutana rani siya if fever is YES
+        count_yes += 1
+        bot.send_quick_replies_message(sender_id, '{} having rashes 2 days or more after fever?'.format(phrase), r2f)
+            
+    if text == 'no_pa' and answer == 'breathing': 
+        bot.send_quick_replies_message(sender_id, '{} having rashes 2 days or more after fever?'.format(phrase), r2f) 
     pbe = {"content_type":"text","title":"Yes","payload":'yes_pbe'},{"content_type":"text","title":"No","payload":'no_pbe'}   
     if text == 'yes_r2f' and answer == 'breathing':  
         count_yes += 1
