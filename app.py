@@ -43,11 +43,6 @@ myself = False
 count_yes = 0
 total_symptoms = 0
 has_fever = False
-#to be deleted
-remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
-def get_remedies_adhd():
-    return random.choice(remedies_adhd)
-
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -609,7 +604,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Gastroenteritis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
-            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have Gastroenteritis.".format(phrase2))
+            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have Gastroenteritis.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'diarrhea' :
@@ -790,7 +785,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Tonsillitis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
-            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have Tonsillitis.".format(phrase2))
+            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have Tonsillitis.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'swallowing':
@@ -979,7 +974,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have UTI.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
-            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have UTI.".format(phrase2))
+            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have UTI.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'urination':
@@ -1188,7 +1183,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have flu.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
-            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have flu.".format(phrase2))
+            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have flu.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'body':
@@ -1317,14 +1312,14 @@ def received_qr(event):
         if get_average(count_yes, total_symptoms) >= 70:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have FLU.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
-            choose_howto(sender_id,'remedies_flu','medication_flu','about_flu','Flu')
+            bot.send_text_message(sender_id, "Base on my symptom checker the child have {}% chance that he/she has ADHD.".format(get_average(count_yes, total_symptoms)))
+            choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have flu.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
-            bot.send_text_message(sender_id, "It must have 70% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have flu.".format(phrase2))
-            bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have ADHD.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "It must have 70% or higher percentage rate base on symptoms that the child currently having before I can determine that he/she has ADHD.")
+            bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that the child currently having: ".format(first_name(sender_id)))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     #end adhd
     if text == 'yes_correct1':
@@ -1494,23 +1489,19 @@ def received_postback(event):
         send_choose_concern(sender_id)
         
     #ADHD
+    remedies_adhd = ["Forgo food colorings and preservatives", "Avoid potential allergens, Diets that restrict possible allergens may help improve behavior in some children with ADHD.", "Consider a yoga or tai chi class, Some small studies indicate that yoga may be helpful for people with ADHD.", "Spending time outside may benefit children with ADHD. There is strong evidence that spending even 20 minutes outside can benefit them by improving their concentration.", "Omega-3 Fatty Acids for ADHD, The omega-3 fatty acids found in fish oil are important in brain and nerve cell function.", "Protein for ADHD, Protein also prevents surges in blood sugar that may increase hyperactivity.", "Vitamin C is a building block of neurotransmitters, while iron and vitamin B6 increase dopamine levels. Zinc regulates dopamine, and may help treat ADHD symptoms in some children when used with conventional medication and treatments.", "Exercise helps the ADHD brain function more effectively and efficiently. One well-known benefit of exercise is an increase in endorphins, which can improve mood. ", "Studies have shown that 20 minutes a day spent in nature may improve ADHD symptoms. Green time is especially effective in helping kids recover from attention fatigue, which occurs after a long school day.", "Clinical trials have found that a number of herbal treatments may show promise for treating ADHD such as French Maritime pine bark extract, Ginseng, Ningdong, Bacopa.", "Creating systems for regular activities, such as getting ready for school, can help children with ADHD learn how to recognize and feel comfortable with routines."]
     if payload=='remedies_adhd':
         buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_adhd"}]
-        bot.send_button_message(sender_id, get_remedies_adhd(), buttons)    
+        bot.send_button_message(sender_id, random.choice(remedies_adhd), buttons)   
     if payload=='send_remedies_adhd':   
         buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_adhd"}]
-        bot.send_button_message(sender_id, get_remedies_adhd(), buttons)                                         
+        bot.send_button_message(sender_id, random.choice(remedies_adhd), buttons)                                         
     #About                                       
     if payload=='about_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
         buttons = [{"type": "postback","title": "ADHD Symptoms", "payload": "send_symptoms_adhd" }]
         bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ADHD?", buttons)
-    if payload=='send_symptoms_adhd':  
-        '''having trouble focusing or concentrating on tasks
-        being forgetful about completing tasks
-        being easily distracted
-        having difficulty sitting still
-        interrupting people while they’re talking'''                                                                                                                                                                                                                                    
+    if payload=='send_symptoms_adhd':                                                                                                                                                                                                                                   
         bot.send_text_message(sender_id,"A wide range of behaviors are associated with ADHD. Some of the more common ones include:\nhaving trouble focusing or concentrating on tasks\nbeing forgetful about completing tasks\nbeing easily distracted\nhaving difficulty sitting still\ninterrupting people while they’re talking")
         buttons = [
                         {
