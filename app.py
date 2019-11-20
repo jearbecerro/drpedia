@@ -301,6 +301,7 @@ def received_qr(event):
     if text == 'yes_fever2days': 
         count_yes += 1
         total_symptoms += 1
+        print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, 'Is the fever occurs sunset to sunset or in night time?', fnight)
     if text == 'no_fever2days':    
         total_symptoms += 1
@@ -310,6 +311,7 @@ def received_qr(event):
     if text == 'yes_fnight' and answer =='breathing':
         count_yes += 1
         total_symptoms += 1
+        print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} experiencing headache?'.format(phrase), ha)
     if text == 'no_fnight' and answer =='breathing':    
         total_symptoms += 1
@@ -322,6 +324,7 @@ def received_qr(event):
     if text == 'yes_ha' and answer =='breathing':
         count_yes += 1
         total_symptoms += 1
+        print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} experiencing body pain?'.format(phrase), bp)
     if text == 'no_ha' and answer == 'breathing':
         total_symptoms += 1
@@ -331,6 +334,7 @@ def received_qr(event):
     if text == 'yes_bp' and answer == 'breathing':
         count_yes += 1
         total_symptoms += 1
+        print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} experiencing vomiting?'.format(phrase), v)
     if text == 'no_bp' and answer == 'breathing':
         total_symptoms += 1
@@ -339,6 +343,7 @@ def received_qr(event):
     if text == 'yes_v' and answer == 'breathing':
         count_yes += 1
         total_symptoms += 1
+        print(count_yes, total_symptoms)
         vo3 = {"content_type":"text","title":"Yes","payload":'yes_vo3'},{"content_type":"text","title":"No","payload":'no_vo3'} 
         bot.send_quick_replies_message(sender_id, 'Is vomiting occurs at least 3 times within day?', vo3)      
     
@@ -351,6 +356,7 @@ def received_qr(event):
     if text == 'yes_vo3' and answer == 'breathing':  
         total_symptoms += 1
         count_yes += 1
+        print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} vomiting blood, or blood in the stool'.format(phrase), vbs)  
     if text == 'no_vo3' and answer == 'breathing':    
         bot.send_quick_replies_message(sender_id, '{} vomiting blood, or blood in the stool'.format(phrase), vbs)  
@@ -450,6 +456,7 @@ def received_qr(event):
     if text == 'yes_tri' and answer == 'breathing': 
         count_yes += 1
         total_symptoms += 1
+        print(count_yes, total_symptoms)
         bot.send_quick_replies_message(sender_id, '{} having cold or clammy skin ?'.format(phrase), ccs) 
     if text == 'no_tri' and answer == 'breathing':
         total_symptoms += 1
@@ -470,7 +477,6 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} Platelet below 150 ?'.format(phrase), platb) 
     '''
     #22
-    print(count_yes + total_symptoms)
     if text == 'yes_ccs' and answer == 'breathing': 
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == True:
