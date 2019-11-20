@@ -283,8 +283,8 @@ def received_qr(event):
     has_fever = {"content_type":"text","title":"Yes","payload":'yes_fever'},{"content_type":"text","title":"No","payload":'no_fever'}                         
     #Dengue
     if text =='breathing': 
-        count = count_yes += 1
-        total = total_symptoms += 1
+        count = count_yes + 1
+        total = total_symptoms + 1
         Mongo.set_patient(patient, sender_id, 'count_yes', count)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total)
         print(count_yes, total_symptoms)
@@ -293,8 +293,8 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
         
     if text =='yes_fever' and answer == 'breathing':
-        count = count_yes += 1
-        total = total_symptoms += 1
+        count = count_yes + 1
+        total = total_symptoms + 1
         Mongo.set_patient(patient, sender_id, 'count_yes', count)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total)
         has_fever = True
