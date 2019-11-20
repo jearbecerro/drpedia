@@ -475,7 +475,6 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} Platelet below 150 ?'.format(phrase), platb) 
     '''
     #22
-    print(count_yes, total_symptoms)
     if text == 'yes_ccs' and answer == 'breathing': 
         count_yes += 1
         total_symptoms += 1
