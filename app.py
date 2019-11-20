@@ -487,7 +487,7 @@ def received_qr(event):
     if text == 'no_ccs' and answer == 'breathing': 
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
-    
+    right = {"content_type":"text","title":"Yes","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
     if text == 'no_inc' and answer == 'breathing':  
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) >= 80:
@@ -503,7 +503,6 @@ def received_qr(event):
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Dengue.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have dengue.".format(phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
-            right = = {"content_type":"text","title":"Yes","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'breathing':
         pass #give medication/ remedies for those symptoms 
@@ -631,7 +630,6 @@ def received_qr(event):
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Gastroenteritis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have Gastroenteritis.".format(phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
-            right = = {"content_type":"text","title":"Right","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'diarrhea' :
         pass #give medication/ remedies for those symptoms 
@@ -812,7 +810,6 @@ def received_qr(event):
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Tonsillitis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have Tonsillitis.".format(phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
-            right = = {"content_type":"text","title":"Right","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'swallowing':
         pass #give medication/ remedies for those symptoms 
@@ -1001,7 +998,6 @@ def received_qr(event):
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have UTI.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have UTI.".format(phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
-            right = = {"content_type":"text","title":"Right","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'urination':
         pass #give medication/ remedies for those symptoms 
@@ -1177,7 +1173,6 @@ def received_qr(event):
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have flu.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have flu.".format(phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
-            right = = {"content_type":"text","title":"Right","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'body':
         pass #give medication/ remedies for those symptoms 
@@ -1186,7 +1181,6 @@ def received_qr(event):
     #END FLU
         
     
-    count_yes = 0 
     if text == 'yes_correct1':
         if relation == 'myself':
            bot.send_text_message(sender_id,'And you are {} kg in weight'.format(weight))
