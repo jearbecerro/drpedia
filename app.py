@@ -111,13 +111,6 @@ def received_text(event):
         total_symptoms = patient_data['total_symptoms']
     else: 
         pass
-    
-    '''
-    if text.lower() in ("hello", "hi", "greetings", "sup", "what's up", "hey", "yow"):
-        greet = random.choice(GREETING_RESPONSES)
-        bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
-        send_choose_concern(sender_id)
-    '''
     #Mental Health{
     if text.lower() in ("attention deficit hyperactivity disorder", "adhd") and answer == 'mental':#if user send text 'adhd'
         choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
@@ -134,7 +127,7 @@ def received_text(event):
     elif text.lower() in ("learning disorders", "learning","ld") and answer == 'mental':
         choose_howto(sender_id,'remedies_learning','medication_learning','about_learning','Learning Disorder')
     else:
-        bot.send_text_message(sender_id,'Just only type your suspected mental health above {}'.format(first_name))
+        bot.send_text_message(sender_id,'Just only type your suspected mental health listed above {}.'.format(first_name))
         
     '''else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')'''
@@ -1400,7 +1393,7 @@ def received_qr(event):
    
     if text=='yes_proceed_mental':
         bot.send_text_message(sender_id,"If you already know that the child had mental health problem and you simply need to realize how to deal with it.\nJust simply type it in⌨️\nFor example: 'adhd'")                                   
-        listmental = {"content_type":"text","title":"ADHD","payload":"ADHD"},{"content_type":"text","title":"Anxiety","payload":"Anxiety"}{"content_type":"text","title":"Autism","payload":"Autism"},{"content_type":"text","title":"Bipolar","payload":"Bipolar"},{"content_type":"text","title":"Depression","payload":"Depression"},{"content_type":"text","title":"ODD","payload":"ODD"},{"content_type":"text","title":"Learning disorder","payload":"Learning_disorder"}                                             
+        listmental = {"content_type":"text","title":"ADHD","payload":"ADHD"},{"content_type":"text","title":"Anxiety","payload":"Anxiety"},{"content_type":"text","title":"Autism","payload":"Autism"},{"content_type":"text","title":"Bipolar","payload":"Bipolar"},{"content_type":"text","title":"Depression","payload":"Depression"},{"content_type":"text","title":"ODD","payload":"ODD"},{"content_type":"text","title":"Learning disorder","payload":"Learning_disorder"}                                             
         bot.send_quick_replies_message(sender_id, 'If you want to check the suspected mental health issue with your kid.\nJust tap your suspected meantal health concern {}.'.format(first_name(sender_id)), listmental)
     if text=='no_proceed_mental':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
