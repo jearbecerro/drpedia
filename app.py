@@ -43,7 +43,6 @@ myself = False
 count_yes = 0
 total_symptoms = 0
 has_fever = False
-percentage = 0
 #to be deleted
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
 def get_remedies_adhd():
@@ -220,7 +219,7 @@ def get_average(count_yes, total_symptoms):
     if count_yes != 0 and total_symptoms !=0:
         div = count_yes / total_symptoms
         percentage =  div * 100
-        print(percentale+'%')
+        print(percentage,'%')
         if int(round(percentage)) >=75:
             return True
         else:
@@ -232,8 +231,9 @@ def received_qr(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation, phrase, phrase2, myself, has_fever, percentage, count_yes, total_symptoms
-
+    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms
+    count_yes = 0
+    total_symptoms = 0
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
