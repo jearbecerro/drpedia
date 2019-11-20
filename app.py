@@ -218,7 +218,8 @@ def received_text(event):
 def get_average(count_yes, total_symptoms):
     if count_yes !=0 and total_symptoms !=0:
         percentage = count_yes / total_symptoms * 100
-        if int(round(percentage))>=75:
+        print(percentale+'%')
+        if int(round(percentage)) >=75:
             return True
         else:
             return False
@@ -467,6 +468,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} Platelet below 150 ?'.format(phrase), platb) 
     '''
     #22
+    print(count_yes + total_symptoms)
     if text == 'yes_ccs' and answer == 'breathing': 
         if get_average(count_yes, total_symptoms) == True:
             bot.send_text_message(sender_id, "{} have 75% change you might have dengue.".format(phrase2.capitalize()))
