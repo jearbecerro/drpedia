@@ -250,8 +250,8 @@ def received_qr(event):
         age = patient_data['age']
         weight = patient_data['weight']
         relation  = patient_data['relation']
-        count_yes = int(patient_data['count_yes'])
-        total_symptoms = int(patient_data['total_symptoms'])
+        count_yes = patient_data['count_yes']
+        total_symptoms = patient_data['total_symptoms']
     else: 
         pass
     
