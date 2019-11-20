@@ -467,7 +467,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} Platelet below 150 ?'.format(phrase), platb) 
     '''
     #22
-    if text == 'yes_css' or  text == 'no_css' and answer == 'breathing': 
+    if text == 'yes_ccs' or  text == 'no_ccs' and answer == 'breathing': 
         if get_average(count_yes, total_symptoms) == True:
             bot.send_text_message(sender_id, "{} have 75% change you might have dengue.".format(phrase2.capitalize()))
             bot.send_text_message(sender_id, "{} must undergo a laboratory test for blood.".format(phrase2.capitalize()))
