@@ -344,7 +344,7 @@ def received_qr(event):
     if count_yes not in range(0,3) and answer == 'breathing' and count_yes <=5:
         bot.send_quick_replies_message(sender_id, '{} experiencing one of these symptoms :\n*rashes\n*pain behind the eyes\n*fatigue\n*nausea\n*mild bleeding\n*feeling tired\n*cold'.format(phrase), check) 
     else:
-        pass
+        continue
     if text == 'yes_check':
         pass
     if text == 'no_check':
