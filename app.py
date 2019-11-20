@@ -950,7 +950,7 @@ def received_qr(event):
         bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
     #2.1
     if text=='physical':
-        listofconcern = 'Dengue,\nAcute Gastroenteritis,\nUrinary Tract Infection,\nAcute Tonsilitis,\nFLU\nand minor symptoms simply like soar throat, back pain, cold and so on.'
+        listofconcern = 'Dengue,\nGastroenteritis,\nUrinary Tract Infection,\nTonsilitis,\nFLU\nand minor symptoms simply like soar throat, back pain, cold and so on.'
         concern= 'physical health'
         after_accept_terms(sender_id,concern,listofconcern,'yes_proceed_physical','no_proceed_physical')
         #Sqlite.set_answer(sender_id,'physical')
