@@ -2247,7 +2247,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Does your child have real trouble with spelling, trouble remembering the sounds that letters make, or trouble hearing slight differences between words?', spell)
-    if text == 'no_langg' and answer =='Learning disorder':=
+    if text == 'no_langg' and answer =='Learning disorder':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Does your child have real trouble with spelling, trouble remembering the sounds that letters make, or trouble hearing slight differences between words?', spell)
 
