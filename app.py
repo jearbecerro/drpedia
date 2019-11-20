@@ -2506,7 +2506,7 @@ def received_qr(event):
     if text == 'yes_excly' and answer =='ODD':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Does your child blame others for their mistakes or misbehavior?' swr)
+        bot.send_quick_replies_message(sender_id, 'Does your child blame others for their mistakes or misbehavior?', swr)
     if text == 'no_excly' and answer =='ODD':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Does your child blame others for their mistakes or misbehavior?', swr)
