@@ -284,10 +284,10 @@ def received_qr(event):
     has_fever = {"content_type":"text","title":"Yes","payload":'yes_fever'},{"content_type":"text","title":"No","payload":'no_fever'}                         
     #Dengue
     if text =='breathing': 
-        count = count_yes + 1
-        total = total_symptoms + 1
-        Mongo.set_patient(patient, sender_id, 'count_yes', str(count))
-        Mongo.set_patient(patient, sender_id, 'total_symptoms', str(total))
+        #count = count_yes + 1
+        #total = total_symptoms + 1
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         print(count_yes, total_symptoms)
         Mongo.set_answer(users,sender_id,'breathing')
         bot.send_text_message(sender_id, "Well that doesn't sound healthy")
@@ -548,12 +548,13 @@ def received_qr(event):
         total = total_symptoms + 1
         Mongo.set_patient(patient, sender_id, 'total_symptoms', str(total))
         if get_average(count_yes, total_symptoms) == True:
+            Mongo.set_patient(patient, sender_id, 'count_yes', 0)
+            Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "{} have 75% change you might have dengue.".format(phrase2.capitalize()))
             bot.send_text_message(sender_id, "{} must undergo a laboratory test for blood.".format(phrase2.capitalize()))
             bot.send_text_message(sender_id, "If WBC is below 4.5 and platelet below 150")
             bot.send_text_message(sender_id, "Then {} are currently in dengue.".format(phrase2))
-            Mongo.set_patient(patient, sender_id, 'count_yes', 0)
-            Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
+            
         elif get_average(count_yes, total_symptoms) == False:
             pass
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
