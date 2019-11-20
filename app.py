@@ -341,7 +341,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} having poor appetite?'.format(phrase), pa) 
         
     check = {"content_type":"text","title":"Yes","payload":'yes_check'},{"content_type":"text","title":"No","payload":'no_check'}    
-    if count_yes not in range(4,5) and answer == 'breathing':
+    if count_yes not in range(4,5) and answer == 'breathing' and count_yes !>=5:
         bot.send_quick_replies_message(sender_id, '{} experiencing one of these symptoms :\n*poor appetite\n*rashes\n*pain behind the eyes\n*fatigue\n*nausea\n*mild bleeding\n*feeling tired\n*cold'.format(phrase), bp)
     if text == 'yes_check':
         pass
@@ -918,9 +918,9 @@ def received_qr(event):
         if relation == 'myself':
            bot.send_text_message(sender_id,'And you are {} kg in weight'.format(weight))
         elif relation == 'mychild':
-           bot.send_text_message(sender_id,'And your childs is {} kg in weight'.format(age))
+           bot.send_text_message(sender_id,"And your child is {} kg in weight".format(age))
         elif relation == 'someone':
-           bot.send_text_message(sender_id,'And the childs weight is {} kg.'.format(name, age))
+           bot.send_text_message(sender_id,"And the child's weight is {} kg.".format(name, age))
         bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
             
     if text == 'no_correct1':
