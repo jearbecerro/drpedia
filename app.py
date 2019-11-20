@@ -1061,7 +1061,7 @@ def received_qr(event):
     if text == 'no_dpc' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having cold ?'.format(phrase), cold)
-        #dre tiwasa
+
     rn = {"content_type":"text","title":"Yes","payload":'yes_rn'},{"content_type":"text","title":"No","payload":'no_rn'}
     if text == 'yes_cold' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
@@ -1348,11 +1348,12 @@ def received_qr(event):
     #end adhd
     #anxiety
     if text =='Anxiety': 
+        alls = {"content_type":"text","title":"Yes","payload":'yes_all'},{"content_type":"text","title":"No","payload":'no_all'}   
         Mongo.set_answer(users,sender_id,'Anxiety')
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_text_message(sender_id, "{} please think about your child’s behaviors in the past 6 months".format(first_name(sender_id)))
-        bot.send_quick_replies_message(sender_id, "When you are all at home for the day, does your child follow you around the house wherever you go?", all)
+        bot.send_quick_replies_message(sender_id, "When you are all at home for the day, does your child follow you around the house wherever you go?", alls)
 
     if text =='yes_all' and answer == 'Anxiety':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
@@ -1527,6 +1528,7 @@ def received_qr(event):
     #end anxiety
     #autism
     if text =='Autism': 
+        point = {"content_type":"text","title":"Yes","payload":'yes_point'},{"content_type":"text","title":"No","payload":'yes_point'}   
         Mongo.set_answer(users,sender_id,'Autism')
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
@@ -1824,6 +1826,7 @@ def received_qr(event):
     
     #Bipolar
     if text =='Bipolar': 
+        inconsistently = {"content_type":"text","title":"Yes","payload":'yes_inconsistently'},{"content_type":"text","title":"No","payload":'no_inconsistently'}
         Mongo.set_answer(users,sender_id,'Bipolar')
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
@@ -1985,6 +1988,7 @@ def received_qr(event):
     #end bipolar
     #depression
     if text =='Depression': 
+        favorite = {"content_type":"text","title":"Yes","payload":'yes_favorite'},{"content_type":"text","title":"No","payload":'no_favorite'}  
         Mongo.set_answer(users,sender_id,'Depression')
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
@@ -2182,6 +2186,7 @@ def received_qr(event):
     #end depression
     #learning disorder
     if text =='Learning disorder': 
+        alphabet = {"content_type":"text","title":"Yes","payload":'yes_alphabet'},{"content_type":"text","title":"No","payload":'no_alphabet'}               
         Mongo.set_answer(users,sender_id,'Learning disorder')
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
@@ -2370,6 +2375,7 @@ def received_qr(event):
     #end learning disorder
     #ODD
     if text =='ODD': 
+        unwilling = {"content_type":"text","title":"Yes","payload":'yes_unwilling'},{"content_type":"text","title":"No","payload":'no_unwilling'}                    
         Mongo.set_answer(users,sender_id,'ODD')
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
