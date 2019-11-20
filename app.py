@@ -1702,7 +1702,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, 'Does your child point with one finger to show you something interesting?', fing)
     if text == 'no_inter' and answer =='Autism':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Does your child point with one finger to show you something interesting?'., fing)
+        bot.send_quick_replies_message(sender_id, 'Does your child point with one finger to show you something interesting?', fing)
 
     one = {"content_type":"text","title":"Yes","payload":'yes_one'},{"content_type":"text","title":"No","payload":'no_one'}
     if text == 'yes_fing' and answer =='Autism':
