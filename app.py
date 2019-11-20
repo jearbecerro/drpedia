@@ -39,7 +39,7 @@ relation  = ''
 phrase = ''
 phrase2= ''
 myself = False
-
+average = 0
 count_yes = 0
 total_symptoms = 0
 has_fever = False
@@ -205,7 +205,7 @@ def received_qr(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms
+    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average
     
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
@@ -464,10 +464,14 @@ def received_qr(event):
     right = {"content_type":"text","title":"Yes","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
     if text == 'no_inc' and answer == 'breathing':  
         print(count_yes, total_symptoms)
+        if get_average(count_yes, total_symptoms) == 100:
+            average = get_average(count_yes, total_symptoms) - 1
+        else:
+            average = get_average(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) >= 80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Dengue.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Dengue.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "{} must undergo a laboratory test for blood.".format(phrase2.capitalize()))
             bot.send_text_message(sender_id, "After the lab test,\nif the white blood cell is below 4.5 and the platelet is below 150.")
             bot.send_text_message(sender_id, "Then I can determine that {} currently having dengue.".format(phrase2))
@@ -475,7 +479,7 @@ def received_qr(event):
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Dengue.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Dengue.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have before I can determine that {} have dengue.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
@@ -595,15 +599,19 @@ def received_qr(event):
     
     if text == 'no_inc' and answer == 'diarrhea':  
         print(count_yes, total_symptoms)
+        if get_average(count_yes, total_symptoms) == 100:
+            average = get_average(count_yes, total_symptoms) - 1
+        else:
+            average = get_average(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) >= 80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have Gastroenteritis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have Gastroenteritis.".format(phrase2,average,phrase2))
             choose_howto(sender_id,'remedies_gastro','medication_gastro','about_gastro','Gastroenteritis')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Gastroenteritis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Gastroenteritis.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have Gastroenteritis.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
@@ -776,15 +784,19 @@ def received_qr(event):
     
     if text == 'no_inc' and answer == 'swallowing':  
         print(count_yes, total_symptoms)
+        if get_average(count_yes, total_symptoms) == 100:
+            average = get_average(count_yes, total_symptoms) - 1
+        else:
+            average = get_average(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) >= 80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have Tonsillitis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have Tonsillitis.".format(phrase2,average,phrase2))
             choose_howto(sender_id,'remedies_tonsil','medication_tonsil','about_tonsil','Tonsillitis')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Tonsillitis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Tonsillitis.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have Tonsillitis.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
@@ -965,15 +977,19 @@ def received_qr(event):
     
     if text == 'no_inc' and answer == 'urination':  
         print(count_yes, total_symptoms)
+        if get_average(count_yes, total_symptoms) == 100:
+            average = get_average(count_yes, total_symptoms) - 1
+        else:
+            average = get_average(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) >= 80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have UTI.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have UTI.".format(phrase2,average,phrase2))
             choose_howto(sender_id,'remedies_uti','medication_uti','about_uti','Urinary Tract Infection')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have UTI.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have UTI.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have UTI.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
@@ -1174,15 +1190,19 @@ def received_qr(event):
     
     if text == 'no_inc' and answer == 'body':  
         print(count_yes, total_symptoms)
+        if get_average(count_yes, total_symptoms) == 100:
+            average = get_average(count_yes, total_symptoms) - 1
+        else:
+            average = get_average(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) >= 80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have FLU.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have FLU.".format(phrase2,average,phrase2))
             choose_howto(sender_id,'remedies_flu','medication_flu','about_flu','Flu')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have flu.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have flu.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have flu.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
@@ -1198,7 +1218,7 @@ def received_qr(event):
         Mongo.set_answer(users,sender_id,'ADHD')
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_text_message(sender_id, "Well that doesn't sound healthy")
+        bot.send_text_message(sender_id, "{} please think about your child’s behaviors in the past 6 months".format(first_name(sender_id)))
         bot.send_quick_replies_message(sender_id, "Does your child interferes in the classroom because she/he has difficulty engaging in quiet activities without disturbing others?", interferes)
     if text =='yes_interferes' and answer == 'ADHD':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
@@ -1309,15 +1329,21 @@ def received_qr(event):
     
     if text == 'yes_checkm' and answer == 'ADHD':  
         print(count_yes, total_symptoms)
+        if get_average(count_yes, total_symptoms) == 100:
+            average = get_average(count_yes, total_symptoms) - 1
+        else:
+            average = get_average(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) >= 70:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker the child have {}% chance that he/she has ADHD.".format(get_average(count_yes, total_symptoms)))
+            bot.send_text_message(sender_id, "Base on my symptom checker the child have {}% chance that he/she has ADHD.".format(average))
             choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have ADHD.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            if get_average(count_yes, total_symptoms) == 100:
+                average = get_average(count_yes, total_symptoms) - 1
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have ADHD.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 70% or higher percentage rate base on symptoms that the child currently having before I can determine that he/she has ADHD.")
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that the child currently having: ".format(first_name(sender_id)))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
