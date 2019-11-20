@@ -231,7 +231,7 @@ def received_qr(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms,count_ye, total_symptom
+    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms
     
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
@@ -250,8 +250,8 @@ def received_qr(event):
         age = patient_data['age']
         weight = patient_data['weight']
         relation  = patient_data['relation']
-        count_ye = patient_data['count_yes']
-        total_symptom = patient_data['total_symptoms']
+        count_yes = patient_data['count_yes']
+        total_symptoms = patient_data['total_symptoms']
     else: 
         pass
     
@@ -263,8 +263,6 @@ def received_qr(event):
         phrase = 'Is {} '.format(name)
         myself = False
         phrase2 = name
-    count_yes = int(count_ye)
-    total_symptoms = int(total_symptom)
     unique_symptom = {"content_type":"text","title":"Rapid Breathing","payload":"breathing" },{"content_type":"text","title":"Diarrhea","payload":"diarrhea"},{"content_type":"text","title":"Pain in swallowing","payload":"swallowing"},{"content_type":"text","title":"Pain in urination","payload":"urination"},{"content_type":"text","title":"Body pain","payload":"body"}
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
     
