@@ -1028,136 +1028,167 @@ def received_qr(event):
         
     fvo  = {"content_type":"text","title":"Yes","payload":'yes_fvo'},{"content_type":"text","title":"No","payload":'no_fvo'}   
     if text == 'yes_nasaldischarge': 
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'fever is over 38 degress ?', fvo)
     if text == 'no_nasaldischarge':   
-        
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'fever is over 38 degress ?', fvo)
     
     musc = {"content_type":"text","title":"Yes","payload":'yes_musc'},{"content_type":"text","title":"No","payload":'no_musc'}     
     if text == 'yes_fvo' and answer =='body':  
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} experiencing muscle pain ?'.format(phrase), musc)
     if text == 'no_fvo' and answer =='body':   
-        
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} experiencing muscle pain ?'.format(phrase), musc)
     if text =='no_fever' and answer == 'body':    
-        
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} experiencing muscle pain ?'.format(phrase), musc)
     
     cough = {"content_type":"text","title":"Yes","payload":'yes_cough'},{"content_type":"text","title":"No","payload":'no_cough'}    
     if text == 'yes_musc' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having cough ?'.format(phrase), cough)
     if text == 'no_musc' and answer == 'body':
-        
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having cough ?'.format(phrase), cough)
         
     dpc = {"content_type":"text","title":"Yes","payload":'yes_dpc'},{"content_type":"text","title":"No","payload":'no_dpc'}
     if text == 'yes_cough' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having dry, persistent cough ?'.format(phrase), dpc)
     if text == 'no_cough' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having dry, persistent cough ?'.format(phrase), dpc)
         
     cold = {"content_type":"text","title":"Yes","payload":'yes_cold'},{"content_type":"text","title":"No","payload":'no_cold'}   
     if text == 'yes_dpc' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having cold ?'.format(phrase), cold)
     if text == 'no_dpc' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having cold ?'.format(phrase), cold)
         #dre tiwasa
     rn = {"content_type":"text","title":"Yes","payload":'yes_rn'},{"content_type":"text","title":"No","payload":'no_rn'}
     if text == 'yes_cold' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having runny nose ?'.format(phrase), rn)
     if text == 'no_cold' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having runny nose ?'.format(phrase), rn)
             
     nac = {"content_type":"text","title":"Yes","payload":'yes_nac'},{"content_type":"text","title":"No","payload":'no_nac'}
     if text == 'yes_rn' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having nasal congestion ?'.format(phrase), nac)
     if text == 'no_rn' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having nasal congestion ?'.format(phrase), nac)
         
     pora = {"content_type":"text","title":"Yes","payload":'yes_pora'},{"content_type":"text","title":"No","payload":'no_pora'}
     if text == 'yes_nac' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having poor appetite ?'.format(phrase), pora)
     if text == 'no_nac' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having poor appetite ?'.format(phrase), pora)
     
     headach = {"content_type":"text","title":"Yes","payload":'yes_headach'},{"content_type":"text","title":"No","payload":'no_headach'}
     if text == 'yes_pora' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having headache ?'.format(phrase), headach)
     if text == 'no_pora' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having headache ?'.format(phrase), headach)
         
     cas = {"content_type":"text","title":"Yes","payload":'yes_cas'},{"content_type":"text","title":"No","payload":'no_cas'}
     if text == 'yes_headach' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having chills and sweats ?'.format(phrase), cas)
     if text == 'no_headach' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having chills and sweats ?'.format(phrase), cas)
    
     fati = {"content_type":"text","title":"Yes","payload":'yes_fati'},{"content_type":"text","title":"No","payload":'no_fati'}
     if text == 'yes_cas' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having fatigue ?'.format(phrase), fati)
     if text == 'no_cas' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having fatigue ?'.format(phrase), fati)
 
     fw = {"content_type":"text","title":"Yes","payload":'yes_fw'},{"content_type":"text","title":"No","payload":'no_fw'}
     if text == 'yes_fati' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} feels weak ?'.format(phrase), fw)
     if text == 'no_fati' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} feels weak ?'.format(phrase), fw)
      
     sthroat = {"content_type":"text","title":"Yes","payload":'yes_sthroat'},{"content_type":"text","title":"No","payload":'no_sthroat'}
     if text == 'yes_fw' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having sore throat ?'.format(phrase), sthroat)
     if text == 'no_fw' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having sore throat ?'.format(phrase), sthroat)
         
     pte = {"content_type":"text","title":"Yes","payload":'yes_pte'},{"content_type":"text","title":"No","payload":'no_pte'}
     if text == 'yes_sthroat' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having pain and tiredness around the eyes ?'.format(phrase), pte)
     if text == 'no_sthroat' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having pain and tiredness around the eyes ?'.format(phrase), pte)
         
     tbs = {"content_type":"text","title":"Yes","payload":'yes_tbs'},{"content_type":"text","title":"No","payload":'no_tbs'}
     if text == 'yes_pte' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having trouble breathing or shortness of breathing ?'.format(phrase), tbs)
     if text == 'no_pte' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having trouble breathing or shortness of breathing ?'.format(phrase), tbs)
             
     ppc = {"content_type":"text","title":"Yes","payload":'yes_ppc'},{"content_type":"text","title":"No","payload":'no_ppc'}  
     if text == 'yes_tbs' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having pain or pressure in your chest or belly ?'.format(phrase), ppc)
     if text == 'no_tbs' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having pain or pressure in your chest or belly ?'.format(phrase), ppc)
         
     sdiz = {"content_type":"text","title":"Yes","payload":'yes_sdiz'},{"content_type":"text","title":"No","payload":'no_sdiz'}
     if text == 'yes_ppc' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having sudden dizziness ?'.format(phrase), sdiz)
     if text == 'no_ppc' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having sudden dizziness ?'.format(phrase), sdiz)
     
     css = {"content_type":"text","title":"Yes","payload":'yes_sdiz'},{"content_type":"text","title":"No","payload":'no_sdiz'}
     if text == 'yes_sdiz' and answer =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having cold sweats and shivers ?'.format(phrase), css)
     if text == 'no_sdiz' and answer =='body':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having cold sweats and shivers ?'.format(phrase), css)
         
     if text == 'yes_sdiz' and answer == 'body': 
@@ -1350,8 +1381,9 @@ def received_postback(event):
         buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_uti"}]
         remedies = remedies_uti
         while len(remedies) > 0 and payload=='send_remedies_uti':
-            bot.send_button_message(sender_id, random.choice(remedies_uti), buttons) 
-            remedies.remove(remedies)
+            generated_remedies = random.choice(remedies)
+            bot.send_button_message(sender_id,  generated_remedies, buttons) 
+            remedies.remove( generated_remedies)
     #End UTI
     #Flu Remedies, Medication, About
     remedies_flu = ["Drinking water and other fluids is even more important when you have the flu.", "Water helps to keep your nose, mouth, and throat moist. This helps your body get rid of built-up mucous and phlegm.", "It’s important to rest and get more sleep when you have the flu. Sleeping can help boost your immune system.", "Drinking warm chicken or beef bone broth is a good way to help you stay hydrated. It helps to loosen and break up nose and sinus congestion.", "-Drinking broth is a good way to replenish these nutrients while you have the flu. Plus, protein is important for rebuilding immune cells.", "The mineral zinc is important for your immune system. This nutrient helps your body make germ-fighting white blood cells.", "Several herbs have natural antiviral and antibacterial properties. Star anise is a star-shaped spice from which oseltamivir was traditionally extracted.", "Sweeten herbal teas with pure honey. Honey, royal jelly, and other bee products have been found to have natural antiviral and antibacterial properties.", "According to the study, tea tree oil works best when it’s used within two hours of infection. This shows that it may help to block the flu virus from multiplying.", "In practice, you might add a few drops of tea tree oil to liquid hand soap when you wash your hands or mixed into lotion you use.", "-Using a humidifier to add humidity in your home and workplace might help reduce flu viruses in the air.", "Breathing in steam from a warm pot of water can help soothe your nose, sinuses, throat, and lungs. Steam inhalation might help to soothe a dry cough, irritated nose, and chest tightness."]
