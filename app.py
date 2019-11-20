@@ -342,7 +342,7 @@ def received_qr(event):
         
     check = {"content_type":"text","title":"Yes","payload":'yes_check'},{"content_type":"text","title":"No","payload":'no_check'}    
     
-    if count_yes not in range(4,5) and answer == 'breathing' and count_yes <=5:
+    if count_yes not in range(0,3) and answer == 'breathing' and count_yes <=5:
         bot.send_quick_replies_message(sender_id, '{} experiencing one of these symptoms :\n*poor appetite\n*rashes\n*pain behind the eyes\n*fatigue\n*nausea\n*mild bleeding\n*feeling tired\n*cold'.format(phrase), bp)
     if text == 'yes_check':
         pass
