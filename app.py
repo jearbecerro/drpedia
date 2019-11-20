@@ -1262,15 +1262,17 @@ def received_qr(event):
         send_choose_concern(sender_id)
         
     if text=='yes_proceed_physical':
-        bot.send_text_message(sender_id,"If you have suspected physical health problem listed above.\nSimply type it in⌨️\nExample: 'dengue'")
-        button = [
+        bot.send_text_message(sender_id,"If you find that your concern needs immidiate action by a real doctor.\nI recommend you go to the nearest emergency clinic.")
+        quick_replies = {"content_type":"text","title":"Myself","payload":"myself"},{"content_type":"text","title":"My Child","payload":"mychild"},{"content_type":"text","title":"Someone else","payload":"someone"}
+        bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(first_name(sender_id)), quick_replies)
+        '''button = [
                         {
                         "type": "postback",
                         "title": "🔍Check Symptom",
                         "payload": "physical_symptom_checker"
                         }
                         ]
-        bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", button)
+        bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", button)'''
         
     if text=='no_proceed_physical':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
@@ -1385,7 +1387,7 @@ def received_postback(event):
         
     if payload=='mental_symptom_checker':
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
-        
+    '''    
     if payload=='physical_symptom_checker':
         quick_replies = {
                             "content_type":"text",
@@ -1400,7 +1402,8 @@ def received_postback(event):
                             "title":"Someone else",
                             "payload":"someone"
                           }
-        bot.send_quick_replies_message(sender_id, 'Who do you want to check symptoms, {}?'.format(first_name(sender_id)), quick_replies)      
+        bot.send_quick_replies_message(sender_id, 'Who do you want to check symptoms, {}?'.format(first_name(sender_id)), quick_replies) 
+    '''    
     #2.2.2.1}
     
         
