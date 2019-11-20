@@ -217,12 +217,14 @@ def received_text(event):
         pass
 def get_average(count_yes, total_symptoms):
     print(count_yes, total_symptoms)
-    percentage = count_yes / total_symptoms * 100
-    print(percentale+'%')
-    if int(round(percentage)) >=75:
-        return True
-    else:
-        return False
+    if count_yes != 0 and total_symptoms !=0:
+        div = count_yes / total_symptoms
+        percentage =  div * 100
+        print(percentale+'%')
+        if int(round(percentage)) >=75:
+            return True
+        else:
+            return False
    
 #if user tap a button from a quick reply
 def received_qr(event):
