@@ -40,8 +40,6 @@ phrase = ''
 phrase2= ''
 myself = False
 
-count_yes = 0
-total_symptoms = 0
 has_fever = False
 #to be deleted
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
@@ -231,7 +229,7 @@ def received_qr(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms
+    global name, age, weight, relation, phrase, phrase2, myself, has_fever
     count_yes = 0
     total_symptoms = 0
     user_data = Mongo.get_data_users(users, sender_id)
