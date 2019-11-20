@@ -529,7 +529,7 @@ def received_qr(event):
     if text == 'yes_diarrheamore3days':  
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'having loose stools or watery stools ?', lws)
+        bot.send_quick_replies_message(sender_id, '{} having loose stools or watery stools ?'.format(phrase), lws)
     if text == 'no_diarrheamore3days':  
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'having loose stools or watery stools ?', lws)
@@ -550,10 +550,10 @@ def received_qr(event):
     if text == 'yes_ilbm' and answer =='diarrhea':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} does vomiting occurs ?'.format(phrase), vocrs)
+        bot.send_quick_replies_message(sender_id, '{} experiencing vomitting ?'.format(phrase), vocrs)
     if text == 'no_ilbm' and answer == 'diarrhea':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} does vomiting occurs ?'.format(phrase), vocrs)
+        bot.send_quick_replies_message(sender_id, '{} experiencing vomitting ?'.format(phrase), vocrs)
     
     apors = {"content_type":"text","title":"Yes","payload":'yes_apors'},{"content_type":"text","title":"No","payload":'no_apors'} 
     if text == 'yes_vocrs' and answer =='diarrhea':
@@ -1325,7 +1325,7 @@ def received_postback(event):
         buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_gastro"}]
         bot.send_button_message(sender_id, random.choice(remedies_gastro), buttons) 
     if payload=='send_remedies_gastro':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_dengue"}]
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_gastro"}]
         bot.send_button_message(sender_id, random.choice(remedies_gastro), buttons) 
     #End Gastro
     #Tonsil Remedies, Medication, About
@@ -1334,7 +1334,7 @@ def received_postback(event):
         buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_tonsil"}]
         bot.send_button_message(sender_id, random.choice(remedies_tonsil), buttons) 
     if payload=='send_remedies_tonsil':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_dengue"}]
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_tonsil"}]
         bot.send_button_message(sender_id, random.choice(remedies_tonsil), buttons) 
     #End Tonsil
     #UTI Remedies, Medication, About
