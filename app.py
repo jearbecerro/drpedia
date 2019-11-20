@@ -1014,13 +1014,15 @@ def received_qr(event):
         
      #Flu
     if text =='body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         Mongo.set_answer(users,sender_id,'body') 
         bot.send_text_message(sender_id, "Well that doesn't sound healthy")
         bot.send_quick_replies_message(sender_id, "{} having fever?".format(phrase), has_fever)
     
     if text =='yes_fever' and answer == 'body':
-        
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         nas = {"content_type":"text","title":"Yes","payload":'yes_nasaldischarge'},{"content_type":"text","title":"No","payload":'no_nasaldischarge'}                    
         bot.send_quick_replies_message(sender_id, 'having a nasal discharge ?', nas)
         
