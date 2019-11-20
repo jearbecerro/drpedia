@@ -40,6 +40,8 @@ phrase = ''
 phrase2= ''
 myself = False
 
+count_yes = 0
+total_symptoms = 0
 has_fever = False
 #to be deleted
 remedies_adhd = ["eat a healthy, balanced diet", "get at least 60 minutes of physical activity per day", "get plenty of sleep", "limit daily screen time from phones, computers, and TV"]
