@@ -216,15 +216,14 @@ def received_text(event):
     else:
         pass
 def get_average(count_yes, total_symptoms):
-    if count_yes !=0 and total_symptoms !=0:
-        percentage = count_yes / total_symptoms * 100
-        print(percentale+'%')
-        if int(round(percentage)) >=75:
-            return True
-        else:
-            return False
+    print(count_yes, total_symptoms)
+    percentage = count_yes / total_symptoms * 100
+    print(percentale+'%')
+    if int(round(percentage)) >=75:
+        return True
     else:
-        pass
+        return False
+   
 #if user tap a button from a quick reply
 def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -292,6 +291,7 @@ def received_qr(event):
         count_yes += 1
         total_symptoms += 1
         has_fever = True
+        print(count_yes, total_symptoms)
         f2days = {"content_type":"text","title":"Yes","payload":'yes_fever2days'},{"content_type":"text","title":"No","payload":'no_fever2days'}                    
         bot.send_quick_replies_message(sender_id, 'Is the fever occurs 2 days or more?', f2days)
         
@@ -470,6 +470,7 @@ def received_qr(event):
     #22
     print(count_yes + total_symptoms)
     if text == 'yes_ccs' and answer == 'breathing': 
+        print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == True:
             bot.send_text_message(sender_id, "{} have 75% change you might have dengue.".format(phrase2.capitalize()))
             bot.send_text_message(sender_id, "{} must undergo a laboratory test for blood.".format(phrase2.capitalize()))
