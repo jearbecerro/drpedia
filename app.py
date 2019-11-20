@@ -1379,11 +1379,7 @@ def received_postback(event):
         bot.send_button_message(sender_id, random.choice(remedies_uti), buttons) 
     if payload=='send_remedies_uti':
         buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_uti"}]
-        remedies = remedies_uti
-        while len(remedies) > 0 and payload=='send_remedies_uti':
-            generated_remedies = random.choice(remedies)
-            bot.send_button_message(sender_id,  generated_remedies, buttons) 
-            remedies.remove( generated_remedies)
+        bot.send_button_message(sender_id,  generated_remedies, buttons) 
     #End UTI
     #Flu Remedies, Medication, About
     remedies_flu = ["Drinking water and other fluids is even more important when you have the flu.", "Water helps to keep your nose, mouth, and throat moist. This helps your body get rid of built-up mucous and phlegm.", "It’s important to rest and get more sleep when you have the flu. Sleeping can help boost your immune system.", "Drinking warm chicken or beef bone broth is a good way to help you stay hydrated. It helps to loosen and break up nose and sinus congestion.", "-Drinking broth is a good way to replenish these nutrients while you have the flu. Plus, protein is important for rebuilding immune cells.", "The mineral zinc is important for your immune system. This nutrient helps your body make germ-fighting white blood cells.", "Several herbs have natural antiviral and antibacterial properties. Star anise is a star-shaped spice from which oseltamivir was traditionally extracted.", "Sweeten herbal teas with pure honey. Honey, royal jelly, and other bee products have been found to have natural antiviral and antibacterial properties.", "According to the study, tea tree oil works best when it’s used within two hours of infection. This shows that it may help to block the flu virus from multiplying.", "In practice, you might add a few drops of tea tree oil to liquid hand soap when you wash your hands or mixed into lotion you use.", "-Using a humidifier to add humidity in your home and workplace might help reduce flu viruses in the air.", "Breathing in steam from a warm pot of water can help soothe your nose, sinuses, throat, and lungs. Steam inhalation might help to soothe a dry cough, irritated nose, and chest tightness."]
