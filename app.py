@@ -2247,7 +2247,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Does your child have real trouble with spelling, trouble remembering the sounds that letters make, or trouble hearing slight differences between words?', spell)
-    if text == 'no_langg' and answer =='Learning disorder':
+    if text == 'no_lang' and answer =='Learning disorder':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Does your child have real trouble with spelling, trouble remembering the sounds that letters make, or trouble hearing slight differences between words?', spell)
 
@@ -2291,10 +2291,10 @@ def received_qr(event):
     if text == 'yes_conc' and answer =='Learning disorder':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Does your child confuse math symbols and misread numbers?'., math)
+        bot.send_quick_replies_message(sender_id, 'Does your child confuse math symbols and misread numbers?', math)
     if text == 'no_conc' and answer =='Learning disorder':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Does your child confuse math symbols and misread numbers?'., math)
+        bot.send_quick_replies_message(sender_id, 'Does your child confuse math symbols and misread numbers?', math)
 
     misp = {"content_type":"text","title":"Yes","payload":'yes_misp'},{"content_type":"text","title":"No","payload":'no_misp'}
     if text == 'yes_math' and answer =='Learning disorder':
