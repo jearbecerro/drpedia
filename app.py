@@ -118,7 +118,7 @@ def received_text(event):
         bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         send_choose_concern(sender_id)
     '''
-    if text.lower in ("test"):
+    if text.lower() in ("test"):
         choose_howto(sender_id,'remedies_dengue','medication_dengue','about_dengue','Dengue')
     #Mental Health{
     elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
