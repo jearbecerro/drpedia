@@ -120,7 +120,7 @@ def received_text(event):
     '''
     #Mental Health{
     if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
-        choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD'):
+        choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
         #choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
 
