@@ -2076,7 +2076,7 @@ def received_qr(event):
     if text == 'yes_raci' and answer =='Depression':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Your child said she doesn’t want to have a birthday party this year because she doesn’t have any friends she would want to invite?'., birth)
+        bot.send_quick_replies_message(sender_id, 'Your child said she doesn’t want to have a birthday party this year because she doesn’t have any friends she would want to invite?', birth)
     if text == 'no_raci' and answer =='Depression':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Your child said she doesn’t want to have a birthday party this year because she doesn’t have any friends she would want to invite?', birth)
