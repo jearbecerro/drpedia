@@ -349,7 +349,7 @@ def received_qr(event):
         pass
     if text == 'no_check':
         pass# tobe edit dapat mo adto siya sa kapareha niyag symptom
-    ''''
+    '''
     if has_fever == True:
         r2f = {"content_type":"text","title":"Yes","payload":'yes_r2f'},{"content_type":"text","title":"No","payload":'no_r2f'}  
         if text == 'yes_pa' and answer == 'breathing':#dapat epangutana rani siya if fever is YES
