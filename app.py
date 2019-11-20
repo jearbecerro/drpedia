@@ -1594,7 +1594,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, 'Does your child have difficulty understanding the rules for polite behavior?', und)
     if text == 'no_tak' and answer =='Autism':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Does your child have difficulty understanding the rules for polite behavior?'., und)
+        bot.send_quick_replies_message(sender_id, 'Does your child have difficulty understanding the rules for polite behavior?', und)
 
     app = {"content_type":"text","title":"Yes","payload":'yes_app'},{"content_type":"text","title":"No","payload":'no_app'}
     if text == 'yes_und' and answer =='Autism':
