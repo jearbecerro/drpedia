@@ -478,6 +478,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} Platelet below 150 ?'.format(phrase), platb) 
     '''
     #22
+    print(count_yes, total_symptoms)
     if text == 'yes_ccs' and answer == 'breathing': 
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == True:
@@ -600,10 +601,7 @@ def received_qr(event):
         total_symptoms += 1
         bot.send_quick_replies_message(sender_id, '{} experiencing tiredness and general body weakness ?'.format(phrase), tgb) 
         
-    if get_average(count_yes, total_symptoms) == True:
-        bot.send_text_message(sender_id, "{} have 75% change you might have Gastroenteritis.".format(phrase2.capitalize()))
-    elif get_average(count_yes, total_symptoms) == False:
-        pass
+   
     count_yes = 0    
     total_symptoms = 0
     #End gastro
@@ -759,10 +757,7 @@ def received_qr(event):
         total_symptoms += 1
         bot.send_quick_replies_message(sender_id, '{} furry tounge ?'.format(phrase), furt)
         
-    if get_average(count_yes, total_symptoms) == True:
-        bot.send_text_message(sender_id, "{} have 75% change you might have Tonsillitis.".format(phrase2.capitalize()))
-    elif get_average(count_yes, total_symptoms) == False:
-        pass
+    
     count_yes = 0    
     total_symptoms = 0
     #End tonsil
@@ -927,10 +922,7 @@ def received_qr(event):
         total_symptoms += 1
         bot.send_quick_replies_message(sender_id, '{} having WBC is to numeros to count ?'.format(phrase), pro)
         
-    if get_average(count_yes, total_symptoms) == True:
-        bot.send_text_message(sender_id, "{} have 75% change you might have UTI.".format(phrase2.capitalize()))
-    elif get_average(count_yes, total_symptoms) == False:
-        pass
+    
     count_yes = 0    
     total_symptoms = 0
     #End UTI
@@ -1089,11 +1081,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} having cold sweats and shivers ?'.format(phrase), css)
         #end flu
         
-    percentage = count_yes / 20 * 100
-    if int(percentage) >=75:
-        bot.send_text_message(sender_id, "You have 75% change you might have FLU.")
-    else:
-        pass
+    
     count_yes = 0 
     if text == 'yes_correct1':
         if relation == 'myself':
