@@ -1543,7 +1543,7 @@ def received_qr(event):
     if text == 'yes_deaf':  
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-         bot.send_quick_replies_message(sender_id, ' Does your child make unusual finger movements near his or her eyes? (FOR EXAMPLE, does your child wiggle his/her fingers close to his/her eyes?', unu)
+        bot.send_quick_replies_message(sender_id, ' Does your child make unusual finger movements near his or her eyes? (FOR EXAMPLE, does your child wiggle his/her fingers close to his/her eyes?', unu)
     if text == 'no_deaf':    
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, ' Does your child make unusual finger movements near his or her eyes? (FOR EXAMPLE, does your child wiggle his/her fingers close to his/her eyes?', unu)
