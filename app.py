@@ -474,17 +474,18 @@ def received_qr(event):
     
     bwo = {"content_type":"text","title":"Yes","payload":'yes_bwo'},{"content_type":"text","title":"No","payload":'no_bwo'}
     if text == 'yes_abc' and answer =='diarrhea':
+            
         count_yes += 1
-         bot.send_quick_replies_message(sender_id, '{} having body weakness ?'.format(phrase), bwo) 
+        bot.send_quick_replies_message(sender_id, '{} having body weakness ?'.format(phrase), bwo) 
     if text == 'no_abc' and answer == 'diarrhea':
-         bot.send_quick_replies_message(sender_id, '{} having body weakness ?'.format(phrase), bwo) 
+        bot.send_quick_replies_message(sender_id, '{} having body weakness ?'.format(phrase), bwo) 
 
     oma = {"content_type":"text","title":"Yes","payload":'yes_oma'},{"content_type":"text","title":"No","payload":'no_oma'}
     if text == 'yes_bwo' and answer =='diarrhea':
         count_yes += 1
-         bot.send_quick_replies_message(sender_id, '{} having occasional muscle ache ?'.format(phrase), oma) 
+        bot.send_quick_replies_message(sender_id, '{} having occasional muscle ache ?'.format(phrase), oma) 
     if text == 'no_bwo' and answer == 'diarrhea':
-         bot.send_quick_replies_message(sender_id, '{} having occasional muscle aches ?'.format(phrase), oma)
+        bot.send_quick_replies_message(sender_id, '{} having occasional muscle aches ?'.format(phrase), oma)
     
     hos = {"content_type":"text","title":"Yes","payload":'yes_hos'},{"content_type":"text","title":"No","payload":'no_hos'}
     if text == 'yes_oma' and answer =='diarrhea':
