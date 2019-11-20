@@ -1400,8 +1400,8 @@ def received_qr(event):
    
     if text=='yes_proceed_mental':
         bot.send_text_message(sender_id,"If you already know that the child had mental health problem and you simply need to realize how to deal with it.\nJust simply type it in⌨️\nFor example: 'adhd'")                                   
-        quick_replies = {"content_type":"text","title":"ADHD","payload":"ADHD"},{"content_type":"text","title":"Anxiety","payload":"Anxiety"}{"content_type":"text","title":"Autism","payload":"Autism"},{"content_type":"text","title":"Bipolar","payload":"Bipolar"},{"content_type":"text","title":"Depression","payload":"Depression"},{"content_type":"text","title":"ODD","payload":"ODD"},{"content_type":"text","title":"Learning disorder","payload":"Learning_disorder"}                                             
-        bot.send_quick_replies_message(sender_id, 'If you want to check the suspected mental health issue with your kid.\nJust tap your suspected meantal health concern {}.'.format(first_name(sender_id)), quick_replies)
+        listmental = {"content_type":"text","title":"ADHD","payload":"ADHD"},{"content_type":"text","title":"Anxiety","payload":"Anxiety"}{"content_type":"text","title":"Autism","payload":"Autism"},{"content_type":"text","title":"Bipolar","payload":"Bipolar"},{"content_type":"text","title":"Depression","payload":"Depression"},{"content_type":"text","title":"ODD","payload":"ODD"},{"content_type":"text","title":"Learning disorder","payload":"Learning_disorder"}                                             
+        bot.send_quick_replies_message(sender_id, 'If you want to check the suspected mental health issue with your kid.\nJust tap your suspected meantal health concern {}.'.format(first_name(sender_id)), listmental)
     if text=='no_proceed_mental':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
