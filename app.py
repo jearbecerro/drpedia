@@ -482,11 +482,11 @@ def received_qr(event):
     if text == 'yes_ccs' and answer == 'breathing': 
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
+        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
         
     if text == 'no_ccs' and answer == 'breathing': 
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
+        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     right = {"content_type":"text","title":"Yes","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
     if text == 'no_inc' and answer == 'breathing':  
         print(count_yes, total_symptoms)
@@ -495,13 +495,14 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Dengue.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
             bot.send_text_message(sender_id, "{} must undergo a laboratory test for blood.".format(phrase2.capitalize()))
-            bot.send_text_message(sender_id, "After lab test,\nif white blood cell is below 4.5 and platelet below 150")
-            bot.send_text_message(sender_id, "Then we can determine that {} have currently in dengue.".format(phrase2))
+            bot.send_text_message(sender_id, "After the lab test,\nif the white blood cell is below 4.5 and the platelet is below 150.")
+            bot.send_text_message(sender_id, "Then I can determine that {} currently having dengue.".format(phrase2))
+            choose_howto(sender_id,'remedies_dengue','medication_dengue','about_dengue','Dengue')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Dengue.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
-            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have dengue.".format(phrase2))
+            bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have before I can determine that {} have dengue.".format(phrase2,phrase2))
             bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'breathing':
@@ -612,11 +613,11 @@ def received_qr(event):
     if text == 'yes_tgb' and answer == 'diarrhea': 
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
+        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
         
     if text == 'no_tgb' and answer == 'diarrhea': 
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
+        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     
     if text == 'no_inc' and answer == 'diarrhea':  
         print(count_yes, total_symptoms)
@@ -624,6 +625,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have Gastroenteritis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            choose_howto(sender_id,'remedies_gastro','medication_gastro','about_gastro','Gastroenteritis')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
@@ -792,11 +794,11 @@ def received_qr(event):
     if text == 'yes_furt' and answer == 'swallowing': 
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
+        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
         
     if text == 'no_furt' and answer == 'swallowing': 
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
+        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     
     if text == 'no_inc' and answer == 'swallowing':  
         print(count_yes, total_symptoms)
@@ -804,6 +806,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have Tonsillitis.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            choose_howto(sender_id,'remedies_tonsil','medication_tonsil','about_tonsil','Tonsillitis')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
@@ -980,7 +983,7 @@ def received_qr(event):
     if text == 'yes_pro' and answer == 'urination': 
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
+        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
         
     if text == 'no_pro' and answer == 'urination': 
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
@@ -992,6 +995,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have UTI.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            choose_howto(sender_id,'remedies_uti','medication_uti','about_uti','Urinary Tract Infection')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
@@ -1155,11 +1159,11 @@ def received_qr(event):
     if text == 'yes_sdiz' and answer == 'body': 
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
+        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
         
     if text == 'no_sdiz' and answer == 'body':  
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
+        bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     
     if text == 'no_inc' and answer == 'body':  
         print(count_yes, total_symptoms)
@@ -1167,6 +1171,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have FLU.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            choose_howto(sender_id,'remedies_flu','medication_flu','about_flu','Flu')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
@@ -1305,7 +1310,51 @@ def received_postback(event):
     else: 
         pass
     #2.2.1.1{
-    
+    #Dengue Remedies, Medication, About
+    remedies_dengue = ["Take medicines that keep your fever under control", "Get plenty of rest and drink fluids to prevent dehydration", "In first week of infection, do not let a mosquito bite you for it will become infected and can infect other person", "In first week of infection, do not let a mosquito bite you for it will become infected and can infect other person", "Try to be in an air-conditioned room or under a bed net while you have fever", "Apply mosquito repellents regularly and wear clothes that cover your skin", "Take preventive measures at home by using screens on windows and doors", "You can repair holes in screens in order to keep mosquitoes outside", "Sleep under a mosquito bed net", "Regularly clean items that hold water such buckets, tires, planters, flowerpots, birdbaths, trash containers, etc", "Keep your indoors clean and wash floors with disinfectants regularly", "Giloy juice improves metabolism and builds immunity and helps in dengue fever effectively and helps to increase platelet counts", "Papaya leaf juice improves immunity which also helps in treating dengue and increases platelet counts", "Guava juice is rich in vitamin C that helps in building immunity and helps on treating dengue", "Fenugreek seeds are also rich in multiple nutrients which help in controlling dengue fever", "Fenugreek water provides health benefits as it is rich in vitamin C, K and fibre. Fenugreek water will bring down fever and boost immunity", "You must add immunity-boosting foods to your diet like citrus foods, garlic, almonds, turmeric and many more", "Chewing 5-6 basil leaves boosts your immunity and has been recommended as an effective Ayurvedic treatment for dengue fever", "Steep neem leaves and drink the brew to increase platelet and white blood cell count", "Oranges are rich in antioxidants and vitamins which help in treating the secondary symptoms of dengue", "Orange juice also repairs your body cells as it has Vitamin C which is crucial in creating collagen"]
+    if payload=='remedies_dengue':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_dengue"}]
+        bot.send_button_message(sender_id, random.choice(remedies_dengue), buttons) 
+    if payload=='send_remedies_dengue':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_dengue"}]
+        bot.send_button_message(sender_id, random.choice(remedies_dengue), buttons) 
+    #End Dengue
+    #Gastro Remedies, Medication, About
+    remedies_gastro = ["Fluids: Diarrhea and vomiting can be dehydrating. Make sure you take in plenty of water, sports drinks, or other clear liquids.", "Ice cubes: If you are having trouble keeping fluids down, try sucking on ice chips to help rehydrate.", "BRAT diet: BRAT stands for Bananas, Rice, Applesauce, and Toast which can make your stools more firm.", "Bananas also contain potassium which can help replace nutrients lost from vomiting and diarrhea.", "Tea: Caffeine-free teas can help replenish lost fluids, and some varieties, such as peppermint, may calm the stomach, and ginger, may help ease nausea.", "Apple cider vinegar: Some people report this helps ease nausea and stomach upset.", "Rest: Most people need to rest for a few days to let the illness work its course.", "Heating pad: A heating pad may help relieve abdominal cramping.", "Choose low fat or fat free yogurt, if you can tolerate dairy products.", "Acupressure: Finger pressure is used to stimulate trigger points on the body that may help relieve nausea and vomiting.", "Let your stomach settle. Stop eating solid foods for a few hours.", "Try drinking clear soda, clear broths or noncaffeinated sports drinks.", "Drink plenty of liquid every day, taking small, frequent sips.", "Avoid certain foods and substances until you feel better. These include dairy products, caffeine, alcohol, nicotine, and fatty or highly seasoned foods."]
+    if payload=='remedies_gastro':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_gastro"}]
+        bot.send_button_message(sender_id, random.choice(remedies_gastro), buttons) 
+    if payload=='send_remedies_gastro':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_dengue"}]
+        bot.send_button_message(sender_id, random.choice(remedies_gastro), buttons) 
+    #End Gastro
+    #Tonsil Remedies, Medication, About
+    remedies_tonsil = ["Drinking warm liquids, including soups, broths, and teas, can help soothe a sore throat.", "Herbal teas containing ingredients such as honey, pectin, or glycerine may help, as these ingredients form a protective film over the mucous membranes in the mouth and throat.", "Eating cold, soft foods, such as frozen yogurt or ice cream, can numb the throat, offering temporary pain relief.", "Try eating softer foods that are easier to swallow or stick to soups, broths, or chilled smoothies until their symptoms subside.", "Gargling with salt water may temporarily soothe pain or tickling in the back of the throat.", "People with tonsillitis may benefit from using a cool mist humidifier. These devices release moisture back into the air, helping alleviate throat discomfort.", "If speaking is painful, a person should try to rest the voice as much as possible. ", "Get as much rest as possible. Resting will allow the body to fight off the viral or bacterial infection.", "Throat sprays and gargles are another way to deliver anesthetic, anti-inflammatory, and antiseptic medications directly to the throat."]
+    if payload=='remedies_tonsil':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_tonsil"}]
+        bot.send_button_message(sender_id, random.choice(remedies_tonsil), buttons) 
+    if payload=='send_remedies_tonsil':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_dengue"}]
+        bot.send_button_message(sender_id, random.choice(remedies_tonsil), buttons) 
+    #End Tonsil
+    #UTI Remedies, Medication, About
+    remedies_uti = ["Drinking lots of water, and emptying your bladder when you need to, will help you flush harmful bacteria from your system.", "Try Unsweetened Cranberry Juice. Studies have shown that cranberries actually make it harder for the bacteria that causes UTIs to stick to the urinary tract walls.", "-Don’t “Hold It”, holding off going to the bathroom gives any bacteria that may already be in your bladder the chance to grow and multiply, potentially resulting in an infection.", "Eat garlic. A recent study showed that garlic extract may be effective in reducing the bacteria that causes UTIs.", "Some evidence shows that increasing your intake of vitamin C could protect against urinary tract infections.", "Red peppers, oranges, grapefruit and kiwifruit all contain the full recommended amount of vitamin C in just one serving .", "Probiotics are beneficial microorganisms that are consumed through food or supplements and promotes healthy balance of bacteria in your gut.", "When you have a UTI, caffeine, alcohol, spicy food, nicotine, carbonated drinks, and artificial sweeteners can irritate your bladder.", "Focus on healthy foods, such as high-fiber carbohydrates (such as oatmeal or lentil soup), that are good for your digestive health."]
+    if payload=='remedies_uti':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_uti"}]
+        bot.send_button_message(sender_id, random.choice(remedies_uti), buttons) 
+    if payload=='send_remedies_uti':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_uti"}]
+        bot.send_button_message(sender_id, random.choice(remedies_uti), buttons) 
+    #End UTI
+    #Flu Remedies, Medication, About
+    remedies_flu = ["Drinking water and other fluids is even more important when you have the flu.", "Water helps to keep your nose, mouth, and throat moist. This helps your body get rid of built-up mucous and phlegm.", "It’s important to rest and get more sleep when you have the flu. Sleeping can help boost your immune system.", "Drinking warm chicken or beef bone broth is a good way to help you stay hydrated. It helps to loosen and break up nose and sinus congestion.", "-Drinking broth is a good way to replenish these nutrients while you have the flu. Plus, protein is important for rebuilding immune cells.", "The mineral zinc is important for your immune system. This nutrient helps your body make germ-fighting white blood cells.", "Several herbs have natural antiviral and antibacterial properties. Star anise is a star-shaped spice from which oseltamivir was traditionally extracted.", "Sweeten herbal teas with pure honey. Honey, royal jelly, and other bee products have been found to have natural antiviral and antibacterial properties.", "According to the study, tea tree oil works best when it’s used within two hours of infection. This shows that it may help to block the flu virus from multiplying.", "In practice, you might add a few drops of tea tree oil to liquid hand soap when you wash your hands or mixed into lotion you use.", "-Using a humidifier to add humidity in your home and workplace might help reduce flu viruses in the air.", "Breathing in steam from a warm pot of water can help soothe your nose, sinuses, throat, and lungs. Steam inhalation might help to soothe a dry cough, irritated nose, and chest tightness."]
+    if payload=='remedies_flu':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_flu"}]
+        bot.send_button_message(sender_id, random.choice(remedies_flu), buttons) 
+    if payload=='send_remedies_flu':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_flu"}]
+        bot.send_button_message(sender_id, random.choice(remedies_flu), buttons) 
+    #End flu
     if payload=='ready_accept':
         Mongo.set_terms(users, sender_id,'Yes')
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
