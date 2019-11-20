@@ -215,6 +215,15 @@ def received_text(event):
                 bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
     else:
         pass
+def get_average(count_yes, total_symptoms):
+    if count_yes !=0 and total_symptoms !=0:
+        percentage = count_yes / total_symptoms * 100
+        if int(round(percentage))>=75:
+            return True
+        else:
+            return False
+    else:
+        pass
 #if user tap a button from a quick reply
 def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -457,14 +466,13 @@ def received_qr(event):
     if text == 'no_wbcb' and answer == 'breathing': 
         bot.send_quick_replies_message(sender_id, '{} Platelet below 150 ?'.format(phrase), platb) 
     '''
-    #22    
-    percentage = count_yes / total_symptoms * 100
-    if int(round(percentage))>=75:
+    #22
+    if get_average(count_yes, total_symptoms) == True:
         bot.send_text_message(sender_id, "{} have 75% change you might have dengue.".format(phrase2.capitalize()))
         bot.send_text_message(sender_id, "{} must undergo a laboratory test for blood.".format(phrase2.capitalize()))
         bot.send_text_message(sender_id, "If WBC is below 4.5 and platelet below 150")
         bot.send_text_message(sender_id, "Then {} are currently in dengue.".format(phrase2))
-    else:
+    elif get_average(count_yes, total_symptoms) == False:
         pass
     count_yes = 0
      #End Dengue
