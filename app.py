@@ -118,11 +118,10 @@ def received_text(event):
         bot.send_text_message(sender_id, "{} {}, I'm DrPedia, your own pediatric concern companion.".format(greet,first_name(sender_id)))
         send_choose_concern(sender_id)
     '''
-    if text.lower() in ("test"):
-        choose_howto(sender_id,'remedies_uti','medication_dengue','about_dengue','uti')
     #Mental Health{
-    elif text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
-        choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
+    if text.lower() in ("attention deficit hyperactivity disorder", "adhd"):#if user send text 'adhd'
+        choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD'):
+        #choose_option_mental(sender_id,'send_tips_adhd','check_adhd','ADHD')
         #proceed to payload button if payload=='send_tips_adhd' or if payload=='check_adhd'
 
     elif text.lower() in ("oppositional defiant disorder", "odd") :
@@ -1024,16 +1023,16 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         nas = {"content_type":"text","title":"Yes","payload":'yes_nasaldischarge'},{"content_type":"text","title":"No","payload":'no_nasaldischarge'}                    
-        bot.send_quick_replies_message(sender_id, 'having a nasal discharge ?', nas)
+        bot.send_quick_replies_message(sender_id, '{} having a nasal discharge ?'.format(phrase), nas)
         
     fvo  = {"content_type":"text","title":"Yes","payload":'yes_fvo'},{"content_type":"text","title":"No","payload":'no_fvo'}   
     if text == 'yes_nasaldischarge': 
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'fever is over 38 degress ?', fvo)
+        bot.send_quick_replies_message(sender_id, '{} currently in fever?'.format(phrase), fvo)
     if text == 'no_nasaldischarge':   
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, 'fever is over 38 degress ?', fvo)
+        bot.send_quick_replies_message(sender_id, '{} currently in fever?'.format(phrase), fvo)
     
     musc = {"content_type":"text","title":"Yes","payload":'yes_musc'},{"content_type":"text","title":"No","payload":'no_musc'}     
     if text == 'yes_fvo' and answer =='body':  
@@ -1078,10 +1077,10 @@ def received_qr(event):
     if text == 'yes_cold' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} having runny nose ?'.format(phrase), rn)
+        bot.send_quick_replies_message(sender_id, '{} experiencing runny nose ?'.format(phrase), rn)
     if text == 'no_cold' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} having runny nose ?'.format(phrase), rn)
+        bot.send_quick_replies_message(sender_id, '{} experiencing runny nose ?'.format(phrase), rn)
             
     nac = {"content_type":"text","title":"Yes","payload":'yes_nac'},{"content_type":"text","title":"No","payload":'no_nac'}
     if text == 'yes_rn' and answer =='body':
@@ -1105,10 +1104,10 @@ def received_qr(event):
     if text == 'yes_pora' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} having headache ?'.format(phrase), headach)
+        bot.send_quick_replies_message(sender_id, '{} experiencing headache ?'.format(phrase), headach)
     if text == 'no_pora' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} having headache ?'.format(phrase), headach)
+        bot.send_quick_replies_message(sender_id, '{} experiencing headache ?'.format(phrase), headach)
         
     cas = {"content_type":"text","title":"Yes","payload":'yes_cas'},{"content_type":"text","title":"No","payload":'no_cas'}
     if text == 'yes_headach' and answer =='body':
@@ -1123,19 +1122,19 @@ def received_qr(event):
     if text == 'yes_cas' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} having fatigue ?'.format(phrase), fati)
+        bot.send_quick_replies_message(sender_id, '{} fatigue ?'.format(phrase), fati)
     if text == 'no_cas' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} having fatigue ?'.format(phrase), fati)
+        bot.send_quick_replies_message(sender_id, '{} fatigue ?'.format(phrase), fati)
 
     fw = {"content_type":"text","title":"Yes","payload":'yes_fw'},{"content_type":"text","title":"No","payload":'no_fw'}
     if text == 'yes_fati' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} feels weak ?'.format(phrase), fw)
+        bot.send_quick_replies_message(sender_id, '{} feeling weak ?'.format(phrase), fw)
     if text == 'no_fati' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
-        bot.send_quick_replies_message(sender_id, '{} feels weak ?'.format(phrase), fw)
+        bot.send_quick_replies_message(sender_id, '{} feeling weak ?'.format(phrase), fw)
      
     sthroat = {"content_type":"text","title":"Yes","payload":'yes_sthroat'},{"content_type":"text","title":"No","payload":'no_sthroat'}
     if text == 'yes_fw' and answer =='body':
@@ -1182,7 +1181,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having sudden dizziness ?'.format(phrase), sdiz)
     
-    css = {"content_type":"text","title":"Yes","payload":'yes_sdiz'},{"content_type":"text","title":"No","payload":'no_sdiz'}
+    css = {"content_type":"text","title":"Yes","payload":'yes_css'},{"content_type":"text","title":"No","payload":'no_css'}
     if text == 'yes_sdiz' and answer =='body':
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
@@ -1191,12 +1190,12 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, '{} having cold sweats and shivers ?'.format(phrase), css)
         
-    if text == 'yes_sdiz' and answer == 'body': 
+    if text == 'yes_css' and answer == 'body': 
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
         
-    if text == 'no_sdiz' and answer == 'body':  
+    if text == 'no_css' and answer == 'body':  
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     
@@ -1220,7 +1219,136 @@ def received_qr(event):
         pass#NLU             
     #END FLU
         
+    #ADHD
+    disorg  = {"content_type":"text","title":"Yes","payload":'yes_interferes'},{"content_type":"text","title":"No","payload":'no_interferes'}   
+    if text =='ADHD': 
+        Mongo.set_answer(users,sender_id,'ADHD')
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_text_message(sender_id, "Well that doesn't sound healthy")
+        bot.send_quick_replies_message(sender_id, "Does your child interferes in the classroom because she/he has difficulty engaging in quiet activities without disturbing others?", interferes)
+    if text =='yes_interferes' and answer == 'ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        dif = {"content_type":"text","title":"Yes","payload":'yes_difficulty'},{"content_type":"text","title":"No","payload":'no_difficulty'}                    
+        bot.send_quick_replies_message(sender_id, 'Does your child has a difficulty stay focused on homework or other tasks?', dif)
+
+    disorg  = {"content_type":"text","title":"Yes","payload":'yes_disorg'},{"content_type":"text","title":"No","payload":'no_disorg'}   
+    if text == 'yes_difficulty':  
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, "Does your child is disorganized and, even with youry help, can't seem to learn how to become organized?", disorg)
+    if text == 'no_difficulty':    
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, "Does your child is disorganized and, even with youry help, can't seem to learn how to become organized?", disorg)
+
+    los = {"content_type":"text","title":"Yes","payload":'yes_los'},{"content_type":"text","title":"No","payload":'no_los'}     
+    if text == 'yes_disorg' and answer =='ADHD': 
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child loses things like homework and personal belongings?', los)
+    if text == 'no_disorg' and answer =='ADHD':    
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child loses things like homework and personal belongings?', los)
+    if text =='no_interferes' and answer == 'ADHD':             
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child loses things like homework and personal belongings?', los)
+
+    disc = {"content_type":"text","title":"Yes","payload":'yes_disc'},{"content_type":"text","title":"No","payload":'no_disc'}    
+    if text == 'yes_los' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child gets disctracted even the smallest distractions can throw him/her off task?', disc)
+    if text == 'no_los' and answer == 'ADHD':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child gets disctracted even the smallest distractions can throw him/her off task?', disc)
+
+    cons = {"content_type":"text","title":"Yes","payload":'yes_cons'},{"content_type":"text","title":"No","payload":'no_cons'}
+    if text == 'yes_disc' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child constantly seems to be fidgeting?', cons)
+    if text == 'no_disc' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child constantly seems to be fidgeting?', cons)
+
+    trs = {"content_type":"text","title":"Yes","payload":'yes_trs'},{"content_type":"text","title":"No","payload":'no_trs'}
+    if text == 'yes_cons' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child tries to avoid activities that require sustained concentration and a lot of mental effort?', trs)
+    if text == 'no_cons' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child tries to avoid activities that require sustained concentration and a lot of mental effort?', trs)
+
+    care = {"content_type":"text","title":"Yes","payload":'yes_care'},{"content_type":"text","title":"No","payload":'no_care'}
+    if text == 'yes_trs' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child makes careless mistakes?', care)
+    if text == 'no_trs' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child makes careless mistakes?', care)
+
+    wait = {"content_type":"text","title":"Yes","payload":'yes_wait'},{"content_type":"text","title":"No","payload":'no_wait'}
+    if text == 'yes_care' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child has difficulty waiting patiently to take turns, and butts ahead in lines or grabs toys from playmates?', wait)
+    if text == 'no_care' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child has difficulty waiting patiently to take turns, and butts ahead in lines or grabs toys from playmates?', wait)
+
+    prob = {"content_type":"text","title":"Yes","payload":'yes_prob'},{"content_type":"text","title":"No","payload":'no_prob'}
+    if text == 'yes_wait' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child has problems remaining seated even when she/he is supposed to?', prob)
+    if text == 'no_wait' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child has problems remaining seated even when she/he is supposed to?', prob)
+
+    fail = {"content_type":"text","title":"Yes","payload":'yes_fail'},{"content_type":"text","title":"No","payload":'no_fail'}
+    if text == 'yes_prob' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child fails to complete an activity before moving to the next activity?', fail)
+    if text == 'no_prob' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, 'Does your child fails to complete an activity before moving to the next activity?', fail)
+
+    itp = {"content_type":"text","title":"Yes","payload":'yes_itp'},{"content_type":"text","title":"No","payload":'no_itp'}
+    if text == 'yes_fail' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, "Does your child interrupts other peoples' activities and conversations?", itp)
+    if text == 'no_fail' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, "Does your child interrupts other peoples' activities and conversations?", itp)
+    checkm = [{"content_type":"text","title":"Yes","payload":'yes_checkm'}]
+    if text == 'yes_itp' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes + 1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, "Oh right {} I already done checking symptoms.\nWant to know the result?".format(first_name(sender_id)), checkm)
+    if text == 'no_itp' and answer =='ADHD':
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
+        bot.send_quick_replies_message(sender_id, "Oh right {} I already done checking symptoms.\nWant to know the result?".format(first_name(sender_id)), checkm)
     
+    if text == 'yes_checkm' and answer == 'ADHD':  
+        print(count_yes, total_symptoms)
+        if get_average(count_yes, total_symptoms) >= 70:
+            Mongo.set_patient(patient, sender_id, 'count_yes', 0)
+            Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have FLU.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            choose_howto(sender_id,'remedies_flu','medication_flu','about_flu','Flu')
+        elif get_average(count_yes, total_symptoms) <80:
+            Mongo.set_patient(patient, sender_id, 'count_yes', 0)
+            Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
+            bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have flu.".format(phrase2,get_average(count_yes, total_symptoms),phrase2))
+            bot.send_text_message(sender_id, "It must have 70% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that you have flu.".format(phrase2))
+            bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
+            bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
+    #end adhd
     if text == 'yes_correct1':
         if relation == 'myself':
            bot.send_text_message(sender_id,'And you are {} kg in weight'.format(weight))
@@ -1287,16 +1415,9 @@ def received_qr(event):
         #proceed to payload button if payload=='mental_symptom_checker'
    
     if text=='yes_proceed_mental':
-        bot.send_text_message(sender_id,"If you have suspected mental health problem listed above.\nSimply type it in⌨️\nFor example: 'adhd'")
-        button = [
-                        {
-                        "type": "postback",
-                        "title": "🔍Check Symptom",
-                        "payload": "mental_symptom_checker"
-                        }
-                        ]
-        bot.send_button_message(sender_id, "If you don't have any idea🤔. Just tap 'Check Symptom'", button)
-        '''Sqlite.set_ask(sender_id, 'type mental')'''
+        bot.send_text_message(sender_id,"If you already know that the child had mental health problem and you simply need to realize how to deal with it.\nJust simply type it in⌨️\nFor example: 'adhd'")                                   
+        quick_replies = {"content_type":"text","title":"ADHD","payload":"ADHD"},{"content_type":"text","title":"Autism","payload":"Autism"},{"content_type":"text","title":"Bipolar","payload":"Bipolar"},{"content_type":"text","title":"Depression","payload":"Depression"},{"content_type":"text","title":"ODD","payload":"ODD"},{"content_type":"text","title":"Learning disorder","payload":"Learning_disorder"}                                             
+        bot.send_quick_replies_message(sender_id, 'If you want to check the suspected mental health issue with your kid.\nJust tap your suspected meantal health concern {}.'.format(first_name(sender_id)), quick_replies)
     if text=='no_proceed_mental':     
         bot.send_text_message(sender_id,"I understand, Thank you for using DrPedia.\n")
         send_choose_concern(sender_id)
@@ -1395,25 +1516,18 @@ def received_postback(event):
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff")
         send_choose_concern(sender_id)
         
-        
-    if payload=='check_adhd':
-        bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
-        bot.send_text_message(sender_id,'I will ask a few questions inorder to identify if the patient had adhd')
-    
-    if payload=='send_tips_adhd':
-        choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
-    
+    #ADHD
+    if payload=='remedies_adhd':
+        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_adhd"}]
+        bot.send_button_message(sender_id, get_remedies_adhd(), buttons)    
+    if payload=='send_remedies_adhd':   
+        buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_adhd"}]
+        bot.send_button_message(sender_id, get_remedies_adhd(), buttons)                                         
+    #About                                       
     if payload=='about_adhd':
         bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
-        buttons = [
-                        {
-                        "type": "postback",
-                        "title": "ADHD Symptoms",
-                        "payload": "send_symptoms_adhd"
-                        }
-                        ]
+        buttons = [{"type": "postback","title": "ADHD Symptoms", "payload": "send_symptoms_adhd" }]
         bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ADHD?", buttons)
-        
     if payload=='send_symptoms_adhd':  
         '''having trouble focusing or concentrating on tasks
         being forgetful about completing tasks
@@ -1428,47 +1542,17 @@ def received_postback(event):
                         "payload": "send_types_adhd"
                         }
                         ]
-        bot.send_button_message(sender_id, "Want to know the types of ADHD?", buttons)
+        bot.send_button_message(sender_id, "Want to know the types of ADHD?", buttons)                                
     if payload=='send_types_adhd':
         bot.send_text_message(sender_id,"To make ADHD diagnoses more consistent, the APA(American Psychological Association) has grouped the condition into three categories, or types. These types are predominantly inattentive, predominantly hyperactivity-impulsive, and a combination of both.")
         bot.send_text_message(sender_id,"Predominantly inattentive\n\nAs the name suggests, people with this type of ADHD have extreme difficulty focusing, finishing tasks, and following instructions.\n\nExperts also think that many children with the inattentive type of ADHD may not receive a proper diagnosis because they don’t tend to disrupt the classroom. This type is most common among girls with ADHD.")
         bot.send_text_message(sender_id,"Predominantly hyperactive-impulsive type.\n\nPeople with this type of ADHD show primarily hyperactive and impulsive behavior. This can include fidgeting, interrupting people while they’re talking, and not being able to wait their turn.\n\nAlthough inattention is less of a concern with this type of ADHD, people with predominantly hyperactive-impulsive ADHD may still find it difficult to focus on tasks")
         bot.send_text_message(sender_id,"Combined hyperactive-impulsive and inattentive type\n\nThis is the most common type of ADHD. People with this combined type of ADHD display both inattentive and hyperactive symptoms. These include an inability to pay attention, a tendency toward impulsiveness, and above-normal levels of activity and energy.")
-        buttons = [
-                        {
-                        "type": "postback",
-                        "title": "Cause of ADHD",
-                        "payload": "send_cause_adhd"
-                        }
-                        ]
+        buttons = [{"type": "postback","title": "Cause of ADHD","payload": "send_cause_adhd"}]
         bot.send_button_message(sender_id, "What causes ADHD?", buttons)
     if payload=='send_cause_adhd':   
         bot.send_text_message(sender_id,"Despite how common ADHD is, doctors and researchers still aren’t sure what causes the condition. It’s believed to have neurological origins. Genetics may also play a role.")
-    
-    if payload=='remedies_adhd':
-        '''eat a healthy, balanced diet
-        get at least 60 minutes of physical activity per day
-        get plenty of sleep
-        limit daily screen time from phones, computers, and TV'''    
-        buttons = [
-                        {
-                        "type": "postback",
-                        "title": "📩Send Another",
-                        "payload": "send_remedies_adhd"
-                        }
-                        ]
-        bot.send_button_message(sender_id, get_remedies_adhd(), buttons)    
-        
-    if payload=='send_remedies_adhd':   
-        buttons = [
-                        {
-                        "type": "postback",
-                        "title": "📩Send Another",
-                        "payload": "send_remedies_adhd"
-                        }
-                        ]
-        bot.send_button_message(sender_id, get_remedies_adhd(), buttons)  
-        
+     #ADHD END   
     if payload=='mental_symptom_checker':
         bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
     '''    
