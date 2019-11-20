@@ -383,7 +383,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, '{} fatigue?'.format(phrase), fat) 
         
     nas = {"content_type":"text","title":"Yes","payload":'yes_nas'},{"content_type":"text","title":"No","payload":'no_nas'} 
-    if text == 'yes_fat' and answer == 'breating':  
+    if text == 'yes_fat' and answer == 'breathing':  
         count_yes += 1
         bot.send_quick_replies_message(sender_id, '{} feeling nausea ?'.format(phrase), nas) 
     if text == 'no_fat' and answer == 'breathing':  
