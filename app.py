@@ -121,8 +121,8 @@ def received_text(event):
         choose_howto(sender_id,'remedies_bipolar','medication_bipolar','about_bipolar','Bipolar')
     elif text.lower() in ("learning disorders", "learning","ld") and answer == 'mental':
         choose_howto(sender_id,'remedies_learning','medication_learning','about_learning','Learning Disorder')
-    else:
-        bot.send_text_message(sender_id,'Just only type your suspected mental health listed above {}.'.format(first_name))
+    elif text and answer == 'mental':
+        bot.send_text_message(sender_id,'Just only type your suspected mental health listed above {}.'.format(first_name(sender_id)))
         
     '''else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')'''
@@ -2700,13 +2700,13 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Paracetamol 250mg/5ml\ndosage:5ml, 7.5ml, 9ml, 10ml every 4 hours as needed")
         if age in range(13,15) and weight in range(17,25):   
             bot.send_text_message(sender_id,"Paracetamol 250mg tablet\ndosage:1 tablet every 4 hours as needed")
-        if age in range(15,20) or age > 15 and weight in range(26,30) or weight > 30:  
+        if age in range(15,20) or int(age) > 15 and weight in range(26,30) or weight > 30:  
             bot.send_text_message(sender_id,"Paracetamol 500mg tablet\ndosage:1 tablet every 4 hours as needed")
         if age in range(1,12) and weight in range(8,17):
             bot.send_text_message(sender_id,"Carbocisteine suspension\ndosage:2.5ml, 5ml, 7.5ml, 10ml 3x a day for 7 days")
         if age in range(13,15):    
             bot.send_text_message(sender_id,"Carbocisteine 250mg capsule\ndosage:1 capsule 3x a day for 7 days")
-        if age in range(16,20) or age > 20:
+        if age in range(16,20) or int(age) > 20:
             bot.send_text_message(sender_id,"Carbocisteine 500mg capsule\ndosage:1 capsule 3x a day for 7 days")
         if age in range(1,2) and weight in range(5,10):    
             bot.send_text_message(sender_id,"Phenylephrine HCI suspension\ndosage:2.5ml 3x a day for 5 days")
@@ -2714,19 +2714,19 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Phenylephrine HCI suspension\ndosage:5ml 3x day for 5 days")
         if age in range(12,16):    
             bot.send_text_message(sender_id,"Phenylephrine HCI 250mg tablet\ndosage:1 tablet 3x a day")
-        if age in range(17,20) or age > 20:     
+        if age in range(17,20) or int(age) > 20:     
             bot.send_text_message(sender_id,"Phenylephrine HCI 500mg tablet\ndosage:1 tablet 3x a day")
         if age in range(1,10):    
             bot.send_text_message(sender_id,"Cetirizine tablet\ndosage:1 tablet once a day for 7 days")
-        if age in range(11,20) or age > 20:    
+        if age in range(11,20) or int(age) > 20:    
             bot.send_text_message(sender_id,"Cetirizine tablet: 11-20 dosage:1 tablet once a day for 7 days")
         if age in range(1,8):    
             bot.send_text_message(sender_id,"Simeticone drops\ndosage:1ml 3x a day for 7 days")
-        if age in range(9,15) or age > 15:    
+        if age in range(9,15) or int(age) > 15:    
             bot.send_text_message(sender_id,"Simeticone tablet\ndosage:1 tablet 3x a day for 7 days")
         if age in range(1,13):    
             bot.send_text_message(sender_id,"Hyoscine-N-Butybromide suspension\ndosage:5ml every 6 hours as needed")
-        if age in range(14,19) or age > 19:    
+        if age in range(14,19) or int(age) > 19:    
             bot.send_text_message(sender_id,"Hyoscine-N-Butybromide 10mg tablet\ndosage:1 tablet every 6 hours as needed")
         if age in range(1,5) and weight in range(10,15):    
             bot.send_text_message(sender_id,"Co-Amoxiclav 125mg/5ml suspension\ndosage:3.5ml, 5ml, 6ml, 7ml 2x a day for 7 days")
@@ -2734,11 +2734,11 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Co-Amoxiclav 250mg/5ml suspension\ndosage:7.5ml, 9ml, 10ml, 10.5ml 2x a day for 7 days")
         if age in range(13,16):    
             bot.send_text_message(sender_id,"Co-Amoxiclav 250mg tablet\ndosage:1 tablet 2x a day for 7 days")
-        if age in range(17,20) or age > 20:    
+        if age in range(17,20) or int(age) > 20:    
             bot.send_text_message(sender_id,"Co-Amoxiclav 500mg tablet\ndosage:1 tablet 2x a day for 7 days")
         if age in range(1,11):    
             bot.send_text_message(sender_id,"Domperidone suspension\ndosage:2.5ml, 5ml, 7.5ml every 6 hours as needed or 3x a day for 5 days")
-        if age in range(12,19) or age > 19:    
+        if age in range(12,19) or int(age) > 19:    
             bot.send_text_message(sender_id,"Domperidone 10mg tablet\ndosage:1 tablet every 6 hours as needed or 3x a day for 5 days")
     #End Dengue
     #Gastro Remedies, Medication, About
@@ -2764,15 +2764,15 @@ def received_postback(event):
     if payload=='medication_gastro':
         if age in range(5,11):    
             bot.send_text_message(sender_id,"Domperidone suspension\ndosage:5ml, 7.5ml, 10ml every 6 hours as needed or 3x a day for 5 days")
-        if age in range(12,19) or age > 19:    
+        if age in range(12,19) or int(age) > 19:    
             bot.send_text_message(sender_id,"Domperidone 10mg tablet\ndosage:1 tablet every 6 hours as needed or 3x a day for 5 days")
         if age in range(5,13):    
             bot.send_text_message(sender_id,"Hyoscine-N-Butybromide suspension\ndosage:5ml every 6 hours as needed")
-        if age in range(14,19) or age > 19:    
+        if age in range(14,19) or int(age) > 19:    
             bot.send_text_message(sender_id,"Hyoscine-N-Butybromide 10mg tablet\ndosage:1 tablet every 6 hours as needed")
         if age in range(5,8):    
             bot.send_text_message(sender_id,"Simeticone drops\ndosage:1ml 3x a day for 7 days")
-        if age in range(9,15) or age > 15:    
+        if age in range(9,15) or int(age) > 15:    
             bot.send_text_message(sender_id,"Simeticone tablet\ndosage:1 tablet 3x a day for 7 days")
         if age in range(5,8):    
             bot.send_text_message(sender_id,"Simeticone drops\ndosage:1ml 3x a day for 7 days")
@@ -2780,15 +2780,15 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Racecadotril 10mg sachet\ndosage:1 sachet 3x a day for 5 days")
         if age in range(11,15):    
             bot.send_text_message(sender_id,"Racecadotril 30mg sachet\ndosage:1 sachet 3x a day for 5 days")
-        if age in range(16,20) or age > 20:    
+        if age in range(16,20) or int(age) > 20:    
             bot.send_text_message(sender_id,"Racecadotril 100mg capsule\ndosage:1 capsule 3x a day for 5 days")
-        if age in range(16,20) or age > 20:    
+        if age in range(16,20) or int(age) > 20:    
             bot.send_text_message(sender_id,"Omeprazole 40mg capsule\ndosage:1 capsule every 7am for 7 days")
         if age in range(5,15):    
             bot.send_text_message(sender_id,"Nifuroxazide suspension\ndosage:5ml, 7.5ml, 10ml 3x a day for 7 days")
-        if age in range(16,20)or age > 20:    
+        if age in range(16,20)or int(age) > 20:    
             bot.send_text_message(sender_id,"Nifuroxazide 100mg capsule\ndosage:1 capsule 3x a days for 7 days")
-        if age in range(12,20) or age >20:    
+        if age in range(12,20) or int(age) >20:    
             bot.send_text_message(sender_id,"Loperamide capsule\ndosage:1 capsule 3x a day for 5 days ")
     #End Gastro
     #Tonsil Remedies, Medication, About
@@ -2814,7 +2814,7 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Paracetamol 250mg/5ml suspension\ndosage:5ml, 7.5ml, 9ml, 10ml every 4 hours as needed")     
         if age in range(13,15) and weight in range(17,25):
             bot.send_text_message(sender_id,"Paracetamol 250mg tablet\ndosage:1 tablet every 4 hours as needed")     
-        if age in range(15,20) or age > 20 and weight in range(26,30) or weight > 30:
+        if age in range(15,20) or int(age) > 20 and weight in range(26,30) or int(weight) > 30:
             bot.send_text_message(sender_id,"Paracetamol 500mg tablet\ndosage:1 tablet every 4 hours as needed")   
         if age in range(1,10) and weight in range(9,15):
             bot.send_text_message(sender_id,"Cefuroxime 125mg/5ml suspension\ndosage:2.5ml, 3ml, 4ml, 5ml, 6ml, 7.5ml 2x a day for 7 days")   
@@ -2822,7 +2822,7 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Cefuroxime 250mg/5ml suspension\ndosage:9ml, 9.5ml, 10ml, 10.5ml 2x a day for 7 days")   
         if age in range(14,17) and weight in range(20,27):
             bot.send_text_message(sender_id,"Cefuroxime 250mg tablet\ndosage:1 tablet 2x a day for 7 days")   
-        if age in range(18,20) or age > 20:
+        if age in range(18,20) or int(age) > 20:
             bot.send_text_message(sender_id,"Cefuroxime 500mg tablet\ntablet 2x a day for 7 days") 
     #End Tonsil
     #UTI Remedies, Medication, About
@@ -2858,7 +2858,7 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Paracetamol 250mg/5ml suspension\ndosage:5ml, 7.5ml, 9ml, 10ml every 4 hours as needed")        
         if age in range(13,15) and weight in range(17,25):      
             bot.send_text_message(sender_id,"Paracetamol 250mg tablet\ndosage:1 tablet every 4 hours as needed")        
-        if age in range(15,20) or age > 20 and weight in range(26,30) or weight > 30:      
+        if age in range(15,20) or int(age) > 20 and weight in range(26,30) or int(weight) > 30:      
             bot.send_text_message(sender_id,"Paracetamol 500mg tablet\ndosage:1 tablet every 4 hours as needed")            
         if age in range(0.2,0.4) and weight in range(3,6) :      
             bot.send_text_message(sender_id,"Amoxicillin drops\ndosage:0.3ml, 0.5ml, 0.6ml 3x a day for 7 days")              
@@ -2870,7 +2870,7 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Amoxicillin 250mg/5ml suspension\ndosage:7.5ml, 9ml, 10.5ml 3x a day for 7 days")
         if age in range(15,17):      
             bot.send_text_message(sender_id,"Amoxicillin 250mg\ndosage:1 capsule 3x a day for 7 days")
-        if age in range(18,20) or age > 20:      
+        if age in range(18,20) or int(age) > 20:      
             bot.send_text_message(sender_id,"Amoxicillin 500mg capsule\ndosage: 1 capsule 3x a day for 7 days")
 
     #End UTI
@@ -2915,7 +2915,7 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Carbocisteine suspension\ndosage:2.5ml, 5ml, 7.5ml, 10ml 3x a day for 7 days")    
         if age in range(13,15):
             bot.send_text_message(sender_id,"Carbocisteine 250mg capsule\ndosage:1 capsule 3x a day for 7 days")    
-        if age in range(16,20) or age >20:
+        if age in range(16,20) or int(age) >20:
             bot.send_text_message(sender_id,"Carbocisteine 500mg capsule\ndosage:1 capsule 3x a day for 7 dayss") 
         if age in range(1,12) and weight in range(2,4): 
             bot.send_text_message(sender_id,"Phenylephrine HCI drops\ndosage:0.25ml, 0.3ml, 3x a day for 5 days")
@@ -2929,7 +2929,7 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Phenylephrine HCI suspension\ndosage:5ml 3x day for 5 days")
         if age in range(12,16):
             bot.send_text_message(sender_id,"Phenylephrine HCI 250mg tablet\ndosage:1 tablet 3x a day")
-        if age in range(17,20) or age > 20:
+        if age in range(17,20) or int(age) > 20:
             bot.send_text_message(sender_id,"Phenylephrine HCI 500mg tablet\ndosage:1 tablet 3x a days")            
         if age in range(0.1,0.4) and weight in range(2,5): 
             bot.send_text_message(sender_id,"Cefalexin Monohydrate drops\ndosage:0.25ml, 0.3ml, 0.5ml, 0.6ml 3x a day for 7 days" ) 
@@ -2941,7 +2941,7 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Cefalexin Monohydrate 250mg/5ml suspension\ndosage:5ml, 7.5ml, 10ml, 10.5ml 3x a day for 7 days" ) 
         if age in range(135,16): 
             bot.send_text_message(sender_id,"Cefalexin Monohydrate 250mg capsule: 13-16y/o dosage:1 capsule 3x a day for 7 days" ) 
-        if age in range(17,20) or age > 20: 
+        if age in range(17,20) or int(age) > 20: 
             bot.send_text_message(sender_id,"Cefalexin Monohydrate 500mg capsule: 17-20y/o dosage:1 capsule 3x a day for 7 days" ) 
 
     #End flu
@@ -3009,7 +3009,7 @@ def received_postback(event):
         buttons = [{"type": "postback","title": "Anxiety Symptoms", "payload": "send_symptoms_anxiety" }]
         bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Anxiety?", buttons)
     if payload=='send_symptoms_anxiety':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Symptoms of general anxiety include:\nincreased heart rate\nrapid breathing\nrestlessness\ntrouble concentrating\ndifficulty falling asleep")
+        bot.send_text_message(sender_id,"Symptoms of general anxiety include:\nincreased heart rate\n*rapid breathing\n*restlessness\n*trouble concentrating\n*difficulty falling asleep")
         buttons = [{"type": "postback","title": "Cause of Anxiety","payload": "send_cause_anxiety"}]
         bot.send_button_message(sender_id, "What causes Anxiety?", buttons)
     if payload=='send_cause_anxiety':   
@@ -3025,10 +3025,10 @@ def received_postback(event):
         buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_autism"}]
         bot.send_button_message(sender_id, random.choice(remedies_ASD), buttons)                                         
     #medication
-    if payload=='medication_asd':
+    if payload=='medication_autism':
         buttons = [{"type": "postback","title": "ASD Medication", "payload": "send_medication_asd" }]
         bot.send_button_message(sender_id, "Do you want to know what is the medication/treatment of ASD?", buttons)
-    if payload=='send_medication_asd':                                                                                                                                                                                                                                   
+    if payload=='send_medication_autism':                                                                                                                                                                                                                                   
         bot.send_text_message(sender_id,"There are no “cures” for autism, but therapies and other treatment considerations can help people feel better or alleviate their symptoms. Many treatment approaches involve therapies such as:\nbehavioral therapy\nplay therapy\noccupational therapy\nphysical therapy\nspeech therapy")
     #About   
     if payload=='about_asd':
@@ -3105,7 +3105,7 @@ def received_postback(event):
         bot.send_text_message(sender_id,'Depression is classified as a mood disorder. It may be described as feelings of sadness, loss, or anger that interfere with a person’s everyday activities.\nPeople experience depression in different ways. It may interfere with your daily work, resulting in lost time and lower productivity. \nIt also can influence relationships and some chronic health conditions.')
         buttons = [{"type": "postback","title": "Depression Symptoms", "payload": "send_symptoms_depression" }]
         bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Depression?", buttons)
-    if payload=='send_symptoms_anxiety':                                                                                                                                                                                                                                   
+    if payload=='send_symptoms_depression':                                                                                                                                                                                                                                   
         bot.send_text_message(sender_id,"Depression can be more than a constant state of sadness or feeling “blue.”\nMajor depression can cause a variety of symptoms. Some affect your mood, and others affect your body. Symptoms may also be ongoing or come and go.\nDepression can affect men, women, and children differently.")
         buttons = [{"type": "postback","title": "Cause of Depression","payload": "send_cause_depression"}]
         bot.send_button_message(sender_id, "What causes Depression?", buttons)
@@ -3129,7 +3129,7 @@ def received_postback(event):
         bot.send_text_message(sender_id,"Extra help. A reading specialist, math tutor or other trained professional can teach your child techniques to improve his or her academic, organizational and study skills\nIndividualized education program (IEP). The IEP sets learning goals and determines strategies and services to support the child's learning in school.\nAccommodations. Classroom accommodations might include more time to complete assignments or tests, being seated near the teacher to promote attention, use of computer applications that support writing, including fewer math problems in assignments, or providing audiobooks to supplement reading.\nTherapy. Some children benefit from therapy. Occupational therapy might improve the motor skills of a child who has writing problems. A speech-language therapist can help address language skills.\nMedication. Your child's doctor might recommend medication to manage depression or severe anxiety. Medications for attention-deficit/hyperactivity disorder may improve a child's ability to concentrate in school.\nComplementary and alternative medicine. Further research is needed to determine the effectiveness of alternative treatments, such as dietary changes, use of vitamins, eye exercises, neurofeedback and use of technological devices.")
 
     #About   
-    if payload=='about_learningdisorder':
+    if payload=='about_learning':
         bot.send_text_message(sender_id,'A learning disorder is an information-processing problem that prevents a person from learning a skill and using it effectively. Learning disorders generally affect people of average or above average intelligence.\nAs a result, the disorder appears as a gap between expected skills, based on age and intelligence, and academic performance.')
         buttons = [{"type": "postback","title": "Learning Disorder Symptoms", "payload": "send_symptoms_learningdisorder" }]
         bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Learning Disorder?", buttons)
