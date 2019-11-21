@@ -2943,13 +2943,6 @@ def received_postback(event):
             bot.send_text_message(sender_id,"Cefalexin Monohydrate 250mg capsule: 13-16y/o dosage:1 capsule 3x a day for 7 days" ) 
         if age in range(17,20) or age > 20: 
             bot.send_text_message(sender_id,"Cefalexin Monohydrate 500mg capsule: 17-20y/o dosage:1 capsule 3x a day for 7 days" ) 
-              
-
-
-
-
-
-
 
     #End flu
     if payload=='ready_accept':
@@ -3137,9 +3130,9 @@ def received_postback(event):
 
     #About   
     if payload=='about_learningdisorder':
-    bot.send_text_message(sender_id,'A learning disorder is an information-processing problem that prevents a person from learning a skill and using it effectively. Learning disorders generally affect people of average or above average intelligence.\nAs a result, the disorder appears as a gap between expected skills, based on age and intelligence, and academic performance.')
-    buttons = [{"type": "postback","title": "Learning Disorder Symptoms", "payload": "send_symptoms_learningdisorder" }]
-    bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Learning Disorder?", buttons)
+        bot.send_text_message(sender_id,'A learning disorder is an information-processing problem that prevents a person from learning a skill and using it effectively. Learning disorders generally affect people of average or above average intelligence.\nAs a result, the disorder appears as a gap between expected skills, based on age and intelligence, and academic performance.')
+        buttons = [{"type": "postback","title": "Learning Disorder Symptoms", "payload": "send_symptoms_learningdisorder" }]
+        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Learning Disorder?", buttons)
     if payload=='send_symptoms_learningdisorder':                                                                                                                                                                                                                                   
         bot.send_text_message(sender_id,"Doesn't master skills in reading, spelling, writing or math at or near expected age and grade levels\nHas difficulty understanding and following instructions\nHas trouble remembering what someone just told him or her\nLacks coordination in walking, sports or skills such as holding a pencil\nEasily loses or misplaces homework, schoolbooks or other items\nHas difficulty understanding the concept of time\nResists doing homework or activities that involve reading, writing or math, or consistently can't complete homework assignments without significant help\nActs out or shows defiance, hostility or excessive emotional reactions at school or while doing academic activities, such as homework or reading")
         buttons = [
