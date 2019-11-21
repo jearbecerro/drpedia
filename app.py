@@ -473,6 +473,7 @@ def received_qr(event):
             bot.send_text_message(sender_id, "{} must undergo a laboratory test for blood.".format(phrase2.capitalize()))
             bot.send_text_message(sender_id, "After the lab test,\nif the white blood cell is below 4.5 and the platelet is below 150.")
             bot.send_text_message(sender_id, "Then I can determine that {} currently having dengue.".format(phrase2))
+            bot.send_text_message(sender_id, "Dengue is a viral infection brought by a mosquito that carries dengue virus.")
             choose_howto(sender_id,'remedies_dengue','medication_dengue','about_dengue','Dengue')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
@@ -605,6 +606,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have Gastroenteritis.".format(phrase2,average,phrase2))
+            bot.send_text_message(sender_id, "Gastroenteritis is either viral or bacterial depending on how the patient get it.")
             choose_howto(sender_id,'remedies_gastro','medication_gastro','about_gastro','Gastroenteritis')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
@@ -790,6 +792,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have Tonsillitis.".format(phrase2,average,phrase2))
+             bot.send_text_message(sender_id, "Tonsillitis is cause by a viral infection but in some cases it is cause by bacterial infection.")
             choose_howto(sender_id,'remedies_tonsil','medication_tonsil','about_tonsil','Tonsillitis')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
@@ -984,6 +987,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have UTI.".format(phrase2,average,phrase2))
+            bot.send_text_message(sender_id, "UTI is a bacterial infections but in some rare cases it can be viral.")
             choose_howto(sender_id,'remedies_uti','medication_uti','about_uti','Urinary Tract Infection')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
@@ -1197,6 +1201,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have FLU.".format(phrase2,average,phrase2))
+            bot.send_text_message(sender_id, "Flu is a viral infection cause by the influenza virus.")
             choose_howto(sender_id,'remedies_flu','medication_flu','about_flu','Flu')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
