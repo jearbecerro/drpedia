@@ -792,7 +792,7 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} have Tonsillitis.".format(phrase2,average,phrase2))
-             bot.send_text_message(sender_id, "Tonsillitis is cause by a viral infection but in some cases it is cause by bacterial infection.")
+            bot.send_text_message(sender_id, "Tonsillitis is cause by a viral infection but in some cases it is cause by bacterial infection.")
             choose_howto(sender_id,'remedies_tonsil','medication_tonsil','about_tonsil','Tonsillitis')
         elif get_average(count_yes, total_symptoms) <80:
             Mongo.set_patient(patient, sender_id, 'count_yes', 0)
