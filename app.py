@@ -3428,13 +3428,13 @@ def init_bot():
                             },
                             {
                                 "type": "postback",
-                                "title": "Remedies",
-                                "payload": "pm_dengue_prevention"
+                                "title": "Like DrPedia",
+                                "payload": "pm_like"
                             },
                             {
                                 "type": "postback",
-                                "title": "About",
-                                "payload": "pm_about"
+                                "title": "Share DrPedia",
+                                "payload": "pm_share"
                             }
                         ]
                     }
