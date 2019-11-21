@@ -121,9 +121,7 @@ def received_text(event):
         choose_howto(sender_id,'remedies_bipolar','medication_bipolar','about_bipolar','Bipolar')
     elif text.lower() in ("learning disorders", "learning","ld") and answer == 'mental':
         choose_howto(sender_id,'remedies_learning','medication_learning','about_learning','Learning Disorder')
-    elif text and answer == 'mental':
-        bot.send_text_message(sender_id,'Just only type your suspected mental health listed above {}.'.format(first_name(sender_id)))
-        
+   
     '''else:
         bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')'''
     
