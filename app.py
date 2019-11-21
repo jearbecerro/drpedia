@@ -460,7 +460,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     right = {"content_type":"text","title":"Yes","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
-    if text == 'no_inc' or text =='yes_inc' and answer == 'breathing':  
+    if text == 'no_inc' and answer == 'breathing':  
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == 100:
             average = get_average(count_yes, total_symptoms) - 1
@@ -596,7 +596,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     
-    if text == 'no_inc' or text == 'yes_inc' and answer == 'diarrhea':  
+    if text == 'no_inc' and answer == 'diarrhea':  
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == 100:
             average = get_average(count_yes, total_symptoms) - 1
@@ -782,7 +782,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     
-    if text == 'no_inc' or text == 'yes_inc'  and answer == 'swallowing':  
+    if text == 'no_inc'  and answer == 'swallowing':  
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == 100:
             average = get_average(count_yes, total_symptoms) - 1
@@ -977,7 +977,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
     
-    if text == 'no_inc' or text == 'yes_inc' and answer == 'urination':  
+    if text == 'no_inc' and answer == 'urination':  
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == 100:
             average = get_average(count_yes, total_symptoms) - 1
