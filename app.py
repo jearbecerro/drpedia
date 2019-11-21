@@ -460,7 +460,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     right = {"content_type":"text","title":"Yes","payload":'yes_ri'},{"content_type":"text","title":"No","payload":'no_ri'}
-    if text == 'no_inc' and answer == 'breathing':  
+    if text == 'no_inc' or text =='yes_inc' and answer == 'breathing':  
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == 100:
             average = get_average(count_yes, total_symptoms) - 1
@@ -479,13 +479,13 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Dengue.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have before I can determine that {} have dengue.".format(phrase2,phrase2))
-            bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
+            '''bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'breathing':
         pass #give medication/ remedies for those symptoms 
     if text == 'yes_inc' and answer == 'breathing':       
         pass#NLU
-
+    '''
      #End Dengue
     #Gastroenteritis
     if text =='diarrhea':
@@ -595,7 +595,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     
-    if text == 'no_inc' and answer == 'diarrhea':  
+    if text == 'no_inc' or text == 'yes_inc' and answer == 'diarrhea':  
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == 100:
             average = get_average(count_yes, total_symptoms) - 1
@@ -611,13 +611,13 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Gastroenteritis.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have Gastroenteritis.".format(phrase2,phrase2))
-            bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
+            '''bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'diarrhea' :
         pass #give medication/ remedies for those symptoms 
     if text == 'yes_inc' and answer == 'diarrhea':       
         pass#NLU     
-   
+    '''
     #End gastro
      #tonsil
     if text =='swallowing':
@@ -780,7 +780,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask?'.format(phrase2), take) 
     
-    if text == 'no_inc' and answer == 'swallowing':  
+    if text == 'no_inc' or text == 'yes_inc'  and answer == 'swallowing':  
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == 100:
             average = get_average(count_yes, total_symptoms) - 1
@@ -796,12 +796,13 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have Tonsillitis.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have Tonsillitis.".format(phrase2,phrase2))
-            bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
+            '''bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'swallowing':
         pass #give medication/ remedies for those symptoms 
     if text == 'yes_inc' and answer == 'swallowing':       
-        pass#NLU         
+        pass#NLU
+    '''  
     #End tonsil
     #UTI
     if text =='urination':
@@ -973,7 +974,7 @@ def received_qr(event):
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms + 1)
         bot.send_quick_replies_message(sender_id, 'Do {} have symptoms that we did not ask'.format(phrase2), take) 
     
-    if text == 'no_inc' and answer == 'urination':  
+    if text == 'no_inc' or text == 'yes_inc' and answer == 'urination':  
         print(count_yes, total_symptoms)
         if get_average(count_yes, total_symptoms) == 100:
             average = get_average(count_yes, total_symptoms) - 1
@@ -989,13 +990,13 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have UTI.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have UTI.".format(phrase2,phrase2))
-            bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
+            '''bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'urination':
         pass #give medication/ remedies for those symptoms 
     if text == 'yes_inc' and answer == 'urination':       
         pass#NLU         
-
+    '''
     #End UTI
         
      #Flu
@@ -1202,12 +1203,13 @@ def received_qr(event):
             Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
             bot.send_text_message(sender_id, "Base on my symptom checker {} have {}% chance that {} might have flu.".format(phrase2,average,phrase2))
             bot.send_text_message(sender_id, "It must have 80% or higher percentage rate base on symptoms that {} current have.\nBefore I can determine that {} have flu.".format(phrase2,phrase2))
-            bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
+            '''bot.send_text_message(sender_id, "So {},\nthese are the symptoms, that {} currently suffering: ".format(first_name(sender_id),phrase2))
             bot.send_quick_replies_message(sender_id, 'Right?'.format(phrase2), right) 
     if text == 'yes_ri' or 'no_ri' and answer == 'body':
         pass #give medication/ remedies for those symptoms 
     if text == 'yes_inc' and answer == 'body':       
-        pass#NLU             
+        pass#NLU  
+    '''
     #END FLU
         
     #ADHD
@@ -2981,35 +2983,27 @@ def received_postback(event):
     if payload=='send_cause_adhd':   
         bot.send_text_message(sender_id,"Despite how common ADHD is, doctors and researchers still aren’t sure what causes the condition. It’s believed to have neurological origins. Genetics may also play a role.")
     #Medication
-    if payload=='medication_adhd':
-        buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the medication/treatment of ADHD?", buttons)
-    if payload=='send_medication_adhd':                                                                                                                                                                                                                                   
+    if payload=='medication_adhd':                                                                                                                                                                                                                                 
         bot.send_text_message(sender_id,"Treatment for ADHD typically includes behavioral therapies, medication, or both")
-    if payload=='medication_adhd2':
         buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd2" }]
-        bot.send_button_message(sender_id, "Want to kno about stimulant and nonstimulant medication", buttons)
+        bot.send_button_message(sender_id, "Want to know about stimulant and nonstimulant medication", buttons)
     if payload=='send_medication_adhd2':                                                                                                                                                                                                                                   
         bot.send_text_message(sender_id,"Stimulant and nonstimulant medications\nMedication is often an important part of treatment for a child with ADHD. However, it can be a difficult decision to make as a parent.\nTo make the best choice, you and your child’s doctor should work together to decide if medication is a good option.")
-    if payload=='medication_adhd3':
         buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd3" }]
         bot.send_button_message(sender_id, "Stimulant Medication", buttons)
     if payload=='send_medication_adhd3':                                                                                                                                                                                                                                   
         bot.send_text_message(sender_id,"Central nervous system stimulants\nThe effect improves your child’s concentration and helps them focus better.\nCommon CNS stimulants used to treat ADHD include:\namphetamine-based stimulants (Adderall, Dexedrine, Dextrostat)\ndextromethamphetamine (Desoxyn)\ndextromethylphenidate (Focalin)\nmethylphenidate (Concerta, Daytrana, Metadate, Ritalin)")
-    if payload=='medication_adhd4':
         buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd4" }]
         bot.send_button_message(sender_id, "Nonstimulant Medication", buttons)
     if payload=='send_medication_adhd4':                                                                                                                                                                                                                                   
         bot.send_text_message(sender_id,"Nonstimulant medications\nYour child’s doctor may consider nonstimulant medications when stimulants haven't worked or have caused side effects that your child finds hard to handle.\nThese nonstimulant treatments include:\natomoxetine (Strattera)\nantidepressants like nortriptyline (Pamelor)\nOther nonstimulant medications can also help with ADHD. These other nonstimulants include:\nguanfacine (Intuniv) and clonidine (Kapvay)")
-    if payload=='medication_adhd4':
-        buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd4" }]
-        bot.send_button_message(sender_id, "Nonstimulant Medication", buttons)
-    if payload=='send_medication_adhd4':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Nonstimulant medications\nYour child’s doctor may consider nonstimulant medications when stimulants haven't worked or have caused side effects that your child finds hard to handle.\nThese nonstimulant treatments include:\natomoxetine (Strattera)\nantidepressants like nortriptyline (Pamelor)\nOther nonstimulant medications can also help with ADHD. These other nonstimulants include:\nguanfacine (Intuniv) and clonidine (Kapvay)")
-    if payload=='medication_adhd5':
         buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd5" }]
-        bot.send_button_message(sender_id, "Therapeutic ADHD treatments", buttons)
+        bot.send_button_message(sender_id, "Nonstimulant Medication", buttons)
     if payload=='send_medication_adhd5':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Nonstimulant medications\nYour child’s doctor may consider nonstimulant medications when stimulants haven't worked or have caused side effects that your child finds hard to handle.\nThese nonstimulant treatments include:\natomoxetine (Strattera)\nantidepressants like nortriptyline (Pamelor)\nOther nonstimulant medications can also help with ADHD. These other nonstimulants include:\nguanfacine (Intuniv) and clonidine (Kapvay)")
+        buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd6" }]
+        bot.send_button_message(sender_id, "Therapeutic ADHD treatments", buttons)
+    if payload=='send_medication_adhd6':                                                                                                                                                                                                                                   
         bot.send_text_message(sender_id,"Psychotherapy, Psychotherapy can be useful in getting your child to open up about their feelings of coping with ADHD.\nBehavior therapy, The goal of behavior therapy (BT) is to teach a child how to monitor their behaviors and then change those behaviors appropriately.\nSocial skills training, As with BT, the goal of social skills training is to teach the child new and more appropriate behaviors. \nSupport groups, Support groups are great for helping parents of children with ADHD connect with others who may share similar experiences and concerns.\nParenting skills training, Parenting skills training gives you tools and techniques for understanding and managing your child's behaviors.")
     #ADHD END  
     #Anxiety
@@ -3021,12 +3015,17 @@ def received_postback(event):
         buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_anxiety"}]
         bot.send_button_message(sender_id, random.choice(remedies_Anxiety), buttons)                                         
     #medication
-    if payload=='medication_anxiety':
-        buttons = [{"type": "postback","title": "Anxiety Medication", "payload": "send_medication_anxiety" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the medication/treatment of Anxiety?", buttons)
-    if payload=='send_medication_anxiety':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Cognitive behavioral therapy: This treatment involves meeting regularly to talk with a mental health professional. The goal is to change your thinking and behaviors.\nThis approach has been successful in creating permanent change in many people with anxiety. It’s considered first-line treatment for anxiety disorders in people who are pregnant.\nOthers have found that the benefits of cognitive behavioral therapy have provided long-term anxiety relief.\nMedication, these are called anti-anxiety medications.\nSome common anti-anxiety medications are:\nalprazolam (Xanax)\nclonazepam (Klonopin)\nlorazepam (Ativan)\nMedications called antidepressants work well for long-term treatment. Some common antidepressants are:\nbuspirone (Buspar)\ncitalopram (Celexa)\nescitalopram (Lexapro)\nfluoxetine (Prozac, Prozac Weekly, Sarafem)\nfluvoxamine (Luvox, Luvox CR)\nparoxetine (Paxil, Paxil CR, Pexeva)\nsertraline (Zoloft)\nvenlafaxine (Effexor XR)\ndesvenlafaxine (Pristiq)\nduloxetine (Cymbalta)")
-    #About  
+    if payload=='medication_anxiety':                                                                                                                                                                                                                                 
+        bot.send_text_message(sender_id,"Cognitive behavioral therapy\nThe goal is to change your thinking and behaviors. This approach has been successful in creating permanent change in many people with anxiety.")
+        buttons = [{"type": "postback","title": "Anxiety Medication", "payload": "send_medication_anxiety2" }]
+        bot.send_button_message(sender_id, "More medication", buttons)
+    if payload=='send_medication_anxiety2':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Some common anti-anxiety medications are:\nalprazolam (Xanax)\nclonazepam (Klonopin)\nlorazepam (Ativan)")
+        buttons = [{"type": "postback","title": "Anxiety Medication", "payload": "send_medication_anxiety3" }]
+        bot.send_button_message(sender_id, "Antidepressants", buttons)
+    if payload=='send_medication_anxiety3':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Some common antidepressants are:\nbuspirone (Buspar)\ncitalopram (Celexa)\nescitalopram (Lexapro)\nfluoxetine (Prozac, Prozac Weekly, Sarafem)\nfluvoxamine (Luvox, Luvox CR)\nparoxetine (Paxil, Paxil CR, Pexeva)\nsertraline (Zoloft)\nvenlafaxine (Effexor XR)\ndesvenlafaxine (Pristiq)\nduloxetine (Cymbalta)")
+#About  
     if payload=='about_anxiety':
         bot.send_text_message(sender_id,'It’s normal to feel anxious about moving to a new place, starting a new job, or taking a test. This type of anxiety is unpleasant, but it may motivate you to work harder and to do a better job. Ordinary anxiety is a feeling that comes and goes, but does not interfere with your everyday life.\nIn the case of an anxiety disorder, the feeling of fear may be with you all the time. It is intense and sometimes debilitating. This type of anxiety may cause you to stop doing things you enjoy.\nIn extreme cases, it may prevent you from entering an elevator, crossing the street, or even leaving your home. If left untreated, the anxiety will keep getting worse.')
         buttons = [{"type": "postback","title": "Anxiety Symptoms", "payload": "send_symptoms_anxiety" }]
@@ -3048,13 +3047,22 @@ def received_postback(event):
         buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_autism"}]
         bot.send_button_message(sender_id, random.choice(remedies_ASD), buttons)                                         
     #medication
-    if payload=='medication_autism':
-        buttons = [{"type": "postback","title": "ASD Medication", "payload": "send_medication_asd" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the medication/treatment of ASD?", buttons)
-    if payload=='send_medication_autism':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"There are no “cures” for autism, but therapies and other treatment considerations can help people feel better or alleviate their symptoms. Many treatment approaches involve therapies such as:\nbehavioral therapy\nplay therapy\noccupational therapy\nphysical therapy\nspeech therapy")
+    if payload=='medication_autism':                                                                                                                                                                                                                                 
+        bot.send_text_message(sender_id,"There are no “cures” for autism, but therapies and other treatment considerations can help people feel better or alleviate their symptoms.")
+        buttons = [{"type": "postback","title": "ASD Medication", "payload": "send_medication_asd2" }]
+        bot.send_button_message(sender_id, "Want to know about treatment approaches", buttons)
+    if payload=='send_medication_asd2':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Many treatment approaches involve therapies such as:\nbehavioral therapy\nplay therapy\noccupational therapy\nphysical therapy\nspeech therapy")
+        buttons = [{"type": "postback","title": "ASD Medication", "payload": "send_medication_asd3" }]
+        bot.send_button_message(sender_id, "Other therapy", buttons)
+    if payload=='send_medication_asd3':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Massages, weighted blankets and clothing, and meditation techniques may also induce relaxing effects. \nHowever, treatment results will vary.\nSome people on the spectrum may respond well to certain approaches, while others may not.")
+        buttons = [{"type": "postback","title": "ASD Medication", "payload": "send_medication_asd4" }]
+        bot.send_button_message(sender_id, "Relaxation Techniques", buttons)
+    if payload=='send_medication_asd4':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Behavior problems are a common issue in people with ASD.\nCalming techniques, such as deep pressure massage or wearing weighted clothing, may soothe agitation in people with ASD.\nThis involves teaching people the difference between tense and relaxed muscles.\nThis is done in combination with deep breathing, and can help alleviate stress and agitation.")
     #About   
-    if payload=='about_asd':
+    if payload=='about_autism':
         bot.send_text_message(sender_id,'Autism spectrum disorder (ASD) is a broad term used to describe a group of neurodevelopmental disorders.\nThese disorders are characterized by problems with communication and social interaction.\nPeople with ASD often demonstrate restricted, repetitive, and stereotyped interests or patterns of behavior.')
         buttons = [{"type": "postback","title": "ASD Symptoms", "payload": "send_symptoms_asd" }]
         bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ASD?", buttons)
@@ -3082,11 +3090,20 @@ def received_postback(event):
         buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_bipolar"}]
         bot.send_button_message(sender_id, random.choice(remedies_Bipolar), buttons)                                         
     #medication
-    if payload=='medication_bipolar':
-        buttons = [{"type": "postback","title": "Bipolar Disorder Medication", "payload": "send_medication_bipolardisorder" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the medication/treatment of Bipolar Disorder?", buttons)
-    if payload=='send_medication_bipolardisorder':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Recommended medications may include:\nmood stabilizers, such as lithium (Lithobid)\nantipsychotics, such as olanzapine (Zyprexa)\nantidepressant-antipsychotics, such as fluoxetine-olanzapine (Symbyax)\nbenzodiazepines, a type of anti-anxiety medication such as alprazolam (Xanax) that may be used for short-term treatment\nPsychotherapy, Recommended psychotherapy treatments may include:\nCognitive behavioral therapy, Cognitive behavioral therapy is a type of talk therapy. You and a therapist talk about ways to manage your bipolar disorder. They will help you understand your thinking patterns. They can also help you come up with positive coping strategies.\nPsychoeducation, Psychoeducation is a kind of counseling that helps you and your loved ones understand the disorder. Knowing more about bipolar disorder will help you and others in your life manage it.\nInterpersonal and social rhythm therapy, Interpersonal and social rhythm therapy (IPSRT) focuses on regulating daily habits, such as sleeping, eating, and exercising. Balancing these everyday basics can help you manage your disorder.\nOther treatment options, Other treatment options may include:\nelectroconvulsive therapy (ECT)\nsleep medications\nsupplements\nacupuncture")
+    if payload=='medication_bipolar':                                                                                                                                                                                                                                 
+        bot.send_text_message(sender_id,"Several treatments are available that can help you manage your bipolar disorder. These include medications, counseling, and lifestyle changes. Some natural remedies may also be helpful.")
+        buttons = [{"type": "postback","title": "Bipolar Medication", "payload": "send_medication_bipolar2" }]
+        bot.send_button_message(sender_id, "Medications", buttons)
+    if payload=='send_medication_bipolar2':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Recommended medications may include:\nmood stabilizers, such as lithium (Lithobid)\nantipsychotics, such as olanzapine (Zyprexa)\nantidepressant-antipsychotics, such as fluoxetine-olanzapine (Symbyax)\nbenzodiazepines, a type of anti-anxiety medication such as alprazolam (Xanax) that may be used for short-term treatment")
+        buttons = [{"type": "postback","title": "Bipolar Medication", "payload": "send_medication_bipolar3" }]
+        bot.send_button_message(sender_id, "Psychotherapy", buttons)
+    if payload=='send_medication_bipolar3':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Cognitive behavioral therapy: You and a therapist talk about ways to manage your bipolar disorder. They will help you understand your thinking patterns.\nPsychoeducation: a kind of counseling that helps you and your loved ones understand the disorder.\nInterpersonal and social rhythm Therapy: Interpersonal and social rhythm therapy (IPSRT) focuses on regulating daily habits, such as sleeping, eating, and exercising.")
+        buttons = [{"type": "postback","title": "Bipolar Medication", "payload": "send_medication_bipolar4" }]
+        bot.send_button_message(sender_id, "Other treatment options", buttons)
+    if payload=='send_medication_bipolar4':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Other treatment options may include:\nelectroconvulsive therapy (ECT)\nsleep medications\nsupplements\nacupuncture")
 
     #About   
     if payload=='about_bipolar':
@@ -3117,11 +3134,16 @@ def received_postback(event):
         buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_depression"}]
         bot.send_button_message(sender_id, random.choice(remedies_Depression), buttons)                                         
     #medication
-    if payload=='medication_depression':
-        buttons = [{"type": "postback","title": "Depression Medication", "payload": "send_medication_depression" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the medication/treatment of Depression?", buttons)
-    if payload=='send_medication_depression':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"You may successfully manage symptoms with one form of treatment, or you may find that a combination of treatments works best. It’s common to combine medical treatments and lifestyle therapies, including the following:\nMedications, Your doctor may prescribe antidepressants, antianxiety, or antipsychotic medications\nPsychotherapy, Speaking with a therapist can help you learn skills to cope with negative feelings. You may also benefit from family or group therapy sessions.\nLight therapy\nExposure to doses of white light can help regulate mood and improve symptoms of depression. This therapy is commonly used in seasonal affective disorder (which is now called major depressive disorder with seasonal pattern).\nAlternative therapies, Ask your doctor about acupuncture or meditation. Some herbal supplements are also used to treat depression, like St. John’s wort, SAMe, and fish oil. Talk with your doctor before taking a supplement or combining a supplement with prescription medication because some supplements can react with certain medications. Some supplements may also worsen depression or reduce the effectiveness of medication.")
+    if payload=='medication_depression':                                                                                                                                                                                                                                 
+        bot.send_text_message(sender_id,"You may successfully manage symptoms with one form of treatment, or you may find that a combination of treatments works best.")
+        buttons = [{"type": "postback","title": "Depression Medication", "payload": "send_medication_depression2" }]
+        bot.send_button_message(sender_id, "Medications", buttons)
+    if payload=='send_medication_depression2':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Medications: Your doctor may prescribe antidepressants, antianxiety, or antipsychotic medications\nPsychotherapy: Speaking with a therapist can help you learn skills to cope with negative feelings.\nLight therapy: Exposure to doses of white light can help regulate mood and improve symptoms of depression.")
+        buttons = [{"type": "postback","title": "Depression Medication", "payload": "send_medication_depression3" }]
+        bot.send_button_message(sender_id, "Alternative therapies", buttons)
+    if payload=='send_medication_depression3':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Ask your doctor about acupuncture or meditation.\nTalk with your doctor before taking a supplement or combining a supplement with prescription medication because some supplements can react with certain medications.\nSome supplements may also worsen depression or reduce the effectiveness of medication.")
 
     #About   
     if payload=='about_depression':
@@ -3145,12 +3167,24 @@ def received_postback(event):
         buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_learning"}]
         bot.send_button_message(sender_id, random.choice(remedies_LearningDisorder), buttons)                                         
     #medication
-    if payload=='medication_learning':
-        buttons = [{"type": "postback","title": "Learning Disorder Medication", "payload": "send_medication_learningdisorder" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the medication/treatment of Learning Disorder?", buttons)
-    if payload=='send_medication_learningdisorder':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Extra help. A reading specialist, math tutor or other trained professional can teach your child techniques to improve his or her academic, organizational and study skills\nIndividualized education program (IEP). The IEP sets learning goals and determines strategies and services to support the child's learning in school.\nAccommodations. Classroom accommodations might include more time to complete assignments or tests, being seated near the teacher to promote attention, use of computer applications that support writing, including fewer math problems in assignments, or providing audiobooks to supplement reading.\nTherapy. Some children benefit from therapy. Occupational therapy might improve the motor skills of a child who has writing problems. A speech-language therapist can help address language skills.\nMedication. Your child's doctor might recommend medication to manage depression or severe anxiety. Medications for attention-deficit/hyperactivity disorder may improve a child's ability to concentrate in school.\nComplementary and alternative medicine. Further research is needed to determine the effectiveness of alternative treatments, such as dietary changes, use of vitamins, eye exercises, neurofeedback and use of technological devices.")
-
+    if payload=='medication_learning':                                                                                                                                                                                                                                 
+        bot.send_text_message(sender_id,"Learning Disorder Treatments")
+        buttons = [{"type": "postback","title": "Learning Disorder Medication", "payload": "send_medication_learningdisorder2" }]
+        bot.send_button_message(sender_id, "Treatments", buttons)
+    if payload=='send_medication_learningdisorder2':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Extra help. A reading specialist, math tutor or other trained professional can teach your child techniques to improve his or her academic, organizational and study skills\nIndividualized education program (IEP). The IEP sets learning goals and determines strategies and services to support the child's learning in school.")
+        buttons = [{"type": "postback","title": "Learning Disorder Medication", "payload": "send_medication_learningdisorder3" }]
+        bot.send_button_message(sender_id, "Accomodations", buttons)
+    if payload=='send_medication_learningdisorder3':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Classroom accommodations might include more time to complete assignments or tests, being seated near the teacher to promote attention, use of computer applications that support writing, including fewer math problems in assignments, or providing audiobooks to supplement reading.")
+        buttons = [{"type": "postback","title": "Learning Disorder", "payload": "send_medication_learningdisorder4" }]
+        bot.send_button_message(sender_id, "Therapy", buttons)
+    if payload=='send_medication_learningdisorder4':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Some children benefit from therapy. Occupational therapy might improve the motor skills of a child who has writing problems. A speech-language therapist can help address language skills.")
+        buttons = [{"type": "postback","title": "Learning Disorder", "payload": "send_medication_learningdisorder5" }]
+        bot.send_button_message(sender_id, "Medication", buttons)
+    if payload=='send_medication_learningdisorder5':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Your child's doctor might recommend medication to manage depression or severe anxiety. Medications for attention-deficit/hyperactivity disorder may improve a child's ability to concentrate in school.")
     #About   
     if payload=='about_learning':
         bot.send_text_message(sender_id,'A learning disorder is an information-processing problem that prevents a person from learning a skill and using it effectively. Learning disorders generally affect people of average or above average intelligence.\nAs a result, the disorder appears as a gap between expected skills, based on age and intelligence, and academic performance.')
@@ -3186,12 +3220,17 @@ def received_postback(event):
         buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_odd"}]
         bot.send_button_message(sender_id, random.choice(remedies_ODD), buttons)                                         
     #medication
-    if payload=='medication_odd':
-        buttons = [{"type": "postback","title": "ODD Medication", "payload": "send_medication_odd" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the medication/treatment of ODD?", buttons)
-    if payload=='send_medication_odd':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Early treatment is essential for people with ODD. Teens and adults with untreated ODD have increased risk for depression and substance abuse\nIndividual cognitive behavioral therapy: A psychologist will work with the child to improve:\nanger management skills\ncommunication skills\nimpulse control\nproblem-solving skills\nFamily therapy: A psychologist will work with the whole family to make changes. This can help parents find support and learn strategies for handling their child’s ODD.\nParent-child interaction therapy (PCIT): Therapists will coach the parents as they interact with their children. Parents can learn more effective parenting techniques.\nPeer groups: The child can learn how to improve their social skills and relationships with other children.\nMedications: These can help treat causes of ODD, such as depression or ADHD. However, there is no specific medication to treat ODD itself.\n")
-
+    if payload=='medication_odd':                                                                                                                                                                                                                                 
+        bot.send_text_message(sender_id,"Early treatment is essential for people with ODD. Teens and adults with untreated ODD have increased risk for depression and substance abuse.")
+        buttons = [{"type": "postback","title": "ODD Medication", "payload": "send_medication_odd2" }]
+        bot.send_button_message(sender_id, "Individual cognitive behavioral therapy", buttons)
+    if payload=='send_medication_odd2':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"A psychologist will work with the child to improve:\nanger management skills\ncommunication skills\nimpulse control\nproblem-solving skills")
+        buttons = [{"type": "postback","title": "ODD Medication", "payload": "send_medication_odd3" }]
+        bot.send_button_message(sender_id, "Other therapy", buttons)
+    if payload=='send_medication_odd3':                                                                                                                                                                                                                                   
+        bot.send_text_message(sender_id,"Family therapy: A psychologist will work with the whole family to make changes.\nParent-child interaction therapy (PCIT): Therapists will coach the parents as they interact with their children.\nPeer groups: The child can learn how to improve their social skills and relationships with other children.\nMedications: These can help treat causes of ODD, such as depression or ADHD. However, there is no specific medication to treat ODD itself.")
+    #end odd3
     #About   
     if payload=='about_odd':
         bot.send_text_message(sender_id,'Even the most mild-mannered children have occasional outbursts of frustration and disobedience.\nBut a persistent pattern of anger, defiance, and vindictiveness against authority figures could be a sign of oppositional defiant disorder (ODD).\nODD is a behavioral disorder that results in defiance and anger against authority. It can affect a person’s work, school, and social life.\nODD affects between 1 and 16 percent of school age children. It’s more common in boys than girls.\nMany children start to show symptoms of ODD between the ages of 6 and 8 years. ODD also occurs in adults. Adults with ODD who were not diagnosed as children often go undiagnosed.')
@@ -3230,10 +3269,9 @@ def received_postback(event):
     #Get started button tapped{
     if payload=='start':
         greet = random.choice(GREETING_RESPONSES)
-        
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
             Mongo.set_ask(users,sender_id, "pleased to meet me?")
-            bot.send_text_message(sender_id, "Hi I'm DrPedia, your own pediatric companion.")
+            bot.send_text_message(sender_id, "{} I'm DrPedia, your own pediatric companion.".format(greet))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
             #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
@@ -3385,7 +3423,7 @@ def init_bot():
                             },
                             {
                                 "type": "postback",
-                                "title": "Dengue Prevention",
+                                "title": "Remedies",
                                 "payload": "pm_dengue_prevention"
                             },
                             {
