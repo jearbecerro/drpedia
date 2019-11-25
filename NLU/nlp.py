@@ -14,7 +14,7 @@ import os
 path = os.path.dirname(os.path.abspath(__file__))
 
 #path = "https://raw.githubusercontent.com/clvrjc2/drpedia/master/NLU/"
-with open(path+"physical.json",'r') as file:
+with open(path+"/physical.json",'r') as file:
     data = json.load(file)
 
 try:
