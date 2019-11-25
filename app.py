@@ -6,6 +6,7 @@ import os
 import pymongo
 from pymongo import MongoClient
 import Mongo#import Mongo.py
+from NLU import nlp
 #Libraries to be import END
 
 app = Flask(__name__)
@@ -106,6 +107,9 @@ def received_text(event):
         total_symptoms = patient_data['total_symptoms']
     else: 
         pass
+    
+    if nlp.nlp(text) == 'fever':
+        bot.send_text_message(sender_id, "That doesn't sound healthy")
     #Mental Health{
     if text.lower() in ("attention deficit hyperactivity disorder", "adhd") and answer == 'mental':#if user send text 'adhd'
         choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
@@ -3276,7 +3280,7 @@ def received_postback(event):
         greet = random.choice(GREETING_RESPONSES)
         if not Mongo.user_exists(users,sender_id): #Sqlite.user_exists(sender_id):if user_exists == false add user information
             Mongo.set_ask(users,sender_id, "pleased to meet me?")
-            bot.send_text_message(sender_id, "{} I'm DrPedia, your own pediatric companion.".format(greet))
+            '''bot.send_text_message(sender_id, "{} I'm DrPedia, your own pediatric companion.".format(greet))
             bot.send_text_message(sender_id, "My main responsibility is to assist you with catering pediatric concern including physical and mental health problem.")
             #bot.send_text_message(sender_id, "For that you'll have to answer a few questions.")
             #bot.send_text_message(sender_id, "Of course, what ever you tell me will remain carefully between us!.")
@@ -3288,7 +3292,7 @@ def received_postback(event):
                             }
                             ]
             bot.send_button_message(sender_id, 'Are you glad to meet me {}🤗?'.format(first_name(sender_id)), button)    
-            #Sqlite.set_ask(sender_id, "pleased to meet me?")
+            '''
             
         else:
             '''if terms == "Yes":#Sqlite.get_terms(sender_id) == "Yes"
@@ -3298,7 +3302,8 @@ def received_postback(event):
             elif terms == "No":#Sqlite.get_terms(sender_id) == "No"'''
             if terms == 'Yes':
                 bot.send_text_message(sender_id, "Hi {} welcome back!".format(first_name(sender_id)))
-                send_choose_concern(sender_id)
+                bot.send_text_message(sender_id,"What is your concern?")
+                #send_choose_concern(sender_id)
             elif terms == 'No':
               greet_disclaimer(sender_id)
             
