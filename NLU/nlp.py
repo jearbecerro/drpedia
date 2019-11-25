@@ -11,11 +11,10 @@ import json
 import pickle
 
 import os
-THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-my_file = os.path.join(THIS_FOLDER, 'myfile.txt')
+path = os.path.dirname(os.path.abspath(__file__))
 
-path = "https://raw.githubusercontent.com/clvrjc2/drpedia/master/NLU/"
-with open(my_file+"physical.json",'r') as file:
+#path = "https://raw.githubusercontent.com/clvrjc2/drpedia/master/NLU/"
+with open(path+"physical.json",'r') as file:
     data = json.load(file)
 
 try:
