@@ -10,7 +10,7 @@ import random
 import json
 import pickle
 
-with open("/NLU/physical.json") as file:
+with open("app/NLU/physical.json") as file:
     data = json.load(file)
 
 try:
