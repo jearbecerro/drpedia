@@ -18,7 +18,7 @@ with open(path+"/physical.json",'r') as file:
     data = json.load(file)
 
 try:
-    with open("data.pickle", "rb") as f:#rb ReadByte
+    with open(path+"/data.pickle", "rb") as f:#rb ReadByte
         words, labels, training, output = pickle.load(f)
 except:
     words = []
@@ -63,7 +63,7 @@ except:
     training = numpy.array(training)
     output = numpy.array(output)
 
-    with open("data.pickle", "wb") as f:
+    with open(path+"/data.pickle", "wb") as f:
         pickle.dump((words, labels, training, output), f)
 
 tensorflow.reset_default_graph()
@@ -77,10 +77,10 @@ net = tflearn.regression(net)
 model = tflearn.DNN(net)
 
 try:
-    model.load("model.tflearn")#Erease this for re traning
+    model.load(path+"/model.tflearn")#Erease this for re traning
 except:
 	model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)#this line for retraining
-	model.save("model.tflearn")
+	model.save(path+"/model.tflearn")
 
 def bag_of_words(s, words):
     bag = [0 for _ in range(len(words))]
