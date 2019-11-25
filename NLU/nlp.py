@@ -9,8 +9,8 @@ import tensorflow
 import random
 import json
 import pickle
-
-with open("physical.json",'r') as file:
+path = "https://raw.githubusercontent.com/clvrjc2/drpedia/master/NLU/"
+with open(path+"physical.json",'r') as file:
     data = json.load(file)
 
 try:
