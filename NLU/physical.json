@@ -1,0 +1,249 @@
+{"intents": [
+        {"tag": "headache",
+         "patterns": ["I feel headache", "I have headache", "I experience headache", "I am suffering headache", "Headache"],
+         "responses": ["headache"],
+         "context_set": ""
+        },
+        {"tag": "fever",
+         "patterns": ["I feel fever", "I have fever", "I experience fever", "I am suffering fever", "Fever"],
+         "responses": ["fever"],
+         "context_set": ""
+        },
+        {"tag": "abdomnal pain",
+         "patterns": ["I feel abdominal pain", "I have abdominal pain", "I experience abdominal pain", "I am suffering abdominal pain", "Abdomimanl pain"],
+         "responses": ["abdominal pain"],
+         "context_set": ""
+        },
+        {"tag": "vomiting",
+         "patterns": ["I have vomiting occurances", "I experience vomiting" ,"I am suffering vomiting" ,"Vomiting"],
+         "responses": ["vomiting"],
+         "context_set": ""
+        },
+        {"tag": "poor appetite",
+         "patterns": ["I have poor appetite", "I experience poor appetite", "I am suffering poor appetite " ,"Poor appetite"],
+         "responses": ["poor appetite"],
+         "context_set": ""
+        },
+        {"tag": "rashes",
+         "patterns": ["I have rashes", "I experience rashes", "I am suffering rashes", "Rashes"],
+         "responses": ["rashes"],
+         "context_set": ""
+        },
+        {"tag": "pain behind the eyes",
+         "patterns": ["I feel pain behind the eyes", "I have pain behind the eyes", "I experience pain behind the eyes", "I am suffering pain behind the eyes", "Pain behind the eyes"],
+         "responses": ["pain behind the eyes"],
+         "context_set": ""
+        },
+        {"tag": "fatigue",
+         "patterns": ["I feel fatigue", "I have fatigue", "I experience fatigue", "I am suffering fatigue", "Fatigue"],
+         "responses": ["fatigue"],
+         "context_set": ""
+        },
+        {"tag": "nausea",
+         "patterns": ["I feel nausea", "I have nausea", "I experience nausea", "I am suffering nausea", "Nausea"],
+         "responses": ["nausea"],
+         "context_set": ""
+        },
+        {"tag": "mild bleeding",
+         "patterns": ["I have mild bleeding", "I experience mild bleeding", "I am suffering mild bleeding", "Mild bleeding"],
+         "responses": ["mild bleeding"],
+         "context_set": ""
+        },
+        {"tag": "swollen glands",
+         "patterns": ["I have swollen glands", "I experience swollen glands", "I am suffering swollen glands", "Swollen glands"],
+         "responses": ["swollen glands"],
+         "context_set": ""
+        },
+        {"tag": "clammy skin",
+         "patterns": ["I feel clammy skin", "I have clammy skin", "I experience clammy skin", "I am suffering clammy skin", "Clammy skin"],
+         "responses": ["clammy skin"],
+         "context_set": ""
+        },
+        {"tag": "chills",
+         "patterns": ["I feel chills", "I have chills", "I experience chills", "I am suffering chills", "Chills"],
+         "responses": ["chills"],
+         "context_set": ""
+        },
+        {"tag": "swollen lymph nodes",
+         "patterns": ["I feel swollen lymph nodes", "I have swollen lymph nodes", "I experience swollen lymph nodes", "I am suffering swollen lymph nodes", "Swollen lymph nodes"],
+         "responses": ["swollen lymph nodes"],
+         "context_set": ""
+        },
+        {"tag": "wbc below 4.5",
+         "patterns": ["I have wbc below 4.5", "I experience wbc below 4.5", "I am suffering wbc below 4.5", "WBC below 4.5"],
+         "responses": ["swollen glands"],
+         "context_set": ""
+        },
+        {"tag": "platelet below 150",
+         "patterns": ["I have platelet below 150", "I experience platelet below 150", "I am suffering platelet below 150", "Platelet below 150"],
+         "responses": ["platelet below 150"],
+         "context_set": ""
+        },
+        {"tag": "loose stools",
+         "patterns": ["I have loose stools", "I experience loose stools", "I am suffering loose stools", "Loose stools"],
+         "responses": ["loose stools"],
+         "context_set": ""
+        },
+        {"tag": "loss of control over bowel motions",
+         "patterns": ["I feel loss of control over bowel motions", "I have loss of control over bowel motions", "I experience loss of control over bowel motions", "I am suffering loss of control over bowel motions", "Loss of control over bowel motions"],
+         "responses": ["loss of control over bowel motions"],
+         "context_set": ""
+        },
+        {"tag": "body weakness",
+         "patterns": ["I feel body weakness", "I have body weakness", "I experience body weakness", "I am suffering body weakness", "body weakness"],
+         "responses": ["body weakness"],
+         "context_set": ""
+        },
+        {"tag": "sore throat",
+         "patterns": ["I feel sore throat", "I have sore throat", "I experience sore throat", "I am suffering sore throat", "Sore throat"],
+         "responses": ["sore throat"],
+         "context_set": ""
+        },
+        {"tag": "red, swollen tonsils",
+         "patterns": ["I have red, swollen tonsils", "I experience red, swollen tonsils", "I am suffering red, swollen tonsils", "Red, swollen tonsils"],
+         "responses": ["red, swollen tonsils"],
+         "context_set": ""
+        },
+        {"tag": "white or yellow coating on the tonsils",
+         "patterns": ["I have white or yellow coating on the tonsils", "I experience white or yellow coating on the tonsils", "white or yellow coating on the tonsils", "White or yellow coating on the tonsils"],
+         "responses": ["white or yellow coating on the tonsils"],
+         "context_set": ""
+        },
+        {"tag": "scratchy voice",
+         "patterns": ["I have scratchy voice", "I experience scratchy voice", "I am suffering scratchy voice", "Scratchy voice"],
+         "responses": ["scratchy voice"],
+         "context_set": ""
+        },
+        {"tag": "bad breath",
+         "patterns": ["I have bad breath", "I experience bad breath", "I am suffering bad breath", "Bad breath"],
+         "responses": ["bad breath"],
+         "context_set": ""
+        },
+        {"tag": "stiff neck",
+         "patterns": ["I feel stiff neck", "I have stiff neck", "I experience stiff neck", "I am suffering stiff neck", "Stiff neck"],
+         "responses": ["stiff neck"],
+         "context_set": ""
+        },
+        {"tag": "throat pain",
+         "patterns": ["I feel throat pain", "I have throat pain", "I experience throat pain", "I am suffering throat pain", "Throat pain"],
+         "responses": ["throat pain"],
+         "context_set": ""
+        },
+        {"tag": "ulcers  on the throat",
+         "patterns": ["I have ulcers on the throat", "I experience ulcers on the throat", "I am suffering ulcers on the throat", "ulcers on the throat"],
+         "responses": ["ulcers on the throat"],
+         "context_set": ""
+        },
+        {"tag": "ear pain",
+         "patterns": ["I feel ear pain", "I have ear pain", "I experience ear pain", "I am suffering ear pain", "Ear pain"],
+         "responses": ["ear pain"],
+         "context_set": ""
+        },
+        {"tag": "pain in the neck",
+         "patterns": ["I feel pain in the neck", "I have pain in the neck", "I experience pain in the neck", "I am suffering pain in the neck", "Pain in the neck"],
+         "responses": ["pain in the neck"],
+         "context_set": ""
+        },
+        {"tag": "furry tounge",
+         "patterns": ["I feel furry tounge", "I have furry tounge", "I experience furry tounge", "I am suffering furry tounge", "Furry tounge"],
+         "responses": ["furry tounge"],
+         "context_set": ""
+        },
+        {"tag": "frequent urination",
+         "patterns": ["I have frequent urination", "I experience frequent urination", "I am suffering frequent urination", "Frequent urination"],
+         "responses": ["frequent urination"],
+         "context_set": ""
+        },
+        {"tag": "flank pain",
+         "patterns": ["I feel flank pain", "I have flank pain", "I experience flank pain", "I am suffering flank pain", "Flank pain"],
+         "responses": ["flank pain"],
+         "context_set": ""
+        },
+        {"tag": "dark yellow urine",
+         "patterns": ["I feel dark yellow urine", "I have dark yellow urine", "I experience dark yellow urine", "I am suffering dark yellow urine", "Dark yellow urine"],
+         "responses": ["dark yellow urine"],
+         "context_set": ""
+        },
+        {"tag": "burning feeling when urinating",
+         "patterns": ["I feel burning feeling when urinating", "I have burning feeling when urinating", "I experience burning feeling when urinating", "I am suffering burning feeling when urinating", "Burning feeling when urinating"],
+         "responses": ["burning feeling when urinating"],
+         "context_set": ""
+        },
+        {"tag": "pain or pressure in your back or lower abdomen",
+         "patterns": ["I feel pain or pressure in your back or lower abdomen", "I have pain or pressure in your back or lower abdomen", "I experience pain or pressure in your back or lower abdomen", "I am suffering pain or pressure in your back or lower abdomen", "Pain or pressure in your back or lower abdomen"],
+         "responses": ["pain or pressure in your back or lower abdomen"],
+         "context_set": ""
+        },
+        {"tag": "cloudy, dark, bloody, or strange-smelling urine",
+         "patterns": ["I have cloudy, dark, bloody, or strange-smelling urine", "I experience cloudy, dark, bloody, or strange-smelling urine", "I am suffering cloudy, dark, bloody, or strange-smelling urine", "Cloudy, dark, bloody, or strange-smelling urine"],
+         "responses": ["cloudy, dark, bloody, or strange-smelling urine"],
+         "context_set": ""
+        },
+        {"tag": "tired or shaky",
+         "patterns": ["I feel tired or shaky", "I experience tired or shaky", "I am suffering tired or shaky", "Tired or shaky"],
+         "responses": ["tired or shaky"],
+         "context_set": ""
+        },
+        {"tag": "pelvic pain",
+         "patterns": ["I feel pelvic pain", "I have pelvic pain", "I experience pelvic pain", "I am suffering pelvic pain", "Pelvic pain"],
+         "responses": ["pelvic pain"],
+         "context_set": ""
+        },
+        {"tag": " WBC is TNTC",
+         "patterns": ["I have  WBC is TNTC", "I experience  WBC is TNTC", "I am suffering  WBC is TNTC", " WBC is TNTC"],
+         "responses": [" WBC is TNTC"],
+         "context_set": ""
+        },
+        {"tag": "Protein is +1",
+         "patterns": ["I have Protein is +1", "I experience Protein is +1", "I am suffering Protein is +1", "Protein is +1"],
+         "responses": ["Protein is +1"],
+         "context_set": ""
+        },
+        {"tag": "nasal discharge",
+         "patterns": ["I have nasal discharge", "I experience nasal discharge", "I am suffering nasal discharge", "Nasal discharge"],
+         "responses": ["nasal discharge"],
+         "context_set": ""
+        },
+        {"tag": "cough",
+         "patterns": ["I have cough", "I experience cough", "I am suffering cough", "Cough"],
+         "responses": ["cough"],
+         "context_set": ""
+        },
+        {"tag": "cold",
+         "patterns": ["I have cold", "I experience cold", "I am suffering cold", "Cold"],
+         "responses": ["cold"],
+         "context_set": ""
+        },
+        {"tag": "runny nose",
+         "patterns": ["I feel runny nose", "I have runny nose", "I experience runny nose", "I am suffering runny nose", "Runny nose"],
+         "responses": ["runny nose"],
+         "context_set": ""
+        },
+        {"tag": "nasal congestion",
+         "patterns": ["I feel nasal congestion", "I have nasal congestion", "I experience nasal congestion", "I am suffering nasal congestion", "Nasal congestion"],
+         "responses": ["nasal congestion"],
+         "context_set": ""
+        },
+        {"tag": "pain and tiredness around the eyes",
+         "patterns": ["I feel pain and tiredness around the eyes", "I have pain and tiredness around the eyes", "I experience pain and tiredness around the eyes", "I am suffering pain and tiredness around the eyes", "Pain and tiredness around the eyes"],
+         "responses": ["pain and tiredness around the eyes"],
+         "context_set": ""
+        },
+        {"tag": "trouble breathing or shortness of breathing",
+         "patterns": ["I feel trouble breathing or shortness of breathing", "I have trouble breathing or shortness of breathing", "I experience trouble breathing or shortness of breathing", "I am suffering trouble breathing or shortness of breathing", "Trouble breathing or shortness of breathing"],
+         "responses": ["trouble breathing or shortness of breathing"],
+         "context_set": ""
+        },
+        {"tag": "pain or pressure in your chest or belly",
+         "patterns": ["I feel pain or pressure in your chest or belly", "I have pain or pressure in your chest or belly", "I experience pain or pressure in your chest or belly", "I am suffering pain or pressure in your chest or belly", "Pain or pressure in your chest or belly"],
+         "responses": ["pain or pressure in your chest or belly"],
+         "context_set": ""
+        },
+        {"tag": "cold sweats and shivers",
+         "patterns": ["I feel cold sweats and shivers", "I have cold sweats and shivers", "I experience cold sweats and shivers", "I am suffering cold sweats and shivers", "Cold sweats and shivers"],
+         "responses": ["cold sweats and shivers"],
+         "context_set": ""
+        } ]
+
+   
+}
