@@ -114,7 +114,7 @@ def received_text(event):
     
     if ask == "pleased to meet me?":
         oneqrbtn = [{"content_type":"text","title":"Nice meeting you 🤗","payload":'pmyou'}]
-        bot.send_quick_replies_message(sender_id, 'Are you not glad to meet me {}😕?'.format(first_name(sender_id)), oneqrbtn) 
+        bot.send_quick_replies_message(sender_id, 'Are you not glad to meet me 😕?', oneqrbtn) 
     
     if ask == "Whats the name of your child?" or ask == "Whats the name of the child?":
         Mongo.set_patient(patient, sender_id, 'name', text)
