@@ -5,5 +5,3 @@ nltk
 numpy
 tflearn
 tensorflow
-Scipy
-h5py
