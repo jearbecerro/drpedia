@@ -111,24 +111,10 @@ def received_text(event):
     
     #if nlp.nlp(text) == 'fever':
        # bot.send_text_message(sender_id, "That doesn't sound healthy")
-    #Mental Health{
-    if text.lower() in ("attention deficit hyperactivity disorder", "adhd") and answer == 'mental':#if user send text 'adhd'
-        choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
-    elif text.lower() in ("oppositional defiant disorder", "odd")  and answer == 'mental':
-        choose_howto(sender_id,'remedies_odd','medication_odd','about_odd','ODD')   
-    elif text.lower() in ("autism spectrum disorder", "asd", "autism") and answer == 'mental':
-        choose_howto(sender_id,'remedies_autism','medication_autism','about_autism','Autism')   
-    elif text.lower() in ("anxiety disorder", "anxiety","ad") and answer == 'mental':
-        choose_howto(sender_id,'remedies_anxiety','medication_anxiety','about_anxiety','Anxiety')
-    elif text.lower() in ("depression", "depression disorder","depress") and answer == 'mental':
-        choose_howto(sender_id,'remedies_depression','medication_depression','about_depression','Depression')
-    elif text.lower() in ("bipolar disorder", "bipolar","bd") and answer == 'mental':
-        choose_howto(sender_id,'remedies_bipolar','medication_bipolar','about_bipolar','Bipolar')
-    elif text.lower() in ("learning disorders", "learning","ld") and answer == 'mental':
-        choose_howto(sender_id,'remedies_learning','medication_learning','about_learning','Learning Disorder')
-   
-    '''else:
-        bot.send_text_message(sender_id,'Humans are so complicated Im not trained to understand things well. Sorry :(')'''
+    
+    if ask == "pleased to meet me?":
+        oneqrbtn = [{"content_type":"text","title":"Nice meeting you 🤗","payload":'pmyou'}]
+        bot.send_quick_replies_message(sender_id, 'Are you not glad to meet me {}😕?'.format(first_name(sender_id)), oneqrbtn) 
     
     if ask == "Whats the name of your child?" or ask == "Whats the name of the child?":
         Mongo.set_patient(patient, sender_id, 'name', text)
@@ -193,6 +179,7 @@ def received_text(event):
                 bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
     else:
         pass
+    
 def get_average(count_yes, total_symptoms):
     print(count_yes, total_symptoms)
     if count_yes != 0 and total_symptoms !=0:
@@ -244,7 +231,8 @@ def received_qr(event):
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
     
     if text=='pmyou':
-        Mongo.set_answer(users,sender_id,'glad to meet you')#Sqlite.set_answer(sender_id,'glad to meet you')
+        Mongo.set_ask(users,sender_id,'accept terms?')
+        Mongo.set_answer(users,sender_id,'glad to meet you')
         bot.send_text_message(sender_id,"I'm pleased to meet you too {}. 😉".format(first_name(sender_id)))  
         greet_disclaimer(sender_id)
     
@@ -943,16 +931,16 @@ def received_postback(event):
         else:
             if terms == 'Yes':
                 bot.send_text_message(sender_id, "Hi {} welcome back!".format(first_name(sender_id)))
-                bot.send_text_message(sender_id,"What is your concern?")
-                #send_choose_concern(sender_id)
+                quick_replies = {"content_type":"text","title":"Myself","payload":"myself"},{"content_type":"text","title":"My Child","payload":"mychild"},{"content_type":"text","title":"Someone else","payload":"someone"}
+                bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(first_name(sender_id)), quick_replies)
             elif terms == 'No':
               greet_disclaimer(sender_id)
 
     #Persistent Menu Buttons        
     if payload=='start_over':
         if terms == "Yes":
-            bot.send_text_message(sender_id,"What seems you trouble today {} ?".format(first_name(sender_id)))
-            send_choose_concern(sender_id)
+            quick_replies = {"content_type":"text","title":"Myself","payload":"myself"},{"content_type":"text","title":"My Child","payload":"mychild"},{"content_type":"text","title":"Someone else","payload":"someone"}
+            bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(first_name(sender_id)), quick_replies)
         elif terms == "No":
             greet_disclaimer(sender_id)
     if payload=='pm_dengue_prevention':
