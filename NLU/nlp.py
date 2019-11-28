@@ -102,7 +102,8 @@ def nlp(inp):
         for tg in data["intents"]:
             if tg['tag'] == tag:
                 responses = tg['responses']
-	print(responses)
+				break
+		print(responses)
         return random.choice(responses)
     else:
 	print('Invalid')
