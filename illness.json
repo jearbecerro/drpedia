@@ -1,0 +1,34 @@
+{"illness": [
+        {"name": "Flu",
+         "symptoms": ["fever", "cough", "muscle ache", "headache", "fatigue", "loss appetite", "runny nose"]
+        },
+        
+        {"name": "UTI",
+         "symptoms": ["fever", "burning urination", "increased frequency of urination without passing much urine", "increased urgency of urination", "bloody urine", "cloudy urine", "urine has a strong odor", "pelvic pain (women)", "rectal pain (men)"]
+        },
+        {"name": "Dengue",
+         "symptoms": ["fever", "headache", "swollen lymph nodes", "joint pain", "muscle ache", "rashes", "nausea", "vomiting", "bleeding nose/gums", "bruising on the skin"]
+        },
+        {"name": "Gastroenteritis",
+         "symptoms": ["diarrhea", "nausea", "vomiting", "headache", "joint pain", "muscle ache", "fever", "clammy skin", "abdominal cramps", "abdominal pain", "loss appetite"]
+        },
+        {"name": "Tonsil",
+         "symptoms": ["sore throat", "pain in swallowing", "scratchy voice", "bad breath", "fever", "chills", "earache", "stomachaches", "headaches", "red swollen tonsils", "white or yellow spots in tonsils"]
+        },
+        {"name": "Common Cold",
+         "symptoms": ["runny nose", "nasal congestion", "sneezing", "cough", "sore throat", "headaches", "muscle ache", "fever"]
+        },
+        {"name": "Typhoid Fever",
+         "symptoms": ["fever", "weakness", "stomachache", "headache", "loss appetite", "rashes", "fatigue", "diarrhea"]
+        },
+        {"name": "Bronchitis",
+         "symptoms": ["runny nose", "sore throat", "tiredness", "sneezing", "wheezing", "feeling cold easily", "back pain", "muscle ache", "fever"]
+        },
+        {"name": "Pneumonia",
+         "symptoms": ["cough with thick yellow, green or blood-tinged mucus", "stabbing chest pain, worsens when coughing or breathing", "sudden onset of chills", "fever", "headache", "muscle ache"]
+        },
+        {"name": "Diarrhea",
+         "symptoms": ["frequent urge to evacuate your bowels", "loose stools", "fever", "bloating", "cramping", "abdominal pain", "nausea", "dehydration"]
+        }
+         ]
+}
