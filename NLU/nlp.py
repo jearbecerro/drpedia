@@ -12,7 +12,7 @@ import pickle
 
 import os
 path = os.path.dirname(os.path.abspath(__file__))
-
+responses = ''
 #path = "https://raw.githubusercontent.com/clvrjc2/drpedia/master/NLU/"
 with open(path+"/physical.json",'r') as file:
     data = json.load(file)
@@ -96,6 +96,7 @@ def bag_of_words(s, words):
     return numpy.array(bag)
     
 def nlp(inp):
+    global responses
     results = model.predict([bag_of_words(inp, words)])[0]
     results_index = numpy.argmax(results)
     tag = labels[results_index]
@@ -104,6 +105,6 @@ def nlp(inp):
         for tg in data["intents"]:
             if tg['tag'] == tag:
                 responses = tg['responses']
-            	return random.choice(responses)
+            return random.choice(responses)
         else:
             return "Invalid"
