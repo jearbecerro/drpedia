@@ -367,7 +367,7 @@ def received_qr(event):
         if get_average(countOccurrence(patient_symptoms,b), len(b)) > 40:
             pass
             #go sequence asking for if he/she to determined if he/she has flu
-        elif get_average(countOccurrence(patient_symptoms,b),len(b) < 40:
+        elif get_average(countOccurrence(patient_symptoms,b),len(b)) < 40:
             send_remedies(sender_id,symptoms)
         if get_average(countOccurrence(patient_symptoms, p), len(p)) > 40:
             pass
@@ -375,7 +375,7 @@ def received_qr(event):
         elif get_average(countOccurrence(patient_symptoms, p),len(p)) < 40:
             send_remedies(sender_id,symptoms)
         if get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
-            symptom.replace(" ", "")              
+            pass           
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, d),len(d)) < 40:
             send_remedies(sender_id,symptoms)
