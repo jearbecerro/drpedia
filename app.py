@@ -6,7 +6,7 @@ import os
 import pymongo
 from pymongo import MongoClient
 import Mongo#import Mongo.py
-from NLU import nlp
+#from NLU import nlp
 #Libraries to be import END
 
 app = Flask(__name__)
@@ -109,8 +109,8 @@ def received_text(event):
     else: 
         pass
     
-    if nlp.nlp(text) == 'fever':
-        bot.send_text_message(sender_id, "That doesn't sound healthy")
+    #if nlp.nlp(text) == 'fever':
+       # bot.send_text_message(sender_id, "That doesn't sound healthy")
     #Mental Health{
     if text.lower() in ("attention deficit hyperactivity disorder", "adhd") and answer == 'mental':#if user send text 'adhd'
         choose_howto(sender_id,'remedies_adhd','medication_adhd','about_adhd','ADHD')
