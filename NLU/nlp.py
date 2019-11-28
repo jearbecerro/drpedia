@@ -99,12 +99,11 @@ def nlp(inp):
     tag = labels[results_index]
 
     if results[results_index] > 0.7:
-        for tg in data["intents"]:
-            if tg['tag'] == tag:
-                responses = tg['responses']
-				break
-		print(responses)
-        return random.choice(responses)
+    	for tg in data["intents"]:
+        	if tg['tag'] == tag:
+         		responses = tg['responses']
+				print(responses)
+        		return random.choice(responses)
     else:
 	print('Invalid')
         return "Invalid"
