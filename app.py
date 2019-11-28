@@ -41,7 +41,7 @@ name = ''
 age = ''
 weight = ''
 relation  = ''
-
+symptoms = ""
 phrase = ''
 phrase2= ''
 myself = False
@@ -90,7 +90,7 @@ def received_text(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average
+    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average, symptoms
     
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
@@ -111,8 +111,13 @@ def received_text(event):
         relation  = patient_data['relation']
         count_yes = int(patient_data['count_yes'])
         total_symptoms = int(patient_data['total_symptoms'])
+        symptoms = patient_data['symptoms']
     else: 
         pass
+    if symptoms == None:
+        symptoms = ''
+    else:
+        symptoms = symptoms
     
     if relation == 'myself':
         phrase = 'Are you '
@@ -131,7 +136,7 @@ def received_text(event):
         quick_replies = {"content_type":"text","title":"🤝Agree and proceed", "payload":"yes_agree"},{"content_type":"text","title":"📇See details","payload":"see_details"}
         bot.send_quick_replies_message(sender_id, "By tapping 'Agree and proceed' you accept DrPedia's Terms of Use and Privacy Policy", quick_replies)
     
-    if answer == "see_details":
+    if ask == "agree and proceed?" and answer == "see_details":
         oneqrbtn = [{"content_type":"text","title":"🤝Agree and proceed","payload":'ready_accept'}]
         bot.send_quick_replies_message(sender_id, 'Ready to go?', oneqrbtn)
         
@@ -206,18 +211,23 @@ def received_text(event):
                 bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
     else:
         pass
-    '''
+    
     if ask == "What seems you trouble today?":
         a = "Well that doesn't sound healthy."
         inp_symptom = nlp.nlp(text)
+        
         if inp_symptom != 'Invalid':
+            if inp_symptom in (str(symptoms)):
+                bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
             for symptom in all_symptoms:
                 if inp_symptom == symptom:
-                    bot.send_text_message(sender_id,a)
-                    inp_symptom
+                    Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))
+                    bot.send_text_message(sender_id,"{}, {}".format(inp_symptom,a.lower()))
+                    quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+                    bot.send_quick_replies_message(sender_id, 'Is there any symptoms {} experiencing?'.format(phrase2), quick_replies)  
         else:
             bot.send_text_message(sender_id,"Sorry, I did't quite follow that. Maybe use different words?")
-            bot.send_text_message(sender_id, "OK, {}, what can I do for you today?".format(fname))
+            bot.send_text_message(sender_id, "OK, {}, what seems you trouble today?".format(fname))
         
             
         #FLU
@@ -246,7 +256,7 @@ def received_text(event):
             bot.send_text_message(sender_id, a)
         elif nlp.nlp(text) == 'cloudy urine':
             bot.send_text_message(sender_id, a)
-        '''    
+        
     
 def get_average(count_yes, total_symptoms):
     print(count_yes, total_symptoms)
@@ -298,6 +308,11 @@ def received_qr(event):
     unique_symptom = {"content_type":"text","title":"Rapid Breathing","payload":"breathing" },{"content_type":"text","title":"Diarrhea","payload":"diarrhea"},{"content_type":"text","title":"Pain in swallowing","payload":"swallowing"},{"content_type":"text","title":"Pain in urination","payload":"urination"},{"content_type":"text","title":"Body pain","payload":"body"}
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
     
+    if text =='yes_symptoms':
+        bot.send_text_message(sender_id,"What else?")   
+    if text =='no_symptoms':
+        pass
+        #get symptom in mongodb
     if text=='pmyou':
         Mongo.set_ask(users,sender_id,'accept terms?')
         Mongo.set_answer(users,sender_id,'glad to meet you')
