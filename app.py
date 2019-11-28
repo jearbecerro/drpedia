@@ -217,7 +217,7 @@ def received_text(event):
         
         if inp_symptom != 'Invalid':
             sentumas = list(symptoms.split(",")) 
-            if inp_symptom in (sentumas)):
+            if inp_symptom in (sentumas):
                 bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
             else:
                 Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))
