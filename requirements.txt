@@ -6,3 +6,4 @@ numpy
 tflearn
 tensorflow==1.5
 Scipy
+h5py
