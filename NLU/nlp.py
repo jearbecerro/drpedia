@@ -101,7 +101,7 @@ def nlp(inp):
     if results[results_index] > 0.7:
     	for tg in data["intents"]:
         	if tg['tag'] == tag:
-         		responses = tg['responses']
+         	    responses = tg['responses']
 	
         return random.choice(responses)
     else:
