@@ -7,7 +7,7 @@ import json
 import pymongo
 from pymongo import MongoClient
 import Mongo#import Mongo.py
-#from NLU import nlp
+from NLU import nlp
 from collections import Counter #install collections
 #Libraries to be import END
 
