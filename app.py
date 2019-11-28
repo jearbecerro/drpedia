@@ -154,6 +154,7 @@ def received_text(event):
         bot.send_text_message(sender_id, "Just type '18'\nof course human years are not 200 years old. 😉")
     else:
         pass
+    
     if ask == "How old are you?":
         if text.isdigit():
             if relation =='myself':
@@ -247,9 +248,9 @@ def send_remedies(sender_id,symptoms):
         symptom = symptom.replace(" ", "")
         symptom = symptom.replace("/", "-")
         if len(symptom) > 1:
-            element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies',} 
+            element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies',}) 
         else:
-            element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}              
+            element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'})             
     bot.send_generic_message(sender_id, element)
     
 #if user tap a button from a quick reply
