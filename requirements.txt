@@ -4,6 +4,6 @@ pymongo[srv]
 nltk
 numpy
 tflearn
-tensorflow==1.5
+tensorflow==1.12.2
 Scipy
 h5py
