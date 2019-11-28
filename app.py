@@ -7,6 +7,7 @@ import pymongo
 from pymongo import MongoClient
 import Mongo#import Mongo.py
 #from NLU import nlp
+#import pandas as pd
 #Libraries to be import END
 
 app = Flask(__name__)
@@ -14,17 +15,20 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 MONGO_TOKEN = os.environ['MONGO_DB']
 
+bot = Bot (ACCESS_TOKEN)
 cluster = MongoClient(MONGO_TOKEN)
 db = cluster["DrPedia"]
 users = db["users"]
 patient = db["patient"]
 
-
-bot = Bot (ACCESS_TOKEN)
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
-
 GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
-
+'''
+SymptomTable 	= pd.read_csv('Symptoms.csv')
+SymptomTable	= SymptomTable.set_index('illness')
+all_illnesses 	= SymptomTable.index
+all_symptoms 	= SymptomTable.columns
+'''
 created_at = ''
 last_seen = ''
 fname = ''
@@ -86,7 +90,8 @@ def received_text(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation , phrase, count_yes, total_symptoms
+    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average
+    
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
     if user_data !=None:
@@ -104,18 +109,40 @@ def received_text(event):
         age = patient_data['age']
         weight = patient_data['weight']
         relation  = patient_data['relation']
-        count_yes = patient_data['count_yes']
-        total_symptoms = patient_data['total_symptoms']
+        count_yes = int(patient_data['count_yes'])
+        total_symptoms = int(patient_data['total_symptoms'])
     else: 
         pass
     
-    #if nlp.nlp(text) == 'fever':
-       # bot.send_text_message(sender_id, "That doesn't sound healthy")
-    
+    if relation == 'myself':
+        phrase = 'Are you '
+        phrase2 = 'you'
+        myself = True
+    else:
+        phrase = 'Is {} '.format(name)
+        myself = False
+        phrase2 = name
+   
     if ask == "pleased to meet me?":
         oneqrbtn = [{"content_type":"text","title":"Nice meeting you 🤗","payload":'pmyou'}]
         bot.send_quick_replies_message(sender_id, 'Are you not glad to meet me 😕?', oneqrbtn) 
+        
+    if ask == "agree and proceed?":
+        quick_replies = {"content_type":"text","title":"🤝Agree and proceed", "payload":"yes_agree"},{"content_type":"text","title":"📇See details","payload":"see_details"}
+        bot.send_quick_replies_message(sender_id, "By tapping 'Agree and proceed' you accept DrPedia's Terms of Use and Privacy Policy", quick_replies)
     
+    if answer == "see_details":
+        oneqrbtn = [{"content_type":"text","title":"🤝Agree and proceed","payload":'ready_accept'}]
+        bot.send_quick_replies_message(sender_id, 'Ready to go?', oneqrbtn)
+        
+    if ask == "check symptoms":
+        oneqrbtn = [{"content_type":"text","title":"Check Symptoms 🔍","payload":'check_symptoms'}]
+        bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(first_name(sender_id)), oneqrbtn)
+    
+    if ask == "who check":
+        quick_replies = {"content_type":"text","title":"Myself","payload":"myself"},{"content_type":"text","title":"My Child","payload":"mychild"},{"content_type":"text","title":"Someone else","payload":"someone"}
+        bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(first_name(sender_id)), quick_replies)
+
     if ask == "Whats the name of your child?" or ask == "Whats the name of the child?":
         Mongo.set_patient(patient, sender_id, 'name', text)
         Mongo.set_ask(users, sender_id, "How old are you?")
@@ -143,7 +170,7 @@ def received_text(event):
                 bot.send_text_message(sender_id,'I do apologize, I can only cater 0 - 18 years old.')
                 bot.send_text_message(sender_id,"To simply start again, just tap 'Start Over' in the persistent menu.")
             else:
-                bot.send_text_message(sender_id,'I told you in human years')
+                bot.send_text_message(sender_id,'I told you in human years.')
                 bot.send_text_message(sender_id,'What is the age again?')
         else:
             pass
@@ -179,6 +206,47 @@ def received_text(event):
                 bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
     else:
         pass
+    '''
+    if ask == "What seems you trouble today?":
+        a = "Well that doesn't sound healthy."
+        inp_symptom = nlp.nlp(text)
+        if inp_symptom != 'Invalid':
+            for symptom in all_symptoms:
+                if inp_symptom == symptom:
+                    bot.send_text_message(sender_id,a)
+                    inp_symptom
+        else:
+            bot.send_text_message(sender_id,"Sorry, I did't quite follow that. Maybe use different words?")
+            bot.send_text_message(sender_id, "OK, {}, what can I do for you today?".format(fname))
+        
+            
+        #FLU
+        if nlp.nlp(text) == 'fever':
+            bot.send_text_message(sender_id, a)
+        elif nlp.nlp(text) == 'cough':
+            bot.send_text_message(sender_id, a)
+        elif nlp.nlp(text) == 'muscle aches':
+            bot.send_text_message(sender_id, a)
+        elif nlp.nlp(text) == 'headache':
+            bot.send_text_message(sender_id, a)
+        elif nlp.nlp(text) == 'fatigue':
+            bot.send_text_message(sender_id, a)
+        elif nlp.nlp(text) == 'loss appetite':
+            bot.send_text_message(sender_id, a)
+        elif nlp.nlp(text) == 'stuffy nose':
+            bot.send_text_message(sender_id, a)#END FLU
+        #UTI w/ fever also
+        elif nlp.nlp(text) == 'burning urination':
+            bot.send_text_message(sender_id, a)
+        elif nlp.nlp(text) == 'frequent urination':
+            bot.send_text_message(sender_id, a)
+        elif nlp.nlp(text) == 'urgent urination':
+            bot.send_text_message(sender_id, a)    
+        elif nlp.nlp(text) == 'bloody urine':
+            bot.send_text_message(sender_id, a)
+        elif nlp.nlp(text) == 'cloudy urine':
+            bot.send_text_message(sender_id, a)
+        '''    
     
 def get_average(count_yes, total_symptoms):
     print(count_yes, total_symptoms)
@@ -235,60 +303,28 @@ def received_qr(event):
         Mongo.set_answer(users,sender_id,'glad to meet you')
         bot.send_text_message(sender_id,"I'm pleased to meet you too {}. 😉".format(first_name(sender_id)))  
         greet_disclaimer(sender_id)
-    
-    
-    
-    if text == 'yes_correct':
-        bot.send_text_message(sender_id, "Great!")
-        bot.send_text_message(sender_id, "Now we can proceed to your concern.")
-        bot.send_quick_replies_message(sender_id, "{} experiencing one of this symptoms?".format(phrase), unique_symptom)  
-    if text == 'no_correct':
-        if myself == True:
-            Mongo.set_ask(users, sender_id, "How old are you?")
-            bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
-            bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
-        else:
-            Mongo.set_ask(users, sender_id, "Whats the name of your child?")
-            bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
-           
-    if text == 'yes_correct1':
-        if relation == 'myself':
-           bot.send_text_message(sender_id,'And you are {} kg in weight'.format(weight))
-        elif relation == 'mychild':
-           bot.send_text_message(sender_id,"And your child is {} kg in weight".format(age))
-        elif relation == 'someone':
-           bot.send_text_message(sender_id,"And the child's weight is {} kg.".format(name, age))
-        bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
-            
-    if text == 'no_correct1':
-        if myself == True:
-            Mongo.set_ask(users, sender_id, "How old are you?")
-            bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
-            bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
-        else:
-            Mongo.set_ask(users, sender_id, "Whats the name of your child?")
-            bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
-
-    
-    
+   
     if text =="yes_agree":
         Mongo.set_terms(users, sender_id,'Yes')
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff.")
         oneqrbtn = [{"content_type":"text","title":"Check Symptoms 🔍","payload":'check_symptoms'}]
         bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(first_name(sender_id)), oneqrbtn)
     if text=='see_details':
-        bot.send_text_message(sender_id,"Sure {} here it is..".format(first_name(sender_id)))
-        bot.send_text_message(sender_id,"Privacy Policy:\nhttps://www.termsfeed.com/privacy-policy/97973f4396e1a79a806facb4e007ed3e")
-        bot.send_text_message(sender_id,"Terms and Conditions:\nhttps://www.termsfeed.com/terms-conditions/ec54290a74978eb95a1851754137c944")
+        Mongo.set_answer(users,sender_id, "see_details")
+        buttons = [{"type":"web_url","url":"https://www.termsfeed.com/terms-conditions/ec54290a74978eb95a1851754137c944","title":"Terms and Condition","webview_height_ratio": "full"},{"type":"web_url","url":"https://www.termsfeed.com/privacy-policy/97973f4396e1a79a806facb4e007ed3e","title":"Privacy Policy","webview_height_ratio": "full"}]
+        bot.send_button_message(sender_id, "Sure {}, here it is..".format(first_name(sender_id)), buttons) 
         oneqrbtn = [{"content_type":"text","title":"🤝Agree and proceed","payload":'ready_accept'}]
         bot.send_quick_replies_message(sender_id, 'Ready to go?', oneqrbtn)
+        
     if text == 'ready_accept':
         Mongo.set_terms(users, sender_id,'Yes')
+        Mongo.set_ask(users, sender_id, 'check symptoms')
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff.")
         oneqrbtn = [{"content_type":"text","title":"Check Symptoms 🔍","payload":'check_symptoms'}]
         bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(first_name(sender_id)), oneqrbtn)
     
     if text == 'check_symptoms':
+        Mongo.set_ask(users, sender_id, 'who check')
         bot.send_text_message(sender_id,"If you find that your concern needs immidiate action by a real doctor.\nI recommend you go to the nearest emergency clinic/hospital!")
         quick_replies = {"content_type":"text","title":"Myself","payload":"myself"},{"content_type":"text","title":"My Child","payload":"mychild"},{"content_type":"text","title":"Someone else","payload":"someone"}
         bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(first_name(sender_id)), quick_replies)
@@ -307,6 +343,38 @@ def received_qr(event):
         Mongo.set_ask(users, sender_id, "Whats the name of the child?")
         bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
         
+    if text == 'yes_correct1':
+        if relation == 'myself':
+           bot.send_text_message(sender_id,'And you are {} kg in weight'.format(weight))
+        elif relation == 'mychild':
+           bot.send_text_message(sender_id,"And your child is {} kg in weight".format(age))
+        elif relation == 'someone':
+           bot.send_text_message(sender_id,"And the child's weight is {} kg.".format(name, age))
+        bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
+            
+    if text == 'no_correct1':
+        if myself == True:
+            Mongo.set_ask(users, sender_id, "How old are you?")
+            bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
+            bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
+        else:
+            Mongo.set_ask(users, sender_id, "Whats the name of your child?")
+            bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))   
+            
+    if text == 'yes_correct':
+        Mongo.set_ask(users, sender_id, "What seems you trouble today?")
+        bot.send_text_message(sender_id, "Great!")
+        bot.send_text_message(sender_id, "What seems {} trouble today?".format(phrase))
+    if text == 'no_correct':
+        if myself == True:
+            Mongo.set_ask(users, sender_id, "How old are you?")
+            bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
+            bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")
+        else:
+            Mongo.set_ask(users, sender_id, "Whats the name of your child?")
+            bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
+           
+      
 #if user tap a button from a regular button
 def received_postback(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -1072,18 +1140,11 @@ def init_bot():
     bot.set_persistent_menu(pm_menu)
     
 def greet_disclaimer(sender_id):
-    quick_replies = {
-                            "content_type":"text",
-                            "title":"🤝Agree and proceed",
-                            "payload":"yes_agree"
-                          },{
-                            "content_type":"text",
-                            "title":"📇See details",
-                            "payload":"see_details"
-                          }
+    Mongo.set_ask(users,sender_id, "agree and proceed?")
     bot.send_text_message(sender_id,"Before we proceed onward, it's time for a brief interruption from my good friends, the lawyers. ⚖️")
     bot.send_text_message(sender_id,"Remember that DrPedia is just a robot 🤖, not a doctor 👨‍⚕️.")
     bot.send_text_message(sender_id,"DrPedia is intended for informational purposes only and DrPedia don't attempt to represent a real pediatrician or a doctor in any way.")
+    quick_replies = {"content_type":"text","title":"🤝Agree and proceed", "payload":"yes_agree"},{"content_type":"text","title":"📇See details","payload":"see_details"}
     bot.send_quick_replies_message(sender_id, "By tapping 'Agree and proceed' you accept DrPedia's Terms of Use and Privacy Policy", quick_replies)
                 
 def verify_fb_token(token_sent):
