@@ -243,7 +243,7 @@ def received_qr(event):
     unique_symptom = {"content_type":"text","title":"Rapid Breathing","payload":"breathing" },{"content_type":"text","title":"Diarrhea","payload":"diarrhea"},{"content_type":"text","title":"Pain in swallowing","payload":"swallowing"},{"content_type":"text","title":"Pain in urination","payload":"urination"},{"content_type":"text","title":"Body pain","payload":"body"}
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
     
-    if payload=='pmyou':
+    if text=='pmyou':
         Mongo.set_answer(users,sender_id,'glad to meet you')#Sqlite.set_answer(sender_id,'glad to meet you')
         bot.send_text_message(sender_id,"I'm pleased to meet you too {}. 😉".format(first_name(sender_id)))  
         greet_disclaimer(sender_id)
