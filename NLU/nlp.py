@@ -1,5 +1,5 @@
 import nltk
-nltk.download('punkt')
+#nltk.download('punkt')
 from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
 
@@ -12,7 +12,7 @@ import pickle
 
 import os
 path = os.path.dirname(os.path.abspath(__file__))
-with open(path+"/physical.json",'r') as file:
+with open(path+"/symptoms.json",'r') as file:
 	data = json.load(file)
 
 try:
