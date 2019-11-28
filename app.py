@@ -32,6 +32,7 @@ lname = ''
 ask = '' 
 answer = '' 
 terms = ''
+
 name = ''
 age = ''
 weight = ''
