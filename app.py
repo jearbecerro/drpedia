@@ -3,11 +3,12 @@ import random
 from flask import Flask, request
 from messnger_syntax.bot import Bot
 import os
+import json
 import pymongo
 from pymongo import MongoClient
 import Mongo#import Mongo.py
 #from NLU import nlp
-#import pandas as pd
+from collections import Counter #install collections
 #Libraries to be import END
 
 app = Flask(__name__)
@@ -21,14 +22,12 @@ db = cluster["DrPedia"]
 users = db["users"]
 patient = db["patient"]
 
+with open("illness.json") as file:
+    data = json.load(file)
+        
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
-'''
-SymptomTable 	= pd.read_csv('Symptoms.csv')
-SymptomTable	= SymptomTable.set_index('illness')
-all_illnesses 	= SymptomTable.index
-all_symptoms 	= SymptomTable.columns
-'''
+
 created_at = ''
 last_seen = ''
 fname = ''
@@ -217,47 +216,18 @@ def received_text(event):
         inp_symptom = nlp.nlp(text)
         
         if inp_symptom != 'Invalid':
-            if inp_symptom in (str(symptoms)):
+            sentumas = list(symptoms.split(",")) 
+            if inp_symptom in (sentumas)):
                 bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
-            for symptom in all_symptoms:
-                if inp_symptom == symptom:
-                    Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))
-                    bot.send_text_message(sender_id,"{}, {}".format(inp_symptom,a.lower()))
-                    quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
-                    bot.send_quick_replies_message(sender_id, 'Is there any symptoms {} experiencing?'.format(phrase2), quick_replies)  
+            else:
+                Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))
+                bot.send_text_message(sender_id,"{}, {}".format(inp_symptom,a.lower()))
+                quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+                bot.send_quick_replies_message(sender_id, 'Is there any symptoms {} experiencing?'.format(phrase2), quick_replies)  
         else:
             bot.send_text_message(sender_id,"Sorry, I did't quite follow that. Maybe use different words?")
-            bot.send_text_message(sender_id, "OK, {}, what seems you trouble today?".format(fname))
+            bot.send_text_message(sender_id, "OK, {}, what seems you trouble today?\nYou can just type For example: 'fever' or 'abdominal pain' and so on.".format(fname))
         
-            
-        #FLU
-        if nlp.nlp(text) == 'fever':
-            bot.send_text_message(sender_id, a)
-        elif nlp.nlp(text) == 'cough':
-            bot.send_text_message(sender_id, a)
-        elif nlp.nlp(text) == 'muscle aches':
-            bot.send_text_message(sender_id, a)
-        elif nlp.nlp(text) == 'headache':
-            bot.send_text_message(sender_id, a)
-        elif nlp.nlp(text) == 'fatigue':
-            bot.send_text_message(sender_id, a)
-        elif nlp.nlp(text) == 'loss appetite':
-            bot.send_text_message(sender_id, a)
-        elif nlp.nlp(text) == 'stuffy nose':
-            bot.send_text_message(sender_id, a)#END FLU
-        #UTI w/ fever also
-        elif nlp.nlp(text) == 'burning urination':
-            bot.send_text_message(sender_id, a)
-        elif nlp.nlp(text) == 'frequent urination':
-            bot.send_text_message(sender_id, a)
-        elif nlp.nlp(text) == 'urgent urination':
-            bot.send_text_message(sender_id, a)    
-        elif nlp.nlp(text) == 'bloody urine':
-            bot.send_text_message(sender_id, a)
-        elif nlp.nlp(text) == 'cloudy urine':
-            bot.send_text_message(sender_id, a)
-        
-    
 def get_average(count_yes, total_symptoms):
     print(count_yes, total_symptoms)
     if count_yes != 0 and total_symptoms !=0:
@@ -266,7 +236,22 @@ def get_average(count_yes, total_symptoms):
         print(percentage,'%')
         return int(round(percentage))
         
-   
+def countOccurrence(tup, lst): 
+    counts = Counter(tup) 
+    return sum(counts[i] for i in lst) 
+
+def send_remedies(sender_id,symptoms):
+    patient_symptoms = list(symptoms.split(",")) 
+    element = []
+    for symptom in patient_symptoms:
+        symptom = symptom.replace(" ", "")
+        symptom = symptom.replace("/", "-")
+        if len(symptom) > 1:
+            element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies',} 
+        else:
+            element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}              
+    bot.send_generic_message(sender_id, element)
+    
 #if user tap a button from a quick reply
 def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -309,10 +294,94 @@ def received_qr(event):
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
     
     if text =='yes_symptoms':
+        patient_symptoms = symptoms
+        for illness in data["illness"]:#get all data in the 'illness' 
+            name = illness["name"]
+            if name.lower() == 'flu':
+                flu = illness["symptoms"]
+                print(flu)
+            if name.lower() == 'dengue':
+                dengue = illness["symptoms"]
+                print(dengue)
+            if name.lower() == 'uti':
+                uti = illness["symptoms"]
+                print(uti)
+            if name.lower() == 'gastroenteritis':
+                gastro = illness["symptoms"]
+                print(gastro)
+            if name.lower() == 'tonsil':
+                tonsil = illness["symptoms"]
+                print(tonsilo)
+            if name.lower() == 'common cold':
+                cc = illness["symptoms"]
+                print(cc)
+            if name.lower() == 'typhoid fever':
+                tf = illness["symptoms"]
+                print(tf)
+            if name.lower() == 'bronchitis':
+                b = illness["symptoms"]
+                print(b)
+            if name.lower() == 'pneumonia':
+                p = illness["symptoms"]
+                print(p)
+            if name.lower() == 'diarrhea':
+                d = illness["symptoms"]
+                print(d)
+                
+        if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 40:
+            pass
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms, flu),len(flu)) < 40:
+            send_remedies(sender_id,symptoms)
+        if get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 40:
+            pass
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms, dengue),len(dengue)) < 40:
+            send_remedies(sender_id,symptoms)
+        if get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 40:
+            pass
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms, uti),len(uti)) < 40:
+            send_remedies(sender_id,symptoms)
+        if get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 40:
+            pass
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms, gastro),len(gastro)) < 40:
+            send_remedies(sender_id,symptoms)
+        if get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 40:
+            pass
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms, tonsil),len(tonsil)) < 40:
+            send_remedies(sender_id,symptoms)
+        if get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 40:
+            pass
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms, cc),len(cc)) < 40:
+            send_remedies(sender_id,symptoms)
+        if get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 40:
+            pass
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms, tf),len(tf)) < 40:
+            send_remedies(sender_id,symptoms)
+        if get_average(countOccurrence(patient_symptoms,b), len(b)) > 40:
+            pass
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms,b),len(b) < 40:
+            send_remedies(sender_id,symptoms)
+        if get_average(countOccurrence(patient_symptoms, p), len(p)) > 40:
+            pass
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms, p),len(p)) < 40:
+            send_remedies(sender_id,symptoms)
+        if get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
+            symptom.replace(" ", "")              
+            #go sequence asking for if he/she to determined if he/she has flu
+        elif get_average(countOccurrence(patient_symptoms, d),len(d)) < 40:
+            send_remedies(sender_id,symptoms)
+                         
         bot.send_text_message(sender_id,"What else?")   
-    if text =='no_symptoms':
-        pass
-        #get symptom in mongodb
+    if text =='no_symptoms': 
+        send_remedies(sender_id,symptoms)
     if text=='pmyou':
         Mongo.set_ask(users,sender_id,'accept terms?')
         Mongo.set_answer(users,sender_id,'glad to meet you')
