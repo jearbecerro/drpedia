@@ -27,6 +27,66 @@ with open("illness.json") as file:
         
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
+#illnesses remedies
+flu_remedies = ["Call your doctor", "Let your child rest as much as needed", "Keep your child hydrated with plenty of liquids, breast milk or formula for babies; water, juice, ice pops, and cool drinks for older kids (but no caffeinated drinks)", "Relieve symptoms with: a cool-mist humidifier, saline (saltwater) nose drops, acetaminophen or ibuprofen (give according to package directions)"]
+uti_remedies = ["Try cranberries. Cranberries may contain an ingredient that stops bacteria from attaching to the walls of the urinary tract. You might be able to reduce your risk with unsweetened cranberry juice, cranberry supplements, or by snacking on dried cranberries.", "Drink plenty of water. The more you drink, the more you’ll urinate. Urinating helps flush harmful bacteria from the urinary tract.", "Pee when you need to. Holding your urine or ignoring the urge to urinate can allow bacteria to multiply in your urinary tract. As a rule of thumb, always use the bathroom when you feel the urge.", "Take probiotics. Probiotics promote healthy digestion and immunity. They also may be effective in treating and preventing UTIs.", "Get more vitamin C. Increasing your intake of vitamin C may help prevent a UTI. Vitamin C strengthens the immune system and may help acidify to prevent infection."]
+dengue_remedies = ["There is no medication or treatment specifically for dengue infection.", "If you believe you may be infected with dengue, you should use over-the-counter pain relievers to reduce your fever, headache, and joint pain", "Your doctor should perform a medical exam, and you should rest and drink plenty of fluids.", " If you feel worse after the first 24 hours of illness, once your fever has gone down, you should be taken to the hospital as soon as possible to check for complications"]
+gastro_remedies = ["Allow your child to rest", "When your child's vomiting stops, begin to offer small amounts of an oral rehydration solution (CeraLyte, Enfalyte, Pedialyte). Don't use only water or only apple juice.", "Drinking fluids too quickly can worsen the nausea and vomiting, so try to give small frequent sips over a couple of hours, instead of drinking a large amount at once", " Try using a water dropper of rehydration solution instead of a bottle or cup", "Gradually introduce bland, easy-to-digest foods, such as toast, rice, bananas and potatoes", "Avoid giving your child full-fat dairy products, such as whole milk and ice cream, and sugary foods, such as sodas and candy. These can make diarrhea worse", "If you're breast-feeding, let your baby nurse. If your baby is bottle-fed, offer a small amount of an oral rehydration solution or regular formula"]
+tonsill_remedies = ["Drink plenty of fluids. This includes warm, soothing liquids, such as soup, broth, or tea with honey and lemon", "Eat soft foods, especially if it hurts to swallow", "Gargle with warm salt water (1/4 teaspoon of salt in 8 ounces of warm water)", "Take acetaminophen or ibuprofen for fever and pain. Keep in mind that children younger than 18 years of age should not take aspirin", "Suck on a throat lozenge or hard candy", "Use a cool-misthumidifier to moisten the air", "Rest your body and your voice"]
+commoncold_remedies = ["Ease discomfort with: acetaminophen or ibuprofen as needed if your child is older than 6 months, a cool-mist humidifier or steamy bathroom, saline (saltwater) drops for a congested nose, gentle suction of nasal mucus using a bulb syringe when necessary", "Offer lots of liquids — breast milk or formula for babies; water and diluted juice for older kids, but no caffeinated beverages", "Never give cough or cold medicine to children under 6 years old. Call a doctor first for older kids", "Never give aspirin to a child"]
+typhoidfever_remedies = ["Antibiotic therapy is the only effective treatment for typhoid fever. Commonly prescribed antibiotics include:", "Ciprofloxacin (Cipro). In the United States, doctors often prescribe this for nonpregnant adults. Another similar drug called ofloxacin also may be used.", "Azithromycin (Zithromax). This may be used if a person is unable to take ciprofloxacin or the bacteria is resistant to ciprofloxacin", "Ceftriaxone. This injectable antibiotic is an alternative in more-complicated or serious infections and for people who may not be candidates for ciprofloxacin, such as children"]
+bronchitis_remedies = ["Take OTC nonsteroidal anti-inflammatory drugs, such as ibuprofen (Advil) and naproxen (Aleve, Naprosyn), which may soothe your sore throat", "Get a humidifier to create moisture in the air. This can help loosen mucus in your nasal passages and chest, making it easier to breathe", "Drink plenty of liquids, such as water or tea, to thin out mucus. This makes it easier to cough it up or blow it out through your nose", "Add ginger to tea or hot water. Ginger is a natural anti-inflammatory that can relieve irritated and inflamed bronchial tubes", "Consume dark honey to soothe your cough. Honey also soothes your throat and has antiviral and antibacterial properties"]
+pneumonia_remedies = ["Control the fever with the proper medicine and right strength for the age of your child. Fevers lower than 101° F do not need to be treated unless the child is uncomfortable", "Give your child plenty of fluids to prevent dehydration", "See that your child gets lots of rest", "Do not give over-the-counter (OTC) cough medicines or other OTC medicines without asking the health provider first. The child needs to cough and bring up the phlegm. Coughing is the body’s way of clearing the infection from the lungs", "Avoid exposing your child to tobacco smoke or other irritants in the air"]
+dia_remedies = ["Continue your child's regular diet and give more liquids", "Offer additional breast milk or formula to infants", "Use an oral rehydration solution (ORS) to replace lost fluids"]
+#symptoms remedies
+fever_remedies = ["Encourage your child to drink fluids", "Dress your child in lightweight clothing", "Use a light blanket if your child feels chilled, until the chills end", "Don't give an infant any type of pain reliever until after you've contacted a doctor and your child has been evaluated", "If your child is 6 months old or older, give your child acetaminophen (Tylenol, others) or ibuprofen (Advil, Motrin, others). Read the label carefully for proper dosing"]
+cough_remedies = ["If your child develops a “barky” or “croupy” cough, sit in a steamy bathroom together for about 20 minutes", "Offer plenty of fluids (breast milk or formula for babies; cool water and juice for older kids). Avoid carbonated or citrus drinks that may irritate a raw throat", "Run a cool-mist humidifier in your child’s bedroom", "Use saline (saltwater) nose drops to relieve congestion", "Never give cough drops (a choking hazard) to young kids or cough or cold medicine to kids under 6 years of age."]
+muscleaches_remedies = ["resting the area of the body where you’re experiencing aches and pains", "taking an over-the-counter pain reliever, such as ibuprofen (Advil)", "applying ice to the affected area to help relieve pain and reduce inflammation"]
+headache_remedies = ["lie down in a dark, quiet room", "drink liquids", "take acetaminophen or ibuprofen as needed", "put a cool, moist cloth across the forehead or eyes"]
+fatigue_remedies = ["drink enough fluids to stay hydrated", "practice healthy eating habits", "get enough sleep", "take part in relaxing activities, such as yoga"]
+burningurination_remedies = ["Seek medical expert immediately"]
+lossappetite_remedies = ["Start by eating 3 meals and 2-3 snacks per day", "Set an alarm to remind you to eat if you are not experiencing regular hunger cues or have a hard time remembering to eat", "Try to include more nutritious energy-dense foods such as: nuts and nut butters, dried fruits, cheese, granola bars, and avocados", "Try nutrition supplement drinks like Ensure Plus, Boost Plus, Equate Plus (Walmart brand), Carnation Instant Breakfast or regular milkshakes"]
+runnynose_remedies = ["Apply a warm, moist washcloth to your face several times a day", "Inhale steam 2 to 4 times a day. One way to do this is to sit in the bathroom with the shower running. DO NOT inhale hot steam", "Use a vaporizer or humidifier"]
+increasedfrequencyofurinationwithoutpassingmuchurine_remedies = ["Diet modification. You should avoid any food that appears to irritate your bladder or acts as a diuretic", "Monitoring fluid food intake. You should drink enough to prevent constipation and over-concentration of urine", "Kegel exercises. These exercises help strengthen the muscles around the bladder and urethra to improve bladder control and reduce urinary urgency and frequency."]
+increasedurgencyofurination_remedies = ["Diet modification. You should avoid any food that appears to irritate your bladder or acts as a diuretic", "Monitoring fluid food intake. You should drink enough to prevent constipation and over-concentration of urine", "Kegel exercises. These exercises help strengthen the muscles around the bladder and urethra to improve bladder control and reduce urinary urgency and frequency."]
+bloodyurine_remedies = ["Seek medical expert immediately"]
+cloudyurine_remdies = ["Seek medical expert immediately"]
+urinehasastrongodor_remedies = ["Seek medical expert immediately"]
+pelvicpain_remedies = ["Over-the-counter pain relievers. Taking ibuprofen (Advil, Motrin) or acetaminophen (Tylenol) is a good first step for CPP relief", "Get moving. It might be hard to think about exercise when you feel you can’t get off the couch—but you must. Exercise increases blood flow", "Take the heat. It helps increase blood flow, which may help reduce your pain. Sit in a tub full of warm water to provide relief during flare-ups.", "Make a change. Just tweaking some of your habits can have an effect on your pain. If you smoke, stop. Nicotine -- the active ingredient in tobacco products -- inflames nerves and triggers pain", "Try supplements. In some cases, chronic pelvic pain is linked to lower-than-normal amounts of key vitamins and minerals in the blood. Vitamin D, vitamin E, and magnesium supplements may help to soothe chronic pelvic pain", "Relax. Meditation, yoga, and even deep breathing exercises can help to reduce the stress and tension that can make chronic pain even worse"]
+rectalpain_remedies = ["Soak in warm baths", "After bowel movements, gently pat area with moist toilet paper or pads", "Take acetaminophen (Tylenol) or ibuprofen (Advil, Motrin) for pain", "If you know you have hemorrhoids, use over-the-counter hemorrhoid cream", "If you have fissures (cracks or splits in anal opening), use an over-the-counter hydrocortisone cream"]
+swollenlymphnodes_remedies = ["Apply a warm compress. Apply a warm, wet compress, such as a washcloth dipped in hot water and wrung out, to the affected area", "Take an over-the-counter pain reliever. These include aspirin, ibuprofen (Advil, Motrin, others), naproxen (Aleve) or acetaminophen (Tylenol, others)", "Get adequate rest. You often need rest to aid your recovery from the underlying condition"]
+jointpain_remedies = ["Seek medical expert immediately"]
+rashes_remedies = ["add a few cups of oatmeal to the bath", "pat the skin dry (instead of rubbing) after a bath or shower", "don't scrub or scratch the affected skin", "leave the rash exposed to the air as much as possible"]
+nausea_remedies = ["Drinking gradually larger amounts of clear liquids", "Avoiding solid food until the vomiting episode has passed", "Resting", "Temporarily discontinuing all oral medications, which can irritate the stomach and make vomiting worse"]
+vomiting_remedies = ["Try deep breathing, This helps keep the biological response that causes motion sickness in check. Deep breathing also helps calm anxiety that may occur when you’re feeling sick", "Eat bland crackers, Dry crackers like saltines are a tried-and-true remedy for morning sickness. It’s thought they help absorb stomach acids", "Aromatherapy, Aromatherapy may help relieve nausea and vomiting", "Over-the-counter (OTC) medications to stop vomiting (antiemetics) such as Pepto-Bismol and Kaopectate contain bismuth subsalicylate"]
+bleedingnosegums_remedies = ["Sit upright and lean forward. By remaining upright, you reduce blood pressure in the veins of your nose. This discourages further bleeding", "Pinch your nose. Pinching sends pressure to the bleeding point on the nasal septum and often stops the flow of blood", "To prevent re-bleeding, don't pick or blow your nose and don't bend down for several hours after the bleeding episode", "If re-bleeding occurs, blow out forcefully to clear your nose of blood clots. Then spray both sides of your nose with a decongestant nasal spray containing oxymetazoline (Afrin)"]
+bruisingontheskin_remedies = ["Rest the bruised area, if possible", "Ice the bruise with an ice pack wrapped in a towel. Leave it in place for 10 to 20 minutes. Repeat several times a day for a day or two as needed", "Compress the bruised area if it is swelling, using an elastic bandage. Don't make it too tight"]
+diarrhea_remedies = ["continue your child's regular diet and give more liquids", "offer additional breast milk or formula to infants", "use an oral rehydration solution (ORS) to replace lost fluids"]
+clammyskin_remedies = ["Seek medical expert immediately"]
+abdominalpain_remedies = ["Provide clear fluids to sip, such as water, broth, or fruit juice diluted with water", "Serve bland foods, such as saltine crackers, plain bread, dry toast, rice, gelatin, or applesauce", "Avoid spicy or greasy foods and caffeinated or carbonated drinks until 48 hours after all symptoms have gone away", "Encourage the child to have a bowel movement", "Ask your child’s doctor before giving any medicine for abdominal pain. Drugs can mask or worsen the pain"]
+abdominalcrapms_remedies = ["Provide clear fluids to sip, such as water, broth, or fruit juice diluted with water", "Serve bland foods, such as saltine crackers, plain bread, dry toast, rice, gelatin, or applesauce", "Avoid spicy or greasy foods and caffeinated or carbonated drinks until 48 hours after all symptoms have gone away", "Encourage the child to have a bowel movement", "Ask your child’s doctor before giving any medicine for abdominal pain. Drugs can mask or worsen the pain"]
+sorethroat_remedies = ["Rest. Get plenty of sleep. Rest your voice, too", "Drink fluids. Fluids keep the throat moist and prevent dehydration. Avoid caffeine and alcohol, which can dehydrate you", "Try comforting foods and beverage. Warm liquids — broth, caffeine-free tea or warm water with honey — and cold treats such as ice pops can soothe a sore throat", "Gargle with saltwater. A saltwater gargle of 1/4 to 1/2 teaspoon (1.25 to 2.50 milliliters) of table salt to 4 to 8 ounces (120 to 240 milliliters) of warm water can help soothe a sore throat", "Humidify the air. Use a cool-air humidifier to eliminate dry air that may further irritate a sore throat, being sure to clean the humidifier regularly so it doesn't grow mold or bacteria", "Consider lozenges or hard candy. Either can soothe a sore throat, but don't give them to children age 4 and younger because of choking risk", "Avoid irritants. Keep your home free from cigarette smoke and cleaning products that can irritate the throat"]
+paininswallowing_remedies = ["Rest. Get plenty of sleep. Rest your voice, too", "Drink fluids. Fluids keep the throat moist and prevent dehydration. Avoid caffeine and alcohol, which can dehydrate you", "Try comforting foods and beverage. Warm liquids — broth, caffeine-free tea or warm water with honey — and cold treats such as ice pops can soothe a sore throat", "Gargle with saltwater. A saltwater gargle of 1/4 to 1/2 teaspoon (1.25 to 2.50 milliliters) of table salt to 4 to 8 ounces (120 to 240 milliliters) of warm water can help soothe a sore throat", "Humidify the air. Use a cool-air humidifier to eliminate dry air that may further irritate a sore throat, being sure to clean the humidifier regularly so it doesn't grow mold or bacteria", "Consider lozenges or hard candy. Either can soothe a sore throat, but don't give them to children age 4 and younger because of choking risk", "Avoid irritants. Keep your home free from cigarette smoke and cleaning products that can irritate the throat"]
+scrathcyvoice_remedies = ["Breathe moist air. Use a humidifier to keep the air throughout your home or office moist", "Rest your voice as much as possible. Avoid talking or singing too loudly or for too long", "Drink plenty of fluids to prevent dehydration (avoid alcohol and caffeine)", "Moisten your throat. Try sucking on lozenges, gargling with salt water or chewing a piece of gum"]
+badbreath_remedies = ["Brush your teeth after you eat. Keep a toothbrush at work to use after eating. Brush using a fluoride-containing toothpaste at least twice a day, especially after meals", "Floss at least once a day. Proper flossing removes food particles and plaque from between your teeth, helping to control bad breath", "Brush your tongue. Your tongue harbors bacteria, so carefully brushing it may reduce odors", "Clean dentures or dental appliances. If you wear a bridge or a denture, clean it thoroughly at least once a day or as directed by your dentist", "Avoid dry mouth. To keep your mouth moist, avoid tobacco and drink plenty of water — not coffee, soft drinks or alcohol, which can lead to a drier mouth", "Adjust your diet. Avoid foods such as onions and garlic that can cause bad breath. Eating a lot of sugary foods is also linked with bad breath"]
+chills_remedies = ["Seek medical expert immediately"]
+earache_remedies = ["Warm compresses held to the outside of the ear may help with some of the pain. Make certain that water does not get into the ear canal", "Alternatively, a cool compress may help if warmth does not. Holding a cool compress for 20 minutes at a time against the ear may be helpful", "Over-the-counter pain medications may be helpful. These include ibuprofen (Advil, Motrin), naproxen (Aleve) and acetaminophen (Tylenol, Panadol)", "Keep well hydrated and drink plenty of fluid", "Humidity may help sinuses and ears drain. It is important to be careful when using steam or hot water, especially around infants and children, to prevent scald burns", "Chewing or yawning may be helpful in easing pressure within the middle ear. Sometimes one can feel or hear popping sounds, like rice krispies, as the Eustachian tubes open and close to try to equalize pressure"]
+stomachache_remedies = ["Eat several smaller meals instead of three big ones", "Chew your food slowly and well", "Stay away from foods that bother you (spicy or fried foods, for example)", "Ease stress with exercise, meditation, or yoga", "You might try a heating pad to ease belly pain", "Chamomile or peppermint tea may help with gas", "Be sure to drink plenty of clear fluids so your body has enough water"]
+redswollentonsil_remedies = ["Seek medical expert immediately"]
+whiteoryellowspotsintonsils_remedies = ["Seek medical expert immediately"]  
+nasalcongestion_remedies = ["Use a humidifier or vaporizer", "Take long showers or breathe in steam from a pot of warm (but not too hot) water", "Drink lots of fluids. This will thin out your mucus, which could help prevent blocked sinuses", "Use a nasal saline spray. It’s salt water, and it will help keep your nasal passages from drying out", "Place a warm, wet towel on your face. It may relieve discomfort and open your nasal passages", "Prop yourself up. At night, lie on a couple of pillows. Keeping your head elevated may make breathing more comfortable"]
+sneezing_remedies = ["Seek medical expert immediately"]
+weakness_remedies = ["Seek medical expert immediately"]
+feelingcoldeasily_remedies = ["Seek medical expert immediately"]
+backpain_remedies = ["Stop normal physical activity for only the first few days. This helps calm your symptoms and reduce swelling (inflammation) in the area of the pain", "Apply heat or ice to the painful area. Use ice for the first 48 to 72 hours, then use heat", "Take over-the-counter pain relievers such as ibuprofen (Advil, Motrin IB) or acetaminophen (Tylenol)", "Sleep in a curled-up, fetal position with a pillow between your legs. If you usually sleep on your back, place a pillow or rolled towel under your knees to relieve pressure", "DO NOT do activities that involve heavy lifting or twisting of your back for the first 6 weeks after the pain begins", "DO NOT exercise in the days right after the pain begins. After 2 to 3 weeks, slowly begin to exercise again. A physical therapist can teach you which exercises are right for you"]
+coughwiththickyellowgreenorblood-tingedmucus_remedies = ["Seek medical expert immediately"]
+stabbingchestpainworsenswhencoughingorbreathing_remedies = ["Seek medical expert immediately"]
+suddenonsetofchills_remedies = ["Seek medical expert immediately"]
+frequenturgetoevacuateyourbowels_remedies = ["Seek medical expert immediately"]
+loosestools_remedies = ["Same remedies with Diearrhea"]
+bloating_remedies = ["ADD TURMERIC TO YOUR FOOD: Turmeric helps in treating and preventing stomach bloating as an ingredient present in turmeric, which is also referred to as curcumin is a fat-soluble antioxidant", "INCREASE YOUR POTASSIUM INTAKE: Consuming potassium is a great remedy to treat bloating. It helps in flushing out excess salt from the body and maintains fluid balance", "DRINK LEMON WATER, By drinking lemon juice, it helps in flushing out extra water content and gives relief from a bloated stomach"]
+cramping_remedies = ["Seek medical expert immediately"]
+dehydration_remedies = ["Help them to sit down and give them plenty of water to drink", " Giving them an oral rehydration solution to drink will help replace salt and other minerals which they’ve lost – you can buy this in sachets from any pharmacy", "If they have any painful cramps, encourage them to rest, help them stretch and massage their muscles that hurt", " Keep checking how they’re feeling – if they still feel unwell once they’re rehydrated then encourage them to see a doctor straight away"]
 
 created_at = ''
 last_seen = ''
@@ -48,6 +108,7 @@ average = 0
 count_yes = 0
 total_symptoms = 0
 has_fever = False
+last_inserted_symptoms = ''
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -89,7 +150,7 @@ def received_text(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["text"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average, symptoms
+    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average, symptoms,last_inserted_symptoms
     
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
@@ -145,7 +206,7 @@ def received_text(event):
     
     if ask == "who check":
         quick_replies = {"content_type":"text","title":"Myself","payload":"myself"},{"content_type":"text","title":"My Child","payload":"mychild"},{"content_type":"text","title":"Someone else","payload":"someone"}
-        bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(first_name(sender_id)), quick_replies)
+        bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(fname), quick_replies)
 
     if ask == "Whats the name of your child?" or ask == "Whats the name of the child?":
         Mongo.set_patient(patient, sender_id, 'name', text)
@@ -247,19 +308,42 @@ def send_remedies(sender_id,symptoms):
     for symptom in patient_symptoms:
         symptom = symptom.replace(" ", "")
         symptom = symptom.replace("/", "-")
+        symptom = symptom.replace(",", "")
         if len(symptom) > 1:
             element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}] },) 
         else:
             element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}]})             
     bot.send_generic_message(sender_id, element)
     
+def get_the_rest_symptoms(patient,sender_id, patient_symptoms,illness):
+    if count_yes == 0:
+        total_has_symptoms = len(patient_symptoms)
+        total_symptoms = len(illness)
+        Mongo.set_patient(patient,sender_id,'count_yes',total_has_symptoms)
+        Mongo.set_patient(patient,sender_id,'total_symptoms',total_symptoms)
+        the_rest_symptoms = [i for i in illness if i not in patient_symptoms]
+          
+        for tr_symptom in the_rest_symptoms:
+            res = [ tr_symptom[0],tr_symptom[-1] ] 
+            Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
+            twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
+            bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
+    else:
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +=1)
+        the_rest_symptoms = [i for i in illness if i not in patient_symptoms]
+        for tr_symptom in the_rest_symptoms:
+            res = [ tr_symptom[0],tr_symptom[-1] ] 
+            Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
+            twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
+            bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
+            
 #if user tap a button from a quick reply
 def received_qr(event):
     sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     text = event["message"]["quick_reply"]["payload"]
     global created_at, last_seen, fname, lname, ask, answer, terms
-    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average
+    global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average, symptoms,last_inserted_symptoms
     
     user_data = Mongo.get_data_users(users, sender_id)
     patient_data = Mongo.get_data_patient(patient, sender_id)
@@ -280,6 +364,7 @@ def received_qr(event):
         relation  = patient_data['relation']
         count_yes = int(patient_data['count_yes'])
         total_symptoms = int(patient_data['total_symptoms'])
+        symptoms = patient_data['symptoms']
     else: 
         pass
     
@@ -291,11 +376,20 @@ def received_qr(event):
         phrase = 'Is {} '.format(name)
         myself = False
         phrase2 = name
+    '''    
+    the_rest_symptoms = [i for i in illness if i not in patient_symptoms]
+    for tr_symptom in the_rest_symptoms:
+        res = [ tr_symptom[0],tr_symptom[-1] ] 
+        Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
+        twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
+        bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)
+    '''
+    
     unique_symptom = {"content_type":"text","title":"Rapid Breathing","payload":"breathing" },{"content_type":"text","title":"Diarrhea","payload":"diarrhea"},{"content_type":"text","title":"Pain in swallowing","payload":"swallowing"},{"content_type":"text","title":"Pain in urination","payload":"urination"},{"content_type":"text","title":"Body pain","payload":"body"}
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
     
     if text =='yes_symptoms':
-        patient_symptoms = symptoms
+        patient_symptoms = list(symptoms.split(","))
         for illness in data["illness"]:#get all data in the 'illness' 
             name = illness["name"]
             if name.lower() == 'flu':
@@ -328,19 +422,18 @@ def received_qr(event):
             if name.lower() == 'diarrhea':
                 d = illness["symptoms"]
                 print(d)
-                
+               
         if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 40:
-            pass
-            #go sequence asking for if he/she to determined if he/she has flu
+            get_the_rest_symptoms(patient,sender_id, patient_symptoms,illness) 
         elif get_average(countOccurrence(patient_symptoms, flu),len(flu)) < 40:
             send_remedies(sender_id,symptoms)
         if get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 40:
-            pass
+            get_the_rest_symptoms(patient,sender_id, patient_symptoms,illness) 
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, dengue),len(dengue)) < 40:
             send_remedies(sender_id,symptoms)
         if get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 40:
-            pass
+            get_the_rest_symptoms(patient,sender_id, patient_symptoms,illness) 
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, uti),len(uti)) < 40:
             send_remedies(sender_id,symptoms)
@@ -383,6 +476,710 @@ def received_qr(event):
         bot.send_text_message(sender_id,"What else?")   
     if text =='no_symptoms': 
         send_remedies(sender_id,symptoms)
+        
+    if text == 'dengue_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dengue_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(dengue_remedies), oneqrbtn)
+    if text == 'send_dengue_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dengue_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(dengue_remedies), oneqrbtn)   
+        
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)        
+    
+    if text == 'headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
+    if text == 'send_headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)    
+
+    if text == 'swollenlymphnodes_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_swollenlymphnodes_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(swollenlymphnodes_remedies), oneqrbtn)
+    if text == 'send_swollenlymphnodes_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_swollenlymphnodes_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(swollenlymphnodes_remedies), oneqrbtn)        
+
+    if text == 'jointpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_jointpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(jointpain_remedies), oneqrbtn)
+    if text == 'send_jointpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_jointpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(jointpain_remedies), oneqrbtn)    
+
+    if text == 'muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
+    if text == 'send_muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)    
+
+    if text == 'rashes_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rashes_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(rashes_remedies), oneqrbtn)
+    if text == 'send_rashes_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rashes_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(rashes_remedies), oneqrbtn)
+ 
+    if text == 'nausea_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_nausea_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(nausea_remedies), oneqrbtn)
+    if text == 'send_nausea_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_nausea_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(nausea_remedies), oneqrbtn)        
+
+    if text == 'vomiting_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_vomiting_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(vomiting_remedies), oneqrbtn)
+    if text == 'send_vomiting_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_vomiting_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(vomiting_remedies), oneqrbtn)    
+ 
+    if text == 'bleedingnose/gums_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bleeding nose/gums_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bleedingnose/gums_remedies), oneqrbtn)
+    if text == 'send_bleedingnose/gums_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bleedingnose/gums_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bleedingnose/gums_remedies), oneqrbtn)    
+
+    if text == 'bruisingontheskin_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bruisingontheskin_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bruisingontheskin_remedies), oneqrbtn)
+    if text == 'send_bruisingontheskin_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bruisingontheskin_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bruisingontheskin_remedies), oneqrbtn)    
+
+    if text == 'flu_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_flu_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(flu_remedies), oneqrbtn)
+    if text == 'send_flu_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_flu_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(flu_remedies), oneqrbtn)    
+    #fever
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    #cough
+    if text == 'cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    if text == 'send_cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    #muscleache
+    if text == 'muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
+    if text == 'send_muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)  
+    #headache
+    if text == 'headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
+    if text == 'send_headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)    
+    #fatigue
+    if text == 'fatigue_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fatigue_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fatigue_remedies), oneqrbtn)
+    if text == 'send_fatigue_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fatigue_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fatigue_remedies), oneqrbtn)
+    #lossappetite
+    if text == 'lossappetite_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
+    if text == 'send_lossappetite_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
+    #runnynose
+    if text == 'runnynose_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
+    if text == 'send_runnynose_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
+
+
+    if text == 'uti_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_uti_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(uti_remedies), oneqrbtn)
+    if text == 'send_uti_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_uti_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(uti_remedies), oneqrbtn)  
+    #fever
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    #burningurination
+    if text == 'burningurination_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_burningurination_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(burningurination_remedies), oneqrbtn)
+    if text == 'send_burningurination_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_burningurination_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(burningurination_remedies), oneqrbtn)
+    #increasedfrequencyofurinationwithoutpassingmuchurine
+    if text == 'increasedfrequencyofurinationwithoutpassingmuchurine_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_increasedfrequencyofurinationwithoutpassingmuchurine_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(increasedfrequencyofurinationwithoutpassingmuchurine_remedies), oneqrbtn)
+    if text == 'send_increasedfrequencyofurinationwithoutpassingmuchurine_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_increasedfrequencyofurinationwithoutpassingmuchurine_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(increasedfrequencyofurinationwithoutpassingmuchurine_remedies), oneqrbtn)  
+    #increasedurgencyofurination
+    if text == 'increasedurgencyofurination_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_increasedurgencyofurination_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(increasedurgencyofurination_remedies), oneqrbtn)
+    if text == 'send_increasedurgencyofurination_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_increasedurgencyofurination_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(increasedurgencyofurination_remedies), oneqrbtn)    
+    #bloodyurine
+    if text == 'bloodyurine_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bloodyurine_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bloodyurine_remedies), oneqrbtn)
+    if text == 'send_bloodyurine_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bloodyurine_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bloodyurine_remedies), oneqrbtn)
+    #cloudyurine
+    if text == 'cloudyurine_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cloudyurine_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cloudyurine_remedies), oneqrbtn)
+    if text == 'send_cloudyurine_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cloudyurine_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cloudyurine_remedies), oneqrbtn)
+    #urinehasastrongodor
+    if text == 'urinehasastrongodor_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_urinehasastrongodor_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(urinehasastrongodor_remedies), oneqrbtn)
+    if text == 'send_urinehasastrongodor_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_urinehasastrongodor_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(urinehasastrongodor_remedies), oneqrbtn)
+    #pelvicpain (women)
+    if text == 'pelvicpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_pelvicpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(pelvicpain_remedies), oneqrbtn)
+    if text == 'send_pelvicpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_pelvicpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(pelvicpain_remedies), oneqrbtn)
+    #rectalpain (men)
+    if text == 'rectalpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rectalpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(rectalpain_remedies), oneqrbtn)
+    if text == 'send_rectalpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rectalpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(rectalpain_remedies), oneqrbtn)
+
+
+
+    if text == 'gastro_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_gastro_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(gastro_remedies), oneqrbtn)
+    if text == 'send_gastro_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_gastro_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(gastro_remedies), oneqrbtn)
+    #diarrhea
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    #nausea
+    if text == 'cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    if text == 'send_cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    #vomiting
+    if text == 'muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
+    if text == 'send_muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)  
+    #headache
+    if text == 'headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
+    if text == 'send_headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)    
+    #jointpain
+    if text == 'fatigue_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fatigue_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fatigue_remedies), oneqrbtn)
+    if text == 'send_fatigue_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fatigue_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fatigue_remedies), oneqrbtn)
+    #muscleache
+    if text == 'lossappetite_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
+    if text == 'send_lossappetite_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
+    #fever
+    if text == 'runnynose_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
+    if text == 'send_runnynose_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
+    #clammyskin
+    if text == 'cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    if text == 'send_cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    #abdominalcramps
+    if text == 'muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
+    if text == 'send_muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)  
+    #abdominalpain
+    if text == 'headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
+    if text == 'send_headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)    
+    #lossappetite
+    if text == 'lossappetite_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
+    if text == 'send_lossappetite_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
+
+
+
+    if text == 'tonsill_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_tonsill_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(tonsill_remedies), oneqrbtn)
+    if text == 'send_tonsill_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_tonsill_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(tonsill_remedies), oneqrbtn)
+    #sorethroat
+    if text == 'sorethroat_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
+    if text == 'send_sorethroat_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
+    #paininswallowing
+    if text == 'cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    if text == 'send_cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    #scratchyvoice
+    if text == 'scratchyvoice_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_scratchyvoice_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(scratchyvoice_remedies), oneqrbtn)
+    if text == 'send_scratchyvoice_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_scratchyvoice_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(scratchyvoice_remedies), oneqrbtn)  
+    #badbreath
+    if text == 'badbreath_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_badbreath_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(badbreath_remedies), oneqrbtn)
+    if text == 'send_badbreath_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_badbreath_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(badbreath_remedies), oneqrbtn)    
+    #fever
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    #chills
+    if text == 'chills_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_chills_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(chills_remedies), oneqrbtn)
+    if text == 'send_chills_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_chills_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(chills_remedies), oneqrbtn)
+    #earache
+    if text == 'earache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_earache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(earache_remedies), oneqrbtn)
+    if text == 'send_earache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_earache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(earache_remedies), oneqrbtn)
+    #stomachaches
+    if text == 'stomachaches_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_stomachaches_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(stomachaches_remedies), oneqrbtn)
+    if text == 'send_stomachaches_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_stomachaches_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(stomachaches_remedies), oneqrbtn)
+    #headaches
+    if text == 'headaches_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headaches_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headaches_remedies), oneqrbtn)
+    if text == 'send_headaches_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headaches_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headaches_remedies), oneqrbtn)  
+    #redswollentonsils
+    if text == 'redswollentonsils_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_redswollentonsils_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(redswollentonsils_remedies), oneqrbtn)
+    if text == 'send_redswollentonsils_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_redswollentonsils_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(redswollentonsils_remedies), oneqrbtn)    
+    #whiteoryellowspotsintonsils
+    if text == 'whiteoryellowspotsintonsils_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_whiteoryellowspotsintonsils_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(whiteoryellowspotsintonsils_remedies), oneqrbtn)
+    if text == 'send_whiteoryellowspotsintonsils_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_whiteoryellowspotsintonsils_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(whiteoryellowspotsintonsils_remedies), oneqrbtn)
+
+
+
+    if text == 'commoncold_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_commoncold_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(commoncold_remedies), oneqrbtn)
+    if text == 'send_commoncold_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_commoncold_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(commoncold_remedies), oneqrbtn)
+    #runnynose
+    if text == 'runnynose_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
+    if text == 'send_runnynose_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
+    #nasalcongestion
+    if text == 'nasalcongestion_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_nasalcongestion_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(nasalcongestion_remedies), oneqrbtn)
+    if text == 'send_nasalcongestion_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_nasalcongestion_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(nasalcongestion_remedies), oneqrbtn)
+    #sneezing
+    if text == 'sneezing_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sneezing_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sneezing_remedies), oneqrbtn)
+    if text == 'send_sneezing_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sneezing_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sneezing_remedies), oneqrbtn)
+    #cough
+    if text == 'cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    if text == 'send_cough_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
+    #sorethroat
+    if text == 'sorethroat_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
+    if text == 'send_sorethroat_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
+    #headache
+    if text == 'headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
+    if text == 'send_headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)   
+    #muscleache
+    if text == 'muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
+    if text == 'send_muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)   
+    #fever
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+
+
+
+
+
+
+    
+    if text == 'typhoidfever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_typhoidfever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(typhoidfever_remedies), oneqrbtn)
+    if text == 'send_typhoidfever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_typhoidfever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(typhoidfever_remedies), oneqrbtn)
+    #fever
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    #weakness
+    if text == 'weakness_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_weakness_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(weakness_remedies), oneqrbtn)
+    if text == 'send_weakness_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_weakness_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(weakness_remedies), oneqrbtn)
+    #stomachache
+    if text == 'stomachache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_stomachache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(stomachache_remedies), oneqrbtn)
+    if text == 'send_stomachache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_stomachache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(stomachache_remedies), oneqrbtn)
+    #headache
+    if text == 'headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
+    if text == 'send_headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
+    #lossappetite
+    if text == 'lossappetite_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
+    if text == 'send_lossappetite_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
+    #rashes
+    if text == 'rashes_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rashes_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(rashes_remedies), oneqrbtn)
+    if text == 'send_rashes_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rashes_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(rashes_remedies), oneqrbtn)   
+    #fatigue
+    if text == 'fatigue_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fatigue_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fatigue_remedies), oneqrbtn)
+    if text == 'send_fatigue_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fatigue_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fatigue_remedies), oneqrbtn)   
+    #diarrhea
+    if text == 'diarrhea_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_diarrhea_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(diarrhea_remedies), oneqrbtn)
+    if text == 'send_diarrhea_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_diarrhea_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(diarrhea_remedies), oneqrbtn)
+
+
+
+
+    if text == 'bronchitis_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bronchitis_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bronchitis_remedies), oneqrbtn)
+    if text == 'send_bronchitis_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bronchitis_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bronchitis_remedies), oneqrbtn)
+    #runnynose
+    if text == 'runnynose_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
+    if text == 'send_runnynose_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
+    #sorethroat
+    if text == 'sorethroat_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
+    if text == 'send_sorethroat_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
+    #tiredness
+    if text == 'tiredness_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_tiredness_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(tiredness_remedies), oneqrbtn)
+    if text == 'send_tiredness_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_tiredness_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(tiredness_remedies), oneqrbtn)
+    #sneezing
+    if text == 'sneezing_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sneezing_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sneezing_remedies), oneqrbtn)
+    if text == 'send_sneezing_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sneezing_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(sneezing_remedies), oneqrbtn)
+    #wheezing
+    if text == 'wheezing_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_wheezing_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(wheezing_remedies), oneqrbtn)
+    if text == 'send_wheezing_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_wheezing_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(wheezing_remedies), oneqrbtn)
+    #feelingcoldeasily
+    if text == 'feelingcoldeasily_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_feelingcoldeasily_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(feelingcoldeasily_remedies), oneqrbtn)
+    if text == 'send_feelingcoldeasily_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_feelingcoldeasily_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(feelingcoldeasily_remedies), oneqrbtn)   
+    #backpain
+    if text == 'backpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_backpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(backpain_remedies), oneqrbtn)
+    if text == 'send_backpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_backpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(backpain_remedies), oneqrbtn)   
+    #muscleache
+    if text == 'muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
+    if text == 'send_muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
+    #fever
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+
+
+
+
+    if text == 'pneumonia_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_pneumonia_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(pneumonia_remedies), oneqrbtn)
+    if text == 'send_pneumonia_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_pneumonia_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(pneumonia_remedies), oneqrbtn)
+    #coughwiththickyellowgreenorblood-tingedmucus ", ", "", "", "", ""]
+    if text == 'coughwiththickyellowgreenorblood-tingedmucus_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_coughwiththickyellowgreenorblood-tingedmucus_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(coughwiththickyellowgreenorblood-tingedmucus_remedies), oneqrbtn)
+    if text == 'send_coughwiththickyellowgreenorblood-tingedmucus_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_coughwiththickyellowgreenorblood-tingedmucus_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(coughwiththickyellowgreenorblood-tingedmucus_remedies), oneqrbtn)
+    #stabbingchestpain
+    if text == 'stabbingchestpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_stabbingchestpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(stabbingchestpain_remedies), oneqrbtn)
+    if text == 'send_stabbingchestpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_stabbingchestpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(stabbingchestpain_remedies), oneqrbtn)
+    #worsenswhencoughingorbreathing
+    if text == 'worsenswhencoughingorbreathing_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_worsenswhencoughingorbreathing_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(worsenswhencoughingorbreathing_remedies), oneqrbtn)
+    if text == 'send_worsenswhencoughingorbreathing_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_worsenswhencoughingorbreathing_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(worsenswhencoughingorbreathing_remedies), oneqrbtn)
+    #suddenonsetofchills
+    if text == 'uddenonsetofchills_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_uddenonsetofchills_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(uddenonsetofchills_remedies), oneqrbtn)
+    if text == 'send_uddenonsetofchills_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_uddenonsetofchills_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(uddenonsetofchills_remedies), oneqrbtn)
+    #fever
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    #headache
+    if text == 'headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
+    if text == 'send_headache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)   
+    #muscleache
+    if text == 'muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
+    if text == 'send_muscleache_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)   
+    
+
+
+
+    if text == 'dia_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dia_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(dia_remedies), oneqrbtn)
+    if text == 'send_dia_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dia_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(dia_remedies), oneqrbtn)
+    #frequenturgetoevacuateyourbowels
+    if text == 'frequenturgetoevacuateyourbowels_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_frequenturgetoevacuateyourbowels_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(frequenturgetoevacuateyourbowels_remedies), oneqrbtn)
+    if text == 'send_frequenturgetoevacuateyourbowels_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_frequenturgetoevacuateyourbowels_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(frequenturgetoevacuateyourbowels_remedies), oneqrbtn)
+    #loosestools
+    if text == 'loosestools_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_loosestools_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(loosestools_remedies), oneqrbtn)
+    if text == 'send_loosestools_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_loosestools_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(loosestools_remedies), oneqrbtn)
+    #fever
+    if text == 'fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    if text == 'send_fever_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
+    #bloating
+    if text == 'bloating_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bloating_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bloating_remedies), oneqrbtn)
+    if text == 'send_bloating_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bloating_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(bloating_remedies), oneqrbtn)
+    #abdominalpain
+    if text == 'abdominalpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_abdominalpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(abdominalpain_remedies), oneqrbtn)
+    if text == 'send_abdominalpain_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_abdominalpain_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(abdominalpain_remedies), oneqrbtn)
+    #nausea
+    if text == 'nausea_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_nausea_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(nausea_remedies), oneqrbtn)
+    if text == 'send_nausea_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_nausea_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(nausea_remedies), oneqrbtn)   
+    #dehydration
+    if text == 'dehydration_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dehydration_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(dehydration_remedies), oneqrbtn)
+    if text == 'send_dehydration_remedies':
+        oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dehydration_remedies'}]
+        bot.send_quick_replies_message(sender_id, random.choice(dehydration_remedies), oneqrbtn)
+    
+    
+    
     if text=='pmyou':
         Mongo.set_ask(users,sender_id,'accept terms?')
         Mongo.set_answer(users,sender_id,'glad to meet you')
@@ -415,16 +1212,16 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(first_name(sender_id)), quick_replies)
 
     if text =='myself':
-        Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself',0,0)
+        Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself',0,0,'')
         Mongo.set_ask(users, sender_id, "How old are you?")
         bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
         bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")   
     if text =='mychild':
-        Mongo.create_patient(patient, sender_id, '', '', '', 'mychild',0,0)
+        Mongo.create_patient(patient, sender_id, '', '', '', 'mychild',0,0,'')
         Mongo.set_ask(users, sender_id, "Whats the name of your child?")
         bot.send_text_message(sender_id, "Whats the name of your child {}?".format(first_name(sender_id)))    
     if text =='someone':
-        Mongo.create_patient(patient, sender_id, '', '', '', 'someone',0,0)
+        Mongo.create_patient(patient, sender_id, '', '', '', 'someone',0,0,'')
         Mongo.set_ask(users, sender_id, "Whats the name of the child?")
         bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
         
@@ -486,590 +1283,7 @@ def received_postback(event):
         relation  = patient_data['relation']
     else: 
         pass
-    #2.2.1.1{
-    #Dengue Remedies, Medication, About
-    remedies_dengue = ["Take medicines that keep your fever under control", "Get plenty of rest and drink fluids to prevent dehydration", "In first week of infection, do not let a mosquito bite you for it will become infected and can infect other person", "In first week of infection, do not let a mosquito bite you for it will become infected and can infect other person", "Try to be in an air-conditioned room or under a bed net while you have fever", "Apply mosquito repellents regularly and wear clothes that cover your skin", "Take preventive measures at home by using screens on windows and doors", "You can repair holes in screens in order to keep mosquitoes outside", "Sleep under a mosquito bed net", "Regularly clean items that hold water such buckets, tires, planters, flowerpots, birdbaths, trash containers, etc", "Keep your indoors clean and wash floors with disinfectants regularly", "Giloy juice improves metabolism and builds immunity and helps in dengue fever effectively and helps to increase platelet counts", "Papaya leaf juice improves immunity which also helps in treating dengue and increases platelet counts", "Guava juice is rich in vitamin C that helps in building immunity and helps on treating dengue", "Fenugreek seeds are also rich in multiple nutrients which help in controlling dengue fever", "Fenugreek water provides health benefits as it is rich in vitamin C, K and fibre. Fenugreek water will bring down fever and boost immunity", "You must add immunity-boosting foods to your diet like citrus foods, garlic, almonds, turmeric and many more", "Chewing 5-6 basil leaves boosts your immunity and has been recommended as an effective Ayurvedic treatment for dengue fever", "Steep neem leaves and drink the brew to increase platelet and white blood cell count", "Oranges are rich in antioxidants and vitamins which help in treating the secondary symptoms of dengue", "Orange juice also repairs your body cells as it has Vitamin C which is crucial in creating collagen"]
-    if payload=='remedies_dengue':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_dengue"}]
-        bot.send_button_message(sender_id, random.choice(remedies_dengue), buttons) 
-    if payload=='send_remedies_dengue':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_dengue"}]
-        bot.send_button_message(sender_id, random.choice(remedies_dengue), buttons) 
-    #About
-    if payload=='about_dengue':
-        bot.send_text_message(sender_id,'Dengue fever is a disease spread by the Aedes aegypti mosquito and is caused by one of four dengue viruses. Once you are infected with one of the dengue viruses, you will develop immunity to that virus for the rest of your life.\nHowever, you can still be infected with the other three viruses. It is possible to get all four dengue viruses in your lifetime.\nThe viruses that cause dengue fever are related to those that cause yellow fever and West Nile virus infection.')
-        buttons = [{"type": "postback","title": "Dengue Symptoms", "payload": "send_symptoms_dengue" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Dengue?", buttons)
-    if payload=='send_symptoms_dengue':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Symptoms generally last for about 10 days and can include:\nsudden, high fever (up to 106 degrees Fahrenheit)\nsevere headache\nswollen lymph glands\nsevere joint and muscle pains\nskin rash (appearing between two and five days after the initial fever)\nmild to severe nausea\nmild to severe vomiting\nmild bleeding from the nose or gums\nmild bruising on the skin\nfebrile convulsions")
-    #Medication
-    if payload=='medication_dengue':
-        if age in range(6,12) and weight in range(16,20):
-            bot.send_text_message(sender_id,"Paracetamol 250mg/5ml\ndosage:5ml, 7.5ml, 9ml, 10ml every 4 hours as needed")
-        if age in range(13,15) and weight in range(17,25):   
-            bot.send_text_message(sender_id,"Paracetamol 250mg tablet\ndosage:1 tablet every 4 hours as needed")
-        if age in range(15,20) or int(age) > 15 and weight in range(26,30) or weight > 30:  
-            bot.send_text_message(sender_id,"Paracetamol 500mg tablet\ndosage:1 tablet every 4 hours as needed")
-        if age in range(1,12) and weight in range(8,17):
-            bot.send_text_message(sender_id,"Carbocisteine suspension\ndosage:2.5ml, 5ml, 7.5ml, 10ml 3x a day for 7 days")
-        if age in range(13,15):    
-            bot.send_text_message(sender_id,"Carbocisteine 250mg capsule\ndosage:1 capsule 3x a day for 7 days")
-        if age in range(16,20) or int(age) > 20:
-            bot.send_text_message(sender_id,"Carbocisteine 500mg capsule\ndosage:1 capsule 3x a day for 7 days")
-        if age in range(1,2) and weight in range(5,10):    
-            bot.send_text_message(sender_id,"Phenylephrine HCI suspension\ndosage:2.5ml 3x a day for 5 days")
-        if age in range(3,12):        
-            bot.send_text_message(sender_id,"Phenylephrine HCI suspension\ndosage:5ml 3x day for 5 days")
-        if age in range(12,16):    
-            bot.send_text_message(sender_id,"Phenylephrine HCI 250mg tablet\ndosage:1 tablet 3x a day")
-        if age in range(17,20) or int(age) > 20:     
-            bot.send_text_message(sender_id,"Phenylephrine HCI 500mg tablet\ndosage:1 tablet 3x a day")
-        if age in range(1,10):    
-            bot.send_text_message(sender_id,"Cetirizine tablet\ndosage:1 tablet once a day for 7 days")
-        if age in range(11,20) or int(age) > 20:    
-            bot.send_text_message(sender_id,"Cetirizine tablet: 11-20 dosage:1 tablet once a day for 7 days")
-        if age in range(1,8):    
-            bot.send_text_message(sender_id,"Simeticone drops\ndosage:1ml 3x a day for 7 days")
-        if age in range(9,15) or int(age) > 15:    
-            bot.send_text_message(sender_id,"Simeticone tablet\ndosage:1 tablet 3x a day for 7 days")
-        if age in range(1,13):    
-            bot.send_text_message(sender_id,"Hyoscine-N-Butybromide suspension\ndosage:5ml every 6 hours as needed")
-        if age in range(14,19) or int(age) > 19:    
-            bot.send_text_message(sender_id,"Hyoscine-N-Butybromide 10mg tablet\ndosage:1 tablet every 6 hours as needed")
-        if age in range(1,5) and weight in range(10,15):    
-            bot.send_text_message(sender_id,"Co-Amoxiclav 125mg/5ml suspension\ndosage:3.5ml, 5ml, 6ml, 7ml 2x a day for 7 days")
-        if age in range(6,12) and weight in range(16,19):    
-            bot.send_text_message(sender_id,"Co-Amoxiclav 250mg/5ml suspension\ndosage:7.5ml, 9ml, 10ml, 10.5ml 2x a day for 7 days")
-        if age in range(13,16):    
-            bot.send_text_message(sender_id,"Co-Amoxiclav 250mg tablet\ndosage:1 tablet 2x a day for 7 days")
-        if age in range(17,20) or int(age) > 20:    
-            bot.send_text_message(sender_id,"Co-Amoxiclav 500mg tablet\ndosage:1 tablet 2x a day for 7 days")
-        if age in range(1,11):    
-            bot.send_text_message(sender_id,"Domperidone suspension\ndosage:2.5ml, 5ml, 7.5ml every 6 hours as needed or 3x a day for 5 days")
-        if age in range(12,19) or int(age) > 19:    
-            bot.send_text_message(sender_id,"Domperidone 10mg tablet\ndosage:1 tablet every 6 hours as needed or 3x a day for 5 days")
-    #End Dengue
-    #Gastro Remedies, Medication, About
-    remedies_gastro = ["Fluids: Diarrhea and vomiting can be dehydrating. Make sure you take in plenty of water, sports drinks, or other clear liquids.", "Ice cubes: If you are having trouble keeping fluids down, try sucking on ice chips to help rehydrate.", "BRAT diet: BRAT stands for Bananas, Rice, Applesauce, and Toast which can make your stools more firm.", "Bananas also contain potassium which can help replace nutrients lost from vomiting and diarrhea.", "Tea: Caffeine-free teas can help replenish lost fluids, and some varieties, such as peppermint, may calm the stomach, and ginger, may help ease nausea.", "Apple cider vinegar: Some people report this helps ease nausea and stomach upset.", "Rest: Most people need to rest for a few days to let the illness work its course.", "Heating pad: A heating pad may help relieve abdominal cramping.", "Choose low fat or fat free yogurt, if you can tolerate dairy products.", "Acupressure: Finger pressure is used to stimulate trigger points on the body that may help relieve nausea and vomiting.", "Let your stomach settle. Stop eating solid foods for a few hours.", "Try drinking clear soda, clear broths or noncaffeinated sports drinks.", "Drink plenty of liquid every day, taking small, frequent sips.", "Avoid certain foods and substances until you feel better. These include dairy products, caffeine, alcohol, nicotine, and fatty or highly seasoned foods."]
-    if payload=='remedies_gastro':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_gastro"}]
-        bot.send_button_message(sender_id, random.choice(remedies_gastro), buttons) 
-    if payload=='send_remedies_gastro':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_gastro"}]
-        bot.send_button_message(sender_id, random.choice(remedies_gastro), buttons) 
-    #About
-    if payload=='about_gastroenteritis':
-        bot.send_text_message(sender_id,'Gastroenteritis is an inflammation of the lining of the intestines caused by a virus, bacteria, or parasites. Viral gastroenteritis is the second most common illness in the U.S. The cause is often a norovirus infection.\n It spreads through contaminated food or water or by contact with an infected person. The best prevention is frequent hand washing.')
-        buttons = [{"type": "postback","title": "Gastroenteritis Symptoms", "payload": "send_symptoms_gastroenteritis" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Gastroenteritis?", buttons)
-    if payload=='send_symptoms_gastroenteritis':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Symptoms of viral gastroenteritis includes:\ndiarrhea\nnausea and vomiting\nheadache, muscle aches, or joint aches\nfever or chills\nsweating or clammy skin\nabdominal cramps and pain\nloss of appetite\nSymptoms of bacterial gastroenteritis:\nloss of appetite\nnausea and vomiting\ndiarrhea\nabdominal pains and cramps\nblood in your stools\nfever")
-        buttons = [{"type": "postback","title": "Cause of Gastroenteritis","payload": "send_cause_gastroenteritis"}]
-        bot.send_button_message(sender_id, "What causes Gastroenteritis?", buttons)
-    if payload=='send_cause_gastroenteritis':   
-        bot.send_text_message(sender_id,"Numerous bacteria can cause gastroenteritis, including:\nyersinia, found in pork\nstaphylococcus, found in dairy products, meat, and eggs\nshigella, found in water (often swimming pools)\nsalmonella, found in meat, dairy products, and eggs\ncampylobacter, found in meat and poultry\nE. coli, found in ground beef and salads\n\nBacterial gastroenteritis outbreaks can happen when restaurants serve contaminated food to many people. An outbreak can also trigger recalls of produce and other foods.\nBacterial gastroenteritis can be easily transmitted from person to person if someone carries the bacteria on their hands. Every time a person infected with this bacteria touches food, objects, or other people, they risk spreading the infection to others. You can even cause the infection to get into your own body if you touch your eyes, mouth, or other open parts of your body with infected hands.\nYou’re especially at risk for these infections if you travel a lot or live in a crowded area. Washing your hands often and using hand sanitizer with more than 60 percent alcohol can help you avoid catching infections from the people around you.")
-    #Medication
-    if payload=='medication_gastro':
-        if age in range(5,11):    
-            bot.send_text_message(sender_id,"Domperidone suspension\ndosage:5ml, 7.5ml, 10ml every 6 hours as needed or 3x a day for 5 days")
-        if age in range(12,19) or int(age) > 19:    
-            bot.send_text_message(sender_id,"Domperidone 10mg tablet\ndosage:1 tablet every 6 hours as needed or 3x a day for 5 days")
-        if age in range(5,13):    
-            bot.send_text_message(sender_id,"Hyoscine-N-Butybromide suspension\ndosage:5ml every 6 hours as needed")
-        if age in range(14,19) or int(age) > 19:    
-            bot.send_text_message(sender_id,"Hyoscine-N-Butybromide 10mg tablet\ndosage:1 tablet every 6 hours as needed")
-        if age in range(5,8):    
-            bot.send_text_message(sender_id,"Simeticone drops\ndosage:1ml 3x a day for 7 days")
-        if age in range(9,15) or int(age) > 15:    
-            bot.send_text_message(sender_id,"Simeticone tablet\ndosage:1 tablet 3x a day for 7 days")
-        if age in range(5,8):    
-            bot.send_text_message(sender_id,"Simeticone drops\ndosage:1ml 3x a day for 7 days")
-        if age in range(5,10):    
-            bot.send_text_message(sender_id,"Racecadotril 10mg sachet\ndosage:1 sachet 3x a day for 5 days")
-        if age in range(11,15):    
-            bot.send_text_message(sender_id,"Racecadotril 30mg sachet\ndosage:1 sachet 3x a day for 5 days")
-        if age in range(16,20) or int(age) > 20:    
-            bot.send_text_message(sender_id,"Racecadotril 100mg capsule\ndosage:1 capsule 3x a day for 5 days")
-        if age in range(16,20) or int(age) > 20:    
-            bot.send_text_message(sender_id,"Omeprazole 40mg capsule\ndosage:1 capsule every 7am for 7 days")
-        if age in range(5,15):    
-            bot.send_text_message(sender_id,"Nifuroxazide suspension\ndosage:5ml, 7.5ml, 10ml 3x a day for 7 days")
-        if age in range(16,20)or int(age) > 20:    
-            bot.send_text_message(sender_id,"Nifuroxazide 100mg capsule\ndosage:1 capsule 3x a days for 7 days")
-        if age in range(12,20) or int(age) >20:    
-            bot.send_text_message(sender_id,"Loperamide capsule\ndosage:1 capsule 3x a day for 5 days ")
-    #End Gastro
-    #Tonsil Remedies, Medication, About
-    remedies_tonsil = ["Drinking warm liquids, including soups, broths, and teas, can help soothe a sore throat.", "Herbal teas containing ingredients such as honey, pectin, or glycerine may help, as these ingredients form a protective film over the mucous membranes in the mouth and throat.", "Eating cold, soft foods, such as frozen yogurt or ice cream, can numb the throat, offering temporary pain relief.", "Try eating softer foods that are easier to swallow or stick to soups, broths, or chilled smoothies until their symptoms subside.", "Gargling with salt water may temporarily soothe pain or tickling in the back of the throat.", "People with tonsillitis may benefit from using a cool mist humidifier. These devices release moisture back into the air, helping alleviate throat discomfort.", "If speaking is painful, a person should try to rest the voice as much as possible. ", "Get as much rest as possible. Resting will allow the body to fight off the viral or bacterial infection.", "Throat sprays and gargles are another way to deliver anesthetic, anti-inflammatory, and antiseptic medications directly to the throat."]
-    if payload=='remedies_tonsil':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_tonsil"}]
-        bot.send_button_message(sender_id, random.choice(remedies_tonsil), buttons) 
-    if payload=='send_remedies_tonsil':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_tonsil"}]
-        bot.send_button_message(sender_id, random.choice(remedies_tonsil), buttons) 
-    #About
-    if payload=='about_tonsillitis':
-        bot.send_text_message(sender_id,'Tonsils are the two lymph nodes located on each side of the back of your throat. They function as a defense mechanism and help prevent your body from getting an infection. When tonsils become infected, the condition is called tonsillitis.\nTonsillitis can occur at any age and is a common childhood illness. It’s most often diagnosed in children from preschool age through their mid-teens. Symptoms include a sore throat, swollen tonsils, and fever.')
-        buttons = [{"type": "postback","title": "Tonsillitis Symptoms", "payload": "send_symptoms_tonsillitis" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Tonsillitis?", buttons)
-    if payload=='send_symptoms_tonsillitis':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Possible symptoms of tonsillitis include:\na very sore throat\ndifficulty or pain while swallowing\na scratchy-sounding voice\nbad breath\nfever\nchills\nearaches\nstomachaches\nheadaches\na stiff neck\njaw and neck tenderness from swollen lymph nodes\ntonsils that appear red and swollen\ntonsils that have white or yellow spots")
-    #Medication
-    if payload == 'medication_tonsil':
-        if age in range(1,5) and weight in range(13,15):
-            bot.send_text_message(sender_id,"Paracetamol 125mg/5ml suspension\ndosage:2ml, 5ml, 6ml every 4 hours as neededs")
-        if age in range(6,12) and weight in range(16,20):
-            bot.send_text_message(sender_id,"Paracetamol 250mg/5ml suspension\ndosage:5ml, 7.5ml, 9ml, 10ml every 4 hours as needed")     
-        if age in range(13,15) and weight in range(17,25):
-            bot.send_text_message(sender_id,"Paracetamol 250mg tablet\ndosage:1 tablet every 4 hours as needed")     
-        if age in range(15,20) or int(age) > 20 and weight in range(26,30) or int(weight) > 30:
-            bot.send_text_message(sender_id,"Paracetamol 500mg tablet\ndosage:1 tablet every 4 hours as needed")   
-        if age in range(1,10) and weight in range(9,15):
-            bot.send_text_message(sender_id,"Cefuroxime 125mg/5ml suspension\ndosage:2.5ml, 3ml, 4ml, 5ml, 6ml, 7.5ml 2x a day for 7 days")   
-        if age in range(11,15) and weight in range(16,19):
-            bot.send_text_message(sender_id,"Cefuroxime 250mg/5ml suspension\ndosage:9ml, 9.5ml, 10ml, 10.5ml 2x a day for 7 days")   
-        if age in range(14,17) and weight in range(20,27):
-            bot.send_text_message(sender_id,"Cefuroxime 250mg tablet\ndosage:1 tablet 2x a day for 7 days")   
-        if age in range(18,20) or int(age) > 20:
-            bot.send_text_message(sender_id,"Cefuroxime 500mg tablet\ntablet 2x a day for 7 days") 
-    #End Tonsil
-    #UTI Remedies, Medication, About
-    remedies_uti = ["Drinking lots of water, and emptying your bladder when you need to, will help you flush harmful bacteria from your system.", "Try Unsweetened Cranberry Juice. Studies have shown that cranberries actually make it harder for the bacteria that causes UTIs to stick to the urinary tract walls.", "-Don’t “Hold It”, holding off going to the bathroom gives any bacteria that may already be in your bladder the chance to grow and multiply, potentially resulting in an infection.", "Eat garlic. A recent study showed that garlic extract may be effective in reducing the bacteria that causes UTIs.", "Some evidence shows that increasing your intake of vitamin C could protect against urinary tract infections.", "Red peppers, oranges, grapefruit and kiwifruit all contain the full recommended amount of vitamin C in just one serving .", "Probiotics are beneficial microorganisms that are consumed through food or supplements and promotes healthy balance of bacteria in your gut.", "When you have a UTI, caffeine, alcohol, spicy food, nicotine, carbonated drinks, and artificial sweeteners can irritate your bladder.", "Focus on healthy foods, such as high-fiber carbohydrates (such as oatmeal or lentil soup), that are good for your digestive health."]
-    if payload=='remedies_uti':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_uti"}]
-        bot.send_button_message(sender_id, random.choice(remedies_uti), buttons) 
-    if payload=='send_remedies_uti':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_uti"}]
-        bot.send_button_message(sender_id,  generated_remedies, buttons) 
-    #About
-    if payload=='about_uti':
-        bot.send_text_message(sender_id,'A urinary tract infection (UTI) is an infection from microbes. These are organisms that are too small to be seen without a microscope.\nMost UTIs are caused by bacteria, but some are caused by fungi and in rare cases by viruses. UTIs are among the most common infections in humans.\nA UTI can happen anywhere in your urinary tract. Your urinary tract is made up of your kidneys, ureters, bladder, and urethra. Most UTIs only involve the urethra and bladder, in the lower tract.\nHowever, UTIs can involve the ureters and kidneys, in the upper tract. Although upper tract UTIs are more rare than lower tract UTIs, they’re also usually more severe.')
-        buttons = [{"type": "postback","title": "UTI Symptoms", "payload": "send_symptoms_uti" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of UTI?", buttons)
-    if payload=='send_symptoms_uti':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Symptoms of a lower tract UTI include:\nburning with urination\nincreased frequency of urination without passing much urine\nincreased urgency of urination\nbloody urine\ncloudy urine\nurine that looks like cola or tea\nurine that has a strong odor\npelvic pain in women\nrectal pain in men\nSymptoms of an upper tract UTI include:\npain and tenderness in the upper back and sides\nchills\nfever\nnausea\nvomiting")
-        buttons = [{"type": "postback","title": "Cause of UTI","payload": "send_cause_uti"}]
-        bot.send_button_message(sender_id, "What causes UTI?", buttons)
-    if payload=='send_cause_uti':   
-        bot.send_text_message(sender_id,"Anything that reduces your bladder emptying or irritates the urinary tract can lead to UTIs. There are also many factors that can put you at an increased risk of a getting a UTI. These factors include:\nage — older adults are more likely to get UTIs\nreduced mobility after surgery or prolonged bed rest\nkidney stones\na previous UTI\nurinary tract obstructions or blockages, such as an enlarged prostate, kidney stones, and certain forms of cancer\nprolonged use of urinary catheters, which may make it easier for bacteria to get into your bladder\ndiabetes, especially if poorly controlled, which may make it more likely for you to get a UTI\npregnancy\nabnormally developed urinary structures from birth\na weakened immune system")
-    #Medication
-    if payload == 'medication_uti':
-        if age in range(0.0,0.3) and weight in range(2,6):      
-            bot.send_text_message(sender_id,"Paracetamol drops\ndosage:0.25ml, 0.3ml, 0.5ml every 4 hours as needed")
-        if age in range(0.4,0.6) and weight in range(7,9):      
-            bot.send_text_message(sender_id,"Paracetamol drops\ndosage:0.6ml, 0.75ml, 0.9ml every 4 hours as needed")
-        if age in range(0.5,0.11) and weight in range(10,12):      
-            bot.send_text_message(sender_id,"Paracetamol drops\ndosage:1ml, 1.2ml, 1.5ml, 1.6ml, 2ml every 4 hours as needed")
-        if age in range(1,5) and weight in range(13,15):      
-            bot.send_text_message(sender_id,"Paracetamol 125mg/5ml suspension\ndosage:2ml, 5ml, 6ml every 4 hours as needed")
-        if age in range(6,12) and weight in range(16,20):      
-            bot.send_text_message(sender_id,"Paracetamol 250mg/5ml suspension\ndosage:5ml, 7.5ml, 9ml, 10ml every 4 hours as needed")        
-        if age in range(13,15) and weight in range(17,25):      
-            bot.send_text_message(sender_id,"Paracetamol 250mg tablet\ndosage:1 tablet every 4 hours as needed")        
-        if age in range(15,20) or int(age) > 20 and weight in range(26,30) or int(weight) > 30:      
-            bot.send_text_message(sender_id,"Paracetamol 500mg tablet\ndosage:1 tablet every 4 hours as needed")            
-        if age in range(0.2,0.4) and weight in range(3,6) :      
-            bot.send_text_message(sender_id,"Amoxicillin drops\ndosage:0.3ml, 0.5ml, 0.6ml 3x a day for 7 days")              
-        if age in range(0.5,0.11) and weight in range(7,11) :      
-            bot.send_text_message(sender_id,"Amoxicillin drops\ndosage:7.5ml, 9ml, 1ml, 1.5ml, 1.6ml, 1.9ml, 2ml 3x a day for 7 days")        
-        if age in range(1,9) and weight in range(10,14) :      
-            bot.send_text_message(sender_id,"Amoxicillin 125mg/5ml suspension\ndosage:2.5ml, 3.5ml, 5ml, 6ml 3x a day for 7 days")
-        if age in range(10,14) and weight in range(15,20) :      
-            bot.send_text_message(sender_id,"Amoxicillin 250mg/5ml suspension\ndosage:7.5ml, 9ml, 10.5ml 3x a day for 7 days")
-        if age in range(15,17):      
-            bot.send_text_message(sender_id,"Amoxicillin 250mg\ndosage:1 capsule 3x a day for 7 days")
-        if age in range(18,20) or int(age) > 20:      
-            bot.send_text_message(sender_id,"Amoxicillin 500mg capsule\ndosage: 1 capsule 3x a day for 7 days")
-
-    #End UTI
-    #Flu Remedies, Medication, About
-    remedies_flu = ["Drinking water and other fluids is even more important when you have the flu.", "Water helps to keep your nose, mouth, and throat moist. This helps your body get rid of built-up mucous and phlegm.", "It’s important to rest and get more sleep when you have the flu. Sleeping can help boost your immune system.", "Drinking warm chicken or beef bone broth is a good way to help you stay hydrated. It helps to loosen and break up nose and sinus congestion.", "-Drinking broth is a good way to replenish these nutrients while you have the flu. Plus, protein is important for rebuilding immune cells.", "The mineral zinc is important for your immune system. This nutrient helps your body make germ-fighting white blood cells.", "Several herbs have natural antiviral and antibacterial properties. Star anise is a star-shaped spice from which oseltamivir was traditionally extracted.", "Sweeten herbal teas with pure honey. Honey, royal jelly, and other bee products have been found to have natural antiviral and antibacterial properties.", "According to the study, tea tree oil works best when it’s used within two hours of infection. This shows that it may help to block the flu virus from multiplying.", "In practice, you might add a few drops of tea tree oil to liquid hand soap when you wash your hands or mixed into lotion you use.", "-Using a humidifier to add humidity in your home and workplace might help reduce flu viruses in the air.", "Breathing in steam from a warm pot of water can help soothe your nose, sinuses, throat, and lungs. Steam inhalation might help to soothe a dry cough, irritated nose, and chest tightness."]
-    if payload=='remedies_flu':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_flu"}]
-        bot.send_button_message(sender_id, random.choice(remedies_flu), buttons) 
-    if payload=='send_remedies_flu':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_flu"}]
-        bot.send_button_message(sender_id, random.choice(remedies_flu), buttons) 
-    #About
-    if payload=='about_flu':
-        bot.send_text_message(sender_id,'Influenza (the flu) is a common, infectious virus spread by infected droplets that enter another person’s body. From there, the virus takes hold and begins to develop.\nEach year, the flu spreads across the United States. Winter is the flu’s primary season, with a peak in February. But you can be infected with the flu any time of the year.\nMany strains of the flu exist. Doctors and researchers determine which strains of the virus will be most common each year. Those strains are then used to produce vaccines. A flu vaccine is one of the easiest and most effective ways to prevent a flu infection.')
-        buttons = [{"type": "postback","title": "FLU Symptoms", "payload": "send_symptoms_flu" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of FLU?", buttons)
-    if payload=='send_symptoms_flu':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Early symptoms of the flu:\nSymptoms of the flu appear quickly. This sudden onset of symptoms is often the flu’s first hallmark. With similar illnesses, such as a cold, it can take several days for symptoms to emerge.\nAnother common early symptom of the flu is the breadth of pain. People with the flu report feeling uncomfortable all over their body as an early symptom.\nYou may feel as if you’ve been “hit by a truck.” Getting out of bed may prove to be difficult and slow going. This feeling may be an early symptom of the flu")
-        buttons = [{"type": "postback","title": "Cause of FLU","payload": "send_cause_flu"}]
-        bot.send_button_message(sender_id, "What causes FLU?", buttons)
-    if payload=='send_cause_flu':   
-        bot.send_text_message(sender_id,"The flu is a virus that’s shared in several ways. First, you can pick up the virus from a person near you who has the flu and sneezes, coughs, or talks.\nThe virus can also live on inanimate objects for two to eight hours. If someone with the virus touched a common surface, like a door handle or a keyboard, and you touch the same surface, you could get the virus. Once you have the virus on your hand, it can enter your body by touching your mouth, eyes, or nose.\nIt’s possible to get the flu after receiving the flu shot if you come into contact with other strains of the virus. Even then, it’s likely your symptoms will be much less severe than if you hadn’t had the vaccine at all. This is because different strains of flu virus share common elements (called cross-protection), which means that the flu vaccine is able to work against them, too.")
-    #Medication
-    if payload == 'medication_flu':
-        if age in range(0.0,0.3) and weight in range(2,6):      
-            bot.send_text_message(sender_id,"Paracetamol drops\ndosage:0.25ml, 0.3ml, 0.5ml every 4 hours as needed")
-        if age in range(0.4,0.6) and weight in range(7,9):      
-            bot.send_text_message(sender_id,"Paracetamol drops\ndosage:0.6ml, 0.75ml, 0.9ml every 4 hours as needed")
-        if age in range(0.5,0.11) and weight in range(10,12):      
-            bot.send_text_message(sender_id,"Paracetamol drops\ndosage:1ml, 1.2ml, 1.5ml, 1.6ml, 2ml every 4 hours as needed")
-        if age in range(1,5) and weight in range(13,15):      
-            bot.send_text_message(sender_id,"Paracetamol 125mg/5ml suspension\ndosage:2ml, 5ml, 6ml every 4 hours as needed")
-        if age in range(6,12) and weight in range(16,20):      
-            bot.send_text_message(sender_id,"Paracetamol 250mg/5ml suspension\ndosage:5ml, 7.5ml, 9ml, 10ml every 4 hours as needed")        
-        if age in range(13,15) and weight in range(17,25):      
-            bot.send_text_message(sender_id,"Paracetamol 250mg tablet\ndosage:1 tablet every 4 hours as needed")  
-        if age in range(0.1,0.4) and weight in range(3,6): 
-            bot.send_text_message(sender_id,"Carbocisteine drops\ndosage:0.3ml, 0.5ml, 0.6ml 3x a day for 7 days")  
-        if age in range(5,11) and weight in range(7,10): 
-            bot.send_text_message(sender_id,"Carbocisteine drops\ndosage:0.75ml, 0.9ml, 1 ml 3x a day for 7 days") 
-        if age in range(1,12) and weight in range(8,17): 
-            bot.send_text_message(sender_id,"Carbocisteine suspension\ndosage:2.5ml, 5ml, 7.5ml, 10ml 3x a day for 7 days")    
-        if age in range(13,15):
-            bot.send_text_message(sender_id,"Carbocisteine 250mg capsule\ndosage:1 capsule 3x a day for 7 days")    
-        if age in range(16,20) or int(age) >20:
-            bot.send_text_message(sender_id,"Carbocisteine 500mg capsule\ndosage:1 capsule 3x a day for 7 dayss") 
-        if age in range(1,12) and weight in range(2,4): 
-            bot.send_text_message(sender_id,"Phenylephrine HCI drops\ndosage:0.25ml, 0.3ml, 3x a day for 5 days")
-        if age in range(0.3,0.5) and weight in range(5,8): 
-            bot.send_text_message(sender_id,"Phenylephrine HCI drops\ndosage:0.5ml, 0.6ml, 3x a day for 5 days")
-        if age in range(0.6,0.11) and weight in range(9,11): 
-            bot.send_text_message(sender_id,"Phenylephrine HCI drops\ndosage:0.7ml, 1ml 3x a day for 5 days")
-        if age in range(1,2) and weight in range(5,10): 
-            bot.send_text_message(sender_id,"Phenylephrine HCI suspension\ndosage:2.5ml 3x a day for 5 days" )                                  
-        if age in range(3,12):
-            bot.send_text_message(sender_id,"Phenylephrine HCI suspension\ndosage:5ml 3x day for 5 days")
-        if age in range(12,16):
-            bot.send_text_message(sender_id,"Phenylephrine HCI 250mg tablet\ndosage:1 tablet 3x a day")
-        if age in range(17,20) or int(age) > 20:
-            bot.send_text_message(sender_id,"Phenylephrine HCI 500mg tablet\ndosage:1 tablet 3x a days")            
-        if age in range(0.1,0.4) and weight in range(2,5): 
-            bot.send_text_message(sender_id,"Cefalexin Monohydrate drops\ndosage:0.25ml, 0.3ml, 0.5ml, 0.6ml 3x a day for 7 days" ) 
-        if age in range(0.5,0.11) and weight in range(6,10): 
-            bot.send_text_message(sender_id,"Cefalexin Monohydrate drops\ndosage:0.7ml, 0.8ml, 0.9ml, 1ml, 1.2ml, 1.3ml, 1.5ml, 2ml, 3ml 3x a day for 7 days" ) 
-        if age in range(1,9) and weight in range(11.5,13.5): 
-            bot.send_text_message(sender_id,"Cefalexin Monohydrate 125mg/5ml suspension\ndosage:2.5ml, 5ml, 7.5ml, 9ml, 10ml 3x a day for 7 days" ) 
-        if age in range(10,12) and weight in range(14,20): 
-            bot.send_text_message(sender_id,"Cefalexin Monohydrate 250mg/5ml suspension\ndosage:5ml, 7.5ml, 10ml, 10.5ml 3x a day for 7 days" ) 
-        if age in range(135,16): 
-            bot.send_text_message(sender_id,"Cefalexin Monohydrate 250mg capsule: 13-16y/o dosage:1 capsule 3x a day for 7 days" ) 
-        if age in range(17,20) or int(age) > 20: 
-            bot.send_text_message(sender_id,"Cefalexin Monohydrate 500mg capsule: 17-20y/o dosage:1 capsule 3x a day for 7 days" ) 
-
-    #End flu
-        
-    #ADHD
-    remedies_adhd = ["Forgo food colorings and preservatives", "Avoid potential allergens, Diets that restrict possible allergens may help improve behavior in some children with ADHD.", "Consider a yoga or tai chi class, Some small studies indicate that yoga may be helpful for people with ADHD.", "Spending time outside may benefit children with ADHD. There is strong evidence that spending even 20 minutes outside can benefit them by improving their concentration.", "Omega-3 Fatty Acids for ADHD, The omega-3 fatty acids found in fish oil are important in brain and nerve cell function.", "Protein for ADHD, Protein also prevents surges in blood sugar that may increase hyperactivity.", "Vitamin C is a building block of neurotransmitters, while iron and vitamin B6 increase dopamine levels. Zinc regulates dopamine, and may help treat ADHD symptoms in some children when used with conventional medication and treatments.", "Exercise helps the ADHD brain function more effectively and efficiently. One well-known benefit of exercise is an increase in endorphins, which can improve mood. ", "Studies have shown that 20 minutes a day spent in nature may improve ADHD symptoms. Green time is especially effective in helping kids recover from attention fatigue, which occurs after a long school day.", "Clinical trials have found that a number of herbal treatments may show promise for treating ADHD such as French Maritime pine bark extract, Ginseng, Ningdong, Bacopa.", "Creating systems for regular activities, such as getting ready for school, can help children with ADHD learn how to recognize and feel comfortable with routines."]
-    if payload=='remedies_adhd':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_adhd"}]
-        bot.send_button_message(sender_id, random.choice(remedies_adhd), buttons)   
-    if payload=='send_remedies_adhd':   
-        buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_adhd"}]
-        bot.send_button_message(sender_id, random.choice(remedies_adhd), buttons)                                         
-    #About                                       
-    if payload=='about_adhd':
-        bot.send_text_message(sender_id,'Attention deficit hyperactivity disorder (ADHD) is a mental health disorder that can cause above-normal levels of hyperactive and impulsive behaviors.\nPeople with ADHD may also have trouble focusing their attention on a single task or sitting still for long periods of time.')
-        buttons = [{"type": "postback","title": "ADHD Symptoms", "payload": "send_symptoms_adhd" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ADHD?", buttons)
-    if payload=='send_symptoms_adhd':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"A wide range of behaviors are associated with ADHD. Some of the more common ones include:\nhaving trouble focusing or concentrating on tasks\nbeing forgetful about completing tasks\nbeing easily distracted\nhaving difficulty sitting still\ninterrupting people while they’re talking")
-        buttons = [
-                        {
-                        "type": "postback",
-                        "title": "Types of ADHD",
-                        "payload": "send_types_adhd"
-                        }
-                        ]
-        bot.send_button_message(sender_id, "Want to know the types of ADHD?", buttons)                                
-    if payload=='send_types_adhd':
-        bot.send_text_message(sender_id,"To make ADHD diagnoses more consistent, the APA(American Psychological Association) has grouped the condition into three categories, or types. These types are predominantly inattentive, predominantly hyperactivity-impulsive, and a combination of both.")
-        bot.send_text_message(sender_id,"Predominantly inattentive\n\nAs the name suggests, people with this type of ADHD have extreme difficulty focusing, finishing tasks, and following instructions.\n\nExperts also think that many children with the inattentive type of ADHD may not receive a proper diagnosis because they don’t tend to disrupt the classroom. This type is most common among girls with ADHD.")
-        bot.send_text_message(sender_id,"Predominantly hyperactive-impulsive type.\n\nPeople with this type of ADHD show primarily hyperactive and impulsive behavior. This can include fidgeting, interrupting people while they’re talking, and not being able to wait their turn.\n\nAlthough inattention is less of a concern with this type of ADHD, people with predominantly hyperactive-impulsive ADHD may still find it difficult to focus on tasks")
-        bot.send_text_message(sender_id,"Combined hyperactive-impulsive and inattentive type\n\nThis is the most common type of ADHD. People with this combined type of ADHD display both inattentive and hyperactive symptoms. These include an inability to pay attention, a tendency toward impulsiveness, and above-normal levels of activity and energy.")
-        buttons = [{"type": "postback","title": "Cause of ADHD","payload": "send_cause_adhd"}]
-        bot.send_button_message(sender_id, "What causes ADHD?", buttons)
-    if payload=='send_cause_adhd':   
-        bot.send_text_message(sender_id,"Despite how common ADHD is, doctors and researchers still aren’t sure what causes the condition. It’s believed to have neurological origins. Genetics may also play a role.")
-    #Medication
-    if payload=='medication_adhd':                                                                                                                                                                                                                                 
-        bot.send_text_message(sender_id,"Treatment for ADHD typically includes behavioral therapies, medication, or both")
-        buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd2" }]
-        bot.send_button_message(sender_id, "Want to know about stimulant and nonstimulant medication", buttons)
-    if payload=='send_medication_adhd2':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Stimulant and nonstimulant medications\nMedication is often an important part of treatment for a child with ADHD. However, it can be a difficult decision to make as a parent.\nTo make the best choice, you and your child’s doctor should work together to decide if medication is a good option.")
-        buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd3" }]
-        bot.send_button_message(sender_id, "Stimulant Medication", buttons)
-    if payload=='send_medication_adhd3':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Central nervous system stimulants\nThe effect improves your child’s concentration and helps them focus better.\nCommon CNS stimulants used to treat ADHD include:\namphetamine-based stimulants (Adderall, Dexedrine, Dextrostat)\ndextromethamphetamine (Desoxyn)\ndextromethylphenidate (Focalin)\nmethylphenidate (Concerta, Daytrana, Metadate, Ritalin)")
-        buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd4" }]
-        bot.send_button_message(sender_id, "Nonstimulant Medication", buttons)
-    if payload=='send_medication_adhd4':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Nonstimulant medications\nYour child’s doctor may consider nonstimulant medications when stimulants haven't worked or have caused side effects that your child finds hard to handle.\nThese nonstimulant treatments include:\natomoxetine (Strattera)\nantidepressants like nortriptyline (Pamelor)\nOther nonstimulant medications can also help with ADHD. These other nonstimulants include:\nguanfacine (Intuniv) and clonidine (Kapvay)")
-        buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd5" }]
-        bot.send_button_message(sender_id, "Nonstimulant Medication", buttons)
-    if payload=='send_medication_adhd5':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Nonstimulant medications\nYour child’s doctor may consider nonstimulant medications when stimulants haven't worked or have caused side effects that your child finds hard to handle.\nThese nonstimulant treatments include:\natomoxetine (Strattera)\nantidepressants like nortriptyline (Pamelor)\nOther nonstimulant medications can also help with ADHD. These other nonstimulants include:\nguanfacine (Intuniv) and clonidine (Kapvay)")
-        buttons = [{"type": "postback","title": "ADHD Medication", "payload": "send_medication_adhd6" }]
-        bot.send_button_message(sender_id, "Therapeutic ADHD treatments", buttons)
-    if payload=='send_medication_adhd6':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Psychotherapy, Psychotherapy can be useful in getting your child to open up about their feelings of coping with ADHD.\nBehavior therapy, The goal of behavior therapy (BT) is to teach a child how to monitor their behaviors and then change those behaviors appropriately.\nSocial skills training, As with BT, the goal of social skills training is to teach the child new and more appropriate behaviors. \nSupport groups, Support groups are great for helping parents of children with ADHD connect with others who may share similar experiences and concerns.\nParenting skills training, Parenting skills training gives you tools and techniques for understanding and managing your child's behaviors.")
-    #ADHD END  
-    #Anxiety
-    remedies_Anxiety = ["Drink chamomile tea, Chamomile’s compounds may ease general anxiety disorder symptoms, according to a small study published in 2016 in the journal Phytomedicine.", "Get your daily dose of omega-3s." "Try putting a few drops of lavender essential oil on your pillow or in your bath, or add a few drops to a cup of boiling water and inhale for a quick calm-me-down.", "Add L-lysine to your diet, It found that a combination of L-lysine and L-arginine was “a potentially useful dietary intervention in otherwise healthy humans with high subjective levels of mental stress and anxiety.", "Get some sunlight, Head outdoors to naturally increase your vitamin D levels and decrease anxiety.", "Exercise to combat stress, Get moving to help reduce your anxiety. After all, the Anxiety and Depression Association of America states that even just brief walks lasting about 10 minutes may boost mood.", "Take a hot bath with epsom salts, First, a hot bath is always calming. Second, adding some epsom salts to the water may help boost your mood. These salts contain magnesium sulfate, which may have anxiety-fighting benefits.", "Cut out (or down) caffeine, You probably head for your coffee maker or local cafe every morning. However, if you’re struggling with anxiety, you might want to re-evaluate your caffeine habit.", "Avoid these foods such as Caffeine, alcohol, and added sugars. The Mayo Clinic states that alcohol and caffeine, for example, can worsen anxiety.", "Eat these foods such as Blueberries and peaches contain nutrients that relieve stress and have a calming effect, Whole grains are rich in magnesium and tryptophan, an amino acid that your body converts to serotonin. Serotonin is known to calm and improve your mood, Oats also increase serotonin production and are high in fiber, which helps prevent blood sugar spikes that affect mood, Avocados, eggs, milk, and meat are all packed with B vitamins that can help prevent anxiety, Foods that help regulate and lower the stress hormone cortisol include foods rich in vitamin C, like oranges, omega-3 fatty acids, and magnesium-rich, foods like spinach and other dark leafy greens. Indulge every once in a while in dark chocolate, which also helps lower cortisol."]
-    if payload=='remedies_anxiety':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_anxiety"}]
-        bot.send_button_message(sender_id, random.choice(remedies_Anxiety), buttons)   
-    if payload=='send_remedies_anxiety':   
-        buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_anxiety"}]
-        bot.send_button_message(sender_id, random.choice(remedies_Anxiety), buttons)                                         
-    #medication
-    if payload=='medication_anxiety':                                                                                                                                                                                                                                 
-        bot.send_text_message(sender_id,"Cognitive behavioral therapy\nThe goal is to change your thinking and behaviors. This approach has been successful in creating permanent change in many people with anxiety.")
-        buttons = [{"type": "postback","title": "Anxiety Medication", "payload": "send_medication_anxiety2" }]
-        bot.send_button_message(sender_id, "More medication", buttons)
-    if payload=='send_medication_anxiety2':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Some common anti-anxiety medications are:\nalprazolam (Xanax)\nclonazepam (Klonopin)\nlorazepam (Ativan)")
-        buttons = [{"type": "postback","title": "Anxiety Medication", "payload": "send_medication_anxiety3" }]
-        bot.send_button_message(sender_id, "Antidepressants", buttons)
-    if payload=='send_medication_anxiety3':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Some common antidepressants are:\nbuspirone (Buspar)\ncitalopram (Celexa)\nescitalopram (Lexapro)\nfluoxetine (Prozac, Prozac Weekly, Sarafem)\nfluvoxamine (Luvox, Luvox CR)\nparoxetine (Paxil, Paxil CR, Pexeva)\nsertraline (Zoloft)\nvenlafaxine (Effexor XR)\ndesvenlafaxine (Pristiq)\nduloxetine (Cymbalta)")
-#About  
-    if payload=='about_anxiety':
-        bot.send_text_message(sender_id,'It’s normal to feel anxious about moving to a new place, starting a new job, or taking a test. This type of anxiety is unpleasant, but it may motivate you to work harder and to do a better job. Ordinary anxiety is a feeling that comes and goes, but does not interfere with your everyday life.\nIn the case of an anxiety disorder, the feeling of fear may be with you all the time. It is intense and sometimes debilitating. This type of anxiety may cause you to stop doing things you enjoy.\nIn extreme cases, it may prevent you from entering an elevator, crossing the street, or even leaving your home. If left untreated, the anxiety will keep getting worse.')
-        buttons = [{"type": "postback","title": "Anxiety Symptoms", "payload": "send_symptoms_anxiety" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Anxiety?", buttons)
-    if payload=='send_symptoms_anxiety':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Symptoms of general anxiety include:\nincreased heart rate\n*rapid breathing\n*restlessness\n*trouble concentrating\n*difficulty falling asleep")
-        buttons = [{"type": "postback","title": "Cause of Anxiety","payload": "send_cause_anxiety"}]
-        bot.send_button_message(sender_id, "What causes Anxiety?", buttons)
-    if payload=='send_cause_anxiety':   
-        bot.send_text_message(sender_id,"Researchers are not sure of the exact cause of anxiety. But, it’s likely a combination of factors play a role. These include genetic and environmental factors, as well as brain chemistry.\nIn addition, researchers believe that the areas of the brain responsible for controlling fear may be impacted.\nCurrent research of anxiety is taking a deeper look at the parts of the brain that are involved with anxiety")
     
-    #Anxiety END  
-    #Autism
-    remedies_ASD = ["Creative therapies, Some parents choose to supplement educational and medical intervention with art therapy or music therapy, which focuses on reducing a child's sensitivity to touch or sound.", "Sensory-based therapies, These therapies are based on the unproven theory that people with autism spectrum disorder have a sensory processing disorder that causes problems tolerating or processing sensory information, such as touch, balance and hearing.", "Pet or horse therapy, Pets can provide companionship and recreation, but more research is needed to determine whether interaction with animals improves symptoms of autism spectrum disorder.", "Acupuncture, This therapy has been used with the goal of improving autism spectrum disorder symptoms, but the effectiveness of acupuncture is not supported by research."]
-    if payload=='remedies_autism':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_autism"}]
-        bot.send_button_message(sender_id, random.choice(remedies_ASD), buttons)   
-    if payload=='send_remedies_autism':   
-        buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_autism"}]
-        bot.send_button_message(sender_id, random.choice(remedies_ASD), buttons)                                         
-    #medication
-    if payload=='medication_autism':                                                                                                                                                                                                                                 
-        bot.send_text_message(sender_id,"There are no “cures” for autism, but therapies and other treatment considerations can help people feel better or alleviate their symptoms.")
-        buttons = [{"type": "postback","title": "ASD Medication", "payload": "send_medication_asd2" }]
-        bot.send_button_message(sender_id, "Want to know about treatment approaches", buttons)
-    if payload=='send_medication_asd2':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Many treatment approaches involve therapies such as:\nbehavioral therapy\nplay therapy\noccupational therapy\nphysical therapy\nspeech therapy")
-        buttons = [{"type": "postback","title": "ASD Medication", "payload": "send_medication_asd3" }]
-        bot.send_button_message(sender_id, "Other therapy", buttons)
-    if payload=='send_medication_asd3':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Massages, weighted blankets and clothing, and meditation techniques may also induce relaxing effects. \nHowever, treatment results will vary.\nSome people on the spectrum may respond well to certain approaches, while others may not.")
-        buttons = [{"type": "postback","title": "ASD Medication", "payload": "send_medication_asd4" }]
-        bot.send_button_message(sender_id, "Relaxation Techniques", buttons)
-    if payload=='send_medication_asd4':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Behavior problems are a common issue in people with ASD.\nCalming techniques, such as deep pressure massage or wearing weighted clothing, may soothe agitation in people with ASD.\nThis involves teaching people the difference between tense and relaxed muscles.\nThis is done in combination with deep breathing, and can help alleviate stress and agitation.")
-    #About   
-    if payload=='about_autism':
-        bot.send_text_message(sender_id,'Autism spectrum disorder (ASD) is a broad term used to describe a group of neurodevelopmental disorders.\nThese disorders are characterized by problems with communication and social interaction.\nPeople with ASD often demonstrate restricted, repetitive, and stereotyped interests or patterns of behavior.')
-        buttons = [{"type": "postback","title": "ASD Symptoms", "payload": "send_symptoms_asd" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ASD?", buttons)
-    if payload=='send_symptoms_asd':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Autism symptoms typically become clearly evident during early childhood, between 12 and 24 months of age. However, symptoms may also appear earlier or later.\nEarly symptoms may include a marked delay in language or social development.\nThe DSM-5 divides symptoms of autism into two categories: problems with communication and social interaction, and restricted or repetitive patterns of behavior or activities.\nProblems with communication and social interaction include:\nissues with communication, including difficulties sharing emotions, sharing interests, or maintaining a back-and-forth conversation\nissues with nonverbal communication, such as trouble maintaining eye contact or reading body language\ndifficulties developing and maintaining relationships\nRestricted or repetitive patterns of behavior or activities include:\nrepetitive movements, motions, or speech patterns\nrigid adherence to specific routines or behaviors\nan increase or decrease in sensitivity to specific sensory information from their surroundings, such as a negative reaction to a specific sound\nfixated interests or preoccupations.")
-        buttons = [{"type": "postback","title": "Types of ASD","payload": "send_types_asd"}]
-        bot.send_button_message(sender_id, "Want to know the types of ASD?", buttons)                                
-    if payload=='send_types_asd':
-        bot.send_text_message(sender_id,"The fifth and most recent edition of the DSM was released in 2013. The DSM-5 currently recognizes five different ASD subtypes, or specifiers. They are:")
-        bot.send_text_message(sender_id,"with or without accompanying intellectual impairment.\nwith or without accompanying language impairment\nassociated with a known medical or genetic condition or environmental factor\nassociated with another neurodevelopmental, mental, or behavioral disorder\nwith catatonia")
-        bot.send_text_message(sender_id,"Prior to the DSM-5, people on the autism spectrum may have been diagnosed with one of the following disorders:")
-        bot.send_text_message(sender_id,"autistic disorder\nAsperger’s syndrome\npervasive development disorder-not otherwise specified (PDD-NOS)\nchildhood disintegrative disorder")
-        buttons = [{"type": "postback","title": "Cause of ASD","payload": "send_cause_asd"}]
-        bot.send_button_message(sender_id, "What causes ASD?", buttons)
-    if payload=='send_cause_asd':   
-        bot.send_text_message(sender_id,"The most current research demonstrates that there’s no single cause. Some of the suspected risk factors for autism include:\nhaving an immediate family member with autism\ngenetic mutations\nfragile X syndrome and other genetic disorders\nbeing born to older parents\nlow birth weight\nmetabolic imbalances\nexposure to heavy metals and environmental toxins\na history of viral infections\nfetal exposure to the medications valproic acid (Depakene) or thalidomide (Thalomid)")
- 
-    #Autsim END  
-    #Bipolar
-    remedies_Bipolar = ["Rhodiola, Officially known as rhodiola rosea, this herb has been used for years to help manage stress and has also demonstrated positive effects on people struggling with depression.", "Meditation, People who meditate using a supervised mindfulness-based cognitive therapy approach may see a reduction in depression that directly correlates to how many days they meditate.", "Omega-3 Fatty Acids, That's because the anti-inflammatory effects of omega-3 fatty acids could help regulate mood.", "Avoiding the 'Western' style diet that's rich in red meats, saturated fats and trans fats, and simple carbohydrates", "Eating less saturated fats and simple carbohydrates can help overall health but does not directly affect the symptoms of bipolar disorder.", "Eating a balance of protective, nutrient-dense foods. These foods include fresh fruits, vegetables, legumes, whole grains, lean meats, cold-water fish, eggs, low-fat dairy, soy products, and nuts and seeds.", "Watching caloric intake and exercising regularly to maintain a healthy weight", "Getting only moderate amounts of caffeine and not stopping caffeine use abruptly", "Avoiding high-fat meals to lower the risk for obesity", "Calming techniques such as massage therapy, yoga, acupuncture, meditation", "Adequate sleep can help stabilize your mood and reduce irritability. Tips to improve sleep include establishing a routine and creating a calm bedroom environment.", "Many people with bipolar disorder find if they stick to a daily schedule, it helps them control their mood.", "Tame stress, So take time to relax.Lying on the couch watching TV or checking your social media accounts isn't the best way to go. Instead, try something more focused, like yoga or other types of exercise. Meditation is another good choice."]
-    if payload=='remedies_bipolar':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_bipolar"}]
-        bot.send_button_message(sender_id, random.choice(remedies_Bipolar), buttons)   
-    if payload=='send_remedies_bipolar':   
-        buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_bipolar"}]
-        bot.send_button_message(sender_id, random.choice(remedies_Bipolar), buttons)                                         
-    #medication
-    if payload=='medication_bipolar':                                                                                                                                                                                                                                 
-        bot.send_text_message(sender_id,"Several treatments are available that can help you manage your bipolar disorder. These include medications, counseling, and lifestyle changes. Some natural remedies may also be helpful.")
-        buttons = [{"type": "postback","title": "Bipolar Medication", "payload": "send_medication_bipolar2" }]
-        bot.send_button_message(sender_id, "Medications", buttons)
-    if payload=='send_medication_bipolar2':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Recommended medications may include:\nmood stabilizers, such as lithium (Lithobid)\nantipsychotics, such as olanzapine (Zyprexa)\nantidepressant-antipsychotics, such as fluoxetine-olanzapine (Symbyax)\nbenzodiazepines, a type of anti-anxiety medication such as alprazolam (Xanax) that may be used for short-term treatment")
-        buttons = [{"type": "postback","title": "Bipolar Medication", "payload": "send_medication_bipolar3" }]
-        bot.send_button_message(sender_id, "Psychotherapy", buttons)
-    if payload=='send_medication_bipolar3':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Cognitive behavioral therapy: You and a therapist talk about ways to manage your bipolar disorder. They will help you understand your thinking patterns.\nPsychoeducation: a kind of counseling that helps you and your loved ones understand the disorder.\nInterpersonal and social rhythm Therapy: Interpersonal and social rhythm therapy (IPSRT) focuses on regulating daily habits, such as sleeping, eating, and exercising.")
-        buttons = [{"type": "postback","title": "Bipolar Medication", "payload": "send_medication_bipolar4" }]
-        bot.send_button_message(sender_id, "Other treatment options", buttons)
-    if payload=='send_medication_bipolar4':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Other treatment options may include:\nelectroconvulsive therapy (ECT)\nsleep medications\nsupplements\nacupuncture")
-
-    #About   
-    if payload=='about_bipolar':
-        bot.send_text_message(sender_id,'Bipolar disorder is a mental illness marked by extreme shifts in mood. Symptoms can include an extremely elevated mood called mania.\nThey can also include episodes of depression. Bipolar disorder is also known as bipolar disease or manic depression.\nPeople with bipolar disorder may have trouble managing everyday life tasks at school or work, or maintaining relationships. There’s no cure, but there are many treatment options available that can help to manage the symptoms.')
-        buttons = [{"type": "postback","title": "Bipolar Symptoms", "payload": "send_symptoms_bipolar" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Bipolar?", buttons)
-    if payload=='send_symptoms_bipolar':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"There are three main symptoms that can occur with bipolar disorder: mania, hypomania, and depression.\nWhile experiencing mania, a person with bipolar disorder may feel an emotional high. They can feel excited, impulsive, euphoric, and full of energy.\nDuring manic episodes, they may also engage in behavior such as:\nspending sprees\nunprotected sex\ndrug use")
-        buttons = [{"type": "postback","title": "Types of Bipolar","payload": "send_types_bipolar" } ]
-        bot.send_button_message(sender_id, "Want to know the types of Bipolar?", buttons)                                
-    if payload=='send_types_bipolar':
-        bot.send_text_message(sender_id,"There are three main types of bipolar disorder: bipolar I, bipolar II, and cyclothymia.")
-        bot.send_text_message(sender_id,"Bipolar I is defined by the appearance of at least one manic episode. You may experience hypomanic or major depressive episodes before and after the manic episode.\nThis type of bipolar disorder affects men and women equally.")
-        bot.send_text_message(sender_id,"Bipolar II\nPeople with this type of bipolar disorder experience one major depressive episode that lasts at least two weeks.\nThey also have at least one hypomanic episode that lasts about four days. This type of bipolar disorder is thought to be more common in women.")
-        bot.send_text_message(sender_id,"People with cyclothymia have episodes of hypomania and depression. These symptoms are shorter and less severe than the mania and depression caused by bipolar I or bipolar II disorder.\nMost people with this condition only experience a month or two at a time where their moods are stable.")
-        buttons = [{"type": "postback","title": "Cause of Bipolar","payload": "send_cause_bipolar"}]
-        bot.send_button_message(sender_id, "What causes Bipolar?", buttons)
-    if payload=='send_cause_bipolar':   
-        bot.send_text_message(sender_id,"Bipolar disorder is a common mental health disorder, but it’s a bit of a mystery to doctors and researchers. It’s not yet clear what causes some people to develop the condition and not others.\nGenetics\nYour brain\nEnvironmental factors")
-
-    #Bipolar END  
-    #Depression
-    remedies_Depression = ["Omega-3 Fatty Acids, That's because the anti-inflammatory effects of omega-3 fatty acids could help regulate mood.", "According to a study in Alternative Medicine ReviewTrusted Source, taking saffron stigma has been shown to be effective in treating mild to moderate depression.", "Taking 500 micrograms of folic acid has been linked with improving the effectiveness of other antidepressant medications.", "According to Nutrition NeuroscienceTrusted Source, taking a 25-milligram zinc supplement daily for 12 weeks can help reduce depression symptoms.", "Get in a routine, Setting a gentle daily schedule can help you get back on track.", "When you're depressed, you may feel like you can't accomplish anything. That makes you feel worse about yourself. To push back, set daily goals for yourself.", "Exercise, It temporarily boosts feel-good chemicals called endorphins. It may also have long-term benefits for people with depression.", "Eat healthy, If depression tends to make you overeat, getting in control of your eating will help you feel better.", "Get enough sleep, Go to bed and get up at the same time every day. Take all the distractions out of your bedroom no computer and no TV.", "Staying involved and having daily responsibilities can help you maintain a lifestyle that can help counter depression.", "Challenge negative thoughts, The next time you're feeling terrible about yourself, use logic as a natural depression treatment.", "Do something new, When you’re depressed, you’re in a rut. Push yourself to do something different.", "If you’re depressed, make time for things you enjoy. Plan things you used to enjoy, even if they feel like a chore.", "Get some sunlight, You might find that getting some sun can put you in a better mood.", "Set aside time to do things that you used to enjoy doing. Make a plan to go out to dinner or a movie with friends or return to a hobby that you used to pursue. Try expressing yourself creatively." "Avoid alcohol and drugs, Alcohol and many illicit drugs can contribute to depression and make it worse.", "Get out with your family or friends or take up a hobby that used to give you pleasure. Staying active and connected with the people in your life may help you feel better.", "Take ‘TIME OUT” for yourself regularly, even as little as 15 minutes per day, may be very helpful. Use that time for relaxation, to meet personal needs, or anything that will “re-charge your mental battery”.",]
-    if payload=='remedies_depression':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_depression"}]
-        bot.send_button_message(sender_id, random.choice(remedies_Depression), buttons)   
-    if payload=='send_remedies_depression':   
-        buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_depression"}]
-        bot.send_button_message(sender_id, random.choice(remedies_Depression), buttons)                                         
-    #medication
-    if payload=='medication_depression':                                                                                                                                                                                                                                 
-        bot.send_text_message(sender_id,"You may successfully manage symptoms with one form of treatment, or you may find that a combination of treatments works best.")
-        buttons = [{"type": "postback","title": "Depression Medication", "payload": "send_medication_depression2" }]
-        bot.send_button_message(sender_id, "Medications", buttons)
-    if payload=='send_medication_depression2':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Medications: Your doctor may prescribe antidepressants, antianxiety, or antipsychotic medications\nPsychotherapy: Speaking with a therapist can help you learn skills to cope with negative feelings.\nLight therapy: Exposure to doses of white light can help regulate mood and improve symptoms of depression.")
-        buttons = [{"type": "postback","title": "Depression Medication", "payload": "send_medication_depression3" }]
-        bot.send_button_message(sender_id, "Alternative therapies", buttons)
-    if payload=='send_medication_depression3':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Ask your doctor about acupuncture or meditation.\nTalk with your doctor before taking a supplement or combining a supplement with prescription medication because some supplements can react with certain medications.\nSome supplements may also worsen depression or reduce the effectiveness of medication.")
-
-    #About   
-    if payload=='about_depression':
-        bot.send_text_message(sender_id,'Depression is classified as a mood disorder. It may be described as feelings of sadness, loss, or anger that interfere with a person’s everyday activities.\nPeople experience depression in different ways. It may interfere with your daily work, resulting in lost time and lower productivity. \nIt also can influence relationships and some chronic health conditions.')
-        buttons = [{"type": "postback","title": "Depression Symptoms", "payload": "send_symptoms_depression" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Depression?", buttons)
-    if payload=='send_symptoms_depression':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Depression can be more than a constant state of sadness or feeling “blue.”\nMajor depression can cause a variety of symptoms. Some affect your mood, and others affect your body. Symptoms may also be ongoing or come and go.\nDepression can affect men, women, and children differently.")
-        buttons = [{"type": "postback","title": "Cause of Depression","payload": "send_cause_depression"}]
-        bot.send_button_message(sender_id, "What causes Depression?", buttons)
-    if payload=='send_cause_depression':   
-        bot.send_text_message(sender_id,"There are several possible causes of depression. They can range from biological to circumstantial. Common causes include:\nFamily history. You’re at a higher risk for developing depression if you have a family history of depression or another mood disorder.\nEarly childhood trauma. Some events impact the way that body reacts to fear and stressful situations.\nBrain structure. There’s a greater risk for depression if the frontal lobe of your brain is less active. However, scientists don’t know if this happens before or after the onset of depressive symptoms.\nMedical conditions. Certain conditions may put you at higher risk, such as chronic illness, insomnia, chronic pain, or attention-deficit hyperactivity disorder (ADHD).\nDrug use. A history of drug or alcohol misuse can impact your risk.")
-
-    #Depression END   
-    #Learning
-    remedies_LearningDisorder = ["Ask your child to list their strengths and weaknesses and talk about your own strengths and weaknesses with your child.", "Encourage your child to talk to adults with learning disabilities and to ask about their challenges, as well as their strengths.", "Work with your child on activities that are within their capabilities. This will help build feelings of success and competency.", "Help your child develop their strengths and passions. Feeling passionate and skilled in one area may inspire hard work in other areas too.", "Talk with your learning disabled child about problem solving and share how you approach problems in your life.", "Ask your child how they approach problems. How do problems make them feel? How do they decide what action to take?", "If your child is hesitant to make choices and take action, try to provide some “safe” situations to test the water, like choosing what to make for dinner or thinking of a solution for a scheduling conflict.", "Discuss different problems, possible decisions, and outcomes with your child. Have your child pretend to be part of the situation and make their own decisions.", "Talk with your child about times when they persevered—why did they keep going? Share stories about when you have faced challenges and not given up.", "Discuss what it means to keep going even when things aren’t easy. Talk about the rewards of hard work, as well as the opportunities missed by giving up.", "When your child has worked hard, but failed to achieve their goal, discuss different possibilities for moving forward.", "Help your child identify a few short- or long-term goals and write down steps and a timeline to achieve the goals. Check in periodically to talk about progress and make adjustments as needed.", "Talk about your own short- and long-term goals with your child, as well as what you do when you encounter obstacles.", "Celebrate with your child when they achieve a goal. If certain goals are proving too hard to achieve, talk about why and how plans or goals might be adjusted to make them possible.", "Help your child nurture and develop good relationships. Model what it means to be a good friend and relative so your child knows what it means to help and support others.", "Demonstrate to your child how to ask for help in family situations.", "Share examples of people needing help, how they got it, and why it was good to ask for help. Present your child with role-play scenarios that might require help.", "Use words to identify feelings and help your child learn to recognize specific feelings.", "Ask your child the words they would use to describe stress. Does your child recognize when they are feeling stressed?", "Encourage your child to identify and participate in activities that help reduce stress like sports, games, music, or writing in a journal.", "Ask your child to describe activities and situations that make them feel stressed. Break down the scenarios and talk about how overwhelming feelings of stress and frustration might be avoided."]
-    if payload=='remedies_learning':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_learning"}]
-        bot.send_button_message(sender_id, random.choice(remedies_LearningDisorder), buttons)   
-    if payload=='send_remedies_learning':   
-        buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_learning"}]
-        bot.send_button_message(sender_id, random.choice(remedies_LearningDisorder), buttons)                                         
-    #medication
-    if payload=='medication_learning':                                                                                                                                                                                                                                 
-        bot.send_text_message(sender_id,"Learning Disorder Treatments")
-        buttons = [{"type": "postback","title": "Learning Disorder Medication", "payload": "send_medication_learningdisorder2" }]
-        bot.send_button_message(sender_id, "Treatments", buttons)
-    if payload=='send_medication_learningdisorder2':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Extra help. A reading specialist, math tutor or other trained professional can teach your child techniques to improve his or her academic, organizational and study skills\nIndividualized education program (IEP). The IEP sets learning goals and determines strategies and services to support the child's learning in school.")
-        buttons = [{"type": "postback","title": "Learning Disorder Medication", "payload": "send_medication_learningdisorder3" }]
-        bot.send_button_message(sender_id, "Accomodations", buttons)
-    if payload=='send_medication_learningdisorder3':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Classroom accommodations might include more time to complete assignments or tests, being seated near the teacher to promote attention, use of computer applications that support writing, including fewer math problems in assignments, or providing audiobooks to supplement reading.")
-        buttons = [{"type": "postback","title": "Learning Disorder", "payload": "send_medication_learningdisorder4" }]
-        bot.send_button_message(sender_id, "Therapy", buttons)
-    if payload=='send_medication_learningdisorder4':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Some children benefit from therapy. Occupational therapy might improve the motor skills of a child who has writing problems. A speech-language therapist can help address language skills.")
-        buttons = [{"type": "postback","title": "Learning Disorder", "payload": "send_medication_learningdisorder5" }]
-        bot.send_button_message(sender_id, "Medication", buttons)
-    if payload=='send_medication_learningdisorder5':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Your child's doctor might recommend medication to manage depression or severe anxiety. Medications for attention-deficit/hyperactivity disorder may improve a child's ability to concentrate in school.")
-    #About   
-    if payload=='about_learning':
-        bot.send_text_message(sender_id,'A learning disorder is an information-processing problem that prevents a person from learning a skill and using it effectively. Learning disorders generally affect people of average or above average intelligence.\nAs a result, the disorder appears as a gap between expected skills, based on age and intelligence, and academic performance.')
-        buttons = [{"type": "postback","title": "Learning Disorder Symptoms", "payload": "send_symptoms_learningdisorder" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of Learning Disorder?", buttons)
-    if payload=='send_symptoms_learningdisorder':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Doesn't master skills in reading, spelling, writing or math at or near expected age and grade levels\nHas difficulty understanding and following instructions\nHas trouble remembering what someone just told him or her\nLacks coordination in walking, sports or skills such as holding a pencil\nEasily loses or misplaces homework, schoolbooks or other items\nHas difficulty understanding the concept of time\nResists doing homework or activities that involve reading, writing or math, or consistently can't complete homework assignments without significant help\nActs out or shows defiance, hostility or excessive emotional reactions at school or while doing academic activities, such as homework or reading")
-        buttons = [
-                            {
-                            "type": "postback",
-                            "title": "Types of Learning Disorder",
-                            "payload": "send_types_learningdisoder"
-                            }
-                            ]
-        bot.send_button_message(sender_id, "Want to know the types of Learning Disorder?", buttons)                                
-    if payload=='send_types_learningdisoder':
-        bot.send_text_message(sender_id,"There are three common types of Learning Disorder such as:")
-        bot.send_text_message(sender_id,"Reading Disorder")
-        bot.send_text_message(sender_id,"Disorder of Written Expression")
-        bot.send_text_message(sender_id,"Math Disorder")
-        buttons = [{"type": "postback","title": "Cause of Learning Disorder","payload": "send_cause_learningdisorder"}]
-        bot.send_button_message(sender_id, "What causes Learning Disorder?", buttons)
-    if payload=='send_cause_learningdisorder':   
-        bot.send_text_message(sender_id,"Factors that might influence the development of learning disorders include:\nFamily history and genetics. A family history of learning disorders increases the risk of a child developing a disorder.\nPrenatal and neonatal risks. Poor growth in the uterus (severe intrauterine growth restriction), exposure to alcohol or drugs before being born, premature birth, and very low birthweight have been linked with learning disorders.\nPsychological trauma. Psychological trauma or abuse in early childhood may affect brain development and increase the risk of learning disorders.\nPhysical trauma. Head injuries or nervous system infections might play a role in the development of learning disorders.\nEnvironmental exposure. Exposure to high levels of toxins, such as lead, has been linked to an increased risk of learning disorders.")
-
-    #Learning END  
-    #ODD
-    remedies_ODD = ["Always build on positives: Praise your child and offer positive reinforcement when he shows flexibility or cooperation. Recognize the “little victories” with enthusiasm.", "Learn to control yourself: Take a time-out or break if you suspect you are about to make the conflict with your child worse, not better.", "Pick your battles: Since a child with ODD has trouble avoiding power struggles, prioritize the demands you put on your child.", "Provide structure: Bad behavior tends to escalate when a child has unsupervised free time and unclear expectations. A daily routine, on the other hand, lets a child know what to expect.", "Position behavioral issues as problems she can solve: Explain to your child that ignoring an alarm clock doesn’t help her get to school on time, and ask what she can do to avoid being tardy again.", "Set up reasonable, age-appropriate limits and enforce consequences consistently: Resist the temptation to rescue the child from naturally occurring consequences.", "Don’t go it alone: Work with and get support from the other adults (teachers, coaches, and spouse) who interact with your child. Look for local support groups and/or parenting classes for parents of difficult children.", "Avoid burnout: Maintain interests other than your child so that managing her behavior doesn’t sap all of your time and energy. Manage your own stress with exercise and relaxation. Use respite care as needed.", "Recognize and praise your child's positive behaviors. Be as specific as possible, such as, I really liked the way you helped pick up your toys tonight.", "Providing rewards for positive behavior also may help, especially with younger children.", "Model the behavior you want your child to have. Demonstrating appropriate interactions and modeling socially appropriate behavior can help your child improve social skills.", "Pick your battles and avoid power struggles. Almost everything can turn into a power struggle, if you let it.", "Set limits by giving clear and effective instructions and enforcing consistent reasonable consequences. Discuss setting these limits during times when you're not confronting each other.", "Set up a routine by developing a consistent daily schedule for your child. Asking your child to help develop that routine may be beneficial.", "Build in time together by developing a consistent weekly schedule that involves you and your child spending time together.", "Work together with your partner or others in your household to ensure consistent and appropriate discipline procedures. Also enlist support from teachers, coaches and other adults who spend time with your child.", "Assign a household chore that's essential and that won't get done unless the child does it. Initially, it's important to set your child up for success with tasks that are relatively easy to achieve and gradually blend in more important and challenging expectations. Give clear, easy-to-follow instructions.", "Be prepared for challenges early on. At first, your child probably won't be cooperative or appreciate your changed response to his or her behavior. Expect behavior to temporarily worsen in the face of new expectations. Remaining consistent in the face of increasingly challenging behavior is the key to success at this early stage."]
-    if payload=='remedies_odd':
-        buttons = [{"type": "postback","title": "📩Send Another","payload": "send_remedies_odd"}]
-        bot.send_button_message(sender_id, random.choice(remedies_ODD), buttons)   
-    if payload=='send_remedies_odd':   
-        buttons = [ {"type": "postback", "title": "📩Send Another","payload": "send_remedies_odd"}]
-        bot.send_button_message(sender_id, random.choice(remedies_ODD), buttons)                                         
-    #medication
-    if payload=='medication_odd':                                                                                                                                                                                                                                 
-        bot.send_text_message(sender_id,"Early treatment is essential for people with ODD. Teens and adults with untreated ODD have increased risk for depression and substance abuse.")
-        buttons = [{"type": "postback","title": "ODD Medication", "payload": "send_medication_odd2" }]
-        bot.send_button_message(sender_id, "Individual cognitive behavioral therapy", buttons)
-    if payload=='send_medication_odd2':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"A psychologist will work with the child to improve:\nanger management skills\ncommunication skills\nimpulse control\nproblem-solving skills")
-        buttons = [{"type": "postback","title": "ODD Medication", "payload": "send_medication_odd3" }]
-        bot.send_button_message(sender_id, "Other therapy", buttons)
-    if payload=='send_medication_odd3':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"Family therapy: A psychologist will work with the whole family to make changes.\nParent-child interaction therapy (PCIT): Therapists will coach the parents as they interact with their children.\nPeer groups: The child can learn how to improve their social skills and relationships with other children.\nMedications: These can help treat causes of ODD, such as depression or ADHD. However, there is no specific medication to treat ODD itself.")
-    #end odd3
-    #About   
-    if payload=='about_odd':
-        bot.send_text_message(sender_id,'Even the most mild-mannered children have occasional outbursts of frustration and disobedience.\nBut a persistent pattern of anger, defiance, and vindictiveness against authority figures could be a sign of oppositional defiant disorder (ODD).\nODD is a behavioral disorder that results in defiance and anger against authority. It can affect a person’s work, school, and social life.\nODD affects between 1 and 16 percent of school age children. It’s more common in boys than girls.\nMany children start to show symptoms of ODD between the ages of 6 and 8 years. ODD also occurs in adults. Adults with ODD who were not diagnosed as children often go undiagnosed.')
-        buttons = [{"type": "postback","title": "ODD Symptoms", "payload": "send_symptoms_odd" }]
-        bot.send_button_message(sender_id, "Do you want to know what is the symptoms of ODD?", buttons)
-    if payload=='send_symptoms_odd':                                                                                                                                                                                                                                   
-        bot.send_text_message(sender_id,"ODD most commonly affects children and adolescents. Symptoms of ODD include:\nfrequent temper tantrums or episodes of anger\nrefusal to comply with adult requests\nexcessive arguing with adults and authority figures\nalways questioning or actively disregarding rules\nbehavior intended to upset, annoy, or anger others, especially authority figures\nblaming others for their own mistakes or misbehaviors\nbeing easily annoyed\nvindictiveness")
-        buttons = [{"type": "postback","title": "Cause of ODD","payload": "send_cause_odd"}]
-        bot.send_button_message(sender_id, "What causes ODD?", buttons)
-    if payload=='send_cause_odd':   
-        bot.send_text_message(sender_id,"There is no proven cause of ODD, but there are theories that can help identify potential causes. It’s thought a combination of environmental, biological, and psychological factors cause ODD. For example, it’s more common in families with a history of attention deficit hyperactivity disorder (ADHD).\nOne theory suggests ODD can begin to develop when children are toddlers, because children and adolescents with ODD show behaviors fairly typical of toddlers. This theory also suggests that the child or adolescent is struggling to become independent from parental or authority figures they were emotionally attached to.\nIt’s also possible that ODD develops as a result of learned behaviors, reflecting negative reinforcement methods some authority figures and parents use. This is especially true if the child uses bad behavior to get attention. In other cases, the child could adopt negative behaviors from a parent.\nOther possible causes include:\ncertain personality traits, like being strong-willed\nlack of positive attachment to a parent\nsignificant stress or unpredictability in the home or daily life")
-
-    #ODD END  
-    if payload=='mental_symptom_checker':
-        bot.send_text_message(sender_id,"How old is the patient?\n Just type 'age:17' for example")
-    '''    
-    if payload=='physical_symptom_checker':
-        quick_replies = {
-                            "content_type":"text",
-                            "title":"Myself",
-                            "payload":"myself"
-                          },{
-                            "content_type":"text",
-                            "title":"My Child",
-                            "payload":"mychild"
-                          },{
-                            "content_type":"text",
-                            "title":"Someone else",
-                            "payload":"someone"
-                          }
-        bot.send_quick_replies_message(sender_id, 'Who do you want to check symptoms, {}?'.format(first_name(sender_id)), quick_replies) 
-    '''    
-    #2.2.2.1}
-    
-        
     #Get started button tapped{
     if payload=='start':
         greet = random.choice(GREETING_RESPONSES)
