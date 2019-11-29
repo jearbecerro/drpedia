@@ -301,7 +301,7 @@ def countOccurrence(tup, lst):
     counts = Counter(tup) 
     return sum(counts[i] for i in lst) 
 
-def send_remedies(sender_id,symptoms):
+def send_remedies(sender_id,symptoms,illness):
     patient_symptoms = list(symptoms.split(",")) 
     element = []
     for symptom in patient_symptoms:
@@ -311,11 +311,11 @@ def send_remedies(sender_id,symptoms):
         symptom = symptom.replace(",", "")
         tr_symptom= [i for i in illness if i not in patient_symptoms]
         res = [ tr_symptom[0],tr_symptom[-1] ] 
-        
+        res[0]
         if len(symptom) > 1:
-            element.append([{"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}] }]) 
+            element.append([{"title":res[0].capitalize(),"image_url":image_url +res[0].lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":res[0]+'_remedies'}] }]) 
         else:
-            element.append([{"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}]}])             
+            element.append([{"title":res[0].capitalize(),"image_url":image_url +res[0].lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":res[0]+'_remedies'}]}])             
         bot.send_generic_message(sender_id, element)
     
 def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total_symptoms,count_yes,ill_name):
