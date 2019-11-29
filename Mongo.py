@@ -51,7 +51,7 @@ def create_user(users, sender_id, user_fb):
 
 
 # Manual input
-def create_patient(patient, sender_id, name, age, weight, relation, count, total):
+def create_patient(patient, sender_id, name, age, weight, relation, count, total,symptoms):
     spatient = patient.find_one({'user_id': sender_id})
     if spatient is None:                      
         timestamp = datetime.strftime(datetime.now(),"%Y-%m-%d %H:%M:%S")
@@ -62,11 +62,12 @@ def create_patient(patient, sender_id, name, age, weight, relation, count, total
                         'weight': weight,
                         'relation': relation,
                         'count_yes': count,
-                        'total_symptoms': total
+                        'total_symptoms': total,
+                        'symptoms': symptoms
                         }
         patient.insert(patient_insert)
     else:
-        patient.update({"user_id": sender_id},{"$set":{'name': name, 'age':age, 'weight':weight, 'relation':relation, 'count_yes':count, 'total_symptoms':total}})                      
+        patient.update({"user_id": sender_id},{"$set":{'name': name, 'age':age, 'weight':weight, 'relation':relation, 'count_yes':count, 'total_symptoms':total, 'symptoms': symptoms}})                      
     
 def set_patient(patient, sender_id, column, value):
     patient.update({"user_id": sender_id},{"$set":{column: value}})
