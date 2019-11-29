@@ -495,7 +495,7 @@ def received_qr(event):
                          
         bot.send_text_message(sender_id,"What else?")   
     if text =='no_symptoms': 
-        send_remedies(sender_id,symptoms)
+        send_remedies(sender_id,symptoms,patient_symptoms)
         
     if text == 'dengue_remedies':
         oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dengue_remedies'}]
