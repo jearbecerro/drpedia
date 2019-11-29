@@ -1,0 +1,249 @@
+{"intents": [
+        {"tag": "fever",
+         "patterns": ["fever", "body is in high temperature"],
+         "responses": ["fever"],
+         "context_set": ""
+        },
+        {"tag": "cough",
+         "patterns": ["cough"],
+         "responses": ["cough"],
+         "context_set": ""
+        },
+        {"tag": "muscle aches",
+         "patterns": ["muscle aches", "body pain"],
+         "responses": ["muscle aches"],
+         "context_set": ""
+        },
+        {"tag": "headache",
+         "patterns": ["headache", "pain in the head"],
+         "responses": ["headache"],
+         "context_set": ""
+        },
+        {"tag": "fatigue",
+         "patterns": ["fatigue", "tiredness", "tired"],
+         "responses": ["fatigue"],
+         "context_set": ""
+        },
+        {"tag": "loss appetite",
+         "patterns": ["loss appetite", "appetite loss", "poor appetite"],
+         "responses": ["loss appetite"],
+         "context_set": ""
+        },
+        {"tag": "runny nose",
+         "patterns": ["runny nose", "stuffy nose"],
+         "responses": ["runny nose"],
+         "context_set": ""
+        },
+        {"tag": "burning urination",
+         "patterns": ["burning urination", "burning sensation in urination"],
+         "responses": ["burning urination"],
+         "context_set": ""
+        },
+        {"tag": "increased frequency of urination without passing much urine",
+         "patterns": ["increased frequency of urination without passing much urine", "too much urination without passing much urine"],
+         "responses": ["increased frequency of urination without passing much urine"],
+         "context_set": ""
+        },
+        {"tag": "increased urgency of urination",
+         "patterns": ["increased urgency of urination", "urgency in urination"],
+         "responses": ["increased urgency of urination"],
+         "context_set": ""
+        },
+        {"tag": "bloody urine",
+         "patterns": ["bloody urine", "blood in urine"],
+         "responses": ["bloody urine"],
+         "context_set": ""
+        },
+        {"tag": "cloudy urine",
+         "patterns": ["cloudy urine"],
+         "responses": ["cloudy urine"],
+         "context_set": ""
+        },
+        {"tag": "urine has a strong odor",
+         "patterns": ["urine has a strong odor", "strong odor in urine"],
+         "responses": ["urine has a strong odor"],
+         "context_set": ""
+        },
+        {"tag": "pelvic pain (in women)",
+         "patterns": ["pelvic pain", "painful in pelvic"],
+         "responses": ["pelvic pain"],
+         "context_set": ""
+        },
+        {"tag": "rectal pain (in men)",
+         "patterns": ["rectal pain", "painful rectal"],
+         "responses": ["rectal pain"],
+         "context_set": ""
+        },
+        {"tag": "swollen lymph nodes",
+         "patterns": ["swollen lymph nodes", "lymph nodes is swollen"],
+         "responses": ["swollen lymph nodes"],
+         "context_set": ""
+        },
+        {"tag": "joint pain",
+         "patterns": ["joint pain", "painful joint", "pain in the joint"],
+         "responses": ["joint pain"],
+         "context_set": ""
+        },
+        {"tag": "rashes",
+         "patterns": ["rashes"],
+         "responses": ["rashes"],
+         "context_set": ""
+        },
+        {"tag": "nausea",
+         "patterns": ["nausea"],
+         "responses": ["nausea"],
+         "context_set": ""
+        },
+        {"tag": "vomiting",
+         "patterns": ["vomiting"],
+         "responses": ["vomiting"],
+         "context_set": ""
+        },
+        {"tag": "bleeding nose/gums",
+         "patterns": ["bleeding nose", "bleeding gums"],
+         "responses": ["bleeding nose/gums"],
+         "context_set": ""
+        },
+        {"tag": "bruising on the skin",
+         "patterns": ["bruising on the skin", "skin has bruises"],
+         "responses": ["bruising on the skin"],
+         "context_set": ""
+        },
+        {"tag": "diarrhea",
+         "patterns": ["diarrhea", "LBM"],
+         "responses": ["diarrhea"],
+         "context_set": ""
+        },
+        {"tag": "clammy skin",
+         "patterns": ["clammy skin"],
+         "responses": ["clammy skin"],
+         "context_set": ""
+        },
+        {"tag": "abdominal pain",
+         "patterns": ["abdominal pain", "pain in the abdomen"],
+         "responses": ["abdominal pain"],
+         "context_set": ""
+        },
+        {"tag": "abdominal cramps",
+         "patterns": ["abdominal cramps", "cramps in abdomen"],
+         "responses": ["abdominal cramps"],
+         "context_set": ""
+        },
+        {"tag": "sore throat",
+         "patterns": ["sore throat"],
+         "responses": ["sore throat"],
+         "context_set": ""
+        },
+        {"tag": "pain in swallowing",
+         "patterns": ["pain in swallowing", "painful to swallow"],
+         "responses": ["pain in swallowing"],
+         "context_set": ""
+        },
+        {"tag": "scratchy voice",
+         "patterns": ["scratchy voice"],
+         "responses": ["scratchy voice"],
+         "context_set": ""
+        },
+        {"tag": "bad breath",
+         "patterns": ["bad breath"],
+         "responses": ["bad breath"],
+         "context_set": ""
+        },
+        {"tag": "chills",
+         "patterns": ["chills"],
+         "responses": ["chills"],
+         "context_set": ""
+        },
+        {"tag": "earache",
+         "patterns": ["earache", "ear pain"],
+         "responses": ["earache"],
+         "context_set": ""
+        },
+        {"tag": "stomachache",
+         "patterns": ["stomachache"],
+         "responses": ["stomachache"],
+         "context_set": ""
+        },
+        {"tag": "red, swollen tonsils",
+         "patterns": ["red, swollen tonsils"],
+         "responses": ["red, swollen tonsils"],
+         "context_set": ""
+        },
+        {"tag": "white or yellow spots in tonsils",
+         "patterns": ["white or yellow spots in tonsils"],
+         "responses": ["white or yellow spots in tonsils"],
+         "context_set": ""
+        },
+        {"tag": "nasal congestion",
+         "patterns": ["nasal congestion", "congested nasal"],
+         "responses": ["nasal congestion"],
+         "context_set": ""
+        },
+        {"tag": "sneezing",
+         "patterns": ["sneezing", "sneeze"],
+         "responses": ["sneezing"],
+         "context_set": ""
+        },
+        {"tag": "weakness",
+         "patterns": ["weakness", "weak"],
+         "responses": ["weakness"],
+         "context_set": ""
+        },
+        {"tag": " wheezing",
+         "patterns": ["wheezing"],
+         "responses": ["wheezing"],
+         "context_set": ""
+        },
+        {"tag": "feeling cold easily",
+         "patterns": ["feeling cold easily", "feeling cold"],
+         "responses": ["feeling cold easily"],
+         "context_set": ""
+        },
+        {"tag": "back pain",
+         "patterns": ["back pain", "pain in the back"],
+         "responses": ["back pain"],
+         "context_set": ""
+        },
+        {"tag": "cough with thick yellow, green or blood-tinged mucus",
+         "patterns": ["cough with thick yellow, green or blood-tinged mucus"],
+         "responses": ["cough with thick yellow, green or blood-tinged mucus"],
+         "context_set": ""
+        },
+        {"tag": "stabbing chest pain, worsens when coughing or breathing",
+         "patterns": ["stabbing chest pain, worsens when coughing or breathing", "chest pain"],
+         "responses": ["stabbing chest pain, worsens when coughing or breathing"],
+         "context_set": ""
+        },
+        {"tag": "sudden onset of chills",
+         "patterns": ["sudden onset of chills", "sudden chills"],
+         "responses": ["sudden onset of chills"],
+         "context_set": ""
+        },
+        {"tag": "frequent urge to evacuate your bowels",
+         "patterns": ["frequent urge to evacuate your bowels"],
+         "responses": ["frequent urge to evacuate your bowels"],
+         "context_set": ""
+        },
+        {"tag": "loose stools",
+         "patterns": ["loose stools"],
+         "responses": ["loose stools"],
+         "context_set": ""
+        },
+        {"tag": "bloating",
+         "patterns": ["bloating"],
+         "responses": ["bloating"],
+         "context_set": ""
+        },
+        {"tag": "cramping",
+         "patterns": ["cramping"],
+         "responses": ["cramping"],
+         "context_set": ""
+     	},
+     	{"tag": "dehydration",
+         "patterns": ["dehydration", "dehydrated", "dehydrate"],
+         "responses": ["dehydration"],
+         "context_set": ""	
+        } ]
+
+
+}
