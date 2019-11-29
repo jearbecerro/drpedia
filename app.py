@@ -304,12 +304,13 @@ def countOccurrence(tup, lst):
 def send_remedies(sender_id,symptoms,illness):
     patient_symptoms = list(symptoms.split(",")) 
     element = []
+    tr_symptom = [i for i in illness if i not in patient_symptoms]
     for symptom in patient_symptoms:
         symptom = symptom.replace(" ", "")
         symptom = symptom.replace("/", "")
         symptom = symptom.replace("-", "")
         symptom = symptom.replace(",", "")
-        tr_symptom= [i for i in illness if i not in patient_symptoms]
+        
         res = [ tr_symptom[0],tr_symptom[-1] ] 
         res[0]
         if len(symptom) > 1:
