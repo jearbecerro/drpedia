@@ -295,6 +295,7 @@ def get_average(count_yes, total_symptoms):
         percentage =  div * 100
         print(percentage,'%')
         return int(round(percentage))
+    return 0
         
 def countOccurrence(tup, lst): 
     counts = Counter(tup) 
