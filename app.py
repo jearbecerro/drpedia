@@ -329,7 +329,7 @@ def get_the_rest_symptoms(patient,sender_id, patient_symptoms,illness):
             twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
             bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
     else:
-        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +=1)
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
         the_rest_symptoms = [i for i in illness if i not in patient_symptoms]
         for tr_symptom in the_rest_symptoms:
             res = [ tr_symptom[0],tr_symptom[-1] ] 
