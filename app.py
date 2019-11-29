@@ -495,6 +495,7 @@ def received_qr(event):
                          
         bot.send_text_message(sender_id,"What else?")   
     if text =='no_symptoms': 
+        patient_symptoms = list(symptoms.split(","))
         send_remedies(sender_id,symptoms,patient_symptoms)
         
     if text == 'dengue_remedies':
