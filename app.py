@@ -309,31 +309,28 @@ def send_remedies(sender_id,symptoms):
         symptom = symptom.replace("/", "")
         symptom = symptom.replace("-", "")
         symptom = symptom.replace(",", "")
-        the_rest_symptoms = [i for i in illness if i not in patient_symptoms]
-        for tr_symptom in the_rest_symptoms:
-            res = [ tr_symptom[0],tr_symptom[-1] ] 
+        tr_symptom= [i for i in illness if i not in patient_symptoms]
+        res = [ tr_symptom[0],tr_symptom[-1] ] 
+        
         if len(symptom) > 1:
-            element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}] },) 
-            
+            element.append([{"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}] }]) 
         else:
-            element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}]})             
+            element.append([{"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}]}])             
         bot.send_generic_message(sender_id, element)
     
 def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total_symptoms,count_yes,ill_name):
     while True:
+        tr_symptom = [i for i in illness if i not in patient_symptoms]
         if count_yes == 0:
             total_has_symptoms = len(patient_symptoms)
             total_illness_symptoms = len(illness)
             Mongo.set_patient(patient,sender_id,'count_yes',total_has_symptoms)
             Mongo.set_patient(patient, sender_id, 'total_symptoms', total_has_symptoms)
             #Mongo.set_patient(patient,sender_id,'total_symptoms',total_symptoms)
-            the_rest_symptoms = [i for i in illness if i not in patient_symptoms]
-            
-            for tr_symptom in the_rest_symptoms:
-                res = [ tr_symptom[0],tr_symptom[-1] ] 
-                Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
-                twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
-                bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
+            res = [ tr_symptom[0],tr_symptom[-1] ] 
+            Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
+            twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
+            bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
         else:
             the_rest_symptoms = [i for i in illness if i not in patient_symptoms]
             Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
