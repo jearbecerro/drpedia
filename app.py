@@ -202,7 +202,7 @@ def received_text(event):
         
     if ask == "check symptoms":
         oneqrbtn = [{"content_type":"text","title":"Check Symptoms 🔍","payload":'check_symptoms'}]
-        bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(first_name(sender_id)), oneqrbtn)
+        bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(fname), oneqrbtn)
     
     if ask == "who check":
         quick_replies = {"content_type":"text","title":"Myself","payload":"myself"},{"content_type":"text","title":"My Child","payload":"mychild"},{"content_type":"text","title":"Someone else","payload":"someone"}
@@ -250,7 +250,7 @@ def received_text(event):
             else:
                 Mongo.set_patient(patient, sender_id, 'weight', text)
                 Mongo.set_ask(users,sender_id,"Is it correct?")
-                bot.send_text_message(sender_id,'Oh right {}'.format(first_name(sender_id))) 
+                bot.send_text_message(sender_id,'Oh right {}'.format(fname)) 
                 quick_replies = {
                                 "content_type":"text",
                                 "title":"👌Yes",
@@ -1204,18 +1204,18 @@ def received_qr(event):
     if text=='pmyou':
         Mongo.set_ask(users,sender_id,'accept terms?')
         Mongo.set_answer(users,sender_id,'glad to meet you')
-        bot.send_text_message(sender_id,"I'm pleased to meet you too {}. 😉".format(first_name(sender_id)))  
+        bot.send_text_message(sender_id,"I'm pleased to meet you too {}. 😉".format(fname))  
         greet_disclaimer(sender_id)
    
     if text =="yes_agree":
         Mongo.set_terms(users, sender_id,'Yes')
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff.")
         oneqrbtn = [{"content_type":"text","title":"Check Symptoms 🔍","payload":'check_symptoms'}]
-        bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(first_name(sender_id)), oneqrbtn)
+        bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(fname), oneqrbtn)
     if text=='see_details':
         Mongo.set_answer(users,sender_id, "see_details")
         buttons = [{"type":"web_url","url":"https://www.termsfeed.com/terms-conditions/ec54290a74978eb95a1851754137c944","title":"Terms and Condition","webview_height_ratio": "full"},{"type":"web_url","url":"https://www.termsfeed.com/privacy-policy/97973f4396e1a79a806facb4e007ed3e","title":"Privacy Policy","webview_height_ratio": "full"}]
-        bot.send_button_message(sender_id, "Sure {}, here it is..".format(first_name(sender_id)), buttons) 
+        bot.send_button_message(sender_id, "Sure {}, here it is..".format(fname), buttons) 
         oneqrbtn = [{"content_type":"text","title":"🤝Agree and proceed","payload":'ready_accept'}]
         bot.send_quick_replies_message(sender_id, 'Ready to go?', oneqrbtn)
         
@@ -1224,13 +1224,13 @@ def received_qr(event):
         Mongo.set_ask(users, sender_id, 'check symptoms')
         bot.send_text_message(sender_id,"Exellent!, Now that we got that covered, we can proceed onward to the significant stuff.")
         oneqrbtn = [{"content_type":"text","title":"Check Symptoms 🔍","payload":'check_symptoms'}]
-        bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(first_name(sender_id)), oneqrbtn)
+        bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(fname), oneqrbtn)
     
     if text == 'check_symptoms':
         Mongo.set_ask(users, sender_id, 'who check')
         bot.send_text_message(sender_id,"If you find that your concern needs immidiate action by a real doctor.\nI recommend you go to the nearest emergency clinic/hospital!")
         quick_replies = {"content_type":"text","title":"Myself","payload":"myself"},{"content_type":"text","title":"My Child","payload":"mychild"},{"content_type":"text","title":"Someone else","payload":"someone"}
-        bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(first_name(sender_id)), quick_replies)
+        bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(fname), quick_replies)
 
     if text =='myself':
         Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself',0,0,'')
