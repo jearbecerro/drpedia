@@ -425,7 +425,7 @@ def received_qr(event):
                 print(gastro)
             if name.lower() == 'tonsil':
                 tonsil = illness["symptoms"]
-                print(tonsilo)
+                print(tonsil)
             if name.lower() == 'common cold':
                 cc = illness["symptoms"]
                 print(cc)
@@ -936,13 +936,7 @@ def received_qr(event):
     if text == 'send_fever_remedies':
         oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
         bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-
-
-
-
-
-
-    
+        
     if text == 'typhoidfever_remedies':
         oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_typhoidfever_remedies'}]
         bot.send_quick_replies_message(sender_id, random.choice(typhoidfever_remedies), oneqrbtn)
@@ -1005,9 +999,6 @@ def received_qr(event):
     if text == 'send_diarrhea_remedies':
         oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_diarrhea_remedies'}]
         bot.send_quick_replies_message(sender_id, random.choice(diarrhea_remedies), oneqrbtn)
-
-
-
 
     if text == 'bronchitis_remedies':
         oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bronchitis_remedies'}]
@@ -1080,8 +1071,6 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
 
 
-
-
     if text == 'pneumonia_remedies':
         oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_pneumonia_remedies'}]
         bot.send_quick_replies_message(sender_id, random.choice(pneumonia_remedies), oneqrbtn)
@@ -1137,9 +1126,6 @@ def received_qr(event):
     if text == 'send_muscleache_remedies':
         oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
         bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)   
-    
-
-
 
     if text == 'dia_remedies':
         oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dia_remedies'}]
@@ -1196,9 +1182,7 @@ def received_qr(event):
     if text == 'send_dehydration_remedies':
         oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dehydration_remedies'}]
         bot.send_quick_replies_message(sender_id, random.choice(dehydration_remedies), oneqrbtn)
-    
-    
-    
+
     if text=='pmyou':
         Mongo.set_ask(users,sender_id,'accept terms?')
         Mongo.set_answer(users,sender_id,'glad to meet you')
