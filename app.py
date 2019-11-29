@@ -312,7 +312,7 @@ def send_remedies(sender_id,symptoms):
             element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}] },) 
         else:
             element.append({"title":symptom.capitalize(),"image_url":image_url +symptom.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":symptom+'_remedies'}]})             
-    bot.send_generic_message(sender_id, element)
+        bot.send_generic_message(sender_id, element)
     
 def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total_symptoms,count_yes,ill_name):
     while True:
