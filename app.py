@@ -276,12 +276,10 @@ def received_text(event):
     if ask == "What seems you trouble today?":
         a = "Well that doesn't sound healthy."
         inp_symptom = nlp.nlp(text)
-        
+        sentumas = list(symptoms.split(",")) 
+        if inp_symptom in (sentumas):
+           bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
         if inp_symptom != 'Invalid':
-            sentumas = list(symptoms.split(",")) 
-            if inp_symptom in (sentumas):
-                bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
-            else:
                 Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))
                 bot.send_text_message(sender_id,"{}, {}".format(inp_symptom,a.lower()))
                 quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
@@ -1267,7 +1265,7 @@ def received_qr(event):
     if text == 'yes_correct':
         Mongo.set_ask(users, sender_id, "What seems you trouble today?")
         bot.send_text_message(sender_id, "Great!")
-        bot.send_text_message(sender_id, "What seems {} trouble today?".format(phrase))
+        bot.send_text_message(sender_id, "What seems you trouble today?")
     if text == 'no_correct':
         if myself == True:
             Mongo.set_ask(users, sender_id, "How old are you?")
