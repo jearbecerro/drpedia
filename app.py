@@ -280,13 +280,13 @@ def received_text(event):
         if inp_symptom in (sentumas):
            bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
         if inp_symptom != 'Invalid':
-                Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))
+                Mongo.set_patient(patient, sender_id, 'symptoms',"{}{} ".format(symptoms,str(inp_symptom)))
                 bot.send_text_message(sender_id,"{}, {}".format(inp_symptom,a.lower()))
                 quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
                 bot.send_quick_replies_message(sender_id, 'Is there any symptoms {} experiencing?'.format(phrase2), quick_replies)  
         else:
             bot.send_text_message(sender_id,"Sorry, I did't quite follow that. Maybe use different words?")
-            bot.send_text_message(sender_id, "OK, {}, what seems you trouble today?\nYou can just type For example: 'fever' or 'abdominal pain' and so on.".format(fname))
+            bot.send_text_message(sender_id, "OK {}, what seems you trouble today?\nYou can just type For example: 'fever' or 'abdominal pain' and so on.".format(fname))
         
 def get_average(count_yes, total_symptoms):
     print(count_yes, total_symptoms)
@@ -302,7 +302,7 @@ def countOccurrence(tup, lst):
     return sum(counts[i] for i in lst) 
 
 def send_remedies(sender_id,symptoms,illness):
-    patient_symptoms = list(symptoms.split(",")) 
+    patient_symptoms = list(symptoms.split(" ")) 
     element = []
     for symptom in patient_symptoms:
         symptom = symptom.replace(" ", "")
@@ -321,49 +321,51 @@ def send_remedies(sender_id,symptoms,illness):
         bot.send_generic_message(sender_id, element)
     
 def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total_symptoms,count_yes,ill_name):
-    while True:
+    tr_symptom = [i for i in illness if i not in patient_symptoms]
+    if count_yes == 0:
+        total_has_symptoms = len(patient_symptoms)
+        total_illness_symptoms = len(illness)
+        Mongo.set_patient(patient,sender_id,'count_yes',total_has_symptoms)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_has_symptoms)
         tr_symptom = [i for i in illness if i not in patient_symptoms]
-        if count_yes == 0:
-            total_has_symptoms = len(patient_symptoms)
-            total_illness_symptoms = len(illness)
-            Mongo.set_patient(patient,sender_id,'count_yes',total_has_symptoms)
-            Mongo.set_patient(patient, sender_id, 'total_symptoms', total_has_symptoms)
-            #Mongo.set_patient(patient,sender_id,'total_symptoms',total_symptoms)
-            tr_symptom = [i for i in illness if i not in patient_symptoms]
-            if tr_symptom != None:
-                res = [ tr_symptom[0],tr_symptom[-1] ] 
-            else:
-                pass
+        if tr_symptom != None:
+            res = [ tr_symptom[0],tr_symptom[-1] ] 
+        else:
+            pass
+        Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
+        twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
+        bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
+    else:
+        Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
+        Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms+1)
+        tr_symptom = [i for i in illness if i not in patient_symptoms]
+        if tr_symptom != None:
+            res = [ tr_symptom[0],tr_symptom[-1] ] 
+        else:
+            pass
+        if total_illness_symptoms == total_symptoms and res[0] == None:
+            if get_average(count_yes, total_symptoms) >= 50:
+                Mongo.set_patient(patient, sender_id, 'count_yes', 0)
+                Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
+                bot.send_text_message(sender_id, "Base on my symptom checker the {} might have chance of having {}.".format(phrase2,ill_name))
+                bot.send_text_message(sender_id, "I suggest that you must get a doctors consultation urgently!")
+                send_remedies(sender_id,ill_name)
+        else:   
             Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
             twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
-            bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
-        else:
-            Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
-            Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms+1)
-            tr_symptom = [i for i in illness if i not in patient_symptoms]
-            if tr_symptom != None:
-                res = [ tr_symptom[0],tr_symptom[-1] ] 
+            bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)   
+        while True:
+            if text:
+                if text =='yes_'+res[0]:
+                    Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
+                    twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
+                    bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)  
+                if text =='no_'+res[0]:
+                    Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
+                    twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
+                    bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn) 
             else:
-                pass
-            if total_illness_symptoms == total_symptoms and res[0] == None:
-                if get_average(count_yes, total_symptoms) >= 50:
-                    Mongo.set_patient(patient, sender_id, 'count_yes', 0)
-                    Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-                    bot.send_text_message(sender_id, "Base on my symptom checker the {} might have chance of having {}.".format(phrase2,ill_name))
-                    bot.send_text_message(sender_id, "I suggest that you must get a doctors consultation urgently!")
-                    send_remedies(sender_id,ill_name)
-            else:   
-                Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
-                twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
-                bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
-        if text =='yes_'+res[0]:
-            Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
-            twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
-            bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)  
-        if text =='no_'+res[0]:
-            Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
-            twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
-            bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)  
+                break
         
 #if user tap a button from a quick reply
 def received_qr(event):
@@ -417,7 +419,7 @@ def received_qr(event):
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
     
     if text =='yes_symptoms':
-        patient_symptoms = list(symptoms.split(","))
+        patient_symptoms = list(symptoms.split(" "))
         for illness in data["illness"]:#get all data in the 'illness' 
             name = illness["name"]
             if name.lower() == 'flu':
@@ -503,7 +505,7 @@ def received_qr(event):
                          
         bot.send_text_message(sender_id,"What else?")   
     if text =='no_symptoms': 
-        patient_symptoms = list(symptoms.split(","))
+        patient_symptoms = list(symptoms.split(" "))
         send_remedies(sender_id,symptoms,patient_symptoms)
         
     if text == 'dengue_remedies':
