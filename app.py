@@ -304,20 +304,17 @@ def countOccurrence(tup, lst):
 def send_remedies(sender_id,symptoms,illness):
     patient_symptoms = list(symptoms.split(" ")) 
     element = []
-    for symptom in patient_symptoms:
-        symptom = symptom.replace(" ", "")
-        symptom = symptom.replace("/", "")
-        symptom = symptom.replace("-", "")
-        symptom = symptom.replace(",", "")
-        tr_symptom = [i for i in illness if i not in patient_symptoms]
-        if tr_symptom != None:
-            res = [ tr_symptom[0],tr_symptom[-1] ] 
-        else:
-            pass
-        if len(symptom) > 1:
-            element.append([{"title":res[0].capitalize(),"image_url":image_url +res[0].lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":res[0]+'_remedies'}] }]) 
-        else:
-            element.append([{"title":res[0].capitalize(),"image_url":image_url +res[0].lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":res[0]+'_remedies'}]}])             
+    tr_symptom = [i for i in illness if i not in patient_symptoms]
+    if tr_symptom != None:
+        res = [ tr_symptom[0],tr_symptom[-1] ] 
+    else:
+        pass
+    rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
+    if len(symptom) > 1:
+        element.append([{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}] }]) 
+        bot.send_generic_message(sender_id, element)
+    else:
+        element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]          
         bot.send_generic_message(sender_id, element)
     
 def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total_symptoms,count_yes,ill_name):
@@ -330,17 +327,19 @@ def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total
         tr_symptom = [i for i in illness if i not in patient_symptoms]
         if tr_symptom != None:
             res = [ tr_symptom[0],tr_symptom[-1] ] 
+            rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
         else:
             pass
-        Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
-        twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
+        Mongo.set_patient(patient, sender_id, 'symptoms',"{}{} ".format(patient_symptoms,str(res[0])))
+        twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
         bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
     else:
         Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms+1)
         tr_symptom = [i for i in illness if i not in patient_symptoms]
         if tr_symptom != None:
-            res = [ tr_symptom[0],tr_symptom[-1] ] 
+            res = [ tr_symptom[0],tr_symptom[-1] ]
+            rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
         else:
             pass
         if total_illness_symptoms == total_symptoms and res[0] == None:
@@ -351,19 +350,19 @@ def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total
                 bot.send_text_message(sender_id, "I suggest that you must get a doctors consultation urgently!")
                 send_remedies(sender_id,ill_name)
         else:   
-            Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
-            twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
-            bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)   
+            Mongo.set_patient(patient, sender_id, 'symptoms',"{}{} ".format(patient_symptoms,str(res[0])))
+            twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
+            bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn)   
         while True:
             if text:
-                if text =='yes_'+res[0]:
+                if text =='yes_'+rest:
                     Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
-                    twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
-                    bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)  
+                    twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
+                    bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn)  
                 if text =='no_'+res[0]:
                     Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
-                    twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+res[0]},{"content_type":"text","title":"No","payload":'no_+res[0]'}
-                    bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn) 
+                    twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
+                    bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn) 
             else:
                 break
         
@@ -419,7 +418,7 @@ def received_qr(event):
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
     
     if text =='yes_symptoms':
-        patient_symptoms = list(symptoms.split(" "))
+        patient_symptoms = symptoms.split(" "))
         for illness in data["illness"]:#get all data in the 'illness' 
             name = illness["name"]
             if name.lower() == 'flu':
@@ -454,51 +453,51 @@ def received_qr(event):
                 print(d)
                
         if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,flu,total_symptoms,count_yes,'Flu')
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,flu,total_symptoms,count_yes,'Flu')
         elif get_average(countOccurrence(patient_symptoms, flu),len(flu)) < 40:
             send_remedies(sender_id,symptoms,flu)
         if get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,dengue,total_symptoms,count_yes,'Dengue')
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,dengue,total_symptoms,count_yes,'Dengue')
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, dengue),len(dengue)) < 40:
             send_remedies(sender_id,symptoms,dengue)
         if get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,uti,total_symptoms,count_yes,'UTI')
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,uti,total_symptoms,count_yes,'UTI')
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, uti),len(uti)) < 40:
             send_remedies(sender_id,symptoms,uti)
         if get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,gastro,total_symptoms,count_yes,'Gastroenteritis')
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,gastro,total_symptoms,count_yes,'Gastroenteritis')
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, gastro),len(gastro)) < 40:
             send_remedies(sender_id,symptoms,gastro)
         if get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,tonsil,total_symptoms,count_yes,'Tonsillitis')
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,tonsil,total_symptoms,count_yes,'Tonsillitis')
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, tonsil),len(tonsil)) < 40:
             send_remedies(sender_id,symptoms,tonsil)
         if get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,cc,total_symptoms,count_yes,'Common Cold')
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,cc,total_symptoms,count_yes,'Common Cold')
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, cc),len(cc)) < 40:
             send_remedies(sender_id,symptoms,cc)
         if get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,tf,total_symptoms,count_yes,'Typhoid Fever')
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,tf,total_symptoms,count_yes,'Typhoid Fever')
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, tf),len(tf)) < 40:
             send_remedies(sender_id,symptoms,tf)
         if get_average(countOccurrence(patient_symptoms,b), len(b)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,b,total_symptoms,count_yes,'Bronchitis')
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,b,total_symptoms,count_yes,'Bronchitis')
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms,b),len(b)) < 40:
             send_remedies(sender_id,symptoms,b)
         if get_average(countOccurrence(patient_symptoms, p), len(p)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,p,total_symptoms,count_yes,'Pneumonia')
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,p,total_symptoms,count_yes,'Pneumonia')
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, p),len(p)) < 40:
             send_remedies(sender_id,symptoms,p)
         if get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
-            get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,d,total_symptoms,count_yes,'Diarrhea')         
+            get_the_rest_symptoms(patient,sender_id,text, symptoms,d,total_symptoms,count_yes,'Diarrhea')         
             #go sequence asking for if he/she to determined if he/she has flu
         elif get_average(countOccurrence(patient_symptoms, d),len(d)) < 40:
             send_remedies(sender_id,symptoms,d)
