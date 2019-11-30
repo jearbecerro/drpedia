@@ -418,7 +418,7 @@ def received_qr(event):
     quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
     
     if text =='yes_symptoms':
-        patient_symptoms = symptoms.split(" "))
+        patient_symptoms = list(symptoms.split(" "))
         for illness in data["illness"]:#get all data in the 'illness' 
             name = illness["name"]
             if name.lower() == 'flu':
