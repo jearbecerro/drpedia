@@ -1207,7 +1207,7 @@ def received_qr(event):
         bot.send_quick_replies_message(sender_id, 'How can I assist you today {}?\nI can check your/your childs symptoms🔍 and provide you pre-emptive medication afterwards.'.format(fname), oneqrbtn)
     if text=='see_details':
         Mongo.set_answer(users,sender_id, "see_details")
-        buttons = [,{"type":"web_url","url":"https://www.termsfeed.com/disclaimer/94dea8e335bd3dc535499b2e9240c0e6","title":"Disclaimer","webview_height_ratio": "full"},{"type":"web_url","url":"https://www.termsfeed.com/terms-conditions/75301170f414e755d98670a5a116f8f7","title":"Terms and Condition","webview_height_ratio": "full"},{"type":"web_url","url":"https://www.termsfeed.com/privacy-policy/3656d3131b2631aabcc0fc318a64c2f6","title":"Privacy Policy","webview_height_ratio": "full"}]
+        buttons = [{"type":"web_url","url":"https://www.termsfeed.com/disclaimer/94dea8e335bd3dc535499b2e9240c0e6","title":"Disclaimer","webview_height_ratio": "full"},{"type":"web_url","url":"https://www.termsfeed.com/terms-conditions/75301170f414e755d98670a5a116f8f7","title":"Terms and Condition","webview_height_ratio": "full"},{"type":"web_url","url":"https://www.termsfeed.com/privacy-policy/3656d3131b2631aabcc0fc318a64c2f6","title":"Privacy Policy","webview_height_ratio": "full"}]
         bot.send_button_message(sender_id, "Sure {}, here it is..".format(fname), buttons) 
         oneqrbtn = [{"content_type":"text","title":"🤝Agree and proceed","payload":'ready_accept'}]
         bot.send_quick_replies_message(sender_id, 'Ready to go?', oneqrbtn)
