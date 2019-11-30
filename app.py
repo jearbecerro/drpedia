@@ -306,7 +306,7 @@ def send_remedies(sender_id,symptoms,illness):
     element = []
     tr_symptom = [i for i in illness if i not in patient_symptoms]
     if tr_symptom != None:
-        res = [ tr_symptom[0],tr_symptom[-1] ] 
+        res = [ tr_symptom[0]] 
     else:
         pass
     rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
@@ -326,7 +326,7 @@ def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_has_symptoms)
         tr_symptom = [i for i in illness if i not in patient_symptoms]
         if tr_symptom != None:
-            res = [ tr_symptom[0],tr_symptom[-1] ] 
+            res = [ tr_symptom[0]] 
             rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
         else:
             pass
@@ -338,7 +338,7 @@ def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total
         Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms+1)
         tr_symptom = [i for i in illness if i not in patient_symptoms]
         if tr_symptom != None:
-            res = [ tr_symptom[0],tr_symptom[-1] ]
+            res = [tr_symptom[0]]
             rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
         else:
             pass
