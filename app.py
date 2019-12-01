@@ -515,246 +515,116 @@ def received_qr(event):
 		bot.send_generic_message(sender_id, element) 
 		#send_remedies(sender_id,symptoms)
 		
-	if text == 'dengue_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dengue_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(dengue_remedies), oneqrbtn)
 	if text == 'send_dengue_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dengue_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(dengue_remedies), oneqrbtn)   
 		
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
 	if text == 'send_fever_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)        
 	
-	if text == 'headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
 	if text == 'send_headache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)    
 
-	if text == 'swollenlymphnodes_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_swollenlymphnodes_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(swollenlymphnodes_remedies), oneqrbtn)
 	if text == 'send_swollenlymphnodes_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_swollenlymphnodes_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(swollenlymphnodes_remedies), oneqrbtn)        
 
-	if text == 'jointpain_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_jointpain_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(jointpain_remedies), oneqrbtn)
 	if text == 'send_jointpain_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_jointpain_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(jointpain_remedies), oneqrbtn)    
 
-	if text == 'muscleache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
 	if text == 'send_muscleache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)    
 
-	if text == 'rashes_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rashes_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(rashes_remedies), oneqrbtn)
 	if text == 'send_rashes_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rashes_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(rashes_remedies), oneqrbtn)
  
-	if text == 'nausea_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_nausea_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(nausea_remedies), oneqrbtn)
 	if text == 'send_nausea_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_nausea_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(nausea_remedies), oneqrbtn)        
 
-	if text == 'vomiting_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_vomiting_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(vomiting_remedies), oneqrbtn)
 	if text == 'send_vomiting_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_vomiting_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(vomiting_remedies), oneqrbtn)    
  
-	if text == 'bleedingnosegums_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bleeding nose/gums_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(bleedingnose/gums_remedies), oneqrbtn)
 	if text == 'send_bleedingnose/gums_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bleedingnose/gums_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(bleedingnose/gums_remedies), oneqrbtn)    
 
-	if text == 'bruisingontheskin_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bruisingontheskin_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(bruisingontheskin_remedies), oneqrbtn)
 	if text == 'send_bruisingontheskin_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bruisingontheskin_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(bruisingontheskin_remedies), oneqrbtn)    
 
-	if text == 'flu_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_flu_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(flu_remedies), oneqrbtn)
 	if text == 'send_flu_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_flu_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(flu_remedies), oneqrbtn)    
-	#fever
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	if text == 'send_fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
 	#cough
-	if text == 'cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
 	if text == 'send_cough_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
 	#muscleache
-	if text == 'muscleache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
 	if text == 'send_muscleache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)  
-	#headache
-	if text == 'headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
-	if text == 'send_headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)    
 	#fatigue
-	if text == 'fatigue_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fatigue_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fatigue_remedies), oneqrbtn)
 	if text == 'send_fatigue_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fatigue_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(fatigue_remedies), oneqrbtn)
 	#lossappetite
-	if text == 'lossappetite_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
 	if text == 'send_lossappetite_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
 	#runnynose
-	if text == 'runnynose_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
 	if text == 'send_runnynose_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
 
-
-	if text == 'uti_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_uti_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(uti_remedies), oneqrbtn)
 	if text == 'send_uti_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_uti_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(uti_remedies), oneqrbtn)  
-	#fever
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	if text == 'send_fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
 	#burningurination
-	if text == 'burningurination_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_burningurination_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(burningurination_remedies), oneqrbtn)
 	if text == 'send_burningurination_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_burningurination_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(burningurination_remedies), oneqrbtn)
 	#increasedfrequencyofurinationwithoutpassingmuchurine
-	if text == 'increasedfrequencyofurinationwithoutpassingmuchurine_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_increasedfrequencyofurinationwithoutpassingmuchurine_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(increasedfrequencyofurinationwithoutpassingmuchurine_remedies), oneqrbtn)
 	if text == 'send_increasedfrequencyofurinationwithoutpassingmuchurine_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_increasedfrequencyofurinationwithoutpassingmuchurine_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(increasedfrequencyofurinationwithoutpassingmuchurine_remedies), oneqrbtn)  
 	#increasedurgencyofurination
-	if text == 'increasedurgencyofurination_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_increasedurgencyofurination_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(increasedurgencyofurination_remedies), oneqrbtn)
 	if text == 'send_increasedurgencyofurination_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_increasedurgencyofurination_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(increasedurgencyofurination_remedies), oneqrbtn)    
 	#bloodyurine
-	if text == 'bloodyurine_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bloodyurine_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(bloodyurine_remedies), oneqrbtn)
 	if text == 'send_bloodyurine_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bloodyurine_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(bloodyurine_remedies), oneqrbtn)
 	#cloudyurine
-	if text == 'cloudyurine_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cloudyurine_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cloudyurine_remedies), oneqrbtn)
 	if text == 'send_cloudyurine_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cloudyurine_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(cloudyurine_remedies), oneqrbtn)
 	#urinehasastrongodor
-	if text == 'urinehasastrongodor_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_urinehasastrongodor_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(urinehasastrongodor_remedies), oneqrbtn)
 	if text == 'send_urinehasastrongodor_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_urinehasastrongodor_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(urinehasastrongodor_remedies), oneqrbtn)
 	#pelvicpain (women)
-	if text == 'pelvicpain_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_pelvicpain_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(pelvicpain_remedies), oneqrbtn)
 	if text == 'send_pelvicpain_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_pelvicpain_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(pelvicpain_remedies), oneqrbtn)
 	#rectalpain (men)
-	if text == 'rectalpain_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rectalpain_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(rectalpain_remedies), oneqrbtn)
 	if text == 'send_rectalpain_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_rectalpain_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(rectalpain_remedies), oneqrbtn)
 
-
-
-	if text == 'gastro_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_gastro_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(gastro_remedies), oneqrbtn)
 	if text == 'send_gastro_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_gastro_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(gastro_remedies), oneqrbtn)
-	#diarrhea
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	if text == 'send_fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	#nausea
-	if text == 'cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
-	if text == 'send_cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
-	#vomiting
-	if text == 'muscleache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
 	if text == 'send_muscleache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)  
-	#headache
-	if text == 'headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
-	if text == 'send_headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)    
 	#jointpain
 	if text == 'fatigue_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fatigue_remedies'}]
@@ -777,12 +647,6 @@ def received_qr(event):
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
 	#clammyskin
-	if text == 'cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
-	if text == 'send_cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
 	#abdominalcramps
 	if text == 'muscleache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
@@ -791,12 +655,6 @@ def received_qr(event):
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)  
 	#abdominalpain
-	if text == 'headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
-	if text == 'send_headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)    
 	#lossappetite
 	if text == 'lossappetite_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
@@ -804,8 +662,6 @@ def received_qr(event):
 	if text == 'send_lossappetite_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(lossappetite_remedies), oneqrbtn)
-
-
 
 	if text == 'tonsill_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_tonsill_remedies'}]
@@ -821,12 +677,6 @@ def received_qr(event):
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
 	#paininswallowing
-	if text == 'cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
-	if text == 'send_cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
 	#scratchyvoice
 	if text == 'scratchyvoice_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_scratchyvoice_remedies'}]
@@ -841,13 +691,6 @@ def received_qr(event):
 	if text == 'send_badbreath_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_badbreath_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(badbreath_remedies), oneqrbtn)    
-	#fever
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	if text == 'send_fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
 	#chills
 	if text == 'chills_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_chills_remedies'}]
@@ -921,12 +764,6 @@ def received_qr(event):
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sneezing_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(sneezing_remedies), oneqrbtn)
 	#cough
-	if text == 'cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
-	if text == 'send_cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
 	#sorethroat
 	if text == 'sorethroat_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
@@ -934,13 +771,6 @@ def received_qr(event):
 	if text == 'send_sorethroat_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
-	#headache
-	if text == 'headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
-	if text == 'send_headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)   
 	#muscleache
 	if text == 'muscleache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
@@ -948,13 +778,6 @@ def received_qr(event):
 	if text == 'send_muscleache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)   
-	#fever
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	if text == 'send_fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
 		
 	if text == 'typhoidfever_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_typhoidfever_remedies'}]
@@ -962,13 +785,6 @@ def received_qr(event):
 	if text == 'send_typhoidfever_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_typhoidfever_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(typhoidfever_remedies), oneqrbtn)
-	#fever
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	if text == 'send_fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
 	#weakness
 	if text == 'weakness_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_weakness_remedies'}]
@@ -983,13 +799,6 @@ def received_qr(event):
 	if text == 'send_stomachache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_stomachache_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(stomachache_remedies), oneqrbtn)
-	#headache
-	if text == 'headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
-	if text == 'send_headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
 	#lossappetite
 	if text == 'lossappetite_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_lossappetite_remedies'}]
@@ -1081,14 +890,6 @@ def received_qr(event):
 	if text == 'send_muscleache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(muscleache_remedies), oneqrbtn)
-	#fever
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	if text == 'send_fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-
 
 	if text == 'pneumonia_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_pneumonia_remedies'}]
@@ -1124,20 +925,6 @@ def received_qr(event):
 	if text == 'send_uddenonsetofchills_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_uddenonsetofchills_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(uddenonsetofchills_remedies), oneqrbtn)
-	#fever
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	if text == 'send_fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	#headache
-	if text == 'headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)
-	if text == 'send_headache_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_headache_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(headache_remedies), oneqrbtn)   
 	#muscleache
 	if text == 'muscleache_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_muscleache_remedies'}]
@@ -1166,13 +953,6 @@ def received_qr(event):
 	if text == 'send_loosestools_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_loosestools_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(loosestools_remedies), oneqrbtn)
-	#fever
-	if text == 'fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
-	if text == 'send_fever_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn)
 	#bloating
 	if text == 'bloating_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bloating_remedies'}]
