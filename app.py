@@ -307,17 +307,19 @@ def countOccurrence(tup, lst):
 def send_remedies(sender_id,symptoms):
 	patient_data = Mongo.get_data_patient(patient, sender_id)
 	patient_symptoms = list(symptoms.split(","))
-	elements = patient_data["elements"]
+	
 	len_ps = len(patient_symptoms)
 	if len_ps > 2:
 		print(len_ps)
 		for x in range(0,len_ps-1):
 			rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
+			elements = patient_data["elements"]
 			Mongo.set_patient(patient, sender_id, 'elements', elements.append({"title":patient_symptoms[x].capitalize(),"image_url":image_url +rest+'.png',"subtitle":"If symptom persist or worsen get a doctor's consultation.","buttons":[{"type":"postback","title":"Remedies","payload":rest+"_remedies"}]},))
-			bot.send_generic_message(sender_id, elements)
+			
 			if x == len_ps-1:
 				break
-		
+		else:
+			bot.send_generic_message(sender_id, elements)
 	elif len(patient_symptoms) == 2:
 		ps = patient_symptoms[0]
 
