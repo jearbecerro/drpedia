@@ -304,14 +304,14 @@ def countOccurrence(tup, lst):
 
 def send_remedies(sender_id,symptoms):
 	patient_symptoms = list(symptoms.split(","))
-
-	if len(patient_symptoms) > 2:
+	len_ps = len(patient_symptoms)
+	if len_ps > 2:
 		print('more than one symptom')
-		for ps in patient_symptoms[0:-1]:
-			rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
+		for x in range(0,len_ps):
+			rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
 			elements = [
 				 {
-				  "title":ps.capitalize(),
+				  "title":patient_symptoms[x].capitalize(),
 				  "image_url":image_url +rest+'.png',
 				  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
 				  "default_action": {
