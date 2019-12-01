@@ -383,7 +383,6 @@ def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptom
 				Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
 				twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
 				bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn)   
-		else:
 			if text:
 				if text =='yes_'+rest:
 					Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
