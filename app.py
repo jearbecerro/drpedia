@@ -110,7 +110,6 @@ total_symptoms = 0
 has_fever = False
 last_inserted_symptoms = ''
 
-elements = []
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -400,7 +399,7 @@ def received_qr(event):
 	recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
 	text = event["message"]["quick_reply"]["payload"]
 	global created_at, last_seen, fname, lname, ask, answer, terms
-	global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average, symptoms,elements
+	global name, age, weight, relation, phrase, phrase2, myself, has_fever, count_yes, total_symptoms, average, symptoms
 	
 	user_data = Mongo.get_data_users(users, sender_id)
 	patient_data = Mongo.get_data_patient(patient, sender_id)
@@ -422,7 +421,6 @@ def received_qr(event):
 		count_yes = int(patient_data['count_yes'])
 		total_symptoms = int(patient_data['total_symptoms'])
 		symptoms = patient_data['symptoms']
-		elements = patient_data['elements']
 	else: 
 		pass
 	print(symptoms)
