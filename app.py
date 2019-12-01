@@ -314,8 +314,27 @@ def send_remedies(sender_id,symptoms):
 		print('just one symptom')
 		ps = patient_symptoms[0]
 		rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
-		element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
-		bot.send_generic_message(sender_id, element)        
+		elements = [
+                         {
+                          "title":ps.capitalize(),
+                          "image_url":image_url +rest+'.png',
+                          "subtitle":"If symptom persist or worsten get a doctor's consultation.",
+                          "default_action": {
+                            "type": "web_url",
+                            "url": "",
+                            "webview_height_ratio": "COMPACT"
+                          },
+                             "buttons":[
+                                {
+                                "type":"postback",
+                                "title":"Remedies",
+                                "payload":rest+"_remedies"
+                                }
+                             ]
+                        }
+                      ]
+		bot.send_generic_message(sender_id, elements) 
+       
 		
 	
 def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptoms,count_yes,ill_name):
@@ -1110,10 +1129,6 @@ def received_postback(event):
 
 	#Persistent Menu Buttons        
 	if payload=='start_over':
-		element = [{
-			"title":"Fever","image_url":image_url +'fever.png',"subtitle":"Fever is",
-			"buttons":{"type":"postback","title":"Send Remedies","payload":'fever_remedies'}
-			}]    
 		elements = [
                          {
                           "title":"Fever",
@@ -1125,11 +1140,6 @@ def received_postback(event):
                             "webview_height_ratio": "COMPACT"
                           },
                              "buttons":[
-                                 {
-                                "type": "postback",
-                                "title": "More Details",
-                                "payload": "Inquire"
-                                },
                                 {
                                 "type":"postback",
                                 "title":"Remedies",
