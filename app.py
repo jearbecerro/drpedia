@@ -417,7 +417,7 @@ def received_qr(event):
 		symptoms = patient_data['symptoms']
 	else: 
 		pass
-	
+	print(symptoms)
 	if relation == 'myself':
 		phrase = 'Are you '
 		phrase2 = 'you'
