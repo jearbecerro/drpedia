@@ -281,9 +281,9 @@ def received_text(event):
            bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
         if inp_symptom != 'Invalid':
                 Mongo.set_patient(patient, sender_id, 'symptoms',"{}{} ".format(symptoms,str(inp_symptom)))
-                bot.send_text_message(sender_id,"{}, {}".format(inp_symptom,a.lower()))
+                bot.send_text_message(sender_id,"Hmm, clearly you are not feeling well.")
                 quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
-                bot.send_quick_replies_message(sender_id, 'Is there any symptoms {} experiencing?'.format(phrase2), quick_replies)  
+                bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
         else:
             bot.send_text_message(sender_id,"Sorry, I did't quite follow that. Maybe use different words?")
             bot.send_text_message(sender_id, "OK {}, what seems you trouble today?\nYou can just type For example: 'fever' or 'abdominal pain' and so on.".format(fname))
@@ -301,20 +301,19 @@ def countOccurrence(tup, lst):
     counts = Counter(tup) 
     return sum(counts[i] for i in lst) 
 
-def send_remedies(sender_id,symptoms,illness):
-    patient_symptoms = list(symptoms.split(",")) 
+def send_remedies(sender_id,symptoms):
     if symptoms != '':
-        for ps in patient_symptoms[0:-1]:
-    	    print(ps)
-            rest = ps.replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
-            if len(patient_symptoms) > 1:
-                element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
-                bot.send_generic_message(sender_id, element)
-            else:
-                element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
-                bot.send_generic_message(sender_id, element)
-    else:
-        pass
+		patient_symptoms = list(symptoms.split(",")) 
+		for ps in patient_symptoms[0:-1]:
+			rest = ps.replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
+			if len(patient_symptoms) > 1:
+				element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
+				bot.send_generic_message(sender_id, element)
+			else:
+				element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
+				bot.send_generic_message(sender_id, element)
+	else:
+		pass
     
 def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptoms,count_yes,ill_name):
     patient_symptoms = list(symptoms.split(","))
@@ -348,7 +347,7 @@ def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptom
                 Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
                 bot.send_text_message(sender_id, "Base on my symptom checker the {} might have chance of having {}.".format(phrase2,ill_name))
                 bot.send_text_message(sender_id, "I suggest that you must get a doctors consultation urgently!")
-                send_remedies(sender_id,ill_name)
+                send_remedies(sender_id,patient_symptoms)
         else:   
             Mongo.set_patient(patient, sender_id, 'symptoms',"{}{} ".format(patient_symptoms,str(res[0])))
             twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
@@ -359,7 +358,7 @@ def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptom
                     Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
                     twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
                     bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn)  
-                if text =='no_'+res[0]:
+                if text =='no_'+rest:
                     Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
                     twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
                     bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn) 
