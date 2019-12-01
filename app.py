@@ -350,47 +350,49 @@ def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptom
 	tr_symptom = [i for i in illness if i not in patient_symptoms]
 	total_has_symptoms = len(patient_symptoms)
 	total_illness_symptoms = len(illness)
-	if count_yes == 0:
-		Mongo.set_patient(patient,sender_id,'count_yes',total_has_symptoms)
-		Mongo.set_patient(patient, sender_id, 'total_symptoms', total_has_symptoms)
-		tr_symptom = [i for i in illness if i not in patient_symptoms]
-		if tr_symptom != None:
-			res = [ tr_symptom[0]] 
-			rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
-		else:
-			pass
-		Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
-		twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
-		bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
-	else:
-		Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
-		Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms+1)
-		tr_symptom = [i for i in illness if i not in patient_symptoms]
-		if tr_symptom != None:
-			res = [tr_symptom[0]]
-			rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
-		else:
-			pass
-		if total_illness_symptoms == total_symptoms and res[0] == None:
-			if get_average(count_yes, total_symptoms) >= 50:
-				Mongo.set_patient(patient, sender_id, 'count_yes', 0)
-				Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
-				bot.send_text_message(sender_id, "Base on my symptom checker the {} possibly might have {}.".format(phrase2,ill_name))
-				bot.send_text_message(sender_id, "I suggest that you must get a doctors consultation immediately!")
-				send_remedies(sender_id,patient_symptoms)
-		else:   
-			Mongo.set_patient(patient, sender_id, 'symptoms',"{}{} ".format(patient_symptoms,str(res[0])))
+	while True:
+		if count_yes == 0:
+			Mongo.set_patient(patient,sender_id,'count_yes',total_has_symptoms)
+			Mongo.set_patient(patient, sender_id, 'total_symptoms', total_has_symptoms)
+			tr_symptom = [i for i in illness if i not in patient_symptoms]
+			if tr_symptom != None:
+				res = [ tr_symptom[0]] 
+				rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
+			else:
+				pass
+			Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
 			twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
-			bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn)   
-		if text:
-			if text =='yes_'+rest:
-				Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
+			bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,res[0]), twoqrbtn)          
+		else:
+			Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
+			Mongo.set_patient(patient, sender_id, 'total_symptoms', total_symptoms+1)
+			tr_symptom = [i for i in illness if i not in patient_symptoms]
+			if tr_symptom != None:
+				res = [tr_symptom[0]]
+				rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
+			else:
+				pass
+			if total_illness_symptoms == total_symptoms:
+				if get_average(count_yes, total_symptoms) >= 50:
+					Mongo.set_patient(patient, sender_id, 'count_yes', 0)
+					Mongo.set_patient(patient, sender_id, 'total_symptoms', 0)
+					bot.send_text_message(sender_id, "Base on my symptom checker the {} possibly might have {}.".format(phrase2,ill_name))
+					bot.send_text_message(sender_id, "I suggest that you must get a doctors consultation immediately!")
+					send_remedies(sender_id,patient_symptoms)
+			else:   
+				Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(patient_symptoms,str(res[0])))
 				twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
-				bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn)  
-			if text =='no_'+rest:
-				Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
-				twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
-				bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn) 
+				bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn)   
+		else:
+			if text:
+				if text =='yes_'+rest:
+					Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
+					twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
+					bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn)  
+				if text =='no_'+rest:
+					Mongo.set_patient(patient, sender_id, 'count_yes', count_yes +1)
+					twoqrbtn = {"content_type":"text","title":"Yes","payload":'yes_'+rest},{"content_type":"text","title":"No","payload":'no_'+rest}
+					bot.send_quick_replies_message(sender_id, '{} experiencing {}?'.format(phrase,rest), twoqrbtn) 
 		
 		
 #if user tap a button from a quick reply
@@ -469,7 +471,6 @@ def received_qr(event):
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,dengue,total_symptoms,count_yes,'Dengue')
 		elif get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,uti,total_symptoms,count_yes,'UTI')
-			send_remedies(sender_id,symptoms)
 		elif get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,gastro,total_symptoms,count_yes,'Gastroenteritis')
 		elif get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 40:
@@ -482,13 +483,14 @@ def received_qr(event):
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,b,total_symptoms,count_yes,'Bronchitis')
 		elif get_average(countOccurrence(patient_symptoms, p), len(p)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,p,total_symptoms,count_yes,'Pneumonia')
-			#go sequence asking for if he/she to determined if he/she has flu
 		elif get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,d,total_symptoms,count_yes,'Diarrhea')         
 		else:				 
 			bot.send_text_message(sender_id,"What else?")   
 			
-	if text =='no_symptoms': 
+	if text =='no_symptoms':
+		bot.send_text_message(sender_id,"Based on my symptom checker database, there is no posible illness that {} might have".format(phrase2))   
+		bot.send_text_message(sender_id,"But here are the sym[toms you've given to us and their remedies.")   
 		send_remedies(sender_id,symptoms)
 		
 	if text == 'send_dengue_remedies':
@@ -646,12 +648,6 @@ def received_qr(event):
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_tonsill_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(tonsill_remedies), oneqrbtn)
 	#sorethroat
-	if text == 'sorethroat_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
-	if text == 'send_sorethroat_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
 	#paininswallowing
 	#scratchyvoice
 	if text == 'scratchyvoice_remedies':
@@ -739,11 +735,6 @@ def received_qr(event):
 	if text == 'send_sneezing_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sneezing_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(sneezing_remedies), oneqrbtn)
-	#cough
-	#sorethroat
-	if text == 'sorethroat_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
 	if text == 'send_sorethroat_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
@@ -811,13 +802,6 @@ def received_qr(event):
 	if text == 'send_runnynose_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_runnynose_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(runnynose_remedies), oneqrbtn)
-	#sorethroat
-	if text == 'sorethroat_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
-	if text == 'send_sorethroat_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_sorethroat_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(sorethroat_remedies), oneqrbtn)
 	#tiredness
 	if text == 'tiredness_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_tiredness_remedies'}]
