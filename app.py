@@ -324,7 +324,7 @@ def send_remedies(sender_id,symptoms,):
 						"payload":rest+"_remedies"
 						}
 					     ]
-					},
+					}end=","
 			)
 			
 			if x == len_ps-1:
