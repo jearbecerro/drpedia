@@ -1329,8 +1329,32 @@ def received_postback(event):
 		element = [{
 			"title":"Fever","image_url":image_url +'fever.png',"subtitle":"Fever is",
 			"buttons":{"type":"postback","title":"Send Remedies","payload":'fever_remedies'}
-			}]        
-		bot.send_generic_message(sender_id, element) 
+			}]    
+		elements = [
+                         {
+                          "title":"Fever",
+                          "image_url":"image_url":image_url +'fever.png',
+                          "subtitle":"Fever is",
+                          "default_action": {
+                            "type": "web_url",
+                            "url": "www.fb.com",
+                            "webview_height_ratio": "COMPACT"
+                          },
+                             "buttons":[
+                                 {
+                                "type": "postback",
+                                "title": "More Details",
+                                "payload": "Inquire"
+                                },
+                                {
+                                "type":"postback",
+                                "title":"Remedies",
+                                "payload":"fever_remedies"
+                                }
+                             ]
+                        }
+                      ]
+		bot.send_generic_message(sender_id, elements) 
 		if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
