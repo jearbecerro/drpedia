@@ -308,7 +308,7 @@ def send_remedies(sender_id,symptoms):
 	if len_ps > 2:
 		print('more than one symptom')
 		for x in range(0,len_ps):
-			while True:
+			if x != len_ps:
 				rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
 				elements = [
 					 {
@@ -330,6 +330,9 @@ def send_remedies(sender_id,symptoms):
 					}
 				      ]
 				bot.send_generic_message(sender_id, elements)
+			else:
+				print(done)
+				pass
 	elif len(patient_symptoms) == 2:
 		ps = patient_symptoms[0]
 
