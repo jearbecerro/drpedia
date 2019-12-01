@@ -325,7 +325,7 @@ def send_remedies(sender_id,symptoms,elements):
 					     ]
 					},
 			)
-			bot.send_generic_message(sender_id, elements)
+			bot.send_generic_message(sender_id, element)
 			#Mongo.set_patient(patient, sender_id, 'elements', element)
 			if x == len_ps-1:
 				
