@@ -303,17 +303,16 @@ def countOccurrence(tup, lst):
 
 def send_remedies(sender_id,symptoms,illness):
     patient_symptoms = list(symptoms.split(",")) 
-    element = []
     if symptoms != '':
-        tr_symptom = [i for i in illness if i not in patient_symptoms]
-        res = [ tr_symptom[0]] 
-        rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
-        if len(patient_symptoms) > 1:
-            element.append([{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}] }]) 
-            bot.send_generic_message(sender_id, element)
-        else:
-            element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]          
-            bot.send_generic_message(sender_id, element)
+        for ps in patient_symptoms[0:-1]:
+    	    print(ps)
+            rest = ps.replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
+            if len(patient_symptoms) > 1:
+                element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
+                bot.send_generic_message(sender_id, element)
+            else:
+                element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
+                bot.send_generic_message(sender_id, element)
     else:
         pass
     
