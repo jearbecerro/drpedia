@@ -302,9 +302,9 @@ def countOccurrence(tup, lst):
     return sum(counts[i] for i in lst) 
 
 def send_remedies(sender_id,symptoms,illness):
-    patient_symptoms = list(symptoms.split(" ")) 
+    patient_symptoms = list(symptoms.split(",")) 
     element = []
-    if symptom != '':
+    if symptoms != '':
         tr_symptom = [i for i in illness if i not in patient_symptoms]
         res = [ tr_symptom[0]] 
         rest = res[0].replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
@@ -317,7 +317,8 @@ def send_remedies(sender_id,symptoms,illness):
     else:
         pass
     
-def get_the_rest_symptoms(patient,sender_id,text, patient_symptoms,illness,total_symptoms,count_yes,ill_name):
+def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptoms,count_yes,ill_name):
+    patient_symptoms = list(symptoms.split(","))
     tr_symptom = [i for i in illness if i not in patient_symptoms]
     if count_yes == 0:
         total_has_symptoms = len(patient_symptoms)
