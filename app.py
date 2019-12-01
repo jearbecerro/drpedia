@@ -331,8 +331,7 @@ def send_remedies(sender_id,symptoms,):
 			bot.send_generic_message(sender_id, elements)
 			if x == len_ps-1:
 				break
-		else:
-			print(done)
+		
 	elif len(patient_symptoms) == 2:
 		ps = patient_symptoms[0]
 
@@ -1289,14 +1288,7 @@ def received_postback(event):
 	if payload == 'nasalcongestion_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_nasalcongestion_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(nasalcongestion_remedies), oneqrbtn)
-	
-
-
 	#Dre pag sugod raz tangala ang 'text' alisdig 'payload' pero ang naay mga 'send_' e erease
-	#cough
-	if payload == 'cough_remedies':
-		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
-		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
 	
 	#sorethroat
 	if payload == 'sorethroat_remedies':
