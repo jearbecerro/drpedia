@@ -507,7 +507,7 @@ def received_qr(event):
 			
 	if text =='no_symptoms': 
 		bot.send_text_message(sender_id,"No") 
-		element = [{"title":"Fever","image_url":image_url +'fever.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":'fever_remedies'}]}]        
+		element = [{"title":"Fever","image_url":image_url +'fever.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "COMPACT"},"buttons":[{"type":"postback","title":"Send Remedies","payload":'fever_remedies'}]}]        
 		bot.send_generic_message(sender_id, element) 
 		#send_remedies(sender_id,symptoms)
 		
