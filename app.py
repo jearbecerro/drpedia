@@ -1058,16 +1058,16 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(fname), quick_replies)
 
 	if text =='myself':
-		Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself',0,0,'',[])
+		Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself',0,0,'')
 		Mongo.set_ask(users, sender_id, "How old are you?")
 		bot.send_text_message(sender_id, "May I ask how old are you? In human years.")
 		bot.send_text_message(sender_id, "Just type '18'\nof course you are not 200 years old. 😉")   
 	if text =='mychild':
-		Mongo.create_patient(patient, sender_id, '', '', '', 'mychild',0,0,'',[])
+		Mongo.create_patient(patient, sender_id, '', '', '', 'mychild',0,0,'')
 		Mongo.set_ask(users, sender_id, "Whats the name of your child?")
 		bot.send_text_message(sender_id, "Whats the name of your child {}?".format(first_name(sender_id)))    
 	if text =='someone':
-		Mongo.create_patient(patient, sender_id, '', '', '', 'someone',0,0,'',[])
+		Mongo.create_patient(patient, sender_id, '', '', '', 'someone',0,0,'')
 		Mongo.set_ask(users, sender_id, "Whats the name of the child?")
 		bot.send_text_message(sender_id, "Whats the name the child {}?".format(first_name(sender_id)))
 		
@@ -1476,7 +1476,7 @@ def received_postback(event):
 				}
 			      ]
 		#bot.send_generic_message(sender_id, elements)
-		Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself',0,0,'',[])
+		Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself',0,0,'')
 		send_remedies(sender_id,'cough,fever,rashes,')
 		'''if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
