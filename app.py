@@ -1477,8 +1477,8 @@ def received_postback(event):
                           "image_url":image_url +'fever.png',
                           "subtitle":"Fever is",
                           "default_action": {
-                            "type": "postback",
-                            "payload":"about_fever",
+                            "type": "web_url",
+                            "url": "www.f.com",
                             "webview_height_ratio": "COMPACT"
                           },
                              "buttons":[
