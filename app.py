@@ -178,7 +178,6 @@ def received_text(event):
 		symptoms = ''
 	else:
 		symptoms = symptoms
-	
 	if relation == 'myself':
 		phrase = 'Are you '
 		phrase2 = 'you'
