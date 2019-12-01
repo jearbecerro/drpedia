@@ -1139,7 +1139,9 @@ def received_postback(event):
 	else: 
 		pass
 	
-		#dengue
+	if payload == 'cough_remedies':
+		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
+		bot.send_quick_replies_message(sender_id, random.choice(cough_remedies), oneqrbtn)
 	if payload == 'dengue_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dengue_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(dengue_remedies), oneqrbtn)
@@ -1456,7 +1458,34 @@ def received_postback(event):
 
 	#Persistent Menu Buttons        
 	if payload=='start_over':
-		send_remedies(sender_id,'cough,fever,')
+		elements = [
+				 {
+				  "title":"Fever",
+				  "image_url":image_url +'fever.png',
+				  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
+				     "buttons":[
+					{
+					"type":"postback",
+					"title":"Remedies",
+					"payload":"fever_remedies"
+					}
+				     ]
+				},
+				{
+				  "title":"Cough",
+				  "image_url":image_url +'cough.png',
+				  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
+				     "buttons":[
+					{
+					"type":"postback",
+					"title":"Remedies",
+					"payload":"cough_remedies"
+					}
+				     ]
+				}
+			      ]
+		bot.send_generic_message(sender_id, elements)
+		#send_remedies(sender_id,'cough,fever,')
 		'''if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
