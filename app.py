@@ -310,12 +310,11 @@ def send_remedies(sender_id,symptoms):
 			rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
 			element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
 			bot.send_generic_message(sender_id, element)
-	else:
-		
+	elif len(patient_symptoms) == 2:
 		ps = patient_symptoms[0]
 		
 		rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
-		print(ps,len(patient_symptoms))
+		print(ps,len(patient_symptoms),rest)
 		elements = [
                          {
                           "title":ps.capitalize(),
