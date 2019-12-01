@@ -313,11 +313,7 @@ def send_remedies(sender_id,symptoms,):
 					 {
 					  "title":patient_symptoms[x].capitalize(),
 					  "image_url":image_url +rest+'.png',
-					  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
-					  "default_action": {
-					    "type": "web_url",
-					    "url": "www.fb.com",
-					    "webview_height_ratio": "COMPACT"
+					  "subtitle":"If symptom persist or worsen get a doctor's consultation."
 					  },
 					     "buttons":[
 						{
