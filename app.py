@@ -304,31 +304,7 @@ def countOccurrence(tup, lst):
 
 def send_remedies(sender_id,symptoms):
 	patient_symptoms = list(symptoms.split(","))
-	ps = patient_symptoms[0]
-		
-	rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
-	print(ps,len(patient_symptoms),rest)
-	elements = [
-                         {
-                          "title":ps.capitalize(),
-                          "image_url":image_url +rest+'.png',
-                          "subtitle":"If symptom persist or worsten get a doctor's consultation.",
-                          "default_action": {
-                            "type": "web_url",
-                            "url": "www.fb.com",
-                            "webview_height_ratio": "COMPACT"
-                          },
-                             "buttons":[
-                                {
-                                "type":"postback",
-                                "title":"Remedies",
-                                "payload":rest+"_remedies"
-                                }
-                             ]
-                        }
-                      ]
-	bot.send_generic_message(sender_id, elements)
-	'''
+
 	if len(patient_symptoms) > 2:
 		print('more than one symptom')
 		for ps in patient_symptoms[0:-1]:
@@ -337,30 +313,30 @@ def send_remedies(sender_id,symptoms):
 			bot.send_generic_message(sender_id, element)
 	elif len(patient_symptoms) == 2:
 		ps = patient_symptoms[0]
-		
+
 		rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
 		print(ps,len(patient_symptoms),rest)
 		elements = [
-                         {
-                          "title":ps.capitalize(),
-                          "image_url":image_url +rest+'.png',
-                          "subtitle":"If symptom persist or worsten get a doctor's consultation.",
-                          "default_action": {
-                            "type": "web_url",
-                            "url": "",
-                            "webview_height_ratio": "COMPACT"
-                          },
-                             "buttons":[
-                                {
-                                "type":"postback",
-                                "title":"Remedies",
-                                "payload":rest+"_remedies"
-                                }
-                             ]
-                        }
-                      ]
-		bot.send_generic_message(sender_id, elements) 
-       		'''
+				 {
+				  "title":ps.capitalize(),
+				  "image_url":image_url +rest+'.png',
+				  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
+				  "default_action": {
+				    "type": "web_url",
+				    "url": "www.fb.com",
+				    "webview_height_ratio": "COMPACT"
+				  },
+				     "buttons":[
+					{
+					"type":"postback",
+					"title":"Remedies",
+					"payload":rest+"_remedies"
+					}
+				     ]
+				}
+			      ]
+		bot.send_generic_message(sender_id, elements)
+       		
 		
 	
 def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptoms,count_yes,ill_name):
