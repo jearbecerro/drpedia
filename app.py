@@ -307,6 +307,7 @@ def countOccurrence(tup, lst):
 def send_remedies(sender_id,symptoms,elements):
 	patient_symptoms = list(symptoms.split(","))
 	len_ps = len(patient_symptoms)
+	element = []
 	if len_ps > 2:
 		print(len_ps)
 		for x in range(0,len_ps-1):
@@ -328,7 +329,6 @@ def send_remedies(sender_id,symptoms,elements):
 			bot.send_generic_message(sender_id, element)
 			#Mongo.set_patient(patient, sender_id, 'elements', element)
 			if x == len_ps-1:
-				
 				break
 		
 	elif len(patient_symptoms) == 2:
@@ -336,7 +336,7 @@ def send_remedies(sender_id,symptoms,elements):
 
 		rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
 		print(ps,len(patient_symptoms),rest)
-		elements = [
+		element = [
 				 {
 				  "title":ps.capitalize(),
 				  "image_url":image_url +rest+'.png',
@@ -355,7 +355,7 @@ def send_remedies(sender_id,symptoms,elements):
 				     ]
 				}
 			      ]
-		bot.send_generic_message(sender_id, elements)
+		bot.send_generic_message(sender_id, element)
        		
 		
 	
