@@ -315,7 +315,7 @@ def send_remedies(sender_id,symptoms):
                           "subtitle":"If symptom persist or worsten get a doctor's consultation.",
                           "default_action": {
                             "type": "web_url",
-                            "url": "",
+                            "url": "www.fb.com",
                             "webview_height_ratio": "COMPACT"
                           },
                              "buttons":[
@@ -1477,8 +1477,8 @@ def received_postback(event):
                           "image_url":image_url +'fever.png',
                           "subtitle":"Fever is",
                           "default_action": {
-                            "type": "web_url",
-                            "url": "www.fb.com",
+                            "type": "postback",
+                            "payload":"about_fever",
                             "webview_height_ratio": "COMPACT"
                           },
                              "buttons":[
@@ -1490,8 +1490,8 @@ def received_postback(event):
                              ]
                         }
                       ]
-		#bot.send_generic_message(sender_id, elements)
-		send_remedies(sender_id,'fever,')
+		bot.send_generic_message(sender_id, elements)
+		#send_remedies(sender_id,'fever,')
 		if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
