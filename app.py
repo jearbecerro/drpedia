@@ -305,11 +305,12 @@ def countOccurrence(tup, lst):
 def send_remedies(sender_id,symptoms,):
 	patient_symptoms = list(symptoms.split(","))
 	len_ps = len(patient_symptoms)
+	elements = []
 	if len_ps > 2:
 		print(len_ps)
 		for x in range(0,len_ps-1):
 			rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
-			elements = [
+			elements.append(
 					 {
 					  "title":patient_symptoms[x].capitalize(),
 					  "image_url":image_url +rest+'.png',
@@ -321,8 +322,8 @@ def send_remedies(sender_id,symptoms,):
 						"payload":rest+"_remedies"
 						}
 					     ]
-					}
-				      ]
+					},
+			)
 			bot.send_generic_message(sender_id, elements)
 			if x == len_ps-1:
 				break
@@ -1484,8 +1485,8 @@ def received_postback(event):
 				     ]
 				}
 			      ]
-		bot.send_generic_message(sender_id, elements)
-		#send_remedies(sender_id,'cough,fever,')
+		#bot.send_generic_message(sender_id, elements)
+		send_remedies(sender_id,'cough,fever,')
 		'''if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
