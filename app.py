@@ -109,6 +109,8 @@ count_yes = 0
 total_symptoms = 0
 has_fever = False
 last_inserted_symptoms = ''
+
+elements = []
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -305,7 +307,7 @@ def countOccurrence(tup, lst):
 def send_remedies(sender_id,symptoms,):
 	patient_symptoms = list(symptoms.split(","))
 	len_ps = len(patient_symptoms)
-	elements = []
+	global elements
 	if len_ps > 2:
 		print(len_ps)
 		for x in range(0,len_ps-1):
