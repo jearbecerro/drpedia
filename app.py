@@ -138,7 +138,8 @@ def receive_message():
 					#if user sends us a GIF, photo,video, or any other non-text item
 					elif message['message'].get('attachments'):
 						#TO BE EDIT
-						bot.send_text_message(sender_id,get_message())
+						#bot.send_text_message(sender_id,get_message())
+						pass
 				elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
 					received_postback(message)
 					
