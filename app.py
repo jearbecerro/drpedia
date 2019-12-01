@@ -1333,7 +1333,7 @@ def received_postback(event):
 		elements = [
                          {
                           "title":"Fever",
-                          "image_url":"image_url":image_url +'fever.png',
+                          "image_url":image_url +'fever.png',
                           "subtitle":"Fever is",
                           "default_action": {
                             "type": "web_url",
