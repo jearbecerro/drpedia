@@ -527,8 +527,29 @@ def received_qr(event):
 			bot.send_text_message(sender_id,"What else?")   
 			
 	if text =='no_symptoms': 
+		elements = [
+                         {
+                          "title":ps.capitalize(),
+                          "image_url":image_url +rest+'.png',
+                          "subtitle":"If symptom persist or worsten get a doctor's consultation.",
+                          "default_action": {
+                            "type": "web_url",
+                            "url": "",
+                            "webview_height_ratio": "COMPACT"
+                          },
+                             "buttons":[
+                                {
+                                "type":"postback",
+                                "title":"Remedies",
+                                "payload":rest+"_remedies"
+                                }
+                             ]
+                        }
+                      ]
+		bot.send_generic_message(sender_id, elements) 
 		bot.send_text_message(sender_id,"No") 
-		send_remedies(sender_id,symptoms)
+		
+		#send_remedies(sender_id,symptoms)
 		
 	if text == 'send_dengue_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dengue_remedies'}]
