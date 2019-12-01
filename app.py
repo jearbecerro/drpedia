@@ -311,24 +311,14 @@ def send_remedies(sender_id,symptoms):
 	if len_ps > 2:
 		print(len_ps)
 		for x in range(0,len_ps-1):
+			patient_data = Mongo.get_data_patient(patient, sender_id)
+			elements = patient_data["elements"]
 			rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
-			element.append(
-					 {
-					  "title":patient_symptoms[x].capitalize(),
-					  "image_url":image_url +rest+'.png',
-					  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
-					     "buttons":[
-						{
-						"type":"postback",
-						"title":"Remedies",
-						"payload":rest+"_remedies"
-						}
-					     ]
-					},
-			)
-			bot.send_generic_message(sender_id, element)
-			#Mongo.set_patient(patient, sender_id, 'elements', element)
+			element.append({"title":patient_symptoms[x].capitalize(),"image_url":image_url +rest+'.png',"subtitle":"If symptom persist or worsen get a doctor's consultation.","buttons":[{"type":"postback","title":"Remedies","payload":rest+"_remedies"}]},)
+			
+			Mongo.set_patient(patient, sender_id, 'elements', element)
 			if x == len_ps-1:
+				bot.send_generic_message(sender_id, elements)
 				break
 		
 	elif len(patient_symptoms) == 2:
@@ -571,7 +561,7 @@ def received_qr(event):
 		bot.send_generic_message(sender_id, elements) 
 		bot.send_text_message(sender_id,"No") 
 		
-		#send_remedies(sender_id,symptoms,elements)
+		#send_remedies(sender_id,symptoms)
 		
 	if text == 'send_dengue_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dengue_remedies'}]
@@ -1490,7 +1480,8 @@ def received_postback(event):
 				}
 			      ]
 		#bot.send_generic_message(sender_id, elements)
-		send_remedies(sender_id,'cough,fever,rashes')
+		Mongo.create_patient(patient, sender_id, first_name(sender_id), '', '', 'myself',0,0,'',[])
+		send_remedies(sender_id,'cough,fever,rashes,')
 		'''if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
