@@ -302,15 +302,14 @@ def countOccurrence(tup, lst):
 	counts = Counter(tup) 
 	return sum(counts[i] for i in lst) 
 
-def send_remedies(sender_id,symptoms):
+def send_remedies(sender_id,symptoms,):
 	patient_symptoms = list(symptoms.split(","))
 	len_ps = len(patient_symptoms)
 	if len_ps > 2:
-		print('more than one symptom')
-		for x in range(0,len_ps):
-			if x != len_ps:
-				rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
-				elements = [
+		print(len_ps)
+		for x in range(0,len_ps-1):
+			rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
+			elements = [
 					 {
 					  "title":patient_symptoms[x].capitalize(),
 					  "image_url":image_url +rest+'.png',
@@ -329,10 +328,9 @@ def send_remedies(sender_id,symptoms):
 					     ]
 					}
 				      ]
-				bot.send_generic_message(sender_id, elements)
-			else:
-				print(done)
-				pass
+			bot.send_generic_message(sender_id, elements)
+		else:
+			print(done)
 	elif len(patient_symptoms) == 2:
 		ps = patient_symptoms[0]
 
@@ -1469,7 +1467,7 @@ def received_postback(event):
 
 	#Persistent Menu Buttons        
 	if payload=='start_over':
-		send_remedies(sender_id,'fever,cough')
+		send_remedies(sender_id,'cough,fever,')
 		'''if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
