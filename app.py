@@ -331,6 +331,7 @@ def send_remedies(sender_id,symptoms,):
 			bot.send_generic_message(sender_id, elements)
 		else:
 			print(done)
+			break
 	elif len(patient_symptoms) == 2:
 		ps = patient_symptoms[0]
 
