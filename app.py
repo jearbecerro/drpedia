@@ -1466,34 +1466,15 @@ def received_postback(event):
 
 	#Persistent Menu Buttons        
 	if payload=='start_over':
-		elements = [
-                         {
-                          "title":"Fever",
-                          "image_url":image_url +'fever.png',
-                          "subtitle":"Fever is",
-                          "default_action": {
-                            "type": "web_url",
-                            "url": "www.f.com",
-                            "webview_height_ratio": "tall"
-                          },
-                             "buttons":[
-                                {
-                                "type":"postback",
-                                "title":"Remedies",
-                                "payload":"fever_remedies"
-                                }
-                             ]
-                        }
-                      ]
-		#bot.send_generic_message(sender_id, elements)
 		send_remedies(sender_id,'fever,cough')
-		if terms == "Yes":
+		'''if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
 			quick_replies = {"content_type":"text","title":"Myself","payload":"myself"},{"content_type":"text","title":"My Child","payload":"mychild"},{"content_type":"text","title":"Someone else","payload":"someone"}
 			bot.send_quick_replies_message(sender_id, 'Who do you want to 🔍check symptom, {}?'.format(first_name(sender_id)), quick_replies)
 		elif terms == "No":
 			greet_disclaimer(sender_id)
+		'''
 	if payload=='pm_dengue_prevention':
 		bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
 	if payload=='pm_about':
