@@ -1467,7 +1467,6 @@ def verify_fb_token(token_sent):
 	if token_sent == VERIFY_TOKEN:
 		return request.args.get("hub.challenge")
 	return 'Invalid verification token'
-	
 #Greetings, persisten menu, get started button
 init_bot()
 if __name__ == "__main__":
