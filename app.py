@@ -315,8 +315,9 @@ def send_remedies(sender_id,symptoms):
 			elements = patient_data["elements"]
 			rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
 			Mongo.set_patient(patient, sender_id, 'elements', elements.append({"title":patient_symptoms[x].capitalize(),"image_url":image_url +rest+'.png',"subtitle":"If symptom persist or worsen get a doctor's consultation.","buttons":[{"type":"postback","title":"Remedies","payload":rest+"_remedies"}]},))
+			bot.send_generic_message(sender_id, elements)
 			if x == len_ps-1:
-				bot.send_generic_message(sender_id, elements)
+				
 				break
 		
 	elif len(patient_symptoms) == 2:
