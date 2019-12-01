@@ -313,7 +313,7 @@ def send_remedies(sender_id,symptoms):
 		ps = patient_symptoms[0]
 		rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
 		element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
-		bot.send_generic_message(sender_id, element)		
+		bot.send_generic_message(sender_id, element)        
 		
 	
 def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptoms,count_yes,ill_name):
