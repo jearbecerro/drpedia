@@ -277,10 +277,11 @@ def received_text(event):
         a = "Well that doesn't sound healthy."
         inp_symptom = nlp.nlp(text)
         sentumas = list(symptoms.split(",")) 
-        if inp_symptom in (sentumas):
-           bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
         if inp_symptom != 'Invalid':
-                Mongo.set_patient(patient, sender_id, 'symptoms',"{}{} ".format(symptoms,str(inp_symptom)))
+			if inp_symptom in (sentumas):
+           		bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
+			else:
+                Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))".format(symptoms,str(inp_symptom)))
                 bot.send_text_message(sender_id,"Hmm, clearly you are not feeling well.")
                 quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
                 bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -302,20 +303,18 @@ def countOccurrence(tup, lst):
     return sum(counts[i] for i in lst) 
 
 def send_remedies(sender_id,symptoms):
-	if symptoms !='':
-		patient_symptoms = list(symptoms.split(","))
-		if len(patient_symptoms) > 1:
-			for ps in patient_symptoms[0:-1]:
-				rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
-				element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
-				bot.send_generic_message(sender_id, element)
-		else:
-			ps = patient_symptoms[0]
+	patient_symptoms = list(symptoms.split(","))
+	if len(patient_symptoms) > 1:
+		for ps in patient_symptoms[0:-1]:
 			rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
 			element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
-			bot.send_generic_message(sender_id, element)		
+			bot.send_generic_message(sender_id, element)
 	else:
-		pass	
+		ps = patient_symptoms[0]
+		rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
+		element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
+		bot.send_generic_message(sender_id, element)		
+		
     
 def get_the_rest_symptoms(patient,sender_id,text, symptoms,illness,total_symptoms,count_yes,ill_name):
     patient_symptoms = list(symptoms.split(","))
