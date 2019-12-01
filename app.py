@@ -444,84 +444,47 @@ def received_qr(event):
 			name = illness["name"]
 			if name.lower() == 'flu':
 				flu = illness["symptoms"]
-				print(flu)
 			if name.lower() == 'dengue':
 				dengue = illness["symptoms"]
-				print(dengue)
 			if name.lower() == 'uti':
 				uti = illness["symptoms"]
-				print(uti)
 			if name.lower() == 'gastroenteritis':
 				gastro = illness["symptoms"]
-				print(gastro)
 			if name.lower() == 'tonsil':
 				tonsil = illness["symptoms"]
-				print(tonsil)
 			if name.lower() == 'common cold':
 				cc = illness["symptoms"]
-				print(cc)
 			if name.lower() == 'typhoid fever':
 				tf = illness["symptoms"]
-				print(tf)
 			if name.lower() == 'bronchitis':
 				b = illness["symptoms"]
-				print(b)
 			if name.lower() == 'pneumonia':
 				p = illness["symptoms"]
-				print(p)
 			if name.lower() == 'diarrhea':
 				d = illness["symptoms"]
-				print(d)
 			   
 		if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,flu,total_symptoms,count_yes,'Flu')
-		elif get_average(countOccurrence(patient_symptoms, flu),len(flu)) < 40:
-			send_remedies(sender_id,symptoms)
 		elif get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,dengue,total_symptoms,count_yes,'Dengue')
-			#go sequence asking for if he/she to determined if he/she has flu
-		elif get_average(countOccurrence(patient_symptoms, dengue),len(dengue)) < 40:
-			send_remedies(sender_id,symptoms)
+			get_the_rest_symptoms(patient,sender_id,text, symptoms,dengue,total_sympt
 		elif get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,uti,total_symptoms,count_yes,'UTI')
-			#go sequence asking for if he/she to determined if he/she has flu
-		elif get_average(countOccurrence(patient_symptoms, uti),len(uti)) < 40:
 			send_remedies(sender_id,symptoms)
 		elif get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,gastro,total_symptoms,count_yes,'Gastroenteritis')
-			#go sequence asking for if he/she to determined if he/she has flu
-		elif get_average(countOccurrence(patient_symptoms, gastro),len(gastro)) < 40:
-			send_remedies(sender_id,symptoms)
 		elif get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,tonsil,total_symptoms,count_yes,'Tonsillitis')
-			#go sequence asking for if he/she to determined if he/she has flu
-		elif get_average(countOccurrence(patient_symptoms, tonsil),len(tonsil)) < 40:
-			send_remedies(sender_id,symptoms)
 		elif get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,cc,total_symptoms,count_yes,'Common Cold')
-			#go sequence asking for if he/she to determined if he/she has flu
-		elif get_average(countOccurrence(patient_symptoms, cc),len(cc)) < 40:
-			send_remedies(sender_id,symptoms)
 		elif get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,tf,total_symptoms,count_yes,'Typhoid Fever')
-			#go sequence asking for if he/she to determined if he/she has flu
-		elif get_average(countOccurrence(patient_symptoms, tf),len(tf)) < 40:
-			send_remedies(sender_id,symptoms)
 		elif get_average(countOccurrence(patient_symptoms,b), len(b)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,b,total_symptoms,count_yes,'Bronchitis')
-			#go sequence asking for if he/she to determined if he/she has flu
-		elif get_average(countOccurrence(patient_symptoms,b),len(b)) < 40:
-			send_remedies(sender_id,symptoms)
 		elif get_average(countOccurrence(patient_symptoms, p), len(p)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,p,total_symptoms,count_yes,'Pneumonia')
 			#go sequence asking for if he/she to determined if he/she has flu
-		elif get_average(countOccurrence(patient_symptoms, p),len(p)) < 40:
-			send_remedies(sender_id,symptoms)
 		elif get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,d,total_symptoms,count_yes,'Diarrhea')         
-			#go sequence asking for if he/she to determined if he/she has flu
-		elif get_average(countOccurrence(patient_symptoms, d),len(d)) < 40:
-			send_remedies(sender_id,symptoms)
 		else:				 
 			bot.send_text_message(sender_id,"What else?")   
 			
