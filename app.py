@@ -120,27 +120,27 @@ def receive_message():
 	#if the request was not get, it must be POST and we can just proceed with sending a message back to user
 	else:
 		# get whatever message a user sent the bot
-	   output = request.get_json()
-	   for event in output['entry']:
-		  messaging = event['messaging']
-		  for message in messaging:
-			if message.get('message'):
-				#Facebook Messenger ID for user so we know where to send response back to
-				sender_id = message['sender']['id']
-				user_data = Mongo.get_data_users(users, sender_id)
-				patient_data = Mongo.get_data_patient(patient, sender_id)
-	
-				if message['message'].get('text'):
-					if message['message'].get('quick_reply'):
-						received_qr(message)  
-					else: #else if message is just a text
-						received_text(message)
-				#if user sends us a GIF, photo,video, or any other non-text item
-				elif message['message'].get('attachments'):
-					#TO BE EDIT
-					bot.send_text_message(sender_id,get_message())
-			elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
-				received_postback(message)
+	   	output = request.get_json()
+	   	for event in output['entry']:
+		  	messaging = event['messaging']
+		  	for message in messaging:
+				if message.get('message'):
+					#Facebook Messenger ID for user so we know where to send response back to
+					sender_id = message['sender']['id']
+					user_data = Mongo.get_data_users(users, sender_id)
+					patient_data = Mongo.get_data_patient(patient, sender_id)
+		
+					if message['message'].get('text'):
+						if message['message'].get('quick_reply'):
+							received_qr(message)  
+						else: #else if message is just a text
+							received_text(message)
+					#if user sends us a GIF, photo,video, or any other non-text item
+					elif message['message'].get('attachments'):
+						#TO BE EDIT
+						bot.send_text_message(sender_id,get_message())
+				elif message.get("postback"):  # user clicked/tapped "postback" button in earlier message
+					received_postback(message)
 					
 	return "Message Processed"
 
