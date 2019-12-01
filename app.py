@@ -1305,6 +1305,9 @@ def received_postback(event):
 	else: 
 		pass
 	
+	if payload == 'fever_remedies':
+		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_fever_remedies'}]
+		bot.send_quick_replies_message(sender_id, random.choice(fever_remedies), oneqrbtn) 
 	#Get started button tapped{
 	if payload=='start':
 		greet = random.choice(GREETING_RESPONSES)
