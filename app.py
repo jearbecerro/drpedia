@@ -508,8 +508,7 @@ def received_qr(event):
 	if text =='no_symptoms': 
 		bot.send_text_message(sender_id,"No") 
 		element = [{
-			"title":"Fever","image_url":image_url +'fever.png',"subtitle":"",
-			"default_action": {"type": "postback","payload":"","webview_height_ratio": "COMPACT"},
+			"title":"Fever","image_url":image_url +'fever.png',"subtitle":"Fever is",
 			"buttons":{"type":"postback","title":"Send Remedies","payload":'fever_remedies'}
 			}]        
 		bot.send_generic_message(sender_id, element) 
@@ -578,7 +577,7 @@ def received_qr(event):
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_vomiting_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(vomiting_remedies), oneqrbtn)    
  
-	if text == 'bleedingnose/gums_remedies':
+	if text == 'bleedingnosegums_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_bleeding nose/gums_remedies'}]
 		bot.send_quick_replies_message(sender_id, random.choice(bleedingnose/gums_remedies), oneqrbtn)
 	if text == 'send_bleedingnose/gums_remedies':
