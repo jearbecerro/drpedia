@@ -466,7 +466,7 @@ def received_qr(event):
 		if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,flu,total_symptoms,count_yes,'Flu')
 		elif get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,dengue,total_sympt
+			get_the_rest_symptoms(patient,sender_id,text, symptoms,dengue,total_symptoms,count_yes,'Dengue')
 		elif get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,uti,total_symptoms,count_yes,'UTI')
 			send_remedies(sender_id,symptoms)
