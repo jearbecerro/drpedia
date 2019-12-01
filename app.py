@@ -466,30 +466,29 @@ def received_qr(event):
 			   
 		if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,flu,total_symptoms,count_yes,'Flu')
-		elif get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 40:
+		if get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,dengue,total_symptoms,count_yes,'Dengue')
-		elif get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 40:
+		if get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,uti,total_symptoms,count_yes,'UTI')
-		elif get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 40:
+		if get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,gastro,total_symptoms,count_yes,'Gastroenteritis')
-		elif get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 40:
+		if get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,tonsil,total_symptoms,count_yes,'Tonsillitis')
-		elif get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 40:
+		if get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,cc,total_symptoms,count_yes,'Common Cold')
-		elif get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 40:
+		if get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,tf,total_symptoms,count_yes,'Typhoid Fever')
-		elif get_average(countOccurrence(patient_symptoms,b), len(b)) > 40:
+		if get_average(countOccurrence(patient_symptoms,b), len(b)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,b,total_symptoms,count_yes,'Bronchitis')
-		elif get_average(countOccurrence(patient_symptoms, p), len(p)) > 40:
+		if get_average(countOccurrence(patient_symptoms, p), len(p)) > 40:
 			get_the_rest_symptoms(patient,sender_id,text, symptoms,p,total_symptoms,count_yes,'Pneumonia')
-		elif get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,d,total_symptoms,count_yes,'Diarrhea')         
-		else:				 
-			bot.send_text_message(sender_id,"What else?")   
+		if get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
+			get_the_rest_symptoms(patient,sender_id,text, symptoms,d,total_symptoms,count_yes,'Diarrhea')         			 
+		bot.send_text_message(sender_id,"What else?")   
 			
 	if text =='no_symptoms':
 		bot.send_text_message(sender_id,"Based on my symptom checker database, there is no posible illness that {} might have".format(phrase2))   
-		bot.send_text_message(sender_id,"But here are the sym[toms you've given to us and their remedies.")   
+		bot.send_text_message(sender_id,"But here is the symptoms you've given to us and their remedies.")   
 		send_remedies(sender_id,symptoms)
 		
 	if text == 'send_dengue_remedies':
