@@ -1326,6 +1326,11 @@ def received_postback(event):
 
 	#Persistent Menu Buttons        
 	if payload=='start_over':
+		element = [{
+			"title":"Fever","image_url":image_url +'fever.png',"subtitle":"Fever is",
+			"buttons":{"type":"postback","title":"Send Remedies","payload":'fever_remedies'}
+			}]        
+		bot.send_generic_message(sender_id, element) 
 		if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
