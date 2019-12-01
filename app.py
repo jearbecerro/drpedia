@@ -305,17 +305,14 @@ def countOccurrence(tup, lst):
 	return sum(counts[i] for i in lst) 
 
 def send_remedies(sender_id,symptoms):
-	patient_data = Mongo.get_data_patient(patient, sender_id)
 	patient_symptoms = list(symptoms.split(","))
-	
 	len_ps = len(patient_symptoms)
+	elements = []
 	if len_ps > 2:
 		print(len_ps)
 		for x in range(0,len_ps-1):
 			rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
-			elements = patient_data["elements"]
-			Mongo.set_patient(patient, sender_id, 'elements', elements.append({"title":patient_symptoms[x].capitalize(),"image_url":image_url +rest+'.png',"subtitle":"If symptom persist or worsen get a doctor's consultation.","buttons":[{"type":"postback","title":"Remedies","payload":rest+"_remedies"}]},))
-			
+			elements.append({"title":patient_symptoms[x].capitalize(),"image_url":image_url +rest+'.png',"subtitle":"If symptom persist or worsen get a doctor's consultation.","buttons":[{"type":"postback","title":"Remedies","payload":rest+"_remedies"}]},)
 			if x == len_ps-1:
 				break
 		else:
@@ -325,7 +322,7 @@ def send_remedies(sender_id,symptoms):
 
 		rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
 		print(ps,len(patient_symptoms),rest)
-		element = [
+		elements = [
 				 {
 				  "title":ps.capitalize(),
 				  "image_url":image_url +rest+'.png',
@@ -344,7 +341,7 @@ def send_remedies(sender_id,symptoms):
 				     ]
 				}
 			      ]
-		bot.send_generic_message(sender_id, element)
+		bot.send_generic_message(sender_id, elements)
        		
 		
 	
