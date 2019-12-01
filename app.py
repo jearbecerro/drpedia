@@ -302,10 +302,10 @@ def countOccurrence(tup, lst):
     return sum(counts[i] for i in lst) 
 
 def send_remedies(sender_id,symptoms):
-	if symptoms != '':
-		patient_symptoms = list(symptoms.split(",")) 
+	if symptoms !='':
+		patient_symptoms = list(symptoms.split(","))
 		for ps in patient_symptoms[0:-1]:
-			rest = ps.replace(" ", "").replace("/", "").replace("-", "").replace(",", "")
+			rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
 			if len(patient_symptoms) > 1:
 				element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
 				bot.send_generic_message(sender_id, element)
