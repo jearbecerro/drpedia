@@ -308,27 +308,28 @@ def send_remedies(sender_id,symptoms):
 	if len_ps > 2:
 		print('more than one symptom')
 		for x in range(0,len_ps):
-			rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
-			elements = [
-				 {
-				  "title":patient_symptoms[x].capitalize(),
-				  "image_url":image_url +rest+'.png',
-				  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
-				  "default_action": {
-				    "type": "web_url",
-				    "url": "www.fb.com",
-				    "webview_height_ratio": "COMPACT"
-				  },
-				     "buttons":[
-					{
-					"type":"postback",
-					"title":"Remedies",
-					"payload":rest+"_remedies"
+			while True:
+				rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
+				elements = [
+					 {
+					  "title":patient_symptoms[x].capitalize(),
+					  "image_url":image_url +rest+'.png',
+					  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
+					  "default_action": {
+					    "type": "web_url",
+					    "url": "www.fb.com",
+					    "webview_height_ratio": "COMPACT"
+					  },
+					     "buttons":[
+						{
+						"type":"postback",
+						"title":"Remedies",
+						"payload":rest+"_remedies"
+						}
+					     ]
 					}
-				     ]
-				}
-			      ]
-			bot.send_generic_message(sender_id, elements)
+				      ]
+				bot.send_generic_message(sender_id, elements)
 	elif len(patient_symptoms) == 2:
 		ps = patient_symptoms[0]
 
