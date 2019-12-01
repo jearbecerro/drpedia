@@ -1479,7 +1479,7 @@ def received_postback(event):
                           "default_action": {
                             "type": "web_url",
                             "url": "www.f.com",
-                            "webview_height_ratio": "COMPACT"
+                            "webview_height_ratio": "tall"
                           },
                              "buttons":[
                                 {
