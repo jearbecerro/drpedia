@@ -280,7 +280,7 @@ def received_text(event):
 			if inp_symptom in (sentumas):
 				bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
 			else:
-				Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))".format(symptoms,str(inp_symptom)))
+				Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))".format(symptoms,str(inp_symptom)))
 				bot.send_text_message(sender_id,"Hmm, clearly you are not feeling well.")
 				quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 				bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
