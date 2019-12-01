@@ -309,8 +309,26 @@ def send_remedies(sender_id,symptoms):
 		print('more than one symptom')
 		for ps in patient_symptoms[0:-1]:
 			rest = ps.replace(" ","").replace("/","").replace("-","").replace(",","")
-			element = [{"title":rest.capitalize(),"image_url":image_url +rest.lower()+'.png',"subtitle":"","default_action": {"type": "postback","payload":"","webview_height_ratio": "tall",},"buttons":[{"type":"postback","title":"Send Remedies","payload":rest+'_remedies'}]}]        
-			bot.send_generic_message(sender_id, element)
+			elements = [
+				 {
+				  "title":ps.capitalize(),
+				  "image_url":image_url +rest+'.png',
+				  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
+				  "default_action": {
+				    "type": "web_url",
+				    "url": "www.fb.com",
+				    "webview_height_ratio": "COMPACT"
+				  },
+				     "buttons":[
+					{
+					"type":"postback",
+					"title":"Remedies",
+					"payload":rest+"_remedies"
+					}
+				     ]
+				}
+			      ]
+			bot.send_generic_message(sender_id, elements)
 	elif len(patient_symptoms) == 2:
 		ps = patient_symptoms[0]
 
@@ -1467,7 +1485,7 @@ def received_postback(event):
                         }
                       ]
 		#bot.send_generic_message(sender_id, elements)
-		send_remedies(sender_id,'fever,')
+		send_remedies(sender_id,'fever,cough')
 		if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
