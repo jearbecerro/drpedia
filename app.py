@@ -1490,7 +1490,7 @@ def received_postback(event):
 				}
 			      ]
 		#bot.send_generic_message(sender_id, elements)
-		send_remedies(sender_id,symptoms)
+		send_remedies(sender_id,'cough,fever,rashes')
 		'''if terms == "Yes":
 			Mongo.set_ask(users,sender_id, "")
 			Mongo.set_answer(users,sender_id, "")
