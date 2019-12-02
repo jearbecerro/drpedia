@@ -299,23 +299,23 @@ def received_text(event):
 		
 		if inp_symptom != 'Invalid':
 			if inp_symptom in (sentumas):
-				bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
+				bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}.".format(fname))
 				quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 				bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 				
-			elif inp_symptom not in (sentumas):
+			else:
 				rest = inp_symptom.replace(" ","").replace("/","").replace("-","").replace(",","")
 				Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))
 				#bot.send_text_message(sender_id,"Hmm, clearly you are not feeling well.")
 				#duration and severity
-				if inp_symptom in ("fever","cough","muscle ache","headache","urine has a strong odor","pelvic pain","rectal pain","pain in swallowing","earache","stomachaches","back pain","sudden onset of chills","bloating","abdominal pain","joint pain","abdmoinal cramp"):
-					if inp_symptom == "cough":
-						hardormild = {"content_type":"text","title":"Hard", "payload":'hard_cough' },{ "content_type":"text", "title":"Mild", "payload":'mild_cough' }
-						bot.send_quick_replies_message(sender_id, "Is the cough Mild or Hard?", hardormild)  
+				if inp_symptom == "cough":
+					hardormild = {"content_type":"text","title":"Hard", "payload":'hard_cough' },{ "content_type":"text", "title":"Mild", "payload":'mild_cough' }
+					bot.send_quick_replies_message(sender_id, "Is the cough Mild or Hard?", hardormild)  
 						
-					if inp_symptom in ("fever","muscle aches","headache","urine has a strong odor","pelvic pain","rectal pain","joint pain","pain in swallowing","earache","stomachache","back pain","sudden onset of chills","bloating","abdominal pain","abdmoinal cramp"):
-						severormild = {"content_type":"text","title":"Severe", "payload":'sever_'+rest },{ "content_type":"text", "title":"Mild", "payload":'mild_'+rest }
-						bot.send_quick_replies_message(sender_id, "Is the *{} Mild or Severe?".format(inp_symptom), severormild)  
+				if inp_symptom in ("fever","muscle aches","headache","urine has a strong odor","pelvic pain","rectal pain","joint pain","pain in swallowing","earache","stomachache","back pain","sudden onset of chills","bloating","abdominal pain","abdmoinal cramp"):
+					severormild = {"content_type":"text","title":"Severe", "payload":'sever_'+rest },{ "content_type":"text", "title":"Mild", "payload":'mild_'+rest }
+					bot.send_quick_replies_message(sender_id, "Is the *{} Mild or Severe?".format(inp_symptom), severormild)  
+				
 				if inp_symptom in ("fatigue","loss appetite","runny nose","burning urination","bloody urine","cloudy urine","swollen lymph nodes","rashes","nausea","bruising on the skin","sore throat","scratchy voice","bad breath","chills","red, swollen tonsil","white or yellow spots in tonsils","weakness","poor appetite","tiredness","wheezing","cramping","dehydration","clammy skin"):
 					if inp_symptom == "bloody urine":
 						bot.send_text_message(sender_id,"Bloody urine is a severe symptom,\nGo to the nearest ER/hospital immediately!")
@@ -371,11 +371,6 @@ def send_remedies(sender_id,symptoms):
 				  "title":ps.capitalize(),
 				  "image_url":image_url +rest+'.png',
 				  "subtitle":"If symptom persist or worsen get a doctor's consultation.",
-				  "default_action": {
-				    "type": "web_url",
-				    "url": "www.fb.com",
-				    "webview_height_ratio": "COMPACT"
-				  },
 				     "buttons":[
 					{
 					"type":"postback",
@@ -711,39 +706,39 @@ def received_qr(event):
 			   
 		if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 70:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Flu".format(phrase2))
-			send_remedies(sender_id,"Flu,")
+			send_remedies(sender_id,"flu,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
 		elif get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 70:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Dengue".format(phrase2)) 
-			send_remedies(sender_id,"Dengue,")
+			send_remedies(sender_id,"dengue,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
 		elif get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 70:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have UTI".format(phrase2)) 
-			send_remedies(sender_id,"Uti,")
+			send_remedies(sender_id,"uti,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
 		elif get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 70:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Gastroenteritis".format(phrase2)) 
-			send_remedies(sender_id,"Gastroenteritis,")
+			send_remedies(sender_id,"gastro,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
 		elif get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 70:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Tonsillitis".format(phrase2)) 
-			send_remedies(sender_id,"Tonsil,")
+			send_remedies(sender_id,"tonsil,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
 		elif get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 70:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Common Cold".format(phrase2)) 
-			send_remedies(sender_id,"Common Cold,")
+			send_remedies(sender_id,"commoncold,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
 		elif get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 70:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Typhoid Fever".format(phrase2)) 
-			send_remedies(sender_id,"Typhoid Fever,")
+			send_remedies(sender_id,"typhoidfever,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
 		elif get_average(countOccurrence(patient_symptoms,b), len(b)) > 70:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Bronchitis".format(phrase2)) 
-			send_remedies(sender_id,"Bronchitis,")
+			send_remedies(sender_id,"bronchitis,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
 		elif get_average(countOccurrence(patient_symptoms, p), len(p)) > 70:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Pneumonia".format(phrase2)) 
-			send_remedies(sender_id,"Pneumonia,")
+			send_remedies(sender_id,"pneumonia,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
 		elif get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Diarrhea".format(phrase2)) 
