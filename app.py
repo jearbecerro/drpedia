@@ -27,6 +27,24 @@ with open("illness.json") as file:
 		
 image_url = 'https://raw.githubusercontent.com/clvrjc2/drpedia/master/images/'
 GREETING_RESPONSES = ["Hi", "Hey", "Hello there", "Hello", "Hi there"]
+
+'''
+with open("remedies.json") as file:
+	remedies = json.load(file)
+for ra in remedies["medication"]:#get all data in the 'illness' 
+	name = ra["name"]
+	if name.lower() == 'Flu':
+		flu_remedies = ra["remedies"]
+		flu_about = ra["about"]
+	if name.lower() == 'UTI':
+		uti_remedies = ra["remedies"]
+	if name.lower() == 'Dengue':
+		dengue_remedies = ra["remedies"]
+	if name.lower() == 'Gastro':
+		gastro_remedies = ra["remedies"]
+	if name.lower() == 'Tonsil':
+		tonsill_remedies = ra["remedies"]
+'''	
 #illnesses remedies
 flu_remedies = ["Call your doctor", "Let your child rest as much as needed", "Keep your child hydrated with plenty of liquids, breast milk or formula for babies; water, juice, ice pops, and cool drinks for older kids (but no caffeinated drinks)", "Relieve symptoms with: a cool-mist humidifier, saline (saltwater) nose drops, acetaminophen or ibuprofen (give according to package directions)"]
 uti_remedies = ["Try cranberries. Cranberries may contain an ingredient that stops bacteria from attaching to the walls of the urinary tract. You might be able to reduce your risk with unsweetened cranberry juice, cranberry supplements, or by snacking on dried cranberries.", "Drink plenty of water. The more you drink, the more you’ll urinate. Urinating helps flush harmful bacteria from the urinary tract.", "Pee when you need to. Holding your urine or ignoring the urge to urinate can allow bacteria to multiply in your urinary tract. As a rule of thumb, always use the bathroom when you feel the urge.", "Take probiotics. Probiotics promote healthy digestion and immunity. They also may be effective in treating and preventing UTIs.", "Get more vitamin C. Increasing your intake of vitamin C may help prevent a UTI. Vitamin C strengthens the immune system and may help acidify to prevent infection."]
@@ -278,14 +296,38 @@ def received_text(event):
 		a = "Well that doesn't sound healthy."
 		inp_symptom = nlp.nlp(text)
 		sentumas = list(symptoms.split(",")) 
+		
 		if inp_symptom != 'Invalid':
 			if inp_symptom in (sentumas):
 				bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
 			else:
+				rest = inp_symptom.replace(" ","").replace("/","").replace("-","").replace(",","")
 				Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))
 				bot.send_text_message(sender_id,"Hmm, clearly you are not feeling well.")
-				quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
-				bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+				#duration and severity
+				if inp_symptom in ("fever","cough","muscle ache","headache","urine has a strong odor","pelvic pain","rectal pain","pain in swallowing","earache","stomachaches","back pain","sudden onset of chills","bloating","abdominal pain","joint pain","abdmoinal cramp"):
+					if inp_symptom == "cough":
+						hardormild = {"content_type":"text","title":"Hard", "payload":'hard_cough' },{ "content_type":"text", "title":"Mild", "payload":'mild_cough' }
+						bot.send_quick_replies_message(sender_id, "Is the cough Mild or Hard?", hardormild)  
+						
+					if inp_symptom in ("fever","muscle aches","headache","urine has a strong odor","pelvic pain","rectal pain","joint pain","pain in swallowing","earache","stomachache","back pain","sudden onset of chills","bloating","abdominal pain","abdmoinal cramp"):
+						severormild = {"content_type":"text","title":"Severe", "payload":'sever_'+rest },{ "content_type":"text", "title":"Mild", "payload":'mild_'+rest }
+						bot.send_quick_replies_message(sender_id, "Is the *{} Mild or Severe?".format(inp_symptom), severormild)  
+				if inp_symptom in ("fatigue","loss appetite","runny nose","burning urination","bloody urine","cloudy urine","swollen lymph nodes","rashes","nausea","bruising on the skin","sore throat","scratchy voice","bad breath","chills","red, swollen tonsil","white or yellow spots in tonsils","weakness","poor appetite","tiredness","wheezing","cramping","dehydration","clammy skin"):
+					if inp_symptom == "bloody urine":
+						bot.send_text_message(sender_id,"Bloody urine is a severe symptom,\nGo to the nearest ER/hospital immediately!")
+					else:
+						bot.send_text_message(sender_id,"If the {} occurs 2-3 days or more.\nI suggest you seek for doctors advice.".format(input_symptom))
+					quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+					bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+				if inp_symptom in ("stabbing chest pain","loose stools","cough with thick yellow, green or blood-tinged mucus","feeling cold easily","increased urgency of urination","vommiting","bleeding nose/gums","nasal congestion","sneezing","diarrhea","increased frequency of urination without passing much urine"):
+					if inp_symptom == "vommiting":
+						bot.send_text_message(sender_id,"If vommiting \n*occurs 2-3 days or more\n*occurs 3-5 times a day or more\n*OR if vommting blood.\nGo to the nearest ER/hospital immediately!")
+					else:
+						bot.send_text_message(sender_id,"If the {} \n*occurs 2-3 days or more\n*occurs 3-5 times a day or more.\nI suggest you seek for doctors advice.".format(input_symptom))
+					quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+					bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+
 		else:
 			bot.send_text_message(sender_id,"Sorry, I did't quite follow that. Maybe use different words?")
 			bot.send_text_message(sender_id, "OK {}, what seems you trouble today?\nYou can just type For example: 'fever' or 'abdominal pain' and so on.".format(fname))
@@ -311,7 +353,7 @@ def send_remedies(sender_id,symptoms):
 		print(len_ps)
 		for x in range(0,len_ps-1):
 			rest = patient_symptoms[x].replace(" ","").replace("/","").replace("-","").replace(",","")
-			elements.append({"title":patient_symptoms[x].capitalize(),"image_url":image_url +rest+'.png',"subtitle":"If symptom persist or worsen get a doctor's consultation.","buttons":[{"type":"postback","title":"Remedies","payload":rest+"_remedies"}]},)
+			elements.append({"title":patient_symptoms[x].capitalize(),"image_url":image_url +rest+'.png',"subtitle":"If symptom persist or worsen get a doctor's consultation.","buttons":[{"type":"postback","title":"More Details","payload":rest+"_about"},{"type":"postback","title":"Remedies","payload":rest+"_remedies"}]},)
 			if x == len_ps-1:
 				break
 		else:
@@ -333,6 +375,11 @@ def send_remedies(sender_id,symptoms):
 				  },
 				     "buttons":[
 					{
+					"type":"postback",
+					"title":"More Details",
+					"payload":rest+"_about"
+					},
+					 {
 					"type":"postback",
 					"title":"Remedies",
 					"payload":rest+"_remedies"
@@ -436,8 +483,204 @@ def received_qr(event):
 	
 	unique_symptom = {"content_type":"text","title":"Rapid Breathing","payload":"breathing" },{"content_type":"text","title":"Diarrhea","payload":"diarrhea"},{"content_type":"text","title":"Pain in swallowing","payload":"swallowing"},{"content_type":"text","title":"Pain in urination","payload":"urination"},{"content_type":"text","title":"Body pain","payload":"body"}
 	quick_replies = {"content_type":"text","title":"👌Yes","payload":'yes_correct'},{"content_type":"text","title":"👎No","payload":'no_correct'}
+
+	if text == "mild_abdmoinalcramp":
+		bot.send_text_message(sender_id,"Mild abdmoinal cramp is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_abdmoinalcramp":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If abdmoinal cramp occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+
+	if text == "mild_abdominalpain":
+		bot.send_text_message(sender_id,"Mild abdominal pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_abdominalpain":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If abdominal pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+
+	if text == "mild_bloating":
+		bot.send_text_message(sender_id,"Mild bloating is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_bloating":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If bloating occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+
+	if text == "mild_suddenonsetofchills":
+		bot.send_text_message(sender_id,"Mild sudden onset of chills is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_suddenonsetofchills":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If sudden onset of chills occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+
+	if text == "mild_backpain":
+		bot.send_text_message(sender_id,"Mild back pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_backpain":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If back pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+	
+	if text == "mild_stomachache":
+		bot.send_text_message(sender_id,"Mild stomachache is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_stomachache":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If stomachache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+	
+	if text == "mild_earache":
+		bot.send_text_message(sender_id,"Mild earache is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_earache":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If earache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+	
+	if text == "mild_paininswallowing":
+		bot.send_text_message(sender_id,"Mild pain in swallowing is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_paininswallowing":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If pain in swallowing occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+	
+	if text == "mild_jointpain":
+		bot.send_text_message(sender_id,"Mild joint pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_jointpain":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If joint pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+
+	if text == "mild_rectalpain":
+		bot.send_text_message(sender_id,"Mild rectal pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_rectalpain":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If rectal pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+	
+	if text == "mild_pelvicpain":
+		bot.send_text_message(sender_id,"Mild pelvic pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_pelvicpain":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If pelvic pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+	
+	if text == "mild_urinehasastrongodor":
+		bot.send_text_message(sender_id,"Urine with a strong odor is just mild, it is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_urinehasastrongodor":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If urine with a strong odor occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+	
+	if text == "mild_headache":
+		bot.send_text_message(sender_id,"Mild headache can be curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_headache":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+	
+	if text == "mild_muscleaches":
+		bot.send_text_message(sender_id,"Mild muscle aches can be curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If cough occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_muscleaches":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If muscle aches occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+	
+	if text == "mild_fever":
+		bot.send_text_message(sender_id,"Mild fever can be curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If cough occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "sever_fever":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If fever occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+		
+	if text == "hard_cough":
+		bot.send_text_message(sender_id,"Ugh... Sorry to hear that.")
+		bot.send_text_message(sender_id,"If cough occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+				
+	if text == "mild_cough":
+		bot.send_text_message(sender_id,"Mild cough can be curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
+		bot.send_text_message(sender_id,"If cough occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+				
 	
 	if text =='yes_symptoms':
+		bot.send_text_message(sender_id,"What else?")   
+			
+	if text =='no_symptoms':
 		patient_symptoms = list(symptoms.split(" "))
 		for illness in data["illness"]:#get all data in the 'illness' 
 			name = illness["name"]
@@ -462,32 +705,53 @@ def received_qr(event):
 			if name.lower() == 'diarrhea':
 				d = illness["symptoms"]
 			   
-		if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,flu,total_symptoms,count_yes,'Flu')
-		if get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,dengue,total_symptoms,count_yes,'Dengue')
-		if get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,uti,total_symptoms,count_yes,'UTI')
-		if get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,gastro,total_symptoms,count_yes,'Gastroenteritis')
-		if get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,tonsil,total_symptoms,count_yes,'Tonsillitis')
-		if get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,cc,total_symptoms,count_yes,'Common Cold')
-		if get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,tf,total_symptoms,count_yes,'Typhoid Fever')
-		if get_average(countOccurrence(patient_symptoms,b), len(b)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,b,total_symptoms,count_yes,'Bronchitis')
-		if get_average(countOccurrence(patient_symptoms, p), len(p)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,p,total_symptoms,count_yes,'Pneumonia')
-		if get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
-			get_the_rest_symptoms(patient,sender_id,text, symptoms,d,total_symptoms,count_yes,'Diarrhea')         			 
-		bot.send_text_message(sender_id,"What else?")   
-			
-	if text =='no_symptoms':
-		bot.send_text_message(sender_id,"Based on my symptom checker database, there is no posible illness that {} might have".format(phrase2))   
-		bot.send_text_message(sender_id,"But here is the symptoms you've given to us and their remedies.")   
-		send_remedies(sender_id,symptoms)
+		if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 70:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Flu".format(phrase2))
+			send_remedies(sender_id,"Flu,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
+		elif get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 70:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Dengue".format(phrase2)) 
+			send_remedies(sender_id,"Dengue,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
+		elif get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 70:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have UTI".format(phrase2)) 
+			send_remedies(sender_id,"Uti,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
+		elif get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 70:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Gastroenteritis".format(phrase2)) 
+			send_remedies(sender_id,"Gastroenteritis,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
+		elif get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 70:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Tonsillitis".format(phrase2)) 
+			send_remedies(sender_id,"Tonsil,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
+		elif get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 70:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Common Cold".format(phrase2)) 
+			send_remedies(sender_id,"Common Cold,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
+		elif get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 70:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Typhoid Fever".format(phrase2)) 
+			send_remedies(sender_id,"Typhoid Fever,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
+		elif get_average(countOccurrence(patient_symptoms,b), len(b)) > 70:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Bronchitis".format(phrase2)) 
+			send_remedies(sender_id,"Bronchitis,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
+		elif get_average(countOccurrence(patient_symptoms, p), len(p)) > 70:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Pneumonia".format(phrase2)) 
+			send_remedies(sender_id,"Pneumonia,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
+		elif get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Diarrhea".format(phrase2)) 
+			send_remedies(sender_id,"Diarrhea,")
+			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
+		else:
+			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is no posible illness that {} might have".format(phrase2))   
+			sorp = "is"
+			if len(patient_symptoms) > 2:
+				sorp= 'are'
+			bot.send_text_message(sender_id,"But here {} the symptoms you've given to me and their remedies.".format(sorp))   
+			send_remedies(sender_id,symptoms)
 		
 	if text == 'send_dengue_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_dengue_remedies'}]
