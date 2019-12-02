@@ -300,10 +300,13 @@ def received_text(event):
 		if inp_symptom != 'Invalid':
 			if inp_symptom in (sentumas):
 				bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}".format(fname))
-			else:
+				quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
+				bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+				
+			elif inp_symptom not in (sentumas):
 				rest = inp_symptom.replace(" ","").replace("/","").replace("-","").replace(",","")
 				Mongo.set_patient(patient, sender_id, 'symptoms',"{}{},".format(symptoms,str(inp_symptom)))
-				bot.send_text_message(sender_id,"Hmm, clearly you are not feeling well.")
+				#bot.send_text_message(sender_id,"Hmm, clearly you are not feeling well.")
 				#duration and severity
 				if inp_symptom in ("fever","cough","muscle ache","headache","urine has a strong odor","pelvic pain","rectal pain","pain in swallowing","earache","stomachaches","back pain","sudden onset of chills","bloating","abdominal pain","joint pain","abdmoinal cramp"):
 					if inp_symptom == "cough":
@@ -486,7 +489,7 @@ def received_qr(event):
 
 	if text == "mild_abdmoinalcramp":
 		bot.send_text_message(sender_id,"Mild abdmoinal cramp is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If abdmoinal cramp occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -498,7 +501,7 @@ def received_qr(event):
 
 	if text == "mild_abdominalpain":
 		bot.send_text_message(sender_id,"Mild abdominal pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If abdominal pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -510,7 +513,7 @@ def received_qr(event):
 
 	if text == "mild_bloating":
 		bot.send_text_message(sender_id,"Mild bloating is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If bloating occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -522,7 +525,7 @@ def received_qr(event):
 
 	if text == "mild_suddenonsetofchills":
 		bot.send_text_message(sender_id,"Mild sudden onset of chills is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If sudden onset of chills occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -534,7 +537,7 @@ def received_qr(event):
 
 	if text == "mild_backpain":
 		bot.send_text_message(sender_id,"Mild back pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If back pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -570,7 +573,7 @@ def received_qr(event):
 	
 	if text == "mild_paininswallowing":
 		bot.send_text_message(sender_id,"Mild pain in swallowing is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If pain in swallowing occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -582,7 +585,7 @@ def received_qr(event):
 	
 	if text == "mild_jointpain":
 		bot.send_text_message(sender_id,"Mild joint pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If joint pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -594,7 +597,7 @@ def received_qr(event):
 
 	if text == "mild_rectalpain":
 		bot.send_text_message(sender_id,"Mild rectal pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If rectal pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -606,7 +609,7 @@ def received_qr(event):
 	
 	if text == "mild_pelvicpain":
 		bot.send_text_message(sender_id,"Mild pelvic pain is curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If pelvic pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -642,7 +645,7 @@ def received_qr(event):
 	
 	if text == "mild_muscleaches":
 		bot.send_text_message(sender_id,"Mild muscle aches can be curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If cough occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If muscle aches occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -654,7 +657,7 @@ def received_qr(event):
 	
 	if text == "mild_fever":
 		bot.send_text_message(sender_id,"Mild fever can be curable with home and natural remedies and/or over the counter medication.\nBUT if symptom persist or worsen get a medical providers advice.")
-		bot.send_text_message(sender_id,"If cough occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
+		bot.send_text_message(sender_id,"If fever occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
@@ -681,6 +684,7 @@ def received_qr(event):
 		bot.send_text_message(sender_id,"What else?")   
 			
 	if text =='no_symptoms':
+		Mongo.set_ask(users,sender_id,"")
 		patient_symptoms = list(symptoms.split(" "))
 		for illness in data["illness"]:#get all data in the 'illness' 
 			name = illness["name"]
