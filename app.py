@@ -346,7 +346,7 @@ def get_average(count_yes, total_symptoms):
 		
 def countOccurrence(tup, lst): 
 	counts = Counter(tup) 
-	return sum(counts[i] for i in lst) 
+	return sum(counts[i] for i in lst)
 
 def send_remedies(sender_id,symptoms):
 	patient_symptoms = list(symptoms.split(","))
@@ -685,7 +685,7 @@ def received_qr(event):
 			
 	if text =='no_symptoms':
 		Mongo.set_ask(users,sender_id,"")
-		patient_symptoms = list(symptoms.split(" "))
+		patient_symptoms = list(symptoms.split(","))
 		for illness in data["illness"]:#get all data in the 'illness' 
 			name = illness["name"]
 			if name.lower() == 'flu':
