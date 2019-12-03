@@ -764,7 +764,7 @@ def received_qr(event):
 	
 	if text =='yes_symptoms':
 		el = ["What symptoms?","Name it...","What else?"]
-		bot.send_text_message(sender_id,"{}".format((random.choice(el)))   
+		bot.send_text_message(sender_id,"{}".format(random.choice(el)))  
 			
 	if text =='no_symptoms':
 		Mongo.set_ask(users,sender_id,"")
