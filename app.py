@@ -1379,7 +1379,7 @@ def received_qr(event):
 	if text == 'yes_correct':
 		Mongo.set_ask(users, sender_id, "What seems you trouble today?")
 		bot.send_text_message(sender_id, "Great!")
-		bot.send_text_message(sender_id, "What symptoms makes {} trouble today?".format(prhase2))
+		bot.send_text_message(sender_id, "What symptoms makes {} trouble today?".format(phrase2))
 	if text == 'no_correct':
 		if myself == True:
 			Mongo.set_ask(users, sender_id, "How old are you?")
@@ -1866,7 +1866,6 @@ def received_postback(event):
 		bot.send_text_message(sender_id,'Dengue Prevention Under Construction')
 	if payload=='pm_about':
 		bot.send_text_message(sender_id,'About Under Construction')
-	#}
 	
 	
 
