@@ -45,6 +45,122 @@ for ra in remedies["medication"]:#get all data in the 'illness'
 	if name.lower() == 'Tonsil':
 		tonsill_remedies = ra["remedies"]
 '''	
+flu_about = ["Influenza is a serious virus that leads to many illnesses each year, you don’t have to be young or have a compromised immune system to get gravely ill from the infection and healthy people can get sick from the flu and spread it to friends and family."]
+
+uti_about = ["A urinary tract infection (UTI) is an infection from microbes. Most UTIs only involve the urethra and bladder, in the lower tract. However, UTIs can involve the ureters and kidneys, in the upper tract."]
+       
+dengue_about = ["Dengue fever is a disease spread by the Aedes aegypti mosquito and is caused by one of four dengue viruses. Dengue fever is transmitted via the bite of a mosquito harboring the dengue virus."]
+
+gastro_about = ["Gastroenteritis is an inflammation of your stomach and intestines caused by one of any number of viruses. This highly contagious illness spreads through close contact with people who are infected or through contaminated food or water."]
+   
+tonsill_about = ["When tonsils become infected, the condition is called tonsillitis. It’s most often diagnosed in children from preschool age through their mid-teens."]
+ 
+commoncold_about = ["Cold symptoms typically take a few days to appear. Colds rarely cause additional health conditions or problems."]
+                            
+typhoidfever_about = ["Typhoid fever is a serious bacterial infection that easily spreads through contaminated water and food. Along with high fever, it can cause abdominal pains headache, and loss of appetite."]
+ 
+bronchitis_about = ["Your bronchial tubes deliver air from your trachea (windpipe) into your lungs. When these tubes become inflamed, mucus can build up.", "This condition is called bronchitis, and it causes symptoms that can include coughing, shortness of breath, and low fever."]
+               
+pneumonia_about = ["Pneumonia is an infection in one or both lungs. Bacteria, viruses, and fungi cause it."]
+
+diarrhea_about = ["Diarrhea is characterized by loose, watery stools or a frequent need to have a bowel movement. You might experience diarrhea as a result of a viral or bacterial infection."]
+ 
+fever_about = ["Fever is also known as hyperthermia, pyrexia, or elevated temperature. It describes a body temperature that’s higher than normal."]
+ 
+cough_about = ["Coughing is a common reflex action that clears your throat of mucus or foreign irritants. Coughing is a symptom of many illnesses and conditions."]
+
+muscleaches_about = ["Muscle aches (myalgia) are extremely common. Because there’s muscle tissue in nearly all parts of the body, this type of pain can be felt practically anywhere."]
+        
+headache_about = ["A headache is a very common condition that causes pain and discomfort in the head, scalp, or neck. Headaches can sometimes be mild, but in many cases, they can cause severe pain that makes it difficult to concentrate at work and perform other daily activities."]
+  
+fatigue_about = ["Fatigue is a term used to describe an overall feeling of tiredness or lack of energy. Fatigue is a common symptom of many medical conditions that range in severity from mild to serious."]
+                                            
+burningurin_about = ["Painful urination is a broad term that describes discomfort during urination. This pain may originate in the bladder, urethra, or perineum."]
+        
+lossappetite_about = ["A decreased appetite occurs when you have a reduced desire to eat. It may also be known as a poor appetite or loss of appetite."]
+       
+increasedfrequencyofurinationwithoutpassingmuchurine_about = ["Frequent urination describes the need to urinate more often than usual. However, there isn’t really a clear definition of “frequent” when it comes to how often you urinate. "]
+ 
+increasedurgencyofurination_about = ["Urgent urination describes an overwhelming need to get to a restroom immediately. It may be accompanied by pain or discomfort in the bladder or urinary tract."]
+               
+bloodyurine_about = ["Hematuria is the medical term for blood in your urine. Several different conditions and diseases can cause hematuria."]
+        
+cloudyurine_about = ["If your urine is cloudy, it may mean something is amiss with your urinary tract. While cloudy urine doesn’t typically indicate a medical emergency, it can be a sign of a serious medical problem."]
+        
+urinehasastrongodor_about = ["You may notice that your urine occasionally has a stronger smell than it normally does. But sometimes strong or unusual smelling urine is a sign of an underlying medical problem."]
+   
+pelvicpain_about = ["The pelvis houses the reproductive organs. It’s located at the lower abdomen, where your abdomen meets your legs. Pelvic pain can radiate up into the lower abdomen, making it hard to differentiate from abdominal pain."]
+  
+rectalpain_about = ["Rectal pain can refer to any pain or discomfort in the anus, rectum, or lower portion of the gastrointestinal (GI) tract. Oftentimes, it results from a bout of muscle spasms or constipation."]
+           
+swollenlymphnodes_about = ["Lymph nodes are small glands that filter lymph, the clear fluid that circulates through the lymphatic system. They become swollen in response to infection and tumors."]
+        
+jointpain_about = ["Joint pain refers to discomfort, aches, and soreness in any of the body’s joints. Joint pain is a common complaint. Sometimes, joint pain is the result of an illness or injury."]
+        
+rashes_about = ["A rash is a noticeable change in the texture or color of your skin. Your skin may become scaly, bumpy, itchy, or otherwise irritated."]
+        
+nausea_about = ["Nausea is stomach discomfort and the sensation of wanting to vomit. Nausea can be a precursor to vomiting the contents of the stomach."]
+        
+vomiting_about = ["Vomiting, or throwing up, is a forceful discharge of stomach contents. Vomiting itself is not a condition. It’s a symptom of other conditions."]
+        
+bleedingnosegums_about = ["Nosebleeds are common. They may be scary, but they rarely indicate a serious medical problem. There are many causes of nosebleeds. If you have frequent nosebleeds, you could have a more serious problem."]
+        
+bruisingontheskin_about = ["A bruise, or contusion, appears on the skin due to trauma. Some bruises appear with very little pain, and you might not notice them."]
+        
+dia_about = ["Diarrhea is characterized by loose, watery stools or a frequent need to have a bowel movement. You might experience diarrhea as a result of a viral or bacterial infection."]
+        
+clammyskin_about = ["Clammy skin refers to wet or sweaty skin. Changes in your body from physical exertion or extreme heat can trigger your sweat glands and cause your skin to become clammy."]
+        
+abdominalpain_about = ["Abdominal pain is pain that occurs between the chest and pelvic regions. Inflammation or diseases that affect the organs in the abdomen can cause abdominal pain."]
+        
+abdominalcrapms_about = ["Abdominal pain is pain that occurs between the chest and pelvic regions. Inflammation or diseases that affect the organs in the abdomen can cause abdominal pain."]
+        
+sorethroat_about = ["A sore throat is pain, scratchiness or irritation of the throat that often worsens when you swallow. The most common cause of a sore throat (pharyngitis) is a viral infection, such as a cold or the flu. A sore throat caused by a virus resolves on its own."]
+        
+paininswallowing_about = ["Pain in the throat is one of the most common symptoms. It accounts for more than 13 million visits to doctor’s offices each year."]
+                 
+scrathcyvoice_about = ["Hoarseness, an abnormal change in your voice, is a common condition that’s often experienced in conjunction with a dry or scratchy throat. Hoarseness is typically caused by a viral infection in the upper respiratory tract."]
+        
+badbreath_about = ["Bad breath is also known as halitosis or fetor oris. Odor can come from the mouth, teeth, or as a result of an underlying health problem."]
+        
+chills_about = ["The term “chills” refers to a feeling of being cold without an apparent cause. You get this feeling when your muscles repeatedly expand and contract and the vessels in your skin constrict."]
+        
+earache_about = ["Earaches usually occur in children, but they can occur in adults as well. An earache may affect one or both ears, but the majority of the time it’s in one ear."]
+        
+stomachache_about = ["Abdominal or stomach pain is pain that occurs between the chest and pelvic regions. Inflammation or diseases that affect the organs in the abdomen can cause abdominal pain."]
+        
+redswollentonsil_about = ["Tonsils can become infected by viruses and bacteria. When they do, they swell up. Swollen tonsils are known as tonsillitis."]
+        
+whiteoryellowspotsintonsils_about = ["White discoloration may appear only on the tonsils or it may appear around the tonsils and throughout the mouth. In addition to the white spots, your tonsils may feel scratchy and you might find it difficult to swallow."]
+        
+nasalcongestion_about = ["Nasal congestion, also called a stuffy nose, is often a symptom of another health problem such as a sinus infection. It may also be caused by the common cold."]
+        
+sneezing_about = ["Sneezing is your body’s way of removing irritants from your nose or throat. When these membranes become irritated, it causes you to sneeze."]
+        
+weakness_about = ["Asthenia, also known as weakness, is the feeling of body fatigue or tiredness. Others may experience full-body weakness, which is often the result of a bacterial or viral infection such as influenza or hepatitis."]
+        
+feelingcold_about = ["Some people are prone to feeling cold, especially those who have chronic health problems or little body fat."]
+        
+backpain_about = ["Lower back pain, also called lumbago, is not a disorder. It’s a symptom of several different types of medical problems."]
+        
+coughwiththickyellowgreenorbloodtingedmucus_about = ["You typically don’t produce noticeable amounts of phlegm unless you are sick with a cold or have some other underlying medical issue. If you see green or yellow phlegm, it’s usually a sign that your body is fighting an infection."]
+        
+stabbingchestpainworsenswhencoughingorbreathing_about = ["Chest pain is one of the most common reasons that people visit the emergency room. It may feel like a sharp, stabbing pain or a dull ache."]
+        
+suddenonsetofchills_about = ["The term “chills” refers to a feeling of being cold without an apparent cause. You get this feeling when your muscles repeatedly expand and contract and the vessels in your skin constrict."]
+        
+frequenturgebowels_about = ["Frequent urge to bowel is a condtion that makes you frequently urges you to bowel which may lead to serious health condtion"]
+        
+loosestools_about = ["Loose stools are bowel movements that appear softer than normal. They can be watery, mushy, or shapeless."]
+        
+bloating_about = ["Abdominal bloating occurs when the gastrointestinal (GI) tract is filled with air or gas. Most people describe bloating as feeling full, tight, or swollen in the abdomen."]
+        
+cramping_about = ["Muscle cramps are sudden, involuntary contractions that occur in various muscles. These contractions are often painful and can affect different muscle groups."]
+        
+dehydration_about = ["Dehydration takes place when your body loses more fluid than you drink. When too much water is lost from the body, its organs, cells, and tissues fail to function as they should, which can lead to dangerous complications."]
+        
+wheezing_about = ["Wheezing is a high-pitched whistling sound made while you breathe. Asthma and chronic obstructive pulmonary disease (COPD) are the most common causes of wheezing."]
+        
 #illnesses remedies
 flu_remedies = ["Call your doctor", "Let your child rest as much as needed", "Keep your child hydrated with plenty of liquids, breast milk or formula for babies; water, juice, ice pops, and cool drinks for older kids (but no caffeinated drinks)", "Relieve symptoms with: a cool-mist humidifier, saline (saltwater) nose drops, acetaminophen or ibuprofen (give according to package directions)"]
 uti_remedies = ["Try cranberries. Cranberries may contain an ingredient that stops bacteria from attaching to the walls of the urinary tract. You might be able to reduce your risk with unsweetened cranberry juice, cranberry supplements, or by snacking on dried cranberries.", "Drink plenty of water. The more you drink, the more you’ll urinate. Urinating helps flush harmful bacteria from the urinary tract.", "Pee when you need to. Holding your urine or ignoring the urge to urinate can allow bacteria to multiply in your urinary tract. As a rule of thumb, always use the bathroom when you feel the urge.", "Take probiotics. Probiotics promote healthy digestion and immunity. They also may be effective in treating and preventing UTIs.", "Get more vitamin C. Increasing your intake of vitamin C may help prevent a UTI. Vitamin C strengthens the immune system and may help acidify to prevent infection."]
@@ -59,7 +175,7 @@ dia_remedies = ["Continue your child's regular diet and give more liquids", "Off
 #symptoms remedies
 fever_remedies = ["Encourage your child to drink fluids", "Dress your child in lightweight clothing", "Use a light blanket if your child feels chilled, until the chills end", "Don't give an infant any type of pain reliever until after you've contacted a doctor and your child has been evaluated", "If your child is 6 months old or older, give your child acetaminophen (Tylenol, others) or ibuprofen (Advil, Motrin, others). Read the label carefully for proper dosing"]
 cough_remedies = ["If your child develops a “barky” or “croupy” cough, sit in a steamy bathroom together for about 20 minutes", "Offer plenty of fluids (breast milk or formula for babies; cool water and juice for older kids). Avoid carbonated or citrus drinks that may irritate a raw throat", "Run a cool-mist humidifier in your child’s bedroom", "Use saline (saltwater) nose drops to relieve congestion", "Never give cough drops (a choking hazard) to young kids or cough or cold medicine to kids under 6 years of age."]
-muscleaches_remedies = ["resting the area of the body where you’re experiencing aches and pains", "taking an over-the-counter pain reliever, such as ibuprofen (Advil)", "applying ice to the affected area to help relieve pain and reduce inflammation"]
+muscleache_remedies = ["resting the area of the body where you’re experiencing aches and pains", "taking an over-the-counter pain reliever, such as ibuprofen (Advil)", "applying ice to the affected area to help relieve pain and reduce inflammation"]
 headache_remedies = ["lie down in a dark, quiet room", "drink liquids", "take acetaminophen or ibuprofen as needed", "put a cool, moist cloth across the forehead or eyes"]
 fatigue_remedies = ["drink enough fluids to stay hydrated", "practice healthy eating habits", "get enough sleep", "take part in relaxing activities, such as yoga"]
 burningurination_remedies = ["Seek medical expert immediately"]
@@ -298,10 +414,12 @@ def received_text(event):
 		sentumas = list(symptoms.split(",")) 
 		
 		if inp_symptom != 'Invalid':
+			p = ["you haven't said","we haven't covered","we haven't cater"]
+			quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 			if inp_symptom in (sentumas):
-				bot.send_text_message(sender_id,"Send another symptom that you didn't said earlier {}.".format(fname))
-				quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
-				bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+				x = ["Send another symptom that you didn't said earlier","Send symptom that you simply did not give earlier"]
+				bot.send_text_message(sender_id,"{} {}.".format(random.choice(x),fname))
+				bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that {}?".format(phrase2,random.choice(p)), quick_replies)  
 				
 			else:
 				rest = inp_symptom.replace(" ","").replace("/","").replace("-","").replace(",","")
@@ -310,7 +428,7 @@ def received_text(event):
 				#duration and severity
 				if inp_symptom == "cough":
 					hardormild = {"content_type":"text","title":"Hard", "payload":'hard_cough' },{ "content_type":"text", "title":"Mild", "payload":'mild_cough' }
-					bot.send_quick_replies_message(sender_id, "Is the cough Mild or Hard?", hardormild)  
+					bot.send_quick_replies_message(sender_id, "Is the *cough Mild or Hard?", hardormild)  
 						
 				if inp_symptom in ("fever","muscle aches","headache","urine has a strong odor","pelvic pain","rectal pain","joint pain","pain in swallowing","earache","stomachache","back pain","sudden onset of chills","bloating","abdominal pain","abdmoinal cramp"):
 					severormild = {"content_type":"text","title":"Severe", "payload":'sever_'+rest },{ "content_type":"text", "title":"Mild", "payload":'mild_'+rest }
@@ -318,22 +436,21 @@ def received_text(event):
 				
 				if inp_symptom in ("fatigue","loss appetite","runny nose","burning urination","bloody urine","cloudy urine","swollen lymph nodes","rashes","nausea","bruising on the skin","sore throat","scratchy voice","bad breath","chills","red, swollen tonsil","white or yellow spots in tonsils","weakness","poor appetite","tiredness","wheezing","cramping","dehydration","clammy skin"):
 					if inp_symptom == "bloody urine":
-						bot.send_text_message(sender_id,"Bloody urine is a severe symptom,\nGo to the nearest ER/hospital immediately!")
+						bot.send_text_message(sender_id,"Bloody urine is a severe symptom,\nGo to the nearest ER/hospital immediately for further evaluation by a doctor.")
 					else:
 						bot.send_text_message(sender_id,"If the {} occurs 2-3 days or more.\nI suggest you seek for doctors advice.".format(input_symptom))
-					quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
-					bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
-				if inp_symptom in ("stabbing chest pain","loose stools","cough with thick yellow, green or blood-tinged mucus","feeling cold easily","increased urgency of urination","vommiting","bleeding nose/gums","nasal congestion","sneezing","diarrhea","increased frequency of urination without passing much urine"):
-					if inp_symptom == "vommiting":
-						bot.send_text_message(sender_id,"If vommiting \n*occurs 2-3 days or more\n*occurs 3-5 times a day or more\n*OR if vommting blood.\nGo to the nearest ER/hospital immediately!")
+					bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that {}?".format(phrase2,random.choice(p)), quick_replies)  
+				if inp_symptom in ("stabbing chest pain","loose stools","cough with thick yellow, green or blood-tinged mucus","feeling cold easily","increased urgency of urination","vomiting","bleeding nose/gums","nasal congestion","sneezing","diarrhea","increased frequency of urination without passing much urine"):
+					if inp_symptom == "vomiting":
+						bot.send_text_message(sender_id,"If vomiting \n*occurs 2-3 days or more\n*occurs 3-5 times a day or more\n*OR if vommting blood.\nGo to the nearest ER/hospital immediately!")
 					else:
 						bot.send_text_message(sender_id,"If the {} \n*occurs 2-3 days or more\n*occurs 3-5 times a day or more.\nI suggest you seek for doctors advice.".format(input_symptom))
-					quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
-					bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
+					bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that {}?".format(phrase2,random.choice(p)), quick_replies)
 
 		else:
-			bot.send_text_message(sender_id,"Sorry, I did't quite follow that. Maybe use different words?")
-			bot.send_text_message(sender_id, "OK {}, what seems you trouble today?\nYou can just type For example: 'fever' or 'abdominal pain' and so on.".format(fname))
+			x =["Im sorry, humans are complicated, I'm not trained to understand things well","Sorry, I did't quite follow that, perhaps use different words?","Sorry, I did't quite follow that, maybe use different words?"]
+			bot.send_text_message(sender_id,random.choice(x))
+			bot.send_text_message(sender_id, "OK {}, what seems you trouble today?\nYou can just type 'i have fever' or just 'fever' and so on.".format(fname))
 		
 def get_average(count_yes, total_symptoms):
 	print(count_yes, total_symptoms)
@@ -704,51 +821,52 @@ def received_qr(event):
 			if name.lower() == 'diarrhea':
 				d = illness["symptoms"]
 			   
-		if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 70:
+		if get_average(countOccurrence(patient_symptoms, flu),len(flu)) > 70 and 'fatigue' in (patient_symptoms) and 'sore throat' in (patient_symptoms) and 'cough' in (patient_symptoms) and 'fever' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Flu".format(phrase2))
 			send_remedies(sender_id,"flu,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
-		elif get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 70:
+		elif get_average(countOccurrence(patient_symptoms, dengue), len(dengue)) > 70 and 'rashes' in (patient_symptoms) and 'vomiting' in (patient_symptoms) and 'nausea' in (patient_symptoms) and 'muscle ache' in (patient_symptoms) and 'headache' in (patient_symptoms) and 'fever' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Dengue".format(phrase2)) 
 			send_remedies(sender_id,"dengue,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
-		elif get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 70:
+		elif get_average(countOccurrence(patient_symptoms, uti), len(uti)) > 70 and 'burning urination' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have UTI".format(phrase2)) 
 			send_remedies(sender_id,"uti,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
-		elif get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 70:
+		elif get_average(countOccurrence(patient_symptoms, gastro), len(gastro)) > 70 and 'diarrhea' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Gastroenteritis".format(phrase2)) 
 			send_remedies(sender_id,"gastro,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.") 
-		elif get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 70:
+		elif get_average(countOccurrence(patient_symptoms, tonsil), len(tonsil)) > 70 and 'sore throat' in (patient_symptoms) and 'fever' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Tonsillitis".format(phrase2)) 
 			send_remedies(sender_id,"tonsil,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
-		elif get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 70:
+		elif get_average(countOccurrence(patient_symptoms, cc), len(cc)) > 70 and 'sore throat' in (patient_symptoms) and 'headache' in (patient_symptoms) and 'sneezing' in (patient_symptoms) and 'cough' in (patient_symptoms) and 'runny nose' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Common Cold".format(phrase2)) 
 			send_remedies(sender_id,"commoncold,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
-		elif get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 70:
+		elif get_average(countOccurrence(patient_symptoms, tf), len(tf)) > 70 and 'headache' in (patient_symptoms) and 'diarrhea' in (patient_symptoms) and 'loss appetite' in (patient_symptoms) and 'fever' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Typhoid Fever".format(phrase2)) 
 			send_remedies(sender_id,"typhoidfever,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
-		elif get_average(countOccurrence(patient_symptoms,b), len(b)) > 70:
+		elif get_average(countOccurrence(patient_symptoms,b), len(b)) > 70 and 'fever' in (patient_symptoms) and 'cough' in (patient_symptoms) and 'tiredness' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Bronchitis".format(phrase2)) 
 			send_remedies(sender_id,"bronchitis,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
-		elif get_average(countOccurrence(patient_symptoms, p), len(p)) > 70:
+		elif get_average(countOccurrence(patient_symptoms, p), len(p)) > 70 and 'fatigue' in (patient_symptoms) and 'cough' in (patient_symptoms) and 'fever' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Pneumonia".format(phrase2)) 
 			send_remedies(sender_id,"pneumonia,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
-		elif get_average(countOccurrence(patient_symptoms, d), len(d)) > 40:
+		elif get_average(countOccurrence(patient_symptoms, d), len(d)) > 70 and 'loose stools' in (patient_symptoms) and 'fever' in (patient_symptoms) and 'abdmoninal pain' in (patient_symptoms):
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is posible that {} might have Diarrhea".format(phrase2)) 
-			send_remedies(sender_id,"Diarrhea,")
+			send_remedies(sender_id,"diarrhea,")
 			bot.send_text_message(sender_id,"I suggest you seek for experts advice.")
 		else:
 			bot.send_text_message(sender_id,"Based on my symptom checker in my database, there is no posible illness that {} might have".format(phrase2))   
 			sorp = "is"
 			if len(patient_symptoms) > 2:
 				sorp= 'are'
+				bot.send_text_message(sender_id,"Get an experts consultation if symptoms is worsen.")
 			bot.send_text_message(sender_id,"But here {} the symptoms you've given to me and their remedies.".format(sorp))   
 			send_remedies(sender_id,symptoms)
 		
@@ -1244,9 +1362,9 @@ def received_qr(event):
 		if relation == 'myself':
 		   bot.send_text_message(sender_id,'And you are {} kg in weight'.format(weight))
 		elif relation == 'mychild':
-		   bot.send_text_message(sender_id,"And your child is {} kg in weight".format(age))
+		   bot.send_text_message(sender_id,"And your child is {} kg in weight".format(weight))
 		elif relation == 'someone':
-		   bot.send_text_message(sender_id,"And the child's weight is {} kg.".format(name, age))
+		   bot.send_text_message(sender_id,"And the child's weight is {} kg.".format(name, weight))
 		bot.send_quick_replies_message(sender_id, 'Correct?', quick_replies)  
 			
 	if text == 'no_correct1':
@@ -1298,6 +1416,124 @@ def received_postback(event):
 		relation  = patient_data['relation']
 	else: 
 		pass
+	#illness about
+	if payload == "flu_about":
+		bot.send_text_message(sender_id,flu_about[0])
+	if payload == "uti_about": 
+		bot.send_text_message(sender_id,uti_about[0])
+	if payload == "dengue_about":
+		bot.send_text_message(sender_id,dengue_about[0])
+	if payload == "gastro_about":
+		bot.send_text_message(sender_id,gastro_about[0])
+	if payload == "tonsil_about":
+		bot.send_text_message(sender_id,flu_about[0])
+	if payload == "commoncold_about":
+		bot.send_text_message(sender_id,commoncold_about[0])
+	if payload == "typhoidfever_about":
+		bot.send_text_message(sender_id,typhoidfever_about[0])
+	if payload == "bronchitis_about":
+		bot.send_text_message(sender_id,bronchitis_about[0])
+	if payload == "pneumonia_about":
+		bot.send_text_message(sender_id,pneumoni_about[0])
+	if payload == "diarrhea_about":
+		bot.send_text_message(sender_id,diarrhea_about[0])
+	#symptoms about
+	if payload == "fever_about":
+		bot.send_text_message(sender_id,fever_about[0])
+	if payload == "cough_about":
+		bot.send_text_message(sender_id,cough_about[0])
+	if payload == "muscleache_about":
+		bot.send_text_message(sender_id,diarrhea_about[0])
+	if payload == "headache_about":
+		bot.send_text_message(sender_id,headache_about[0])
+	if payload == "fatigue_about":
+		bot.send_text_message(sender_id,fatigue_about[0])
+	if payload == "burningurination_about":
+		bot.send_text_message(sender_id,burningurination_about[0])
+	if payload == "lossappetite_about":
+		bot.send_text_message(sender_id,lossappetite_about[0])
+	if payload == "runnynose_about":
+		bot.send_text_message(sender_id,runnynose_about[0])
+	if payload == "increasedfrequencyofurinationwithoutpassingmuchurine_about":
+		bot.send_text_message(sender_id,runnynose_about[0])
+	if payload == "increasedurgencyofurination_about":
+		bot.send_text_message(sender_id,increasedurgencyofurination_about[0])
+	if payload == "bloodyurine_about":
+		bot.send_text_message(sender_id,bloodyurine_about[0])
+	if payload == "cloudyurine_about":
+		bot.send_text_message(sender_id,cloudyurine_about[0])
+	if payload == "urinehasastrongodor_about":
+		bot.send_text_message(sender_id,urinehasastrongodor_about[0])
+	if payload == "pelvicpain_about":
+		bot.send_text_message(sender_id,pelvicpain_about[0])
+	if payload == "rectalpain_about":
+		bot.send_text_message(sender_id,rectalpain_about[0])
+	if payload == "swollenlymphnodes_about":
+		bot.send_text_message(sender_id,swollenlymphnodes_about[0])
+	if payload == "jointpain_about":
+		bot.send_text_message(sender_id,jointpain_about[0])
+	if payload == "rashes_about":
+		bot.send_text_message(sender_id,rashes_about[0])
+	if payload == "nausea_about":
+		bot.send_text_message(sender_id,nausea_about[0])
+	if payload == "vomiting_about":
+		bot.send_text_message(sender_id,vomiting_about[0])
+	if payload == "bleedingnosegums_about":
+		bot.send_text_message(sender_id,bleedingnosegums_about[0])
+	if payload == "bruisingontheskin_about":
+		bot.send_text_message(sender_id,bruisingontheskin_about[0])
+	if payload == "diarrhea_about":
+		bot.send_text_message(sender_id,dia_about[0])
+	if payload == "clammyskin_about":
+		bot.send_text_message(sender_id,clammyskin_about[0])
+	if payload == "abdominalpain_about":
+		bot.send_text_message(sender_id,abdominalpain_about[0])
+	if payload == "abdominalcrapms_about":
+		bot.send_text_message(sender_id,abdominalcramps_about[0])
+	if payload == "sorethroat_about":
+		bot.send_text_message(sender_id,sorethroat_about[0])
+	if payload == "paininswallowing_about":
+		bot.send_text_message(sender_id,paininswallowing_about[0])
+	if payload == "scrathcyvoice_about":
+		bot.send_text_message(sender_id,scrathcyvoice_about[0])
+	if payload == "badbreath_about":
+		bot.send_text_message(sender_id,badbreath_about[0])
+	if payload == "chills_about":
+		bot.send_text_message(sender_id,chills_about[0])
+	if payload == "earache_about":
+		bot.send_text_message(sender_id,earache_about[0])
+	if payload == "stomachache_about":
+		bot.send_text_message(sender_id,stomachache_about[0])
+	if payload == "redswollentonsil_about":
+		bot.send_text_message(sender_id,redswollentonsil_about[0])
+	if payload == "whiteoryellowspotsintonsils_about":
+		bot.send_text_message(sender_id,whiteoryellowspotsintonsils_about[0])
+	if payload == "nasalcongestion_about":
+		bot.send_text_message(sender_id,nasalcongestion_about[0])
+	if payload =="sneezing_about":
+		bot.send_text_message(sender_id,sneezing_about[0])
+	if payload == "weakness_about":
+		bot.send_text_message(sender_id,weakness_about[0])
+	if payload == "feelingcoldeasily_about":
+		bot.send_text_message(sender_id,feelingcoldeasily_about[0])
+	if payload == "backpain_about":
+		bot.send_text_message(sender_id,backpain_about[0])
+	if payload == "coughwiththickyellowgreenorbloodtingedmucus_about":
+		bot.send_text_message(sender_id,coughwiththickyellowgreenorbloodtingedmucus_about[0])
+	if payload == "stabbingchestpainworsenswhencoughingorbreathing_about":
+		bot.send_text_message(sender_id,stabbingchestpainworsenswhencoughingorbreathing_about[0])
+	if payload == "suddenonsetofchills_about":
+		bot.send_text_message(sender_id,suddenonsetofchills_about_about[0])
+	if payload == "frequenturgetoevacuateyourbowels_about":
+		bot.send_text_message(sender_id,frequenturgebowels_about_about_about[0])
+	if payload == "loosestools_about":
+		bot.send_text_message(sender_id,loosestools_about[0])
+	if payload == "bloating_about":
+		bot.send_text_message(sender_id,bloating_about[0])
+	if payload == "cramping_about":
+		bot.send_text_message(sender_id,cramping_about[0])
+	if payload == "dehydration_about":
+		bot.send_text_message(sender_id,dehydration_about[0])
 	
 	if payload == 'cough_remedies':
 		oneqrbtn = [{"content_type":"text","title":"📩Send Another","payload":'send_cough_remedies'}]
