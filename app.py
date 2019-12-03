@@ -606,7 +606,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_abdmoinalcramp":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If abdmoinal cramp occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -618,7 +618,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_abdominalpain":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If abdominal pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -630,7 +630,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_bloating":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If bloating occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -642,7 +642,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_suddenonsetofchills":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If sudden onset of chills occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -654,7 +654,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_backpain":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If back pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -666,7 +666,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_stomachache":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If stomachache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -678,7 +678,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_earache":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If earache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -690,7 +690,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_paininswallowing":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If pain in swallowing occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -702,7 +702,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_jointpain":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If joint pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -714,7 +714,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_rectalpain":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If rectal pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -726,7 +726,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_pelvicpain":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If pelvic pain occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -738,7 +738,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_urinehasastrongodor":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If urine with a strong odor occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -750,7 +750,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_headache":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If headache occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -762,7 +762,7 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_muscleaches":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If muscle aches occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
@@ -774,13 +774,13 @@ def received_qr(event):
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "sever_fever":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If fever occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
 		
 	if text == "hard_cough":
-		random.choice("{} 😔.".format(empathy))
+		bot.send_text_message(sender_id,"{} 😔.".format(random.choice(empathy)))
 		bot.send_text_message(sender_id,"If cough occurs 2-3 days or more.\nI suggest you seek for doctors advice.")
 		quick_replies = {"content_type":"text","title":"Yes", "payload":'yes_symptoms' },{ "content_type":"text", "title":"No", "payload":'no_symptoms' }
 		bot.send_quick_replies_message(sender_id, "Is there any symptoms {} experiencing that we haven't covered?".format(phrase2), quick_replies)  
