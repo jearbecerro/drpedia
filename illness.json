@@ -22,10 +22,10 @@
          "symptoms": ["fever", "weakness", "stomachache", "headache", "loss appetite", "rashes", "fatigue", "diarrhea"]
         },
         {"name": "Bronchitis",
-         "symptoms": ["runny nose", "sore throat", "tiredness", "sneezing", "wheezing", "feeling cold easily", "back pain", "muscle ache", "fever"]
+         "symptoms": ["runny nose", "cough", "tiredness", "sneezing", "wheezing", "feeling cold easily", "back pain", "muscle ache", "fever"]
         },
         {"name": "Pneumonia",
-         "symptoms": ["cough with thick yellow, green or blood-tinged mucus", "stabbing chest pain, worsens when coughing or breathing", "sudden onset of chills", "fever", "headache", "muscle ache"]
+         "symptoms": ["fatigue","cough with thick yellow, green or blood-tinged mucus", "stabbing chest pain, worsens when coughing or breathing", "sudden onset of chills", "fever", "headache", "muscle ache"]
         },
         {"name": "Diarrhea",
          "symptoms": ["frequent urge to evacuate your bowels", "loose stools", "fever", "bloating", "cramping", "abdominal pain", "nausea", "dehydration"]
